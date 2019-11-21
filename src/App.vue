@@ -1,32 +1,51 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-content>
+      <router-view/>
+    </v-content>
+
+    <v-bottom-navigation
+      v-model="bottomNav"
+      color="primary"
+      fixed
+      app
+    >
+      <v-btn value="feeds" to="/">
+        <span>Flux</span>
+        <v-icon>mdi-rss</v-icon>
+      </v-btn>
+
+      <v-btn value="locations" to="/locations">
+        <span>Lieux</span>
+        <v-icon>mdi-map-marker-outline</v-icon>
+      </v-btn>
+
+      <v-btn value="routes" to="/routes">
+        <span>Voies</span>
+        <v-icon>mdi-routes</v-icon>
+      </v-btn>
+
+      <v-btn value="settings" to="/settings">
+        <span>Paramètres</span>
+        <v-icon>mdi-settings-outline</v-icon>
+      </v-btn>
+    </v-bottom-navigation>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<script>
+export default {
+  name: 'App',
+  data: () => ({
+    bottomNav: ''
+  }),
+  mounted () {
+    let checks = ['routes', 'locations', 'settings']
+    checks.forEach(element => {
+      if (localStorage.getItem(element) === undefined) {
+        localStorage.setItem(element, '[]')
+      }
+    })
+  }
+};
+</script>
