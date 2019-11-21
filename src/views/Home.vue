@@ -1,18 +1,28 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-container>
+    <v-layout row>
+      <v-flex xs12 md6>
+        <v-card>
+          <v-card-text>
+            <div>Votre app d'escalade</div>
+            <p class="display-1 text--primary">
+              Climbing
+            </p>
+            <div class="text--primary">
+              Travaillez vos voies en restant organisé : l'application d'escalade pratique !
+            </div>
+          </v-card-text>
+        </v-card>
+      </v-flex>
+      <v-flex xs12 md6>
+
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
-  name: 'home',
-  components: {
-    HelloWorld
-  }
+  name: 'Home'
 }
 </script>
