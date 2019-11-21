@@ -45,7 +45,82 @@
                   </template>
 
                   <v-list-item>
-
+                    <v-row>
+                      <template v-if="location.id === 'default'">
+                        <v-col cols="12">
+                        <v-btn to="/locations" color="primary" block>
+                          Choisir un lieu
+                        </v-btn>
+                      </v-col>
+                      </template>
+                      <template v-else>
+                        <v-col cols="6" class="pb-0">
+                          <v-text-field
+                            v-model="form.name"
+                            label="Nom"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="6" class="pb-0">
+                          <v-select
+                            v-model="form.grade"
+                            :items="grades"
+                            label="Cotation"
+                          ></v-select>
+                        </v-col>
+                        <v-col cols="12">
+                          <v-slider
+                            v-model="form.length"
+                            label="Longueur"
+                            class="align-center"
+                            :max="300"
+                            :min="0"
+                            hide-details
+                          >
+                            <template v-slot:append>
+                              <v-text-field
+                                v-model="form.length"
+                                class="mt-0 pt-0"
+                                hide-details
+                                single-line
+                                type="number"
+                                style="width: 60px"
+                              ></v-text-field>
+                            </template>
+                          </v-slider>
+                        </v-col>
+                        <v-col cols="12">
+                          <v-menu
+                            v-model="goalMenu"
+                            :close-on-content-click="false"
+                            :nudge-right="40"
+                            transition="scale-transition"
+                            offset-y
+                            min-width="290px"
+                          >
+                            <template v-slot:activator="{ on }">
+                              <v-text-field
+                                v-model="form.goal"
+                                label="Objectif"
+                                readonly
+                                v-on="on"
+                              ></v-text-field>
+                            </template>
+                            <v-date-picker v-model="form.goal" @input="goalMenu = false"></v-date-picker>
+                          </v-menu>
+                        </v-col>
+                        <v-col cols="12" class="pt-0">
+                          <v-textarea
+                            v-model="form.notes"
+                            label="Notes"
+                          ></v-textarea>
+                        </v-col>
+                        <v-col cols="12">
+                          <v-btn @click="add" color="primary" block>
+                            Ajouter
+                          </v-btn>
+                        </v-col>
+                      </template>
+                    </v-row>
                   </v-list-item>
                 </v-list-group>
               </v-list>
@@ -78,37 +153,52 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'List of routes',
   data: () => ({
     location: {},
     routes: [],
-    showPhotos: false
+    showPhotos: false,
+    goalMenu: false,
+
+    form: {
+      location: '',
+      name: '',
+      grade: '',
+      notes: '',
+      length: 0,
+      goal: new Date().toISOString().substr(0, 10),
+    },
+    grades: [
+      '4a',
+      '4b',
+      '4c',
+      '5a',
+      '5b',
+      '5c',
+      '6a',
+      '6b',
+      '6c',
+      '7a',
+      '7b',
+      '7c',
+      '8a',
+      '8b',
+      '8c',
+      '9a',
+      '9b',
+    ]
   }),
   mounted () {
-    if (this.$route.params.id === undefined) {
-      this.location = {
-        id: "default",
-        name: "Tous les lieux",
-        photos: []
-      }
-      this.routes = this.getRoutes
-    }
-    else {
-      this.location = this.getLocationById(this.$route.params.id)
-      if (this.location === undefined) {
-        this.$router.push('home')
-      } else {
-        this.routes = this.getRoutesByLocation(this.location.id)
-      }
-    }
+    this.refreshRoutes()
   },
   computed: {
     ...mapGetters(['getRoutes', 'getRoutesByLocation', 'getLocationById'])
   },
   methods: {
+    ...mapActions(['addRoute']),
     getIcon (route) {
       if (route.finished) {
         return {
@@ -129,8 +219,28 @@ export default {
         }
       }
     },
-    changeLocation () {
-
+    add () {
+      this.form.location = this.location.id
+      this.addRoute(this.form)
+      this.refreshRoutes()
+    },
+    refreshRoutes () {
+      if (this.$route.params.id === undefined) {
+        this.location = {
+          id: "default",
+          name: "Tous les lieux",
+          photos: []
+        }
+        this.routes = this.getRoutes
+      }
+      else {
+        this.location = this.getLocationById(this.$route.params.id)
+        if (this.location === undefined) {
+          this.$router.push('home')
+        } else {
+          this.routes = this.getRoutesByLocation(this.location.id)
+        }
+      }
     }
   }
 }
