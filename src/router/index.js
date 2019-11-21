@@ -18,17 +18,12 @@ const routes = [
   {
     path: '/locations/:id',
     name: 'location',
-    component: () => import(/* webpackChunkName: "locations" */ '../views/routes/List.vue')
+    component: () => import(/* webpackChunkName: "locations" */ '../views/Routes.vue')
   },
   {
     path: '/routes',
     name: 'routes',
-    component: () => import(/* webpackChunkName: "routes" */ '../views/routes/List.vue')
-  },
-  {
-    path: '/routes/:name',
-    name: 'route',
-    component: () => import(/* webpackChunkName: "routes" */ '../views/routes/Specific.vue')
+    component: () => import(/* webpackChunkName: "routes" */ '../views/Routes.vue')
   },
   {
     path: '/settings',
