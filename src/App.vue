@@ -10,24 +10,9 @@
       fixed
       app
     >
-      <v-btn value="feeds" to="/">
-        <span>Flux</span>
-        <v-icon>mdi-rss</v-icon>
-      </v-btn>
-
-      <v-btn value="locations" to="/locations">
-        <span>Lieux</span>
-        <v-icon>mdi-map-marker-outline</v-icon>
-      </v-btn>
-
-      <v-btn value="routes" to="/routes">
-        <span>Voies</span>
-        <v-icon>mdi-routes</v-icon>
-      </v-btn>
-
-      <v-btn value="settings" to="/settings">
-        <span>Paramètres</span>
-        <v-icon>mdi-settings-outline</v-icon>
+      <v-btn v-for="item in menu" :key="item.name" :to="item.route">
+        <span>{{item.name}}</span>
+        <v-icon>{{item.icon}}</v-icon>
       </v-btn>
     </v-bottom-navigation>
   </v-app>
@@ -37,7 +22,30 @@
 export default {
   name: 'App',
   data: () => ({
-    bottomNav: ''
+    bottomNav: '',
+
+    menu: [
+      {
+        name: 'Flux',
+        route: '/',
+        icon: 'mdi-rss'
+      },
+      {
+        name: 'Lieux',
+        route: '/locations',
+        icon: 'mdi-map-marker-outline'
+      },
+      {
+        name: 'Voies',
+        route: '/routes',
+        icon: 'mdi-routes'
+      },
+      {
+        name: 'Paramètres',
+        route: '/settings',
+        icon: 'mdi-settings-outline'
+      }
+    ]
   }),
   mounted () {
     let checks = ['routes', 'locations', 'settings']

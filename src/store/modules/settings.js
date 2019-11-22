@@ -1,7 +1,7 @@
-import {loadData} from '../../plugins/utils.js'
+import {loadFromStorage} from '../../utils/storage.js'
 
 const state = {
-  data: loadData('params')
+  data: loadFromStorage('settings')
 }
 
 const getters = {

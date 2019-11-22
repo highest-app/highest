@@ -11,13 +11,22 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn v-if="location.id !== 'default'" text @click="changeLocation">Éditer ce lieu</v-btn>
-            <v-btn to="/locations" color="primary" text>{{location.id === 'default' ? 'Choisir un lieu' : 'Changer de lieu'}}</v-btn>
             <v-btn
               v-if="location.id !== 'default'"
-              icon
+              @click="editLocation"
+              text>
+              Éditer ce lieu
+            </v-btn>
+            <v-btn
+              to="/locations"
+              color="primary"
+              text>
+              {{location.id === 'default' ? 'Choisir un lieu' : 'Changer de lieu'}}
+            </v-btn>
+            <v-btn
+              v-if="location.id !== 'default'"
               @click="showPhotos = !showPhotos"
-            >
+              icon>
               <v-icon>{{ showPhotos ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
             </v-btn>
           </v-card-actions>
@@ -37,80 +46,67 @@
       <v-col cols="12" md="6">
         <v-row>
           <v-col cols="12">
-            <v-card>
-              <v-list>
-                <v-list-group
-                  prepend-icon="mdi-plus"
-                  :value="false"
-                >
-                  <template v-slot:activator>
-                    <v-list-item-title>Ajouter une voie</v-list-item-title>
-                  </template>
-
-                  <v-list-item>
-                    <v-row>
-                      <template v-if="location.id === 'default'">
-                        <v-col cols="12">
-                        <v-btn to="/locations" color="primary" block>
-                          Choisir un lieu
-                        </v-btn>
-                      </v-col>
+            <adding-menu label="Ajouter une voie">
+              <v-row>
+                <template v-if="location.id === 'default'">
+                  <v-col cols="12">
+                  <v-btn to="/locations" color="primary" block>
+                    Choisir un lieu
+                  </v-btn>
+                </v-col>
+                </template>
+                <template v-else>
+                  <v-col cols="6" class="pb-0">
+                    <v-text-field
+                      v-model="form.name"
+                      label="Nom"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="6" class="pb-0">
+                    <v-select
+                      v-model="form.grade"
+                      :items="grades"
+                      label="Cotation"
+                    ></v-select>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-slider
+                      v-model="form.length"
+                      label="Longueur"
+                      class="align-center"
+                      :max="300"
+                      :min="0"
+                      hide-details
+                    >
+                      <template v-slot:append>
+                        <v-text-field
+                          v-model="form.length"
+                          class="mt-0 pt-0"
+                          hide-details
+                          single-line
+                          type="number"
+                          style="width: 60px"
+                        ></v-text-field>
                       </template>
-                      <template v-else>
-                        <v-col cols="6" class="pb-0">
-                          <v-text-field
-                            v-model="form.name"
-                            label="Nom"
-                          ></v-text-field>
-                        </v-col>
-                        <v-col cols="6" class="pb-0">
-                          <v-select
-                            v-model="form.grade"
-                            :items="grades"
-                            label="Cotation"
-                          ></v-select>
-                        </v-col>
-                        <v-col cols="12">
-                          <v-slider
-                            v-model="form.length"
-                            label="Longueur"
-                            class="align-center"
-                            :max="300"
-                            :min="0"
-                            hide-details
-                          >
-                            <template v-slot:append>
-                              <v-text-field
-                                v-model="form.length"
-                                class="mt-0 pt-0"
-                                hide-details
-                                single-line
-                                type="number"
-                                style="width: 60px"
-                              ></v-text-field>
-                            </template>
-                          </v-slider>
-                        </v-col>
-                        <v-col cols="12">
-                          <v-date-picker v-model="form.goal" @input="goalMenu = false"></v-date-picker>
-                        </v-col>
-                        <v-col cols="12" class="pt-0">
-                          <v-textarea
-                            v-model="form.notes"
-                            label="Notes"
-                          ></v-textarea>
-                        </v-col>
-                        <v-col cols="12">
-                          <v-btn @click="add" color="primary" block>
-                            Ajouter
-                          </v-btn>
-                        </v-col>
-                      </template>
-                    </v-row>
-                  </v-list-item>
-                </v-list-group>
-              </v-list>
-            </v-card>
+                    </v-slider>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-date-picker v-model="form.goal" @input="goalMenu = false"></v-date-picker>
+                  </v-col>
+                  <v-col cols="12" class="pt-0">
+                    <v-textarea
+                      v-model="form.notes"
+                      label="Notes"
+                    ></v-textarea>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-btn @click="add" color="primary" block>
+                      Ajouter
+                    </v-btn>
+                  </v-col>
+                </template>
+              </v-row>
+            </adding-menu>
           </v-col>
           <v-col cols="12">
             <v-card>
@@ -140,9 +136,12 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import { grades } from '../utils/data'
+import AddingMenu from '@/components/AddingMenu'
 
 export default {
   name: 'List of routes',
+  components: {AddingMenu},
   data: () => ({
     location: {},
     routes: [],
@@ -157,25 +156,7 @@ export default {
       length: 0,
       goal: new Date().toISOString().substr(0, 10),
     },
-    grades: [
-      '4a',
-      '4b',
-      '4c',
-      '5a',
-      '5b',
-      '5c',
-      '6a',
-      '6b',
-      '6c',
-      '7a',
-      '7b',
-      '7c',
-      '8a',
-      '8b',
-      '8c',
-      '9a',
-      '9b',
-    ]
+    grades
   }),
   mounted () {
     this.refreshRoutes()
@@ -227,6 +208,9 @@ export default {
           this.routes = this.getRoutesByLocation(this.location.id)
         }
       }
+    },
+    editLocation () {
+
     }
   }
 }

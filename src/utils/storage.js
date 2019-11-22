@@ -1,4 +1,4 @@
-function loadData(category) {
+function loadFromStorage(category) {
   let data = localStorage.getItem(category)
   if (data === null || data === '') {
     localStorage.setItem(category, '[]')
@@ -7,8 +7,8 @@ function loadData(category) {
   return JSON.parse(data)
 }
 
-function saveData(category, data) {
+function saveToStorage(category, data) {
   localStorage.setItem(category, JSON.stringify(data))
 }
 
-export {loadData, saveData}
+export {loadFromStorage, saveToStorage}

@@ -1,8 +1,7 @@
-import {loadData} from '../../plugins/utils.js'
-import {saveData} from '../../plugins/utils'
+import {loadFromStorage, saveToStorage} from '../../utils/storage.js'
 
 const state = {
-  data: loadData('locations')
+  data: loadFromStorage('locations')
 }
 
 const getters = {
@@ -26,7 +25,7 @@ const mutations = {
 const actions = {
   addLocation: ({commit, state}, entryData) => {
     commit('ADD_LOCATION', entryData)
-    saveData('locations', state.data)
+    saveToStorage('locations', state.data)
   }
 }
 

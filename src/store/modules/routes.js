@@ -1,7 +1,7 @@
-import {loadData, saveData} from '../../plugins/utils.js'
+import {loadFromStorage, saveToStorage} from '../../utils/storage.js'
 
 const state = {
-  data: loadData('routes')
+  data: loadFromStorage('routes')
 }
 
 const getters = {
@@ -41,7 +41,7 @@ const mutations = {
 const actions = {
   addRoute: ({commit, state}, entryData) => {
     commit('ADD_ROUTE', entryData)
-    saveData('routes', state.data)
+    saveToStorage('routes', state.data)
   }
 }
 
