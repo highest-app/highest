@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import locations from './locations'
-import routes from './routes'
-import settings from './settings'
+import locations from './modules/locations'
+import routes from './modules/routes'
+import settings from './modules/settings'
 
 Vue.use(Vuex)
 
@@ -20,9 +20,7 @@ const mutations = {
 }
 
 const actions = {
-  save(_, params) {
-    localStorage.setItem(params.category, JSON.stringify(params.data))
-  }
+
 }
 
 export default new Vuex.Store({
