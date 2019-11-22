@@ -1,6 +1,48 @@
 <template>
   <v-container fluid>
     <v-row>
+      <v-col cols="12">
+        <v-card>
+          <v-list>
+            <v-list-group
+              prepend-icon="mdi-plus"
+              :value="false"
+            >
+              <template v-slot:activator>
+                <v-list-item-title>Ajouter un lieu</v-list-item-title>
+              </template>
+
+              <v-list-item>
+                <v-row>
+                  <v-col cols="12" md="6" class="pb-0">
+                    <v-text-field
+                      v-model="form.name"
+                      label="Nom"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="6" class="pb-0">
+                    <v-text-field
+                      v-model="form.photo"
+                      label="Lien vers une photo"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" class="pt-0">
+                    <v-textarea
+                      v-model="form.notes"
+                      label="Notes"
+                    ></v-textarea>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-btn @click="add" color="primary" block>
+                      Ajouter
+                    </v-btn>
+                  </v-col>
+                </v-row>
+              </v-list-item>
+            </v-list-group>
+          </v-list>
+        </v-card>
+      </v-col>
       <v-col cols="12" md="6" v-for="location in locations" :key="location.name">
         <v-card :to="'/locations/'+location.id">
           <v-img
@@ -17,18 +59,30 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   name: 'Locations',
   data: () => ({
-    locations: {}
+    locations: {},
+
+    form: {
+      name: '',
+      photo: ''
+    }
   }),
+  mounted () {
+    this.locations = this.getLocations
+  },
   computed: {
     ...mapGetters(['getLocations'])
   },
-  mounted () {
-    this.locations = this.getLocations
+  methods: {
+    ...mapActions(['addLocation']),
+    add () {
+      this.addLocation(this.form)
+      this.locations = this.getLocations
+    }
   }
 }
 </script>

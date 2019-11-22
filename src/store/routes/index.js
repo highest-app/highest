@@ -1,5 +1,7 @@
+import {loadData, saveData} from '../../plugins/utils.js'
+
 const state = {
-  data: JSON.parse(localStorage.getItem('routes'))
+  data: loadData('routes')
 }
 
 const getters = {
@@ -37,8 +39,9 @@ const mutations = {
 }
 
 const actions = {
-  addRoute: ({commit}, data) => {
-    commit('ADD_ROUTE', data)
+  addRoute: ({commit, state}, entryData) => {
+    commit('ADD_ROUTE', entryData)
+    saveData('routes', state.data)
   }
 }
 

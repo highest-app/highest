@@ -1,5 +1,7 @@
+import {loadData} from '../../plugins/utils.js'
+
 const state = {
-  data: JSON.parse(localStorage.getItem('settings'))
+  data: loadData('params')
 }
 
 const getters = {

@@ -20,7 +20,9 @@ const mutations = {
 }
 
 const actions = {
-
+  save(_, params) {
+    localStorage.setItem(params.category, JSON.stringify(params.data))
+  }
 }
 
 export default new Vuex.Store({

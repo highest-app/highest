@@ -6,6 +6,9 @@
           <v-img :src="location.photos[0]"/>
           <v-card-title>{{location.name}}</v-card-title>
           <v-card-subtitle>{{routes.length}} voie(s)</v-card-subtitle>
+          <v-card-text>
+            {{location.notes}}
+          </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn v-if="location.id !== 'default'" text @click="changeLocation">Éditer ce lieu</v-btn>
@@ -89,24 +92,7 @@
                           </v-slider>
                         </v-col>
                         <v-col cols="12">
-                          <v-menu
-                            v-model="goalMenu"
-                            :close-on-content-click="false"
-                            :nudge-right="40"
-                            transition="scale-transition"
-                            offset-y
-                            min-width="290px"
-                          >
-                            <template v-slot:activator="{ on }">
-                              <v-text-field
-                                v-model="form.goal"
-                                label="Objectif"
-                                readonly
-                                v-on="on"
-                              ></v-text-field>
-                            </template>
-                            <v-date-picker v-model="form.goal" @input="goalMenu = false"></v-date-picker>
-                          </v-menu>
+                          <v-date-picker v-model="form.goal" @input="goalMenu = false"></v-date-picker>
                         </v-col>
                         <v-col cols="12" class="pt-0">
                           <v-textarea
