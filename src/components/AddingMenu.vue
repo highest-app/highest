@@ -3,14 +3,13 @@
     <v-list>
       <v-list-group
         prepend-icon="mdi-plus"
-        :value="false"
-      >
+        :value="false">
         <template v-slot:activator>
-          <v-list-item-title>{{label}}</v-list-item-title>
+          <v-list-item-title>{{ label }}</v-list-item-title>
         </template>
 
         <v-list-item>
-          <slot></slot>
+          <slot/>
         </v-list-item>
       </v-list-group>
     </v-list>
@@ -18,10 +17,10 @@
 </template>
 
 <script>
-  export default {
-    name: 'AddingMenu',
-    props: {
-      label: String
-    }
+export default {
+  name: 'AddingMenu',
+  props: {
+    label: String
   }
+}
 </script>

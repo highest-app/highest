@@ -7,20 +7,17 @@
             <v-col cols="12" md="6" class="pb-0">
               <v-text-field
                 v-model="form.name"
-                label="Nom"
-              ></v-text-field>
+                label="Nom" />
             </v-col>
             <v-col cols="12" md="6" class="pb-0">
               <v-text-field
                 v-model="form.photo"
-                label="Lien vers une photo"
-              ></v-text-field>
+                label="Lien vers une photo" />
             </v-col>
             <v-col cols="12" class="pt-0">
               <v-textarea
                 v-model="form.notes"
-                label="Notes"
-              ></v-textarea>
+                label="Notes" />
             </v-col>
             <v-col cols="12">
               <v-btn @click="add" color="primary" block>
@@ -31,13 +28,12 @@
         </adding-menu>
       </v-col>
       <v-col cols="12" md="6" v-for="location in locations" :key="location.name">
-        <v-card :to="'/locations/'+location.id">
+        <v-card :to="'/locations/' + location.id">
           <v-img
             class="white--text align-end"
             :aspect-ratio="16/9"
-            :src="location.photos[0]"
-          >
-            <v-card-title>{{location.name}}</v-card-title>
+            :src="location.photos[0]">
+            <v-card-title>{{ location.name }}</v-card-title>
           </v-img>
         </v-card>
       </v-col>
@@ -51,16 +47,13 @@ import AddingMenu from '@/components/AddingMenu'
 
 export default {
   name: 'Locations',
-  components: {AddingMenu},
+  components: { AddingMenu },
   data: () => ({
     locations: {},
-
-    form: {
-      name: '',
-      photo: ''
-    }
+    form: {}
   }),
   mounted () {
+    this.clearForm()
     this.locations = this.getLocations
   },
   computed: {
@@ -70,12 +63,14 @@ export default {
     ...mapActions(['addLocation']),
     add () {
       this.addLocation(this.form)
-      this.locations = this.getLocations
+    },
+    clearForm () {
+      this.form = {
+        name: '',
+        photo: '',
+        notes: ''
+      }
     }
   }
 }
 </script>
-
-<style scoped>
-
-</style>

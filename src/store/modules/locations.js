@@ -1,4 +1,4 @@
-import {loadFromStorage, saveToStorage} from '../../utils/storage.js'
+import { loadFromStorage, saveToStorage } from '../../utils/storage.js'
 
 const state = {
   data: loadFromStorage('locations')
@@ -7,15 +7,15 @@ const state = {
 const getters = {
   getLocations: state => state.data,
   getLocationById: state => id => {
-    return state.data.filter(location => location.id === id)[0]
+    return state.data.find(location => location.id === id)
   }
 }
 
 const mutations = {
-  ADD_LOCATION: (state, data) => {
+  ADD_LOCATION (state, data) {
     state.data.push({
       name: data.name,
-      id: data.name.toLowerCase().replace(' ', '-'),
+      id: data.name.toLowerCase().replace(/ /, '-'),
       notes: data.notes,
       photos: [data.photo]
     })
@@ -23,7 +23,7 @@ const mutations = {
 }
 
 const actions = {
-  addLocation: ({commit, state}, entryData) => {
+  addLocation ({ commit, state }, entryData) {
     commit('ADD_LOCATION', entryData)
     saveToStorage('locations', state.data)
   }

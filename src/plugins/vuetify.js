@@ -1,9 +1,10 @@
-import Vue from 'vue';
-import Vuetify from 'vuetify';
-import 'vuetify/dist/vuetify.min.css';
-import fr from 'vuetify/es5/locale/fr';
+import Vue from 'vue'
+import Vuetify from 'vuetify'
 
-Vue.use(Vuetify);
+import fr from 'vuetify/es5/locale/fr'
+import 'vuetify/dist/vuetify.min.css'
+
+Vue.use(Vuetify)
 
 export default new Vuetify({
   theme: {
@@ -32,4 +33,4 @@ export default new Vuetify({
       locales: { fr },
       current: 'fr',
     },
-});
+})

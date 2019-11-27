@@ -1,7 +1,9 @@
 <template>
   <v-app>
     <v-content>
-      <router-view/>
+      <transition :name="transition">
+        <router-view/>
+      </transition>
     </v-content>
 
     <v-bottom-navigation
@@ -11,21 +13,21 @@
       app
     >
       <v-btn v-for="item in menu" :key="item.name" :to="item.route">
-        <span>{{item.name}}</span>
-        <v-icon>{{item.icon}}</v-icon>
+        <span>{{ item.name }}</span>
+        <v-icon>{{ item.icon }}</v-icon>
       </v-btn>
     </v-bottom-navigation>
   </v-app>
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'App',
   data: () => ({
     bottomNav: '',
-
+    transition: '',
     menu: [
       {
         name: 'Flux',
@@ -52,9 +54,7 @@ export default {
   mounted () {
     let checks = ['routes', 'locations', 'settings']
     checks.forEach(element => {
-      if (localStorage.getItem(element) === undefined) {
-        localStorage.setItem(element, '[]')
-      }
+      if (localStorage.getItem(element) === undefined) localStorage.setItem(element, '[]')
     })
     this.$vuetify.theme.dark = this.darkTheme
   },
@@ -64,6 +64,10 @@ export default {
   watch: {
     darkTheme (value) {
       this.$vuetify.theme.dark = value
+    },
+    '$route' (to, from) {
+      if (to.name === "routes" && from.name === "locations") this.transition = 'slide-x-transition'
+      if (to.name === "locations" && from.name === "routes") this.transition = 'slide-x-reverse-transition'
     }
   }
 };

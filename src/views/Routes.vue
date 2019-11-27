@@ -4,27 +4,28 @@
       <v-col cols="12" md="6">
         <v-card>
           <v-img :src="location.photos[0]"/>
-          <v-card-title>{{location.name}}</v-card-title>
-          <v-card-subtitle>{{routes.length}} voie(s)</v-card-subtitle>
+          <v-card-title>{{ location.name }}</v-card-title>
+          <v-card-subtitle>{{ routes.length }} {{ routes.length === 1 ? 'voie' : 'voies' }}</v-card-subtitle>
           <v-card-text>
-            {{location.notes}}
+            {{ location.notes }}
           </v-card-text>
           <v-card-actions>
-            <v-spacer></v-spacer>
+            <v-spacer/>
             <v-btn
-              v-if="location.id !== 'default'"
-              @click="editLocation"
-              text>
+              v-if="location.id !== null"
+              text
+              @click="editLocation">
               Éditer ce lieu
             </v-btn>
             <v-btn
               to="/locations"
               color="primary"
+              active="false"
               text>
-              {{location.id === 'default' ? 'Choisir un lieu' : 'Changer de lieu'}}
+              {{ location.id === null ? 'Choisir un lieu' : 'Changer de lieu' }}
             </v-btn>
             <v-btn
-              v-if="location.id !== 'default'"
+              v-if="location.id !== null"
               @click="showPhotos = !showPhotos"
               icon>
               <v-icon>{{ showPhotos ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
@@ -32,13 +33,12 @@
           </v-card-actions>
           <v-expand-transition>
             <div v-show="showPhotos">
-              <v-divider></v-divider>
+              <v-divider/>
               <v-card-title>Toutes les photos</v-card-title>
               <v-img
                 v-for="photo in location.photos"
                 :key="photo"
-                :src="photo"
-              />
+                :src="photo" />
             </div>
           </v-expand-transition>
         </v-card>
@@ -48,7 +48,7 @@
           <v-col cols="12">
             <adding-menu label="Ajouter une voie">
               <v-row>
-                <template v-if="location.id === 'default'">
+                <template v-if="location.id === null">
                   <v-col cols="12">
                   <v-btn to="/locations" color="primary" block>
                     Choisir un lieu
@@ -59,15 +59,13 @@
                   <v-col cols="6" class="pb-0">
                     <v-text-field
                       v-model="form.name"
-                      label="Nom"
-                    ></v-text-field>
+                      label="Nom" />
                   </v-col>
                   <v-col cols="6" class="pb-0">
                     <v-select
                       v-model="form.grade"
                       :items="grades"
-                      label="Cotation"
-                    ></v-select>
+                      label="Cotation" />
                   </v-col>
                   <v-col cols="12">
                     <v-slider
@@ -76,17 +74,15 @@
                       class="align-center"
                       :max="300"
                       :min="0"
-                      hide-details
-                    >
+                      hide-details>
                       <template v-slot:append>
                         <v-text-field
                           v-model="form.length"
                           class="mt-0 pt-0"
-                          hide-details
-                          single-line
                           type="number"
                           style="width: 60px"
-                        ></v-text-field>
+                          hide-details
+                          single-line />
                       </template>
                     </v-slider>
                   </v-col>
@@ -105,8 +101,7 @@
                   <v-col cols="12" class="pt-0">
                     <v-textarea
                       v-model="form.notes"
-                      label="Notes"
-                    ></v-textarea>
+                      label="Notes" />
                   </v-col>
                   <v-col cols="12">
                     <v-btn @click="add" color="primary" block>
@@ -127,17 +122,16 @@
                   v-for="route in routes" :key="route.id"
                   v-model="route.active"
                   :color="getIcon(route).color"
-                  no-action
-                >
+                  no-action>
                   <template v-slot:activator>
                     <div class="v-list-item__icon v-list-group__header__prepend-icon">
-                      <v-icon :color="getIcon(route).color">{{getIcon(route).icon}}</v-icon>
+                      <v-icon :color="getIcon(route).color">{{ getIcon(route).icon }}</v-icon>
                     </div>
                     <v-list-item-content>
-                      <v-list-item-title>{{route.name}}</v-list-item-title>
+                      <v-list-item-title>{{ route.name }}</v-list-item-title>
                       <v-list-item-subtitle>
-                        <span class='text--primary'>{{route.grade}}</span>
-                        &mdash; {{route.notes}}
+                        <span class='text--primary'>{{ route.grade }}</span>
+                        &mdash; {{ route.notes }}
                       </v-list-item-subtitle>
                     </v-list-item-content>
                   </template>
@@ -174,17 +168,17 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import { grades } from '../utils/data'
+import { grades, icons } from '../utils/data'
 import AddingMenu from '@/components/AddingMenu'
 
 export default {
   name: 'Routes',
-  components: {AddingMenu},
+  components: { AddingMenu },
   data: () => ({
     location: {},
     routes: [],
-    showPhotos: false,
     form: {},
+    showPhotos: false,
     grades
   }),
   mounted () {
@@ -197,34 +191,16 @@ export default {
   methods: {
     ...mapActions(['addRoute', 'removeRoute', 'switchFinishedRoute']),
     getIcon (route) {
-      if (route.finished) {
-        return {
-          color: 'primary',
-          icon: 'mdi-check-outline'
-        }
-      }
+      if (route.finished) return icons.finished
       if (route.goal) {
-        if (route.goal > Date.now()/1000) {
-          return {
-            color: 'orange',
-            icon: 'mdi-clock-outline'
-          }
-        }
-        return {
-          color: 'red darken-4',
-          icon: 'mdi-clock-outline'
-        }
+        if (route.goal > Date.now()/1000) return icons.goal
+        else return icons.outdatedGoal
       }
-      return {
-        color: '',
-        icon: 'mdi-dots-horizontal'
-      }
+      return icons.noGoal
     },
     add () {
       this.form.location = this.location.id
-      if (!this.form.enableGoal) {
-        this.form.goal = false
-      }
+      if (!this.form.enableGoal) this.form.goal = false
       this.addRoute(this.form)
       this.clearForm()
       this.refreshRoutes()
@@ -239,19 +215,16 @@ export default {
     refreshRoutes () {
       if (this.$route.params.id === undefined) {
         this.location = {
-          id: "default",
-          name: "Tous les lieux",
+          id: null,
+          name: 'Tous les lieux',
           photos: []
         }
         this.routes = this.getRoutes
       }
       else {
         this.location = this.getLocationById(this.$route.params.id)
-        if (this.location === undefined) {
-          this.$router.push('home')
-        } else {
-          this.routes = this.getRoutesByLocation(this.location.id)
-        }
+        if (this.location === undefined) this.$router.push('home')
+        else this.routes = this.getRoutesByLocation(this.location.id)
       }
     },
     clearForm () {
@@ -271,7 +244,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>
