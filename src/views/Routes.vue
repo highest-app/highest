@@ -91,7 +91,16 @@
                     </v-slider>
                   </v-col>
                   <v-col cols="12">
-                    <v-date-picker v-model="form.goal" @input="goalMenu = false"></v-date-picker>
+                    <v-switch
+                      v-model="form.enableGoal"
+                      color="primary"
+                      label="Définir un objectif"
+                      inset />
+                    <v-date-picker
+                      v-model="form.goal"
+                      :disabled="!form.enableGoal"
+                      color="primary"
+                      full-width />
                   </v-col>
                   <v-col cols="12" class="pt-0">
                     <v-textarea
@@ -113,18 +122,47 @@
               <v-card-text v-if="routes.length === 0">
                 Aucune voie pour le moment. Ajoutez-en une !
               </v-card-text>
-              <v-list>
-                <v-list-item v-for="route in routes" :key="route.id" two-line>
-                  <v-list-item-icon>
-                    <v-icon :color="getIcon(route).color">{{getIcon(route).icon}}</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-content>
-                    <v-list-item-title>{{route.name}}</v-list-item-title>
-                    <v-list-item-subtitle>
-                      <span class='text--primary'>{{route.grade}}</span>
-                      &mdash; {{route.notes}}</v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-list-item>
+              <v-list v-else two-line>
+                <v-list-group
+                  v-for="route in routes" :key="route.id"
+                  v-model="route.active"
+                  :color="getIcon(route).color"
+                  no-action
+                >
+                  <template v-slot:activator>
+                    <div class="v-list-item__icon v-list-group__header__prepend-icon">
+                      <v-icon :color="getIcon(route).color">{{getIcon(route).icon}}</v-icon>
+                    </div>
+                    <v-list-item-content>
+                      <v-list-item-title>{{route.name}}</v-list-item-title>
+                      <v-list-item-subtitle>
+                        <span class='text--primary'>{{route.grade}}</span>
+                        &mdash; {{route.notes}}
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                  </template>
+                  <v-container>
+                    <v-row>
+                      <v-col cols="12">
+                        <v-switch
+                          v-model="route.finished"
+                          color="primary"
+                          label="Marquer comme terminée"
+                          inset
+                          @click.stop="switchFinished(route.id)" />
+                      </v-col>
+                      <v-col cols="1" offset="11">
+                        <v-btn
+                          color="red darken-4"
+                          text
+                          icon
+                          @click="remove(route.id)">
+                          <v-icon>mdi-delete-outline</v-icon>
+                        </v-btn>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </v-list-group>
               </v-list>
             </v-card>
           </v-col>
@@ -140,56 +178,63 @@ import { grades } from '../utils/data'
 import AddingMenu from '@/components/AddingMenu'
 
 export default {
-  name: 'List of routes',
+  name: 'Routes',
   components: {AddingMenu},
   data: () => ({
     location: {},
     routes: [],
     showPhotos: false,
-    goalMenu: false,
-
-    form: {
-      location: '',
-      name: '',
-      grade: '',
-      notes: '',
-      length: 0,
-      goal: new Date().toISOString().substr(0, 10),
-    },
+    form: {},
     grades
   }),
   mounted () {
+    this.clearForm()
     this.refreshRoutes()
   },
   computed: {
     ...mapGetters(['getRoutes', 'getRoutesByLocation', 'getLocationById'])
   },
   methods: {
-    ...mapActions(['addRoute']),
+    ...mapActions(['addRoute', 'removeRoute', 'switchFinishedRoute']),
     getIcon (route) {
       if (route.finished) {
         return {
           color: 'primary',
           icon: 'mdi-check-outline'
         }
-      } else {
-        if (route.goal === undefined) {
+      }
+      if (route.goal) {
+        if (route.goal > Date.now()/1000) {
           return {
-            color: '',
-            icon: 'mdi-dots-horizontal'
+            color: 'orange',
+            icon: 'mdi-clock-outline'
           }
-        } else {
-          return {
-          color: 'warning',
+        }
+        return {
+          color: 'red darken-4',
           icon: 'mdi-clock-outline'
         }
-        }
+      }
+      return {
+        color: '',
+        icon: 'mdi-dots-horizontal'
       }
     },
     add () {
       this.form.location = this.location.id
+      if (!this.form.enableGoal) {
+        this.form.goal = false
+      }
       this.addRoute(this.form)
+      this.clearForm()
       this.refreshRoutes()
+    },
+    remove (id) {
+      this.removeRoute(id)
+      this.refreshRoutes()
+    },
+    switchFinished(id) {
+      this.switchFinishedRoute(id)
     },
     refreshRoutes () {
       if (this.$route.params.id === undefined) {
@@ -207,6 +252,17 @@ export default {
         } else {
           this.routes = this.getRoutesByLocation(this.location.id)
         }
+      }
+    },
+    clearForm () {
+      this.form = {
+        location: '',
+        name: '',
+        grade: '',
+        notes: '',
+        length: 0,
+        enableGoal: false,
+        goal: new Date().toISOString().substr(0, 10),
       }
     },
     editLocation () {

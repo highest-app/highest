@@ -24,10 +24,13 @@ const mutations = {
       length: data.length,
       notes: data.notes,
       photos: [],
-      goal: Date.parse(data.goal)/1000,
+      goal: data.goal ? Date.parse(data.goal)/1000 : data.goal,
       finished: false,
       progressions: []
     })
+  },
+  SWITCH_FINISHED: (state, id) => {
+    state.data.find(route => route.id === id).finished = !state.data.find(route => route.id === id).finished
   },
   ADD_PROGRESSION: (state, data) => {
     let route = state.data.filter(route => route.id === data.id)[0]
@@ -35,12 +38,23 @@ const mutations = {
       date: data.date,
       notes: data.notes
     })
+  },
+  REMOVE_ROUTE: (state, id) => {
+    state.data.splice(state.data.findIndex(route => route.id === id), 1)
   }
 }
 
 const actions = {
   addRoute: ({commit, state}, entryData) => {
     commit('ADD_ROUTE', entryData)
+    saveToStorage('routes', state.data)
+  },
+  switchFinishedRoute: ({commit, state}, route) => {
+    commit('SWITCH_FINISHED', route)
+    saveToStorage('routes', state.data)
+  },
+  removeRoute: ({commit, state}, id) => {
+    commit('REMOVE_ROUTE', id)
     saveToStorage('routes', state.data)
   }
 }
