@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+
 export default {
   name: 'App',
   data: () => ({
@@ -54,6 +56,15 @@ export default {
         localStorage.setItem(element, '[]')
       }
     })
+    this.$vuetify.theme.dark = this.darkTheme
+  },
+  computed: {
+    ...mapGetters(['darkTheme'])
+  },
+  watch: {
+    darkTheme (value) {
+      this.$vuetify.theme.dark = value
+    }
   }
 };
 </script>
