@@ -10,9 +10,11 @@
       v-model="bottomNav"
       color="primary"
       fixed
-      app
-    >
-      <v-btn v-for="item in menu" :key="item.name" :to="item.route">
+      app>
+      <v-btn
+        v-for="item in menu"
+        :key="item.name"
+        :to="item.route">
         <span>{{ item.name }}</span>
         <v-icon>{{ item.icon }}</v-icon>
       </v-btn>

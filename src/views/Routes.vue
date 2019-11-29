@@ -1,7 +1,9 @@
 <template>
   <v-container>
     <v-row wrap>
-      <v-col cols="12" md="6">
+      <v-col
+        cols="12"
+        md="6">
         <v-card>
           <v-img :src="location.photos[0]"/>
           <v-card-title>{{ location.name }}</v-card-title>
@@ -26,8 +28,8 @@
             </v-btn>
             <v-btn
               v-if="location.id !== null"
-              @click="showPhotos = !showPhotos"
-              icon>
+              icon
+              @click="showPhotos = !showPhotos">
               <v-icon>{{ showPhotos ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
             </v-btn>
           </v-card-actions>
@@ -38,34 +40,43 @@
               <v-img
                 v-for="photo in location.photos"
                 :key="photo"
-                :src="photo" />
+                :src="photo"/>
             </div>
           </v-expand-transition>
         </v-card>
       </v-col>
-      <v-col cols="12" md="6">
+      <v-col
+        cols="12"
+        md="6">
         <v-row>
           <v-col cols="12">
             <adding-menu label="Ajouter une voie">
               <v-row>
                 <template v-if="location.id === null">
                   <v-col cols="12">
-                  <v-btn to="/locations" color="primary" block>
-                    Choisir un lieu
-                  </v-btn>
-                </v-col>
+                    <v-btn
+                      to="/locations"
+                      color="primary"
+                      block>
+                      Choisir un lieu
+                    </v-btn>
+                  </v-col>
                 </template>
                 <template v-else>
-                  <v-col cols="6" class="pb-0">
+                  <v-col
+                    cols="6"
+                    class="pb-0">
                     <v-text-field
                       v-model="form.name"
-                      label="Nom" />
+                      label="Nom"/>
                   </v-col>
-                  <v-col cols="6" class="pb-0">
+                  <v-col
+                    cols="6"
+                    class="pb-0">
                     <v-select
                       v-model="form.grade"
                       :items="grades"
-                      label="Cotation" />
+                      label="Cotation"/>
                   </v-col>
                   <v-col cols="12">
                     <v-slider
@@ -82,7 +93,7 @@
                           type="number"
                           style="width: 60px"
                           hide-details
-                          single-line />
+                          single-line/>
                       </template>
                     </v-slider>
                   </v-col>
@@ -91,20 +102,25 @@
                       v-model="form.enableGoal"
                       color="primary"
                       label="Définir un objectif"
-                      inset />
+                      inset/>
                     <v-date-picker
                       v-model="form.goal"
                       :disabled="!form.enableGoal"
                       color="primary"
-                      full-width />
+                      full-width/>
                   </v-col>
-                  <v-col cols="12" class="pt-0">
+                  <v-col
+                    cols="12"
+                    class="pt-0">
                     <v-textarea
                       v-model="form.notes"
-                      label="Notes" />
+                      label="Notes"/>
                   </v-col>
                   <v-col cols="12">
-                    <v-btn @click="add" color="primary" block>
+                    <v-btn
+                      color="primary"
+                      block
+                      @click="add">
                       Ajouter
                     </v-btn>
                   </v-col>
@@ -117,9 +133,12 @@
               <v-card-text v-if="routes.length === 0">
                 Aucune voie pour le moment. Ajoutez-en une !
               </v-card-text>
-              <v-list v-else two-line>
+              <v-list
+                v-else
+                two-line>
                 <v-list-group
-                  v-for="route in routes" :key="route.id"
+                  v-for="route in routes"
+                  :key="route.id"
                   v-model="route.active"
                   :color="getIcon(route).color"
                   no-action>
@@ -130,7 +149,7 @@
                     <v-list-item-content>
                       <v-list-item-title>{{ route.name }}</v-list-item-title>
                       <v-list-item-subtitle>
-                        <span class='text--primary'>{{ route.grade }}</span>
+                        <span class="text--primary">{{ route.grade }}</span>
                         &mdash; {{ route.notes }}
                       </v-list-item-subtitle>
                     </v-list-item-content>
@@ -143,9 +162,11 @@
                           color="primary"
                           label="Marquer comme terminée"
                           inset
-                          @click.stop="switchFinished(route.id)" />
+                          @click.stop="switchFinished(route.id)"/>
                       </v-col>
-                      <v-col cols="1" offset="11">
+                      <v-col
+                        cols="1"
+                        offset="11">
                         <v-btn
                           color="red darken-4"
                           text

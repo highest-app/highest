@@ -20,7 +20,10 @@
 export default {
   name: 'AddingMenu',
   props: {
-    label: String
+    label: {
+      type: String,
+      default: 'Ajouter'
+    }
   }
 }
 </script>

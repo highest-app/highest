@@ -6,7 +6,9 @@
       </v-col>
       <v-col cols="12">
         <v-card>
-          <v-list two-line subheader>
+          <v-list
+            two-line
+            subheader>
             <v-subheader>Apparence</v-subheader>
 
             <v-list-item>
@@ -18,7 +20,7 @@
               <v-switch
                 v-model="settings.darkTheme"
                 color="primary"
-                inset />
+                inset/>
             </v-list-item>
           </v-list>
         </v-card>

@@ -4,30 +4,45 @@
       <v-col cols="12">
         <adding-menu label="Ajouter un lieu">
           <v-row>
-            <v-col cols="12" md="6" class="pb-0">
+            <v-col
+              cols="12"
+              md="6"
+              class="pb-0">
               <v-text-field
                 v-model="form.name"
-                label="Nom" />
+                label="Nom"/>
             </v-col>
-            <v-col cols="12" md="6" class="pb-0">
+            <v-col
+              cols="12"
+              md="6"
+              class="pb-0">
               <v-text-field
                 v-model="form.photo"
-                label="Lien vers une photo" />
+                label="Lien vers une photo"/>
             </v-col>
-            <v-col cols="12" class="pt-0">
+            <v-col
+              cols="12"
+              class="pt-0">
               <v-textarea
                 v-model="form.notes"
-                label="Notes" />
+                label="Notes"/>
             </v-col>
             <v-col cols="12">
-              <v-btn @click="add" color="primary" block>
+              <v-btn
+                color="primary"
+                block
+                @click="add">
                 Ajouter
               </v-btn>
             </v-col>
           </v-row>
         </adding-menu>
       </v-col>
-      <v-col cols="12" md="6" v-for="location in locations" :key="location.name">
+      <v-col
+        v-for="location in locations"
+        :key="location.name"
+        cols="12"
+        md="6">
         <v-card :to="'/locations/' + location.id">
           <v-img
             class="white--text align-end"

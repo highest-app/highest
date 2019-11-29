@@ -1,7 +1,9 @@
 <template>
   <v-container>
     <v-layout row>
-      <v-flex xs12 md6>
+      <v-flex
+        xs12
+        md6>
         <v-card>
           <v-card-text>
             <div>Votre app d'escalade</div>
@@ -14,9 +16,9 @@
           </v-card-text>
         </v-card>
       </v-flex>
-      <v-flex xs12 md6>
-
-      </v-flex>
+      <v-flex
+        xs12
+        md6/>
     </v-layout>
   </v-container>
 </template>
