@@ -70,10 +70,6 @@ export default {
   watch: {
     darkTheme (value) {
       this.$vuetify.theme.dark = value
-    },
-    '$route' (to, from) {
-      if (to.name === "routes" && from.name === "locations") this.transition = 'slide-x-transition'
-      if (to.name === "locations" && from.name === "routes") this.transition = 'slide-x-reverse-transition'
     }
   }
 };

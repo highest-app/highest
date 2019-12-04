@@ -11,4 +11,4 @@ function saveToStorage(category, data) {
   localStorage.setItem(category, JSON.stringify(data))
 }
 
-export {loadFromStorage, saveToStorage}
+export { loadFromStorage, saveToStorage }

@@ -2,10 +2,10 @@
   <v-container>
     <v-dialog
       v-model="eraseDialog"
-      max-width="290">
+      max-width="290"
+      persistent>
       <v-card>
         <v-card-title class="headline">Êtes-vous sûr ?</v-card-title>
-
         <v-card-text>
           Cette action va engendrer la perte de toutes vos données, et ce de manière définitive. Réfléchissez-bien !
         </v-card-text>
@@ -17,7 +17,7 @@
           </v-btn>
           <v-spacer/>
           <v-btn
-            color="error"
+            class="red--text text--darken-4"
             text
             @click="eraseData">
             Effacer
@@ -59,7 +59,7 @@
 
             <v-list-item @click.stop="eraseDialog = true">
               <v-list-item-content>
-                <v-list-item-title color="error-text">Effacer les données</v-list-item-title>
+                <v-list-item-title class="red--text text--darken-4">Effacer les données</v-list-item-title>
                 <v-list-item-subtitle>Supprime toutes les données stockées sur cet appareil</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
@@ -79,9 +79,7 @@ export default {
     settings: {},
     eraseDialog: false
   }),
-  mounted () {
-    this.settings = this.getSettings
-  },
+  mounted () { this.settings = this.getSettings },
   computed: {
     ...mapGetters(['getSettings'])
   },
@@ -96,9 +94,7 @@ export default {
   },
   watch: {
     settings: {
-      handler (value) {
-        this.updateSettings(value)
-      },
+      handler: value => this.updateSettings(value),
       deep: true
     }
   }

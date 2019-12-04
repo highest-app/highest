@@ -140,11 +140,11 @@
                   v-for="route in routes"
                   :key="route.id"
                   v-model="route.active"
-                  :color="getIcon(route).color"
+                  :color="icons.get(route).color"
                   no-action>
                   <template v-slot:activator>
                     <div class="v-list-item__icon v-list-group__header__prepend-icon">
-                      <v-icon :color="getIcon(route).color">{{ getIcon(route).icon }}</v-icon>
+                      <v-icon :color="icons.get(route).color">{{ icons.get(route).icon }}</v-icon>
                     </div>
                     <v-list-item-content>
                       <v-list-item-title>{{ route.name }}</v-list-item-title>
@@ -162,7 +162,7 @@
                           color="primary"
                           label="Marquer comme terminée"
                           inset
-                          @click.stop="switchFinished(route.id)"/>
+                          @click.stop="switchFinishedRoute(route.id)"/>
                       </v-col>
                       <v-col
                         cols="1"
@@ -199,8 +199,11 @@ export default {
     location: {},
     routes: [],
     form: {},
+
     showPhotos: false,
-    grades
+
+    grades,
+    icons
   }),
   mounted () {
     this.clearForm()
@@ -211,14 +214,6 @@ export default {
   },
   methods: {
     ...mapActions(['addRoute', 'removeRoute', 'switchFinishedRoute']),
-    getIcon (route) {
-      if (route.finished) return icons.finished
-      if (route.goal) {
-        if (route.goal > Date.now()/1000) return icons.goal
-        else return icons.outdatedGoal
-      }
-      return icons.noGoal
-    },
     add () {
       this.form.location = this.location.id
       if (!this.form.enableGoal) this.form.goal = false
@@ -230,11 +225,9 @@ export default {
       this.removeRoute(id)
       this.refreshRoutes()
     },
-    switchFinished(id) {
-      this.switchFinishedRoute(id)
-    },
     refreshRoutes () {
-      if (this.$route.params.id === undefined) {
+      const id = this.$route.params.id
+      if (id === undefined) {
         this.location = {
           id: null,
           name: 'Tous les lieux',
@@ -243,8 +236,8 @@ export default {
         this.routes = this.getRoutes
       }
       else {
-        this.location = this.getLocationById(this.$route.params.id)
-        if (this.location === undefined) this.$router.push('home')
+        this.location = this.getLocationById(id)
+        if (this.location === undefined) this.$router.push('/locations')
         else this.routes = this.getRoutesByLocation(this.location.id)
       }
     },

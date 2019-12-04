@@ -31,7 +31,7 @@
               <v-btn
                 color="primary"
                 block
-                @click="add">
+                @click="addLocation(form)">
                 Ajouter
               </v-btn>
             </v-col>
@@ -76,9 +76,6 @@ export default {
   },
   methods: {
     ...mapActions(['addLocation']),
-    add () {
-      this.addLocation(this.form)
-    },
     clearForm () {
       this.form = {
         name: '',

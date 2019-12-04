@@ -23,7 +23,16 @@ const icons = {
   noGoal: {
     color: '',
     icon: 'mdi-dots-horizontal'
+  },
+
+  get (route) {
+    if (route.finished) return this.finished
+    if (route.goal) {
+      if (route.goal > Date.now()/1000) return this.goal
+      else return this.outdatedGoal
+    }
+    return this.noGoal
   }
 }
 
-export {grades, icons}
+export { grades, icons }
