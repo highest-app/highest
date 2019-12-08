@@ -1,9 +1,16 @@
 function loadFromStorage(category) {
-  let data = localStorage.getItem(category)
-  if (data === null || data === '') {
-    localStorage.setItem(category, '[]')
-    data = '[]'
+  let defaults = {
+    settings: '{}',
+    routes: '[]',
+    locations: '[]'
   }
+
+  let data = localStorage.getItem(category)
+  if (data === null) {
+    data = defaults[category]
+    localStorage.setItem(category, data)
+  }
+
   return JSON.parse(data)
 }
 

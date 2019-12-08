@@ -54,14 +54,6 @@ export default {
     ]
   }),
   mounted () {
-    let checks = [
-      ['routes', '[]'],
-      ['locations', '[]'],
-      ['settings', '{}']
-    ]
-    checks.forEach(element => {
-      if (localStorage.getItem(element[0]) === undefined) localStorage.setItem(element[0], element[1])
-    })
     this.$vuetify.theme.dark = this.darkTheme
   },
   computed: {
