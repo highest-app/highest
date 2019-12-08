@@ -7,7 +7,8 @@
       <v-card>
         <v-card-title class="headline">Êtes-vous sûr ?</v-card-title>
         <v-card-text>
-          Cette action va engendrer la perte de toutes vos données, et ce de manière définitive. Réfléchissez-bien !
+          Cette action va engendrer la perte de toutes vos données, incluant vos lieux,
+          voies et paramètres, et ce de manière définitive. Réfléchissez-bien !
         </v-card-text>
         <v-card-actions>
           <v-btn
@@ -39,7 +40,7 @@
             <v-list-item>
               <v-list-item-content>
                 <v-list-item-title>Thème sombre</v-list-item-title>
-                <v-list-item-subtitle>Donne à l'application des composants sombres, utiles pour économiser de l'énergie ou améliorer le confort de lecture</v-list-item-subtitle>
+                <v-list-item-subtitle>Donne à l'application des composants sombres, utile pour économiser de l'énergie ou améliorer le confort de lecture</v-list-item-subtitle>
               </v-list-item-content>
               <v-spacer/>
               <v-switch
@@ -60,7 +61,7 @@
             <v-list-item @click.stop="eraseDialog = true">
               <v-list-item-content>
                 <v-list-item-title class="red--text text--darken-4">Effacer les données</v-list-item-title>
-                <v-list-item-subtitle>Supprime toutes les données stockées sur cet appareil</v-list-item-subtitle>
+                <v-list-item-subtitle>Supprime toutes les données enregistrées sur cet appareil</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
           </v-list>

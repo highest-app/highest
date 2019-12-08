@@ -106,6 +106,7 @@
                     <v-date-picker
                       v-model="form.goal"
                       :disabled="!form.enableGoal"
+                      :first-day-of-week="1"
                       color="primary"
                       full-width/>
                   </v-col>
@@ -154,9 +155,15 @@
                       </v-list-item-subtitle>
                     </v-list-item-content>
                   </template>
-                  <v-container>
+                  <v-container class="black--text">
                     <v-row>
                       <v-col cols="12">
+                        <p>{{ route.notes }}</p>
+                        <v-img
+                          v-for="photo in route.photos"
+                          :key="photo"
+                          :src="photo"/>
+                        Objectif : {{ parseDate(route.goal) }}
                         <v-switch
                           v-model="route.finished"
                           color="primary"
@@ -189,7 +196,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import { grades, icons } from '../utils/data'
+import { grades, icons } from '@/utils/data'
 import AddingMenu from '@/components/AddingMenu'
 
 export default {
@@ -251,6 +258,13 @@ export default {
         enableGoal: false,
         goal: new Date().toISOString().substr(0, 10),
       }
+    },
+    parseDate(goal) {
+      if (goal === false) {
+        return 'aucun'
+      }
+      let date = new Date(goal)
+      return `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`
     },
     editLocation () {
 
