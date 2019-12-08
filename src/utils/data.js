@@ -28,7 +28,7 @@ const icons = {
   get (route) {
     if (route.finished) return this.finished
     if (route.goal) {
-      if (route.goal > Date.now()/1000) return this.goal
+      if (new Date(route.goal) > new Date(Date.now())) return this.goal
       else return this.outdatedGoal
     }
     return this.noGoal

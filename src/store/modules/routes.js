@@ -24,7 +24,7 @@ const mutations = {
       length: data.length,
       notes: data.notes,
       photos: [],
-      goal: data.goal ? Date.parse(data.goal)/1000 : data.goal,
+      goal: data.goal,
       finished: false,
       progressions: []
     })
