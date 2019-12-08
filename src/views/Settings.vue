@@ -94,7 +94,9 @@ export default {
   },
   watch: {
     settings: {
-      handler: value => this.updateSettings(value),
+      handler (value) {
+        this.updateSettings(value)
+      },
       deep: true
     }
   }
