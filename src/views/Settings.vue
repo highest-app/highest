@@ -7,8 +7,8 @@
       <v-card>
         <v-card-title class="headline">Êtes-vous sûr ?</v-card-title>
         <v-card-text>
-          Cette action va engendrer la perte de toutes vos données, incluant vos lieux,
-          voies et paramètres, et ce de manière définitive. Réfléchissez-bien !
+          Si vous continuez, cette action va engendrer la perte de toutes vos données, incluant
+          vos lieux, voies et paramètres, et ce de manière définitive. Réfléchissez-bien !
         </v-card-text>
         <v-card-actions>
           <v-btn
@@ -31,16 +31,12 @@
         <h1>Paramètres</h1>
       </v-col>
       <v-col cols="12">
+        <span class="grey--text">Apparence</span>
         <v-card>
-          <v-list
-            two-line
-            subheader>
-            <v-subheader>Apparence</v-subheader>
-
+          <v-list>
             <v-list-item>
               <v-list-item-content>
                 <v-list-item-title>Thème sombre</v-list-item-title>
-                <v-list-item-subtitle>Donne à l'application des composants sombres, utile pour économiser de l'énergie ou améliorer le confort de lecture</v-list-item-subtitle>
               </v-list-item-content>
               <v-spacer/>
               <v-switch
@@ -52,17 +48,35 @@
         </v-card>
       </v-col>
       <v-col cols="12">
+        <span class="grey--text">Avancé</span>
         <v-card>
-          <v-list
-            two-line
-            subheader>
-            <v-subheader>Avancé</v-subheader>
-
+          <v-list>
             <v-list-item @click.stop="eraseDialog = true">
               <v-list-item-content>
                 <v-list-item-title class="red--text text--darken-4">Effacer les données</v-list-item-title>
-                <v-list-item-subtitle>Supprime toutes les données enregistrées sur cet appareil</v-list-item-subtitle>
               </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-card>
+      </v-col>
+      <v-col cols="12">
+        <span class="grey--text">À propos</span>
+        <v-card>
+          <v-list>
+            <v-list-item>
+              <p class="mb-0">
+                Créé par <a href="https://twitter.com/exybore">Exybore</a>
+              </p>
+            </v-list-item>
+            <v-list-item
+              href="https://github.com/exybore/climbing-app"
+              target="_blank">
+              <v-list-item-content>
+                <v-list-item-title>Accéder au code source</v-list-item-title>
+              </v-list-item-content>
+              <v-list-item-icon>
+                <v-icon>mdi-open-in-new</v-icon>
+              </v-list-item-icon>
             </v-list-item>
           </v-list>
         </v-card>

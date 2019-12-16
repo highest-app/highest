@@ -31,6 +31,7 @@
               <v-btn
                 color="primary"
                 block
+                text
                 @click="addLocation(form)">
                 Ajouter
               </v-btn>

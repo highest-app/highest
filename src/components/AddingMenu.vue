@@ -7,7 +7,6 @@
         <template v-slot:activator>
           <v-list-item-title>{{ label }}</v-list-item-title>
         </template>
-
         <v-list-item>
           <slot/>
         </v-list-item>

@@ -12,6 +12,12 @@
             {{ location.notes }}
           </v-card-text>
           <v-card-actions>
+            <v-btn
+              v-if="location.id !== null"
+              icon
+              @click="showPhotos = !showPhotos">
+              <v-icon>{{ showPhotos ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+            </v-btn>
             <v-spacer/>
             <v-btn
               v-if="location.id !== null"
@@ -22,15 +28,9 @@
             <v-btn
               to="/locations"
               color="primary"
-              active="false"
+              :active="false"
               text>
               {{ location.id === null ? 'Choisir un lieu' : 'Changer de lieu' }}
-            </v-btn>
-            <v-btn
-              v-if="location.id !== null"
-              icon
-              @click="showPhotos = !showPhotos">
-              <v-icon>{{ showPhotos ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
             </v-btn>
           </v-card-actions>
           <v-expand-transition>
@@ -57,7 +57,8 @@
                     <v-btn
                       to="/locations"
                       color="primary"
-                      block>
+                      block
+                      text>
                       Choisir un lieu
                     </v-btn>
                   </v-col>
@@ -118,9 +119,15 @@
                       label="Notes"/>
                   </v-col>
                   <v-col cols="12">
+                    <v-spacer/>
+                    <v-btn
+                      text
+                      @click="resetForm">
+                      Annuler
+                    </v-btn>
                     <v-btn
                       color="primary"
-                      block
+                      text
                       @click="add">
                       Ajouter
                     </v-btn>
@@ -155,7 +162,7 @@
                       </v-list-item-subtitle>
                     </v-list-item-content>
                   </template>
-                  <v-container class="black--text">
+                  <v-container class="text--primary">
                     <v-row>
                       <v-col cols="12">
                         <p>{{ route.notes }}</p>
@@ -202,18 +209,28 @@ import AddingMenu from '@/components/AddingMenu'
 export default {
   name: 'Routes',
   components: { AddingMenu },
-  data: () => ({
-    location: {},
-    routes: [],
-    form: {},
+  data () {
+    const defaultForm = Object.freeze({
+      location: '',
+      name: '',
+      grade: '',
+      notes: '',
+      length: 0,
+      enableGoal: false,
+      goal: new Date().toISOString().substr(0, 10),
+    })
+    return {
+      location: {},
+      routes: [],
+      form: Object.assign({}, defaultForm),
 
-    showPhotos: false,
+      showPhotos: false,
 
-    grades,
-    icons
-  }),
+      grades,
+      icons
+    }
+  },
   mounted () {
-    this.clearForm()
     this.refreshRoutes()
   },
   computed: {
@@ -225,7 +242,7 @@ export default {
       this.form.location = this.location.id
       if (!this.form.enableGoal) this.form.goal = false
       this.addRoute(this.form)
-      this.clearForm()
+      this.resetForm()
       this.refreshRoutes()
     },
     remove (id) {
@@ -248,16 +265,8 @@ export default {
         else this.routes = this.getRoutesByLocation(this.location.id)
       }
     },
-    clearForm () {
-      this.form = {
-        location: '',
-        name: '',
-        grade: '',
-        notes: '',
-        length: 0,
-        enableGoal: false,
-        goal: new Date().toISOString().substr(0, 10),
-      }
+    resetForm () {
+      this.form = Object.assign({}, this.defaultForm)
     },
     parseDate(goal) {
       if (goal === false) {
