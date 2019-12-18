@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuetify from 'vuetify'
 
 import fr from 'vuetify/es5/locale/fr'
+import colors from 'vuetify/lib/util/colors'
 import 'vuetify/dist/vuetify.min.css'
 
 Vue.use(Vuetify)
@@ -19,8 +20,14 @@ const theme = {
 export default new Vuetify({
   theme: {
     themes: {
-      light: theme,
-      dark: theme
+      light: {
+        ...theme,
+        paragraph: colors.grey.darken2,
+      },
+      dark: {
+        ...theme,
+        paragraph: colors.grey.lighten2,
+      }
     },
   },
   lang: {
