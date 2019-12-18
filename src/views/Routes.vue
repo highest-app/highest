@@ -5,7 +5,10 @@
         cols="12"
         md="6">
         <v-card>
-          <v-img :src="location.photos[0]"/>
+          <v-img
+            v-if="location.id !== null"
+            :src="location.photos[0]"
+            :aspect-ratio="16/9"/>
           <v-card-title>{{ location.name }}</v-card-title>
           <v-card-subtitle>{{ routes.length }} {{ routes.length === 1 ? 'voie' : 'voies' }}</v-card-subtitle>
           <v-card-text>
@@ -16,7 +19,7 @@
               v-if="location.id !== null"
               icon
               @click="showPhotos = !showPhotos">
-              <v-icon>{{ showPhotos ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+              <v-icon>{{ showPhotos ? 'mdi-image-off-outline' : 'mdi-image-outline' }}</v-icon>
             </v-btn>
             <v-spacer/>
             <v-btn
@@ -40,7 +43,8 @@
               <v-img
                 v-for="photo in location.photos"
                 :key="photo"
-                :src="photo"/>
+                :src="photo"
+                :aspect-ratio="16/9"/>
             </div>
           </v-expand-transition>
         </v-card>
@@ -49,7 +53,9 @@
         cols="12"
         md="6">
         <v-row>
-          <v-col cols="12">
+          <v-col
+            cols="12"
+            class="pt-0">
             <adding-menu label="Ajouter une voie">
               <v-row>
                 <template v-if="location.id === null">
@@ -97,8 +103,6 @@
                           single-line/>
                       </template>
                     </v-slider>
-                  </v-col>
-                  <v-col cols="12">
                     <v-switch
                       v-model="form.enableGoal"
                       color="primary"
@@ -110,27 +114,22 @@
                       :first-day-of-week="1"
                       color="primary"
                       full-width/>
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    class="pt-0">
                     <v-textarea
                       v-model="form.notes"
                       label="Notes"/>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-spacer/>
-                    <v-btn
-                      text
-                      @click="resetForm">
-                      Annuler
-                    </v-btn>
-                    <v-btn
-                      color="primary"
-                      text
-                      @click="add">
-                      Ajouter
-                    </v-btn>
+                    <v-row justify="end">
+                      <v-btn
+                        text
+                        @click="resetForm">
+                        Annuler
+                      </v-btn>
+                      <v-btn
+                        color="primary"
+                        text
+                        @click="add">
+                        Ajouter
+                      </v-btn>
+                    </v-row>
                   </v-col>
                 </template>
               </v-row>
@@ -171,23 +170,48 @@
                           :key="photo"
                           :src="photo"/>
                         Objectif : {{ parseDate(route.goal) }}
+                        <v-list>
+                          <v-divider/>
+                          <template
+                            v-for="i in 4">
+                            <v-list-item :key="i">
+                              <v-list-item-content>
+                                <v-list-item-title>25/05/2019</v-list-item-title>
+                                <p class="mb-0 paragraph--text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porta nibh sit amet arcu vehicula laoreet. Sed scelerisque turpis vel commodo euismod. Curabitur gravida felis in quam pharetra rutrum. Aliquam interdum ligula at tortor vulputate, a finibus magna placerat. Aliquam euismod luctus vulputate. Curabitur id lorem vel lacus posuere tempus. Morbi lobortis at mauris quis sagittis. Pellentesque dapibus cursus maximus. Aenean iaculis, felis a rhoncus tempus, nibh eros scelerisque lorem, eu sagittis ex odio ut enim. Sed nulla ex, sagittis eu dignissim sit amet, feugiat vel risus. Cras finibus tortor non tempus tristique. Morbi sagittis dolor eget ligula scelerisque, nec ullamcorper tellus elementum. Etiam et eleifend sem. Sed in nisi at purus pretium aliquam. Fusce tincidunt porttitor laoreet. Maecenas maximus egestas blandit.</p>
+                              </v-list-item-content>
+                              <v-list-item-action>
+                                <v-btn
+                                  v-touch="{
+                                    left: () => alert('left'),
+                                    right: () => alert('right')
+                                  }"
+                                  icon>
+                                  <v-icon color="red darken-4">mdi-delete-outline</v-icon>
+                                </v-btn>
+                              </v-list-item-action>
+                            </v-list-item>
+                            <v-divider
+                              :key="i"/>
+                          </template>
+                        </v-list>
                         <v-switch
                           v-model="route.finished"
                           color="primary"
                           label="Marquer comme terminée"
                           inset
                           @click.stop="switchFinishedRoute(route.id)"/>
-                      </v-col>
-                      <v-col
-                        cols="1"
-                        offset="11">
-                        <v-btn
-                          color="red darken-4"
-                          text
-                          icon
-                          @click="remove(route.id)">
-                          <v-icon>mdi-delete-outline</v-icon>
-                        </v-btn>
+                        <v-row justify="end">
+                          <v-btn
+                            text>
+                            Éditer
+                          </v-btn>
+                          <v-btn
+                            color="red darken-4"
+                            text
+                            @click="remove(route.id)">
+                            Supprimer
+                          </v-btn>
+                        </v-row>
                       </v-col>
                     </v-row>
                   </v-container>
