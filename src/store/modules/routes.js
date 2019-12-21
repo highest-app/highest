@@ -39,6 +39,10 @@ const mutations = {
       notes: data.notes
     })
   },
+  REMOVE_PROGRESSION (state, data) {
+    let route = state.data.find(route => route.id === data.id)
+    route.progressions.splice(route.progressions.findIndex(progression => progression.date === data.date), 1)
+  },
   REMOVE_ROUTE (state, id) {
     state.data.splice(state.data.findIndex(route => route.id === id), 1)
   }
@@ -55,6 +59,14 @@ const actions = {
   },
   removeRoute ({ commit, state }, id) {
     commit('REMOVE_ROUTE', id)
+    saveToStorage('routes', state.data)
+  },
+  addProgression ({ commit, state }, entryData) {
+    commit('ADD_PROGRESSION', entryData)
+    saveToStorage('routes', state.data)
+  },
+  removeProgression({ commit, state }, entryData) {
+    commit('REMOVE_PROGRESSION', entryData)
     saveToStorage('routes', state.data)
   }
 }
