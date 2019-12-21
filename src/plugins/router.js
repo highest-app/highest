@@ -18,9 +18,14 @@ export default new VueRouter({
       component: () => import(/* webpackChunkName: "locations" */ '../views/Locations.vue')
     },
     {
-      path: '/locations/:id',
+      path: '/locations/:location',
       name: 'location',
       component: () => import(/* webpackChunkName: "locations" */ '../views/Routes.vue')
+    },
+    {
+      path: '/locations/:location/:route',
+      name: 'route',
+      component: () => import(/* webpackChunkName: "routes" */ '../views/Route.vue')
     },
     {
       path: '/routes',

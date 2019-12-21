@@ -6,6 +6,9 @@ const state = {
 
 const getters = {
   getRoutes: state => state.data,
+  getRoute: state => (location, route) => {
+    return state.data.filter(i => i.location === location && i.id === route)[0]
+  },
   getFinishedRoutes: state => {
     return state.data.filter(route => route.finished)
   },
@@ -57,7 +60,7 @@ const actions = {
     commit('SWITCH_FINISHED', route)
     saveToStorage('routes', state.data)
   },
-  removeRoute ({ commit, state }, id) {
+  deleteRoute ({ commit, state }, id) {
     commit('REMOVE_ROUTE', id)
     saveToStorage('routes', state.data)
   },

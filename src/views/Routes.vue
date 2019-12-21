@@ -52,249 +52,126 @@
       <v-col
         cols="12"
         md="6">
-        <v-row>
-          <v-col
-            cols="12"
-            class="pt-0">
-            <adding-menu label="Ajouter une voie">
-              <v-row>
-                <template v-if="location.id === null">
+        <v-card>
+          <v-bottom-sheet
+            v-model="routeAddingSheet"
+            inset>
+            <template v-slot:activator="{ on }">
+              <v-list-item
+                v-if="location.id !== null"
+                v-on="on">
+                <v-list-item-content>
+                  <v-list-item-title class="primary--text">Ajouter une voie</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </template>
+            <v-sheet
+              class="text-center"
+              height="80%">
+              <v-container>
+                <v-row>
                   <v-col cols="12">
-                    <v-btn
-                      to="/locations"
-                      color="primary"
-                      block
-                      text>
-                      Choisir un lieu
-                    </v-btn>
-                  </v-col>
-                </template>
-                <template v-else>
-                  <v-col
-                    cols="6"
-                    class="pb-0">
-                    <v-text-field
-                      v-model="routeForm.name"
-                      label="Nom"/>
-                  </v-col>
-                  <v-col
-                    cols="6"
-                    class="pb-0">
-                    <v-select
-                      v-model="routeForm.grade"
-                      :items="grades"
-                      label="Cotation"/>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-slider
-                      v-model="routeForm.length"
-                      label="Longueur"
-                      class="align-center"
-                      :max="300"
-                      :min="0"
-                      hide-details>
-                      <template v-slot:append>
-                        <v-text-field
-                          v-model="routeForm.length"
-                          class="mt-0 pt-0"
-                          type="number"
-                          style="width: 60px"
-                          hide-details
-                          single-line/>
-                      </template>
-                    </v-slider>
-                    <v-switch
-                      v-model="routeForm.enableGoal"
-                      color="primary"
-                      label="Définir un objectif"
-                      inset/>
-                    <v-date-picker
-                      v-model="routeForm.goal"
-                      :disabled="!routeForm.enableGoal"
-                      first-day-of-week="1"
-                      color="primary"
-                      full-width/>
-                    <v-textarea
-                      v-model="routeForm.notes"
-                      label="Notes"/>
-                    <v-row justify="end">
-                      <v-btn
-                        text
-                        @click="routeForm = Object.assign({}, defaultRouteForm)">
+                    <v-row justify="space-between">
+                      <span
+                        class="primary--text"
+                        @click="resetForm">
                         Annuler
-                      </v-btn>
-                      <v-btn
-                        color="primary"
-                        text
+                      </span>
+                      <span>Ajouter une voie</span>
+                      <span
+                        class="primary--text"
                         @click="add">
                         Ajouter
-                      </v-btn>
+                      </span>
                     </v-row>
                   </v-col>
-                </template>
-              </v-row>
-            </adding-menu>
-          </v-col>
-          <v-col cols="12">
-            <v-card>
-              <v-card-text v-if="routes.length === 0">
-                Aucune voie pour le moment. Ajoutez-en une !
-              </v-card-text>
-              <v-list
-                v-else
-                two-line>
-                <v-list-group
-                  v-for="route in routes"
-                  :key="route.id"
-                  v-model="route.active"
-                  :color="icons.get(route).color"
-                  no-action>
-                  <template v-slot:activator>
-                    <div class="v-list-item__icon v-list-group__header__prepend-icon">
-                      <v-icon :color="icons.get(route).color">{{ icons.get(route).icon }}</v-icon>
-                    </div>
-                    <v-list-item-content>
-                      <v-list-item-title>{{ route.name }}</v-list-item-title>
-                      <v-list-item-subtitle>
-                        <span class="text--primary">{{ route.grade }}</span>
-                        &mdash; {{ route.notes }}
-                      </v-list-item-subtitle>
-                    </v-list-item-content>
-                  </template>
-                  <v-container class="text--primary">
+                  <v-col cols="12">
                     <v-row>
+                      <v-col
+                        cols="6"
+                        class="pb-0">
+                        <v-text-field
+                          v-model="routeForm.name"
+                          label="Nom"/>
+                      </v-col>
+                      <v-col
+                        cols="6"
+                        class="pb-0">
+                        <v-select
+                          v-model="routeForm.grade"
+                          :items="grades"
+                          label="Cotation"/>
+                      </v-col>
                       <v-col cols="12">
-                        <p>{{ route.notes }}</p>
-                        <v-img
-                          v-for="photo in route.photos"
-                          :key="photo"
-                          :src="photo"/>
-                        <v-row>
-                          <v-col
-                            cols="6"
-                            align-self="center">
-                            Objectif : {{ parseDate(route.goal) }}
-                          </v-col>
-                          <v-col cols="6">
-                            <v-switch
-                              v-model="route.finished"
-                              color="primary"
-                              label="Marquer comme terminée"
-                              inset
-                              @click.stop="switchFinishedRoute(route.id)"/>
-                          </v-col>
-                        </v-row>
-                        <v-list>
-                          <v-divider/>
-                          <template
-                            v-for="progression in route.progressions">
-                            <v-list-item :key="progression.date">
-                              <v-list-item-content>
-                                <v-list-item-title>{{ timestampToText(progression.date) }}</v-list-item-title>
-                                <p class="mb-0 paragraph--text">{{ progression.notes }}</p>
-                              </v-list-item-content>
-                              <v-list-item-action>
-                                <v-btn
-                                  v-touch="{
-                                    left: () => alert('left'),
-                                    right: () => alert('right')
-                                  }"
-                                  icon>
-                                  <v-icon color="red darken-4">mdi-delete-outline</v-icon>
-                                </v-btn>
-                              </v-list-item-action>
-                            </v-list-item>
-                            <v-divider
-                              :key="progression.date"/>
+                        <v-slider
+                          v-model="routeForm.length"
+                          label="Longueur"
+                          class="align-center"
+                          :max="300"
+                          :min="0"
+                          hide-details>
+                          <template v-slot:append>
+                            <v-text-field
+                              v-model="routeForm.length"
+                              class="mt-0 pt-0"
+                              type="number"
+                              style="width: 60px"
+                              hide-details
+                              single-line/>
                           </template>
-                          <v-list-item>
-                            <v-list-item-content>
-                              <v-list-item-title>Ajouter une progression :</v-list-item-title>
-                              <v-row>
-                                <v-col
-                                  cols="12"
-                                  class="pb-0">
-                                  <v-row>
-                                    <v-col
-                                      cols="12"
-                                      md="3">
-                                      <v-menu
-                                        v-model="route.progressionMenu"
-                                        :close-on-content-click="false"
-                                        :nudge-right="40"
-                                        transition="scale-transition"
-                                        offset-y
-                                        min-width="290px">
-                                        <template v-slot:activator="{ on }">
-                                          <v-text-field
-                                            v-model="progressionForm.date"
-                                            label="Date"
-                                            readonly
-                                            v-on="on"/>
-                                        </template>
-                                        <v-date-picker
-                                          v-model="progressionForm.date"
-                                          first-day-of-week="1"
-                                          color="primary"
-                                          no-title
-                                          @input="route.progressionMenu = false"/>
-                                      </v-menu>
-                                    </v-col>
-                                    <v-col
-                                      cols="12"
-                                      md="9">
-                                      <v-textarea
-                                        v-model="progressionForm.notes"
-                                        rows="1"
-                                        label="Notes"
-                                        auto-grow/>
-                                    </v-col>
-                                  </v-row>
-                                </v-col>
-                                <v-col
-                                  cols="12"
-                                  class="py-0">
-                                  <v-row justify="end">
-                                    <v-btn
-                                      text
-                                      @click="progressionForm = Object.assign({}, defaultProgressionForm)">
-                                      Annuler
-                                    </v-btn>
-                                    <v-btn
-                                      color="primary"
-                                      text
-                                      @click="add">
-                                      Ajouter
-                                    </v-btn>
-                                  </v-row>
-                                </v-col>
-                              </v-row>
-                            </v-list-item-content>
-                          </v-list-item>
-                        </v-list>
-                        <v-divider/>
-                        <v-row
-                          justify="end"
-                          class="pt-1">
-                          <v-btn
-                            text>
-                            Éditer
-                          </v-btn>
-                          <v-btn
-                            color="red darken-4"
-                            text
-                            @click="remove(route.id)">
-                            Supprimer
-                          </v-btn>
-                        </v-row>
+                        </v-slider>
+                        <v-switch
+                          v-model="routeForm.enableGoal"
+                          color="primary"
+                          label="Définir un objectif"
+                          inset/>
+                        <v-date-picker
+                          v-if="routeForm.enableGoal"
+                          v-model="routeForm.goal"
+                          first-day-of-week="1"
+                          color="primary"
+                          full-width/>
+                        <v-textarea
+                          v-model="routeForm.notes"
+                          label="Notes"/>
                       </v-col>
                     </v-row>
-                  </v-container>
-                </v-list-group>
-              </v-list>
-            </v-card>
-          </v-col>
-        </v-row>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-sheet>
+          </v-bottom-sheet>
+          <v-card-text v-if="routes.length === 0">
+            Aucune voie pour le moment. Ajoutez-en une !
+          </v-card-text>
+          <v-list
+            v-else>
+            <v-list-item
+              v-for="route in routes"
+              :key="route.id"
+              v-model="route.active"
+              :color="icons.get(route).color"
+              no-action>
+              <div class="v-list-item__icon v-list-group__header__prepend-icon">
+                <v-icon :color="icons.get(route).color">{{ icons.get(route).icon }}</v-icon>
+              </div>
+              <v-list-item-content>
+                <v-list-item-title>{{ route.name }}</v-list-item-title>
+                <v-list-item-subtitle>
+                  <span class="text--primary">{{ route.grade }}</span>
+                  &mdash; {{ route.goal ? `Objectif : ${timestampToText(route.goal)}` : 'Aucun objectif' }}
+                </v-list-item-subtitle>
+              </v-list-item-content>
+              <v-list-item-action>
+                <v-btn
+                  icon
+                  :to="`${$route.params.location}/${route.id}`">
+                  <v-icon color="primary">mdi-information-outline</v-icon>
+                </v-btn>
+              </v-list-item-action>
+            </v-list-item>
+          </v-list>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
@@ -302,34 +179,19 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import { grades, icons } from '@/utils/data'
+import { grades, icons, defaultRouteForm } from '@/utils/data'
 import { timestampToText } from '@/utils/parsing'
-import AddingMenu from '@/components/AddingMenu'
 
 export default {
   name: 'Routes',
-  components: { AddingMenu },
   data () {
-    const defaultRouteForm = Object.freeze({
-      location: '',
-      name: '',
-      grade: '',
-      notes: '',
-      length: 0,
-      enableGoal: false,
-      goal: new Date().toISOString().substr(0, 10),
-    })
-    const defaultProgressionForm = Object.freeze({
-      date: new Date().toISOString().substr(0, 10),
-      notes: ''
-    })
     return {
       location: {},
       routes: [],
       routeForm: Object.assign({}, defaultRouteForm),
-      progressionForm: Object.assign({}, defaultProgressionForm),
 
       showPhotos: false,
+      routeAddingSheet: false,
 
       grades,
       icons
@@ -342,21 +204,21 @@ export default {
     ...mapGetters(['getRoutes', 'getRoutesByLocation', 'getLocationById'])
   },
   methods: {
-    ...mapActions(['addRoute', 'removeRoute', 'switchFinishedRoute', 'addProgression', 'removeProgression']),
+    ...mapActions(['addRoute']),
     timestampToText,
     add () {
       this.routeForm.location = this.location.id
       if (!this.routeForm.enableGoal) this.routeForm.goal = false
       this.addRoute(this.routeForm)
-      this.resetForms()
+      this.resetForm()
       this.refreshRoutes()
     },
-    remove (id) {
-      this.removeRoute(id)
-      this.refreshRoutes()
+    resetForm () {
+      this.routeForm = Object.assign({}, this.defaultRouteForm)
+      this.routeAddingSheet = false
     },
     refreshRoutes () {
-      const id = this.$route.params.id
+      const id = this.$route.params.location
       if (id === undefined) {
         this.location = {
           id: null,
@@ -370,12 +232,6 @@ export default {
         if (this.location === undefined) this.$router.push('/locations')
         else this.routes = this.getRoutesByLocation(this.location.id)
       }
-    },
-    parseDate(goal) {
-      if (goal === false) {
-        return 'aucun'
-      }
-      return timestampToText(goal)
     },
     editLocation () {
 

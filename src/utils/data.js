@@ -35,4 +35,19 @@ const icons = {
   }
 }
 
-export { grades, icons }
+const defaultRouteForm = Object.freeze({
+  location: '',
+  name: '',
+  grade: '',
+  notes: '',
+  length: 0,
+  enableGoal: false,
+  goal: new Date().toISOString().substr(0, 10),
+})
+
+const defaultProgressionForm = Object.freeze({
+  date: new Date().toISOString().substr(0, 10),
+  notes: ''
+})
+
+export { grades, icons, defaultRouteForm, defaultProgressionForm }
