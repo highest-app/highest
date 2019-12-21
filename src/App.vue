@@ -1,10 +1,6 @@
 <template>
   <v-app>
-    <v-content>
-      <transition :name="transition">
-        <router-view/>
-      </transition>
-    </v-content>
+    <router-view/>
 
     <v-bottom-navigation
       v-model="bottomNav"
@@ -66,3 +62,16 @@ export default {
   }
 };
 </script>
+
+<style>
+:root {
+  color-scheme: light dark;
+}
+.v-content__wrap {
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+.v-bottom-navigation {
+  padding-bottom: env(safe-area-inset-bottom) !important;
+}
+</style>
