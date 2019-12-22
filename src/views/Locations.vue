@@ -1,8 +1,23 @@
 <template>
   <main>
-    <app-bar title="Lieux"/>
+    <app-bar title="Lieux">
+      <template v-slot:top-bar-actions>
+        <v-btn
+          :dark="!$vuetify.theme.dark"
+          :light="$vuetify.theme.dark"
+          elevation="0"
+          fab
+          small>
+          <v-icon
+            :dark="$vuetify.theme.dark"
+            :light="!$vuetify.theme.dark">
+            mdi-plus
+          </v-icon>
+        </v-btn>
+      </template>
+    </app-bar>
     <v-content>
-      <v-container fluid>
+      <v-container>
         <v-row>
           <v-col cols="12">
             <adding-menu label="Ajouter un lieu">
@@ -47,7 +62,9 @@
             :key="location.name"
             cols="12"
             md="6">
-            <v-card :to="'/locations/' + location.id">
+            <v-card
+              elevation="0"
+              :to="'/locations/' + location.id">
               <v-img
                 class="white--text align-end"
                 :aspect-ratio="16/9"

@@ -2,11 +2,15 @@
   <main>
     <app-bar
       :title="route.name"
-      only-small>
-      <template v-slot:left-actions>
-        <span class="primary--text">Retour</span>
+      small-only>
+      <template v-slot:bar-left-actions>
+        <span
+          class="primary--text"
+          @click="$router.back()">
+          &lt; Retour
+        </span>
       </template>
-      <template v-slot:right-actions>
+      <template v-slot:bar-right-actions>
         <span class="primary--text">Modifier</span>
       </template>
     </app-bar>

@@ -3,58 +3,26 @@
     <app-bar
       :image="location.id !== null ? location.photos[0] : ''"
       :title="location.id === null ? 'Voies' : location.name"/>
-    <v-content
-      class="overflow-y-auto"
-      max-height="600">
-      <v-container style="height: 1500px;">
+    <v-content>
+      <v-container>
         <v-row wrap>
           <v-col
             cols="12"
             md="6">
-            <v-card>
-              <v-img
-                v-if="location.id !== null"
-                :src="location.photos[0]"
-                :aspect-ratio="16/9"/>
-              <v-card-title>{{ location.name }}</v-card-title>
-              <v-card-subtitle>{{ routes.length }} {{ routes.length === 1 ? 'voie' : 'voies' }}</v-card-subtitle>
-              <v-card-text>
-                {{ location.notes }}
-              </v-card-text>
-              <v-card-actions>
-                <v-btn
-                  v-if="location.id !== null"
-                  icon
-                  @click="showPhotos = !showPhotos">
-                  <v-icon>{{ showPhotos ? 'mdi-image-off-outline' : 'mdi-image-outline' }}</v-icon>
-                </v-btn>
-                <v-spacer/>
-                <v-btn
-                  v-if="location.id !== null"
-                  text
-                  @click="editLocation">
-                  Éditer ce lieu
-                </v-btn>
-                <v-btn
-                  to="/locations"
-                  color="primary"
-                  :active="false"
-                  text>
-                  {{ location.id === null ? 'Choisir un lieu' : 'Changer de lieu' }}
-                </v-btn>
-              </v-card-actions>
-              <v-expand-transition>
-                <div v-show="showPhotos">
-                  <v-divider/>
-                  <v-card-title>Toutes les photos</v-card-title>
-                  <v-img
-                    v-for="photo in location.photos"
-                    :key="photo"
-                    :src="photo"
-                    :aspect-ratio="16/9"/>
-                </div>
-              </v-expand-transition>
-            </v-card>
+            <p>{{ location.notes }}</p>
+            <v-carousel
+              v-if="location.photos.length > 1"
+              :continuous="false"
+              hide-delimiters
+              touch>
+              <v-carousel-item
+                v-for="photo in location.photos"
+                :key="photo">
+                <v-img
+                  :aspect-ratio="16/9"
+                  :src="photo"/>
+              </v-carousel-item>
+            </v-carousel>
           </v-col>
           <v-col
             cols="12"
@@ -74,74 +42,74 @@
                 </template>
                 <v-sheet
                   class="text-center">
+                  <app-bar
+                    title="Ajouter une voie"
+                    small-only
+                    fixed>
+                    <template v-slot:bar-left-actions>
+                      <span
+                        class="primary--text"
+                        @click="resetForm">
+                        Annuler
+                      </span>
+                    </template>
+                    <template v-slot:bar-right-actions>
+                      <span
+                        class="primary--text"
+                        @click="add">
+                        Ajouter
+                      </span>
+                    </template>
+                  </app-bar>
                   <v-container>
                     <v-row>
-                      <v-col cols="12">
-                        <v-row justify="space-between">
-                          <span
-                            class="primary--text"
-                            @click="resetForm">
-                            Annuler
-                          </span>
-                          <span>Ajouter une voie</span>
-                          <span
-                            class="primary--text"
-                            @click="add">
-                            Ajouter
-                          </span>
-                        </v-row>
+                      <v-col
+                        cols="6"
+                        class="pb-0">
+                        <v-text-field
+                          v-model="routeForm.name"
+                          label="Nom"/>
+                      </v-col>
+                      <v-col
+                        cols="6"
+                        class="pb-0">
+                        <v-select
+                          v-model="routeForm.grade"
+                          :items="grades"
+                          label="Cotation"/>
                       </v-col>
                       <v-col cols="12">
-                        <v-row>
-                          <v-col
-                            cols="6"
-                            class="pb-0">
+                        <v-slider
+                          v-model="routeForm.length"
+                          label="Longueur"
+                          class="align-center"
+                          :max="300"
+                          :min="0"
+                          hide-details>
+                          <template v-slot:append>
                             <v-text-field
-                              v-model="routeForm.name"
-                              label="Nom"/>
-                          </v-col>
-                          <v-col
-                            cols="6"
-                            class="pb-0">
-                            <v-select
-                              v-model="routeForm.grade"
-                              :items="grades"
-                              label="Cotation"/>
-                          </v-col>
-                          <v-col cols="12">
-                            <v-slider
                               v-model="routeForm.length"
-                              label="Longueur"
-                              class="align-center"
-                              :max="300"
-                              :min="0"
-                              hide-details>
-                              <template v-slot:append>
-                                <v-text-field
-                                  v-model="routeForm.length"
-                                  class="mt-0 pt-0"
-                                  type="number"
-                                  style="width: 60px"
-                                  hide-details
-                                  single-line/>
-                              </template>
-                            </v-slider>
-                            <v-switch
-                              v-model="routeForm.enableGoal"
-                              color="primary"
-                              label="Définir un objectif"
-                              inset/>
-                            <v-date-picker
-                              v-if="routeForm.enableGoal"
-                              v-model="routeForm.goal"
-                              first-day-of-week="1"
-                              color="primary"
-                              full-width/>
-                            <v-textarea
-                              v-model="routeForm.notes"
-                              label="Notes"/>
-                          </v-col>
-                        </v-row>
+                              class="mt-0 pt-0"
+                              type="number"
+                              style="width: 60px"
+                              hide-details
+                              single-line/>
+                          </template>
+                        </v-slider>
+                        <v-switch
+                          v-model="routeForm.enableGoal"
+                          color="primary"
+                          label="Définir un objectif"
+                          inset/>
+                        <v-date-picker
+                          v-if="routeForm.enableGoal"
+                          v-model="routeForm.goal"
+                          first-day-of-week="1"
+                          color="primary"
+                          full-width/>
+                        <v-textarea
+                          v-model="routeForm.notes"
+                          label="Notes"/>
                       </v-col>
                     </v-row>
                   </v-container>
@@ -168,8 +136,9 @@
                   </v-list-item-content>
                   <v-list-item-action>
                     <v-btn
+                      :ripple="false"
                       icon
-                      :to="`${$route.params.location}/${route.id}`">
+                      :to="`/locations/${route.location}/${route.id}`">
                       <v-icon color="primary">mdi-information-outline</v-icon>
                     </v-btn>
                   </v-list-item-action>
