@@ -50,4 +50,14 @@ const defaultProgressionForm = Object.freeze({
   notes: ''
 })
 
-export { grades, icons, defaultRouteForm, defaultProgressionForm }
+const tags = [
+  { id: 'red', name: 'Rouge', color: 'red' },
+  { id: 'orange', name: 'Orange', color: 'orange' },
+  { id: 'yellow', name: 'Jaune', color: 'yellow' },
+  { id: 'green', name: 'Vert', color: 'green' },
+  { id: 'blue', name: 'Bleu', color: 'blue' },
+  { id: 'purple', name: 'Violet', color: 'purple' },
+  { id: 'gray', name: 'Gris', color: 'gray' },
+]
+
+export { grades, icons, defaultRouteForm, defaultProgressionForm, tags }
