@@ -13,11 +13,11 @@ const icons = {
     icon: 'mdi-check-outline'
   },
   goal: {
-    color: 'orange',
+    color: 'warning',
     icon: 'mdi-clock-outline'
   },
   outdatedGoal: {
-    color: 'red darken-4',
+    color: 'error',
     icon: 'mdi-clock-outline'
   },
   noGoal: {

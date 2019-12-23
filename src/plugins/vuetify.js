@@ -8,13 +8,13 @@ import 'vuetify/dist/vuetify.min.css'
 Vue.use(Vuetify)
 
 const theme = {
-  primary: '#8BC34A',
-  secondary: '#CDDC39',
-  accent: '#82B1FF',
-  error: '#FF5252',
-  info: '#2196F3',
-  success: '#4CAF50',
-  warning: '#FFC107'
+  primary: colors.lightGreen.base,
+  secondary: colors.lime.base,
+  accent: colors.blue.accent1,
+  error: colors.red.darken4,
+  info: colors.blue.base,
+  success: colors.green.darken1,
+  warning: colors.amber.base
 }
 
 export default new Vuetify({
