@@ -5,6 +5,7 @@
       id="top-app-bar"
       :src="image"
       elevation="0"
+      clipped-left
       prominent>
       <v-toolbar-title>
         <h2 :class="image.length > 0 ? 'white--text' : ''">{{ title }}</h2>
@@ -45,7 +46,7 @@ export default {
     },
     title: {
       type: String,
-      default: 'Climbing'
+      default: ''
     },
     image: {
       type: String,
