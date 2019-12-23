@@ -1,0 +1,63 @@
+<template>
+  <v-card
+    style="background: inherit"
+    elevation="0"
+    tile>
+    <v-card-text v-if="routes.length === 0">
+      Aucune voie pour le moment. Ajoutez-en une !
+    </v-card-text>
+    <v-list
+      v-else
+      style="background: inherit">
+      <v-divider inset/>
+      <template v-for="route in routes">
+        <v-list-item
+          :key="route.id"
+          no-action>
+          <div class="v-list-item__icon v-list-group__header__prepend-icon">
+            <v-icon :color="icons.get(route).color">{{ icons.get(route).icon }}</v-icon>
+          </div>
+          <v-list-item-content>
+            <v-list-item-title>{{ route.name }}</v-list-item-title>
+            <v-list-item-subtitle>
+              <span class="text--primary">{{ route.grade }}</span>
+              &mdash; {{ route.goal ? `Objectif : ${timestampToText(route.goal)}` : 'Aucun objectif' }}
+            </v-list-item-subtitle>
+          </v-list-item-content>
+          <v-list-item-action>
+            <v-btn
+              :ripple="false"
+              icon
+              :to="`/locations/${route.location}/${route.id}`">
+              <v-icon color="primary">mdi-information-outline</v-icon>
+            </v-btn>
+          </v-list-item-action>
+        </v-list-item>
+        <v-divider
+          :key="route.id"
+          inset/>
+      </template>
+    </v-list>
+  </v-card>
+</template>
+
+<script>
+import { icons } from '@/utils/data'
+import { timestampToText } from '@/utils/parsing'
+
+export default {
+  name: 'RoutesList',
+  props: {
+    routes: {
+      type: Object,
+      required: true
+    }
+  },
+  data: () => ({
+    icons
+  }),
+  methods: {
+    timestampToText
+  }
+}
+</script>
