@@ -40,7 +40,8 @@
               <v-btn
                 class="mr-3"
                 color="primary"
-                depressed>
+                depressed
+                @click="editLocation">
                 <v-icon left>mdi-pencil-outline</v-icon>
                 Modifier
               </v-btn>
@@ -97,6 +98,9 @@ export default {
       this.location = this.getLocationById(id)
       if (this.location === undefined) this.$router.push('/routes')
       else this.routes = this.getRoutesByLocation(this.location.id)
+    },
+    editLocation () {
+
     }
   }
 }

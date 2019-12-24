@@ -57,12 +57,6 @@ export default {
 </script>
 
 <style>
-#top-app-bar.theme--dark {
-  background-color: #303030;
-}
-#top-app-bar.theme--light {
-  background-color: #fafafa;
-}
 #top-app-bar #top-bar-actions {
   align-self: flex-end;
   padding-bottom: 6px;

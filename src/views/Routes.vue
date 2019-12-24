@@ -20,79 +20,161 @@
               </v-icon>
             </v-btn>
           </template>
-          <v-sheet
-            class="text-center">
-            <app-bar
-              title="Ajouter une voie"
-              small-only
-              fixed>
-              <template v-slot:bar-left-actions>
-                <span
-                  class="primary--text"
-                  @click="resetForm">
-                  Annuler
-                </span>
-              </template>
-              <template v-slot:bar-right-actions>
-                <span
-                  class="primary--text"
-                  @click="add">
-                  Ajouter
-                </span>
-              </template>
-            </app-bar>
-            <v-container>
-              <v-row>
-                <v-col
-                  cols="6"
-                  class="pb-0">
-                  <v-text-field
-                    v-model="routeForm.name"
-                    label="Nom"/>
-                </v-col>
-                <v-col
-                  cols="6"
-                  class="pb-0">
-                  <v-select
-                    v-model="routeForm.grade"
-                    :items="grades"
-                    label="Cotation"/>
-                </v-col>
-                <v-col cols="12">
-                  <v-slider
-                    v-model="routeForm.length"
-                    label="Longueur"
-                    class="align-center"
-                    :max="300"
-                    :min="0"
-                    hide-details>
-                    <template v-slot:append>
-                      <v-text-field
-                        v-model="routeForm.length"
-                        class="mt-0 pt-0"
-                        type="number"
-                        style="width: 60px"
-                        hide-details
-                        single-line/>
-                    </template>
-                  </v-slider>
-                  <v-switch
-                    v-model="routeForm.enableGoal"
-                    color="primary"
-                    label="Définir un objectif"
-                    inset/>
-                  <v-date-picker
-                    v-if="routeForm.enableGoal"
-                    v-model="routeForm.goal"
-                    first-day-of-week="1"
-                    color="primary"
-                    full-width/>
-                  <v-textarea
-                    v-model="routeForm.notes"
-                    label="Notes"/>
-                </v-col>
-              </v-row>
-            </v-container>
+          <v-sheet>
+            <select-menu
+              v-if="gradeSelect"
+              v-model="routeForm.grade"
+              :choices="grades"
+              name="Cotation"
+              @back="gradeSelect = false"/>
+            <select-menu
+              v-if="locationSelect"
+              v-model="routeForm.location"
+              :choices="Object.keys(parsedLocations)"
+              name="Lieu"
+              @back="locationSelect = false"/>
+            <template v-else>
+              <app-bar
+                title="Ajouter une voie"
+                small-only
+                fixed>
+                <template #bar-left-actions>
+                  <span
+                    class="primary--text"
+                    @click="resetForm">
+                    Annuler
+                  </span>
+                </template>
+                <template #bar-right-actions>
+                  <span
+                    class="primary--text"
+                    @click="add">
+                    Ajouter
+                  </span>
+                </template>
+              </app-bar>
+              <v-container class="px-0">
+                <v-row>
+                  <v-col cols="12">
+                    <v-card
+                      tile
+                      elevation="0">
+                      <v-list>
+                        <v-list-item>
+                          <v-row
+                            class="mx-0"
+                            align="center">
+                            Nom
+                            <v-text-field
+                              v-model="routeForm.name"
+                              placeholder="Nom de la voie"
+                              hide-details
+                              solo
+                              flat/>
+                          </v-row>
+                        </v-list-item>
+                        <v-divider/>
+                        <v-list-item @click="locationSelect = true">
+                          <v-list-item-content>
+                            Lieu
+                          </v-list-item-content>
+                          <v-list-item-icon>
+                            <v-icon>mdi-chevron-right</v-icon>
+                          </v-list-item-icon>
+                        </v-list-item>
+                        <v-list-item @click="gradeSelect = true">
+                          <v-list-item-content>
+                            Cotation
+                          </v-list-item-content>
+                          <v-list-item-icon>
+                            <v-icon>mdi-chevron-right</v-icon>
+                          </v-list-item-icon>
+                        </v-list-item>
+                        <v-divider/>
+                        <v-list-item>
+                          <v-slider
+                            v-model="routeForm.length"
+                            label="Longueur"
+                            class="align-center"
+                            :max="300"
+                            :min="0"
+                            hide-details>
+                            <template #append>
+                              <v-text-field
+                                v-model="routeForm.length"
+                                class="mt-0 pt-0"
+                                type="number"
+                                style="width: 60px"
+                                hide-details
+                                single-line/>
+                            </template>
+                          </v-slider>
+                        </v-list-item>
+                      </v-list>
+                    </v-card>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-card
+                      tile
+                      elevation="0">
+                      <v-list>
+                        <v-list-item>
+                          <v-list-item-content>
+                            Définir un objectif
+                          </v-list-item-content>
+                          <v-spacer/>
+                          <v-switch
+                            v-model="routeForm.enableGoal"
+                            color="primary"
+                            inset/>
+                        </v-list-item>
+                        <template v-if="routeForm.enableGoal">
+                          <v-divider/>
+                          <v-list-item>
+                            <span class="primary--text">
+                              {{ dateToText(routeForm.goal) }}
+                            </span>
+                          </v-list-item>
+                          <v-divider/>
+                          <v-list-item>
+                            <v-date-picker
+                              v-if="routeForm.enableGoal"
+                              v-model="routeForm.goal"
+                              style="box-shadow: 0;"
+                              first-day-of-week="1"
+                              color="primary"
+                              no-title
+                              full-width/>
+                          </v-list-item>
+                        </template>
+                      </v-list>
+                    </v-card>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-card>
+                      <v-list>
+                        <v-list-item>
+                          <v-row
+                            class="mx-0"
+                            align="center">
+                            Notes
+                            <v-textarea
+                              id="notes-textarea"
+                              v-model="routeForm.notes"
+                              placeholder="Notes à rajouter à propos de la voie"
+                              rows="1"
+                              auto-grow
+                              hide-details
+                              solo
+                              flat/>
+                          </v-row>
+                        </v-list-item>
+                      </v-list>
+                    </v-card>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </template>
           </v-sheet>
         </v-bottom-sheet>
       </template>
@@ -157,20 +239,25 @@
 import { mapGetters, mapActions } from 'vuex'
 import AppBar from '@/components/AppBar.vue'
 import RoutesList from '@/components/RoutesList'
-import { grades, defaultRouteForm, tags } from '@/utils/data'
+import SelectMenu from '@/components/SelectMenu'
+import { grades, tags, defaultRouteForm } from '@/utils/data'
+import { dateToText } from '@/utils/parsing'
 
 export default {
   name: 'Routes',
   components: {
-    AppBar, RoutesList
+    AppBar, RoutesList, SelectMenu
   },
   data () {
     return {
       locations: [],
+      parsedLocations: {},
       routes: {},
       routeForm: Object.assign({}, defaultRouteForm),
 
       routeAddingSheet: false,
+      gradeSelect: false,
+      locationSelect: false,
 
       grades,
       tags
@@ -178,6 +265,9 @@ export default {
   },
   mounted () {
     this.locations = this.getLocations
+    this.locations.forEach((location) => {
+      this.parsedLocations[location.name] = location.id
+    })
     this.refreshRoutes()
   },
   computed: {
@@ -185,8 +275,9 @@ export default {
   },
   methods: {
     ...mapActions(['addRoute']),
+    dateToText,
     add () {
-      this.routeForm.location = this.location.id
+      this.routeForm.location = this.parsedLocations[this.routeForm.location]
       if (!this.routeForm.enableGoal) this.routeForm.goal = false
       this.addRoute(this.routeForm)
       this.resetForm()
@@ -195,15 +286,20 @@ export default {
     resetForm () {
       this.routeForm = Object.assign({}, this.defaultRouteForm)
       this.routeAddingSheet = false
+      this.gradeSelect = false
     },
     refreshRoutes () {
+      this.routes = {}
       this.locations.forEach(location => {
         this.routes[location.id] = this.getRoutesByLocation(location.id)
       })
-    },
-    editLocation () {
-
     }
   }
 }
 </script>
+
+<style>
+#notes-textarea {
+  margin-top: 0;
+}
+</style>
