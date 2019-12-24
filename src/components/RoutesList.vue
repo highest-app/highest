@@ -21,7 +21,7 @@
             <v-list-item-title>{{ route.name }}</v-list-item-title>
             <v-list-item-subtitle>
               <span class="text--primary">{{ route.grade }}</span>
-              &mdash; {{ route.goal ? `Objectif : ${timestampToText(route.goal)}` : 'Aucun objectif' }}
+              &mdash; {{ route.goal ? `Objectif : ${dateToText(route.goal)}` : 'Aucun objectif' }}
             </v-list-item-subtitle>
           </v-list-item-content>
           <v-list-item-action>
@@ -43,7 +43,7 @@
 
 <script>
 import { icons } from '@/utils/data'
-import { timestampToText } from '@/utils/parsing'
+import { dateToText } from '@/utils/parsing'
 
 export default {
   name: 'RoutesList',
@@ -57,7 +57,7 @@ export default {
     icons
   }),
   methods: {
-    timestampToText
+    dateToText
   }
 }
 </script>

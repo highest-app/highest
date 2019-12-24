@@ -1,6 +1,7 @@
-function timestampToText(timestamp) {
-  let date = new Date(timestamp)
-  return `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`
+import moment from 'moment'
+
+function dateToText(date) {
+  return moment(date).format('dddd Do MMMM YYYY')
 }
 
-export { timestampToText }
+export { dateToText }

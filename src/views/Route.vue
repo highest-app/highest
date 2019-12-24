@@ -3,14 +3,14 @@
     <app-bar
       :title="route.name"
       small-only>
-      <template v-slot:bar-left-actions>
+      <template #bar-left-actions>
         <span
           class="primary--text"
           @click="$router.back()">
           &lt; Retour
         </span>
       </template>
-      <template v-slot:bar-right-actions>
+      <template #bar-right-actions>
         <span class="primary--text">Modifier</span>
       </template>
     </app-bar>
@@ -38,7 +38,7 @@
                       v-for="progression in route.progressions">
                       <v-list-item :key="progression.date">
                         <v-list-item-content>
-                          <v-list-item-title>{{ timestampToText(progression.date) }}</v-list-item-title>
+                          <v-list-item-title>{{ dateToText(progression.date) }}</v-list-item-title>
                           <p class="mb-0 paragraph--text">{{ progression.notes }}</p>
                         </v-list-item-content>
                         <v-list-item-action>
@@ -70,7 +70,7 @@
                                   min-width="290px">
                                   <template v-slot:activator="{ on }">
                                     <v-text-field
-                                      v-model="progressionForm.date"
+                                      :value="progressionDatePicker"
                                       label="Date"
                                       readonly
                                       v-on="on"/>
@@ -129,7 +129,7 @@
 import { mapGetters, mapActions } from 'vuex'
 import AppBar from '@/components/AppBar'
 import { defaultProgressionForm, defaultRouteForm } from '@/utils/data'
-import { timestampToText } from '@/utils/parsing'
+import { dateToText } from '@/utils/parsing'
 
 export default {
   name: 'Route',
@@ -146,11 +146,14 @@ export default {
     this.route = this.getRoute(this.$route.params.location, this.$route.params.route)
   },
   computed: {
-    ...mapGetters(['getRoute'])
+    ...mapGetters(['getRoute']),
+    progressionDatePicker () {
+      return dateToText(this.progressionForm.date)
+    }
   },
   methods: {
     ...mapActions(['deleteRoute', 'switchFinishedRoute', 'addProgression', 'removeProgression']),
-    timestampToText,
+    dateToText,
     deleteThis (id) {
       this.deleteRoute(id)
       this.$router.back()
