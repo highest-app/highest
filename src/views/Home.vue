@@ -6,7 +6,9 @@
         <v-col
           cols="12"
           md="6">
-          <v-card>
+          <v-card
+            elevation="0"
+            tile>
             <v-card-text>
               <div>Votre app d'escalade</div>
               <p class="display-1 text--primary">
@@ -22,13 +24,7 @@
           cols="12"
           md="6">
           <v-row>
-            <v-col
-              cols="12"
-              class="pt-0">
-              <adding-menu label="Ajouter un flux">
-                <v-row/>
-              </adding-menu>
-            </v-col>
+            <v-col cols="12"/>
           </v-row>
         </v-col>
       </v-row>
@@ -37,11 +33,10 @@
 </template>
 
 <script>
-import AddingMenu from '@/components/AddingMenu'
 import AppBar from '@/components/AppBar'
 
 export default {
   name: 'Home',
-  components: { AddingMenu, AppBar }
+  components: { AppBar }
 }
 </script>

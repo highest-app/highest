@@ -3,11 +3,11 @@
     <app-bar
       small-only>
       <template v-slot:bar-left-actions>
-        <span
-          class="primary--text hidden-md-and-up"
+        <a
+          class="hidden-md-and-up"
           @click="$router.back()">
-          &lt; Retour
-        </span>
+          Retour
+        </a>
       </template>
     </app-bar>
     <v-container>
@@ -19,8 +19,7 @@
             v-if="location.photos.length > 1"
             :continuous="false"
             height="auto"
-            hide-delimiters
-            touch>
+            hide-delimiters>
             <v-carousel-item
               v-for="photo in location.photos"
               :key="photo">

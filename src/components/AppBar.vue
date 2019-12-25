@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="fixed ? 'app-bar--fixed' : 'app-bar'">
     <v-app-bar
       v-if="!smallOnly"
       id="top-app-bar"
@@ -20,9 +20,10 @@
       :hide-on-scroll="!smallOnly"
       :inverted-scroll="!smallOnly"
       :scroll-threshold="fixed ? 0 : 128"
-      elevation="0"
+      :absolute="fixed"
       :fixed="!fixed"
-      :app="!fixed">
+      :app="!fixed"
+      elevation="0">
       <slot name="bar-left-actions"/>
       <v-spacer/>
       <v-toolbar-title>{{ title }}</v-toolbar-title>
@@ -83,5 +84,9 @@ export default {
 #app-bar.theme--light {
   background-color: rgba(255, 255, 255, 0.4);
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.app-bar--fixed + div {
+  margin-top: 63px;
 }
 </style>

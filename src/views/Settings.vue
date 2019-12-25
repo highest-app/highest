@@ -30,7 +30,7 @@
       </v-dialog>
       <v-row>
         <v-col cols="12">
-          <span class="grey--text caption">APPARENCE</span>
+          <span class="grey--text caption">AFFICHAGE</span>
           <v-card
             tile
             elevation="0">
@@ -42,7 +42,9 @@
                 <v-spacer/>
                 <v-switch
                   v-model="settings.darkTheme"
+                  class="pt-0 mt-0"
                   color="primary"
+                  hide-details
                   inset/>
               </v-list-item>
             </v-list>
@@ -54,6 +56,20 @@
             tile
             elevation="0">
             <v-list>
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title class="primary--text">
+                    Exporter les données
+                  </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title class="primary--text">
+                    Importer les données
+                  </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
               <v-list-item @click.stop="eraseDialog = true">
                 <v-list-item-content>
                   <v-list-item-title class="error--text">Effacer les données</v-list-item-title>

@@ -4,14 +4,10 @@
       :title="route.name"
       small-only>
       <template #bar-left-actions>
-        <span
-          class="primary--text"
-          @click="$router.back()">
-          &lt; Retour
-        </span>
+        <a @click="$router.back()">Retour</a>
       </template>
       <template #bar-right-actions>
-        <span class="primary--text">Modifier</span>
+        <a>Modifier</a>
       </template>
     </app-bar>
     <v-container>
