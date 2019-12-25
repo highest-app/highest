@@ -35,6 +35,16 @@ const icons = {
   }
 }
 
+const tags = [
+  { id: 'red', name: 'Rouge', color: 'red' },
+  { id: 'orange', name: 'Orange', color: 'orange' },
+  { id: 'yellow', name: 'Jaune', color: 'yellow' },
+  { id: 'green', name: 'Vert', color: 'green' },
+  { id: 'blue', name: 'Bleu', color: 'blue' },
+  { id: 'purple', name: 'Violet', color: 'purple' },
+  { id: 'gray', name: 'Gris', color: 'gray' },
+]
+
 const defaultRouteForm = Object.freeze({
   location: '',
   name: '',
@@ -50,14 +60,4 @@ const defaultProgressionForm = Object.freeze({
   notes: ''
 })
 
-const tags = [
-  { id: 'red', name: 'Rouge', color: 'red' },
-  { id: 'orange', name: 'Orange', color: 'orange' },
-  { id: 'yellow', name: 'Jaune', color: 'yellow' },
-  { id: 'green', name: 'Vert', color: 'green' },
-  { id: 'blue', name: 'Bleu', color: 'blue' },
-  { id: 'purple', name: 'Violet', color: 'purple' },
-  { id: 'gray', name: 'Gris', color: 'gray' },
-]
-
-export { grades, icons, defaultRouteForm, defaultProgressionForm, tags }
+export { grades, icons, tags, defaultRouteForm, defaultProgressionForm }

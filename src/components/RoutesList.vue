@@ -9,10 +9,9 @@
     <v-list
       v-else
       style="background: inherit">
-      <v-divider inset/>
-      <template v-for="route in routes">
+      <template v-for="(route, i) in routes">
         <v-list-item
-          :key="route.id"
+          :key="`${route.id}--list-item`"
           no-action>
           <div class="v-list-item__icon v-list-group__header__prepend-icon">
             <v-icon :color="icons.get(route).color">{{ icons.get(route).icon }}</v-icon>
@@ -34,7 +33,8 @@
           </v-list-item-action>
         </v-list-item>
         <v-divider
-          :key="route.id"
+          v-if="i !== routes.length - 1"
+          :key="`${route.id}--divider`"
           inset/>
       </template>
     </v-list>
@@ -49,7 +49,7 @@ export default {
   name: 'RoutesList',
   props: {
     routes: {
-      type: Object,
+      type: Array,
       required: true
     }
   },
