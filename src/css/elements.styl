@@ -4,16 +4,26 @@ a
   text-decoration: none
 
 .v-bottom-sheet
-  height: 90% !important;
+  height: 90% !important
 
 .v-list .v-divider
   margin-left: 16px
 
-.container.px-0 h2
-.container.px-0 .caption
-  margin-left: 12px
-
-
+.v-input.v-text-field--solo-flat .v-input__control .v-input__slot
+  background: var(--v-sheets-base)
 .v-input--switch .v-input__control .v-input__slot
   margin-bottom: 0 !important
 
+.page-body
+  margin-left: 0
+  margin-right: 0
+
+  padding-left: 0
+  padding-right: 0
+
+  .row .col
+    & > span
+    & > h2
+    & > p
+    & > .v-list:not(.list--full)
+      margin-left: 12px

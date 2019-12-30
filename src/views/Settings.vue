@@ -1,7 +1,7 @@
 <template>
   <v-content>
     <app-bar title="Paramètres"/>
-    <div class="page-body px-0 mx-0">
+    <div class="page-body">
       <v-dialog
         v-model="eraseDialog"
         max-width="290"
@@ -31,78 +31,66 @@
       <v-row>
         <v-col cols="12">
           <span class="grey--text caption">AFFICHAGE</span>
-          <v-card
-            tile
-            elevation="0">
-            <v-list>
-              <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title>Thème sombre</v-list-item-title>
-                </v-list-item-content>
-                <v-spacer/>
-                <v-switch
-                  v-model="settings.darkTheme"
-                  class="pt-0 mt-0"
-                  color="primary"
-                  hide-details
-                  inset/>
-              </v-list-item>
-            </v-list>
-          </v-card>
+          <v-list class="list--full">
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title>Thème sombre</v-list-item-title>
+              </v-list-item-content>
+              <v-spacer/>
+              <v-switch
+                v-model="settings.darkTheme"
+                class="pt-0 mt-0"
+                color="primary"
+                hide-details
+                inset/>
+            </v-list-item>
+          </v-list>
         </v-col>
         <v-col cols="12">
           <span class="grey--text caption">AVANCÉ</span>
-          <v-card
-            tile
-            elevation="0">
-            <v-list>
-              <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title class="primary--text">
-                    Exporter les données
-                  </v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title class="primary--text">
-                    Importer les données
-                  </v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-              <v-list-item @click.stop="eraseDialog = true">
-                <v-list-item-content>
-                  <v-list-item-title class="error--text">Effacer les données</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list>
-          </v-card>
+          <v-list class="list--full">
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="primary--text">
+                  Exporter les données
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title class="primary--text">
+                  Importer les données
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item @click.stop="eraseDialog = true">
+              <v-list-item-content>
+                <v-list-item-title class="error--text">Effacer les données</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
         </v-col>
         <v-col cols="12">
           <span class="grey--text caption">À PROPOS</span>
-          <v-card
-            tile
-            elevation="0">
-            <v-list>
-              <v-list-item>
-                <p class="mb-0">
-                  Créé par
-                  <a
-                    href="https://twitter.com/exybore"
-                    target="_blank">
-                    Exybore
-                  </a>
-                </p>
-              </v-list-item>
-              <v-list-item
-                href="https://github.com/exybore/climbing-app"
-                target="_blank">
-                <v-list-item-content>
-                  <v-list-item-title class="primary--text">Accéder au code source</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list>
-          </v-card>
+          <v-list class="list--full">
+            <v-list-item>
+              <p class="mb-0">
+                Créé par
+                <a
+                  href="https://twitter.com/exybore"
+                  target="_blank">
+                  Exybore
+                </a>
+              </p>
+            </v-list-item>
+            <v-list-item
+              href="https://github.com/exybore/climbing-app"
+              target="_blank">
+              <v-list-item-content>
+                <v-list-item-title class="primary--text">Accéder au code source</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
         </v-col>
       </v-row>
     </div>

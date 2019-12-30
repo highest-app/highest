@@ -182,7 +182,7 @@
         </v-bottom-sheet>
       </template>
     </app-bar>
-    <v-container class="px-0 mx-1">
+    <div class="page-body">
       <v-row wrap>
         <v-col
           cols="12"
@@ -239,7 +239,7 @@
           <routes-list :routes="routes[location.id]"/>
         </v-col>
       </v-row>
-    </v-container>
+    </div>
   </v-content>
 </template>
 
