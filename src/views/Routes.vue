@@ -1,7 +1,7 @@
 <template>
   <v-content>
     <app-bar title="Voies">
-      <template v-slot:top-bar-actions>
+      <template #top-bar-actions>
         <v-bottom-sheet
           v-model="routeAddingSheet"
           scrollable
@@ -21,7 +21,7 @@
               </v-icon>
             </v-btn>
           </template>
-          <v-card>
+          <v-card class="background">
             <v-card-text
               class="pa-0"
               style="overflow-x: hidden;">
@@ -182,7 +182,7 @@
         </v-bottom-sheet>
       </template>
     </app-bar>
-    <v-container class="px-0">
+    <v-container class="px-0 mx-1">
       <v-row wrap>
         <v-col
           cols="12"
@@ -210,9 +210,8 @@
           class="hidden-md-and-up">
           <h2>Tags</h2>
           <v-list
-            style="background: inherit"
-            elevation="0"
-            flat>
+            class="background"
+            elevation="0">
             <template v-for="(tag, i) in tags">
               <v-list-item
                 :key="`${tag.name}--list-item`"

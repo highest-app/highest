@@ -1,0 +1,18 @@
+:root
+  color-scheme: light dark
+
+.v-application
+.v-list
+.background
+  background: var(--v-background-base) !important
+.v-sheet
+.v-navigation-drawer
+  background: var(--v-sheets-base) !important
+
+@css {
+  .translucent {
+    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(30px);
+    background-color: rgba(var(--v-background-base), 0.4) !important;
+  }
+}

@@ -9,6 +9,7 @@ import store from './store'
 import '@babel/polyfill'
 import '@mdi/font/css/materialdesignicons.css'
 import 'roboto-fontface/css/roboto/roboto-fontface.css'
+import '@/css/index.styl'
 
 Vue.config.productionTip = false
 moment.locale('fr')

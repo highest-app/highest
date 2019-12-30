@@ -11,11 +11,10 @@
     <v-container class="px-0">
       <v-row>
         <v-col cols="12">
-
           <v-card
             tile
             elevation="0">
-            <v-list>
+            <v-list flat>
               <v-list-item-group
                 v-model="selected"
                 mandatory>

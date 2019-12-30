@@ -8,7 +8,7 @@
     </v-card-text>
     <v-list
       v-else
-      style="background: inherit">
+      class="background">
       <template v-for="(route, i) in routes">
         <v-list-item
           :key="`${route.id}--list-item`"

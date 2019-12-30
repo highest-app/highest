@@ -1,7 +1,7 @@
 <template>
   <v-content>
     <app-bar title="Paramètres"/>
-    <v-container class="px-0">
+    <div class="page-body px-0 mx-0">
       <v-dialog
         v-model="eraseDialog"
         max-width="290"
@@ -105,7 +105,7 @@
           </v-card>
         </v-col>
       </v-row>
-    </v-container>
+    </div>
   </v-content>
 </template>
 

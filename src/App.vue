@@ -90,7 +90,7 @@
     <v-bottom-navigation
       v-model="bottomNav"
       color="primary"
-      class="hidden-md-and-up"
+      class="hidden-md-and-up translucent"
       fixed
       app>
       <v-btn
@@ -112,6 +112,7 @@ export default {
   name: 'App',
   data: () => ({
     bottomNav: '',
+
     tags,
     locations: [],
     menu: [
@@ -140,45 +141,3 @@ export default {
   }
 };
 </script>
-
-<style>
-:root {
-  color-scheme: light dark;
-}
-body {
-  overflow-x: hidden;
-}
-a {
-  text-decoration: none;
-}
-
-.v-content__wrap {
-  padding-left: env(safe-area-inset-left);
-  padding-right: env(safe-area-inset-right);
-}
-.v-bottom-navigation {
-  padding-bottom: env(safe-area-inset-bottom) !important;
-}
-
-.v-bottom-sheet {
-  height: 90% !important;
-}
-.v-bottom-sheet > .v-sheet.theme--dark, #top-app-bar.theme--dark {
-  background-color: #303030;
-}
-.v-bottom-sheet > .v-sheet.theme--light, #top-app-bar.theme--light {
-  background-color: #fafafa;
-}
-
-.v-list .v-divider {
-  margin-left: 16px
-}
-
-.container.px-0 h2, .container.px-0 .caption {
-  padding-left: 12px;
-}
-
-.v-input--switch .v-input__control .v-input__slot {
-  margin-bottom: 0 !important;
-}
-</style>
