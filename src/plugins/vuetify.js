@@ -22,13 +22,20 @@ export default new Vuetify({
     themes: {
       light: {
         ...theme,
+        background: '#f2f2f7',
+        sheets: '#fff',
         paragraph: colors.grey.darken2,
       },
       dark: {
         ...theme,
+        background: '#000',
+        sheets: '#1c1c1d',
         paragraph: colors.grey.lighten2,
       }
     },
+    options: {
+      customProperties: true,
+    }
   },
   lang: {
     locales: { fr },
