@@ -123,13 +123,11 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import AppBar from '@/components/AppBar'
 import { defaultProgressionForm, defaultRouteForm } from '@/utils/data'
 import { dateToText } from '@/utils/parsing'
 
 export default {
   name: 'Route',
-  components: { AppBar },
   data() {
     return {
       route: {},

@@ -51,29 +51,3 @@ export default {
   }
 }
 </script>
-
-<style lang="stylus">
-.app-bar
-  &.theme--dark
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08)
-  &.theme--light
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08)
-  .v-toolbar__title
-    font-size: 16px
-    font-weight: 500
-    max-width: 50%
-
-.app-bar--fixed + div
-  margin-top: 63px
-
-@css {
-  @supports (padding-left: max(0px)) {
-    .top-bar .v-toolbar__content {
-      padding-left: max(16px, env(safe-area-inset-left));
-    }
-  }
-}
-.top-bar .top-bar__actions
-  align-self: flex-end
-  padding-bottom: 6px
-</style>

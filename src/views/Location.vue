@@ -65,12 +65,9 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import AppBar from '@/components/AppBar'
-import RoutesList from '@/components/RoutesList'
 
 export default {
   name: 'Location',
-  components: { AppBar, RoutesList },
   data: () => ({
     location: {},
     routes: [],

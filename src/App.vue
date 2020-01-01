@@ -139,5 +139,5 @@ export default {
       this.$vuetify.theme.dark = value
     }
   }
-};
+}
 </script>

@@ -72,25 +72,29 @@
                             </v-row>
                           </v-list-item>
                           <v-divider/>
-                          <v-list-item @click="locationSelect = true">
+                          <v-list-item
+                            class="select-menu__trigger"
+                            @click="locationSelect = true">
                             <v-list-item-content>
                               <span class="subtitle-1">Lieu</span>
                             </v-list-item-content>
                             <v-spacer/>
-                            <span class="subtitle-1 paragraph--text">{{ routeForm.location }}</span>
+                            <span class="select-menu__selected--text subtitle-1">{{ routeForm.location }}</span>
                             <v-list-item-icon>
-                              <v-icon color="paragraph">mdi-chevron-right</v-icon>
+                              <v-icon>mdi-chevron-right</v-icon>
                             </v-list-item-icon>
                           </v-list-item>
                           <v-divider/>
-                          <v-list-item @click="gradeSelect = true">
+                          <v-list-item
+                            class="select-menu__trigger"
+                            @click="gradeSelect = true">
                             <v-list-item-content>
                               <span class="subtitle-1">Cotation</span>
                             </v-list-item-content>
                             <v-spacer/>
-                            <span class="subtitle-1 paragraph--text">{{ routeForm.grade }}</span>
+                            <span class="select-menu__selected--text subtitle-1">{{ routeForm.grade }}</span>
                             <v-list-item-icon>
-                              <v-icon color="paragraph">mdi-chevron-right</v-icon>
+                              <v-icon>mdi-chevron-right</v-icon>
                             </v-list-item-icon>
                           </v-list-item>
                           <v-divider/>
@@ -245,17 +249,11 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import AppBar from '@/components/AppBar.vue'
-import RoutesList from '@/components/RoutesList'
-import SelectMenu from '@/components/SelectMenu'
 import { grades, tags, defaultRouteForm } from '@/utils/data'
 import { dateToText } from '@/utils/parsing'
 
 export default {
   name: 'Routes',
-  components: {
-    AppBar, RoutesList, SelectMenu
-  },
   data () {
     return {
       locations: [],

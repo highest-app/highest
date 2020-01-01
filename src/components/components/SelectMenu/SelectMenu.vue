@@ -49,9 +49,10 @@
 </template>
 
 <script>
-import AppBar from '@/components/AppBar'
+import AppBar from '../AppBar'
 
 export default {
+  name: 'SelectMenu',
   components: {
     AppBar
   },

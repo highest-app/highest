@@ -33,10 +33,7 @@
 </template>
 
 <script>
-import AppBar from '@/components/AppBar'
-
 export default {
-  name: 'Home',
-  components: { AppBar }
+  name: 'Home'
 }
 </script>

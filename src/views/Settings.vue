@@ -99,13 +99,9 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import AppBar from '@/components/AppBar'
 
 export default {
   name: 'Settings',
-  components: {
-    AppBar,
-  },
   data: () => ({
     settings: {},
     eraseDialog: false
