@@ -128,15 +128,25 @@ export default {
     ]
   }),
   mounted () {
-    this.$vuetify.theme.dark = this.darkTheme
+    this.setTheme()
     this.locations = this.getLocations
   },
+  methods: {
+    setTheme () {
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+      if (prefersDark && this.autoDarkTheme) this.$vuetify.theme.dark = true
+      else this.$vuetify.theme.dark = this.darkTheme
+    }
+  },
   computed: {
-    ...mapGetters(['darkTheme', 'getLocations'])
+    ...mapGetters(['darkTheme', 'autoDarkTheme', 'getLocations']),
   },
   watch: {
-    darkTheme (value) {
-      this.$vuetify.theme.dark = value
+    darkTheme () {
+      this.setTheme()
+    },
+    autoDarkTheme () {
+      this.setTheme()
     }
   }
 }

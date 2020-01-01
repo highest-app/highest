@@ -44,6 +44,18 @@
                 hide-details
                 inset/>
             </v-list-item>
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title>Thème sombre automatique</v-list-item-title>
+              </v-list-item-content>
+              <v-spacer/>
+              <v-switch
+                v-model="settings.autoDarkTheme"
+                class="pt-0 mt-0"
+                color="primary"
+                hide-details
+                inset/>
+            </v-list-item>
           </v-list>
         </v-col>
         <v-col cols="12">
