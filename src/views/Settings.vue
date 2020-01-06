@@ -30,7 +30,7 @@
       </v-dialog>
       <v-row>
         <v-col cols="12">
-          <span class="grey--text caption">AFFICHAGE</span>
+          <span class="list__header">Affichage</span>
           <v-list class="list--full">
             <v-list-item>
               <v-list-item-content>
@@ -44,6 +44,7 @@
                 hide-details
                 inset/>
             </v-list-item>
+            <v-divider/>
             <v-list-item>
               <v-list-item-content>
                 <v-list-item-title>Thème sombre automatique</v-list-item-title>
@@ -57,9 +58,10 @@
                 inset/>
             </v-list-item>
           </v-list>
+          <p class="list__description">Le thème s'ajustera à celui de l'appareil. Assurez-vous d'avoir mis à jour votre système afin de profiter de cette fonction.</p>
         </v-col>
         <v-col cols="12">
-          <span class="grey--text caption">AVANCÉ</span>
+          <span class="list__header">Données</span>
           <v-list class="list--full">
             <v-list-item>
               <v-list-item-content>
@@ -68,6 +70,7 @@
                 </v-list-item-title>
               </v-list-item-content>
             </v-list-item>
+            <v-divider/>
             <v-list-item>
               <v-list-item-content>
                 <v-list-item-title class="primary--text">
@@ -75,6 +78,7 @@
                 </v-list-item-title>
               </v-list-item-content>
             </v-list-item>
+            <v-divider/>
             <v-list-item @click.stop="eraseDialog = true">
               <v-list-item-content>
                 <v-list-item-title class="error--text">Effacer les données</v-list-item-title>
@@ -83,7 +87,7 @@
           </v-list>
         </v-col>
         <v-col cols="12">
-          <span class="grey--text caption">À PROPOS</span>
+          <span class="list__header">À propos</span>
           <v-list class="list--full">
             <v-list-item>
               <p class="mb-0">
