@@ -187,62 +187,55 @@
       </template>
     </app-bar>
     <div class="page-body">
-      <v-row wrap>
-        <v-col
-          cols="12"
-          class="hidden-md-and-up">
-          <h2>Lieux</h2>
-          <v-col
-            v-for="location in locations"
-            :key="location.id"
-            cols="12"
-            md="6">
-            <v-card
-              elevation="0"
-              :to="'/locations/' + location.id">
-              <v-img
-                class="white--text align-end"
-                :aspect-ratio="16/9"
-                :src="location.photos[0]">
-                <v-card-title>{{ location.name }}</v-card-title>
-              </v-img>
-            </v-card>
-          </v-col>
-        </v-col>
-        <v-col
-          cols="12"
-          class="hidden-md-and-up">
-          <h2>Tags</h2>
-          <v-list
-            class="background"
-            elevation="0">
-            <template v-for="(tag, i) in tags">
-              <v-list-item
-                :key="`${tag.name}--list-item`"
-                :to="`/tags/${tag.id}`"
-                link>
-                <v-list-item-icon>
-                  <v-icon :color="tag.color">mdi-circle</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>
-                  <v-list-item-title>{{ tag.name }}</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-              <v-divider
-                v-if="i !== tags.length - 1"
-                :key="`${tag.name}--divider`"
-                inset/>
-            </template>
-          </v-list>
-        </v-col>
+      <div class="hidden-md-and-up list__group">
+        <h2>Lieux</h2>
         <v-col
           v-for="location in locations"
           :key="location.id"
-          cols="12">
-          <h2>{{ location.name }}</h2>
-          <routes-list :routes="routes[location.id]"/>
+          cols="12"
+          md="6">
+          <v-card
+            elevation="0"
+            :to="'/locations/' + location.id">
+            <v-img
+              class="white--text align-end"
+              :aspect-ratio="16/9"
+              :src="location.photos[0]">
+              <v-card-title>{{ location.name }}</v-card-title>
+            </v-img>
+          </v-card>
         </v-col>
-      </v-row>
+      </div>
+      <div class="hidden-md-and-up list__group">
+        <h2>Tags</h2>
+        <v-list
+          class="background"
+          elevation="0">
+          <template v-for="(tag, i) in tags">
+            <v-list-item
+              :key="`${tag.name}--list-item`"
+              :to="`/tags/${tag.id}`"
+              link>
+              <v-list-item-icon>
+                <v-icon :color="tag.color">mdi-circle</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ tag.name }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-divider
+              v-if="i !== tags.length - 1"
+              :key="`${tag.name}--divider`"
+              inset/>
+          </template>
+        </v-list>
+      </div>
+      <list-group
+        v-for="location in locations"
+        :key="location.id">
+        <h2>{{ location.name }}</h2>
+        <routes-list :routes="routes[location.id]"/>
+      </list-group>
     </div>
   </v-content>
 </template>

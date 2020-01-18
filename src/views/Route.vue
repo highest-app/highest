@@ -31,8 +31,8 @@
                   <v-list>
                     <v-divider/>
                     <template
-                      v-for="progression in route.progressions">
-                      <v-list-item :key="progression.date">
+                      v-for="(progression, i) in route.progressions">
+                      <v-list-item :key="`${progression.date}-${i}`">
                         <v-list-item-content>
                           <v-list-item-title>{{ dateToText(progression.date) }}</v-list-item-title>
                           <p class="mb-0 paragraph--text">{{ progression.notes }}</p>
@@ -44,7 +44,7 @@
                         </v-list-item-action>
                       </v-list-item>
                       <v-divider
-                        :key="progression.date"/>
+                        :key="`${progression.date}-${i}`"/>
                     </template>
                     <v-list-item>
                       <v-list-item-content>

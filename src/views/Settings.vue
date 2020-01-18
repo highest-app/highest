@@ -1,7 +1,7 @@
 <template>
   <v-content>
     <app-bar title="Paramètres"/>
-    <div class="page-body">
+    <page-body>
       <v-dialog
         v-model="eraseDialog"
         max-width="290"
@@ -28,88 +28,74 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-      <v-row>
-        <v-col cols="12">
-          <span class="list__header">Affichage</span>
-          <v-list class="list--full">
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title>Thème sombre</v-list-item-title>
-              </v-list-item-content>
-              <v-spacer/>
-              <v-switch
-                v-model="settings.darkTheme"
-                class="pt-0 mt-0"
-                color="primary"
-                hide-details
-                inset/>
-            </v-list-item>
-            <v-divider/>
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title>Thème sombre automatique</v-list-item-title>
-              </v-list-item-content>
-              <v-spacer/>
-              <v-switch
-                v-model="settings.autoDarkTheme"
-                class="pt-0 mt-0"
-                color="primary"
-                hide-details
-                inset/>
-            </v-list-item>
-          </v-list>
-          <p class="list__description">Le thème s'ajustera à celui de l'appareil. Assurez-vous d'avoir mis à jour votre système afin de profiter de cette fonction.</p>
-        </v-col>
-        <v-col cols="12">
-          <span class="list__header">Données</span>
-          <v-list class="list--full">
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title class="primary--text">
-                  Exporter les données
-                </v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-            <v-divider/>
-            <v-list-item>
-              <v-list-item-content>
-                <v-list-item-title class="primary--text">
-                  Importer les données
-                </v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-            <v-divider/>
-            <v-list-item @click.stop="eraseDialog = true">
-              <v-list-item-content>
-                <v-list-item-title class="error--text">Effacer les données</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-col>
-        <v-col cols="12">
-          <span class="list__header">À propos</span>
-          <v-list class="list--full">
-            <v-list-item>
-              <p class="mb-0">
-                Créé par
-                <a
-                  href="https://twitter.com/exybore"
-                  target="_blank">
-                  Exybore
-                </a>
-              </p>
-            </v-list-item>
-            <v-list-item
+      <list-group>
+        <card-header>Affichage</card-header>
+        <card>
+          <template #title>Thème sombre</template>
+          <template #action>
+            <v-switch
+              v-model="settings.darkTheme"
+              class="pt-0 mt-0"
+              color="primary"
+              hide-details
+              inset/>
+          </template>
+        </card>
+        <card>
+          <template #title>Thème sombre automatique</template>
+          <template #action>
+            <v-switch
+              v-model="settings.autoDarkTheme"
+              class="pt-0 mt-0"
+              color="primary"
+              hide-details
+              inset/>
+          </template>
+          <template #description>Le thème s'ajustera à celui de l'appareil. Assurez-vous d'avoir mis à jour votre système afin de profiter de cette fonction.</template>
+        </card>
+      </list-group>
+
+      <list-group>
+        <card-header>Données</card-header>
+        <card>
+          <template #title>
+            <span class="primary--text">Exporter les données</span>
+          </template>
+        </card>
+        <card>
+          <template #title>
+            <span class="primary--text">Importer les données</span>
+          </template>
+        </card>
+        <card @click="eraseDialog = true">
+          <template #title>
+            <span class="error--text">Effacer les données</span>
+          </template>
+        </card>
+      </list-group>
+
+      <list-group>
+        <card-header>À propos</card-header>
+        <card>
+          <template #title>
+            <p>
+              Créé par
+              <a
+                href="https://twitter.com/exybore"
+                target="_blank">
+                Exybore
+              </a>
+            </p>
+            <a
               href="https://github.com/exybore/climbing-app"
-              target="_blank">
-              <v-list-item-content>
-                <v-list-item-title class="primary--text">Accéder au code source</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-col>
-      </v-row>
-    </div>
+              target="_blank"
+              class="primary--text">
+              Accéder au code source
+            </a>
+          </template>
+        </card>
+      </list-group>
+    </page-body>
   </v-content>
 </template>
 
