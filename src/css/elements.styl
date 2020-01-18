@@ -6,9 +6,6 @@ a
 .v-bottom-sheet
   height: 90% !important
 
-.v-list .v-divider
-  margin-left: 16px
-
 .v-input.v-text-field--solo-flat .v-input__control .v-input__slot
   background: var(--v-sheets-base)
 .v-input--switch .v-input__control .v-input__slot
@@ -21,9 +18,9 @@ a
   padding-left: 0
   padding-right: 0
 
-  .row .col
+  row col, .list__group, ^[0]
     & > span
     & > h2
     & > p
-    & > .v-list:not(.list--full)
+    & > .v-list:not(.card)
       margin-left: 12px
