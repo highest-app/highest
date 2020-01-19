@@ -2,7 +2,8 @@ function loadFromStorage(category) {
   let defaults = {
     settings: '{}',
     routes: '[]',
-    locations: '[]'
+    locations: '[]',
+    competitions: '[]'
   }
 
   let data = localStorage.getItem(category)

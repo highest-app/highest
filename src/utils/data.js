@@ -35,6 +35,25 @@ const routeIcons = {
   }
 }
 
+const competitionIcons = {
+  notParticipating: {
+    color: 'error',
+    icon: 'close-outline'
+  },
+  thinking: {
+    color: 'warning',
+    icon: 'mdi-dots-horizontal'
+  },
+  participating: {
+    color: 'primary',
+    icon: 'mdi-check-outline'
+  },
+
+  get (competition) {
+    return this[competition.participation]
+  }
+}
+
 const tags = [
   { id: 'red', name: 'Rouge', color: 'red' },
   { id: 'orange', name: 'Orange', color: 'orange' },
@@ -60,4 +79,4 @@ const defaultProgressionForm = Object.freeze({
   notes: ''
 })
 
-export { grades, routeIcons, tags, defaultRouteForm, defaultProgressionForm }
+export { grades, routeIcons, competitionIcons, tags, defaultRouteForm, defaultProgressionForm }

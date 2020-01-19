@@ -28,6 +28,16 @@ export default new VueRouter({
       component: () => import(/* webpackChunkName: "routes" */ '../views/Routes.vue')
     },
     {
+      path: '/competitions',
+      name: 'competitions',
+      component: () => import(/* webpackChunkName: "competitions" */ '../views/Competitions.vue')
+    },
+    {
+      path: '/competitions/:competition',
+      name: 'competition',
+      component: () => import(/* webpackChunkName: "competitions" */ '../views/Competition.vue')
+    },
+    {
       path: '/settings',
       name: 'settings',
       component: () => import(/* webpackChunkName: "general" */ '../views/Settings.vue')

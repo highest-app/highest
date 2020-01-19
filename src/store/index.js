@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import competitions from './modules/competitions'
 import locations from './modules/locations'
 import routes from './modules/routes'
 import settings from './modules/settings'
@@ -18,6 +19,7 @@ export default new Vuex.Store({
   mutations,
   actions,
   modules: {
+    competitions,
     locations,
     routes,
     settings
