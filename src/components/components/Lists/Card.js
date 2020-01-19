@@ -1,6 +1,20 @@
 import Vue from 'vue'
 
 export default Vue.component('card', {
+    props: {
+      clickable: {
+        type: Boolean,
+        default: false
+      },
+      href: {
+        type: String,
+        default: null
+      },
+      to: {
+        type: String,
+        default: null
+      },
+    },
     render(createElement) {
       return createElement(
         'div', [
@@ -15,11 +29,11 @@ export default Vue.component('card', {
               createElement(
                 'v-list-item',
                 {
-                  on: this.$listeners.click ? {
-                    click (event) {
-                      this.$emit('click', event)
-                    }
-                  } : {}
+                  props: {
+                    link: this.clickable,
+                    href: this.href,
+                    to: this.to
+                  }
                 },
                 [
                   createElement('v-list-content', [
