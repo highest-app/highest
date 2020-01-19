@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { icons } from '@/utils/data'
+import { routeIcons } from '@/utils/data'
 import { dateToText } from '@/utils/parsing'
 
 export default {
@@ -47,7 +47,7 @@ export default {
     }
   },
   data: () => ({
-    icons
+    icons: routeIcons
   }),
   methods: {
     dateToText

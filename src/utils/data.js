@@ -7,7 +7,7 @@ const grades = [
   '9a', '9b', '9c'
 ]
 
-const icons = {
+const routeIcons = {
   finished: {
     color: 'primary',
     icon: 'mdi-check-outline'
@@ -60,4 +60,4 @@ const defaultProgressionForm = Object.freeze({
   notes: ''
 })
 
-export { grades, icons, tags, defaultRouteForm, defaultProgressionForm }
+export { grades, routeIcons, tags, defaultRouteForm, defaultProgressionForm }
