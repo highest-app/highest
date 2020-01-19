@@ -1,6 +1,55 @@
 <template>
   <v-content>
-    <app-bar title="Climbing"/>
+    <app-bar title="Climbing">
+      <template #top-bar-actions>
+        <v-bottom-sheet
+          v-model="profileSheet"
+          scrollable
+          inset>
+          <template v-slot:activator="{ on }">
+            <v-btn
+              :dark="!$vuetify.theme.dark"
+              :light="$vuetify.theme.dark"
+              elevation="0"
+              fab
+              small
+              v-on="on">
+              <v-icon
+                :dark="$vuetify.theme.dark"
+                :light="!$vuetify.theme.dark">
+                mdi-account-outline
+              </v-icon>
+            </v-btn>
+          </template>
+          <v-card class="background">
+            <v-card-text
+              class="pa-0"
+              style="overflow-x: hidden;">
+              <app-bar
+                title="Profil"
+                small-only
+                fixed>
+                <template #bar-right-actions>
+                  <a @click="profileSheet = false">OK</a>
+                </template>
+              </app-bar>
+              <page-body>
+                <list-group>
+                  <card to="/settings">
+                    <template #title>Paramètres</template>
+                    <template #action>
+                      <v-list-item-icon>
+                        <v-icon>mdi-chevron-right</v-icon>
+                      </v-list-item-icon>
+                    </template>
+                  </card>
+                </list-group>
+              </page-body>
+            </v-card-text>
+          </v-card>
+        </v-bottom-sheet>
+      </template>
+    </app-bar>
     <v-container>
       <v-row wrap>
         <v-col
@@ -34,6 +83,11 @@
 
 <script>
 export default {
-  name: 'Home'
+  name: 'Home',
+  data () {
+    return {
+      profileSheet: false
+    }
+  }
 }
 </script>

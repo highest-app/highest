@@ -116,15 +116,16 @@ export default {
     tags,
     locations: [],
     menu: [
-      { name: 'Flux', route: '/', icon: 'mdi-rss' },
+      { name: 'Accueil', route: '/', icon: 'mdi-home-outline' },
       { name: 'Voies', route: '/routes', icon: 'mdi-routes' },
+      { name: 'Compétitions', route: '/competitions', icon: 'mdi-medal' },
       { name: 'Paramètres', route: '/settings', icon: 'mdi-settings-outline' }
     ],
     mobileMenu: [
-      { name: 'Flux', route: '/', icon: 'mdi-rss' },
+      { name: 'Accueil', route: '/', icon: 'mdi-rss' },
       { name: 'Voies', route: '/routes', icon: 'mdi-routes' },
+      { name: 'Compétitions', route: '/competitions', icon: 'mdi-medal' },
       { name: 'Recherche', route: '/search', icon: 'mdi-magnify' },
-      { name: 'Paramètres', route: '/settings', icon: 'mdi-settings-outline' }
     ]
   }),
   mounted () {
