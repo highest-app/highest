@@ -20,3 +20,19 @@
 .card
   padding-top: 0
   padding-bottom: 0
+  border-radius: 0
+  &.card--top
+    border-top: 1px solid hsla(0, 0%, 100%, .12)
+  &.card--bottom
+    border-bottom: 1px solid hsla(0, 0%, 100%, .12)
+
+  &.theme--light
+    .v-list-item__icon i
+      color: #c4c4c6
+    .action__text
+      color: #8a8a8d
+  &.theme--dark
+    .v-list-item__icon i
+      color: #5a5a5e
+    .action__text
+      color: #98989e
