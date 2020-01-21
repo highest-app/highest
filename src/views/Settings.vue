@@ -30,7 +30,7 @@
       </v-dialog>
       <list-group>
         <card-header>Affichage</card-header>
-        <card>
+        <card top>
           <template #title>Thème sombre</template>
           <template #action>
             <v-switch
@@ -41,7 +41,7 @@
               inset/>
           </template>
         </card>
-        <card>
+        <card bottom>
           <template #title>Thème sombre automatique</template>
           <template #action>
             <v-switch
@@ -57,17 +57,22 @@
 
       <list-group>
         <card-header>Données</card-header>
-        <card>
+        <card top>
           <template #title>
             <span class="primary--text">Exporter les données</span>
           </template>
         </card>
+        <v-divider/>
         <card>
           <template #title>
             <span class="primary--text">Importer les données</span>
           </template>
         </card>
-        <card @click="eraseDialog = true">
+        <v-divider/>
+        <card
+          clickable
+          bottom
+          @click.native="eraseDialog = true">
           <template #title>
             <span class="error--text">Effacer les données</span>
           </template>

@@ -51,184 +51,165 @@
                     <a @click="add">Ajouter</a>
                   </template>
                 </app-bar>
-                <v-container class="px-0">
-                  <v-row>
-                    <v-col cols="12">
-                      <v-card
-                        tile
-                        elevation="0">
-                        <v-list>
-                          <v-list-item>
-                            <v-row
-                              class="mx-0"
-                              align="center">
-                              <span class="subtitle-1">Nom</span>
-                              <v-text-field
-                                v-model="routeForm.name"
-                                placeholder="Nom de la voie"
-                                hide-details
-                                solo
-                                flat/>
-                            </v-row>
-                          </v-list-item>
-                          <v-divider/>
-                          <v-list-item
-                            class="select-menu__trigger"
-                            @click="locationSelect = true">
-                            <v-list-item-content>
-                              <span class="subtitle-1">Lieu</span>
-                            </v-list-item-content>
-                            <v-spacer/>
-                            <span class="select-menu__selected--text subtitle-1">{{ routeForm.location }}</span>
-                            <v-list-item-icon>
-                              <v-icon>mdi-chevron-right</v-icon>
-                            </v-list-item-icon>
-                          </v-list-item>
-                          <v-divider/>
-                          <v-list-item
-                            class="select-menu__trigger"
-                            @click="gradeSelect = true">
-                            <v-list-item-content>
-                              <span class="subtitle-1">Cotation</span>
-                            </v-list-item-content>
-                            <v-spacer/>
-                            <span class="select-menu__selected--text subtitle-1">{{ routeForm.grade }}</span>
-                            <v-list-item-icon>
-                              <v-icon>mdi-chevron-right</v-icon>
-                            </v-list-item-icon>
-                          </v-list-item>
-                          <v-divider/>
-                          <v-list-item>
-                            <v-row
-                              class="mx-0"
-                              align="center">
-                              <span class="subtitle-1">Longueur</span>
-                              <v-slider
-                                v-model="routeForm.length"
-                                class="align-center px-3"
-                                :max="300"
-                                :min="0"
-                                hide-details/>
-                              <span class="subtitle-1">{{ routeLength }}</span>
-                            </v-row>
-                          </v-list-item>
-                        </v-list>
-                      </v-card>
-                    </v-col>
-                    <v-col cols="12">
-                      <v-card
-                        tile
-                        elevation="0">
-                        <v-list>
-                          <v-list-item>
-                            <v-list-item-content>
-                              <span class="subtitle-1 pr-3">Définir un objectif</span>
-                            </v-list-item-content>
-                            <v-spacer/>
-                            <v-switch
-                              v-model="routeForm.enableGoal"
-                              class="mt-0 pt-0"
-                              color="primary"
-                              hide-details
-                              inset/>
-                          </v-list-item>
-                          <template v-if="routeForm.enableGoal">
-                            <v-divider/>
-                            <v-list-item>
-                              <span class="subtitle-1 primary--text">
-                                {{ dateToText(routeForm.goal) }}
-                              </span>
-                            </v-list-item>
-                            <v-divider/>
-                            <v-list-item>
-                              <v-date-picker
-                                v-if="routeForm.enableGoal"
-                                v-model="routeForm.goal"
-                                style="box-shadow: 0;"
-                                first-day-of-week="1"
-                                color="primary"
-                                no-title
-                                full-width/>
-                            </v-list-item>
-                          </template>
-                        </v-list>
-                      </v-card>
-                    </v-col>
-                    <v-col cols="12">
-                      <v-card
-                        elevation="0"
-                        tile>
-                        <v-list>
-                          <v-list-item>
-                            <v-row
-                              class="mx-0"
-                              align="center">
-                              <span class="subtitle-1">Notes</span>
-                              <v-textarea
-                                id="notes-textarea"
-                                v-model="routeForm.notes"
-                                placeholder="Notes à rajouter à propos de la voie"
-                                rows="1"
-                                auto-grow
-                                hide-details
-                                solo
-                                flat/>
-                            </v-row>
-                          </v-list-item>
-                        </v-list>
-                      </v-card>
-                    </v-col>
-                  </v-row>
-                </v-container>
+                <page-body>
+                  <list-group>
+                    <card top>
+                      <template #title>Nom</template>
+                      <template #input>
+                        <v-text-field
+                          v-model="routeForm.name"
+                          placeholder="Nom de la voie"
+                          hide-details
+                          solo
+                          flat/>
+                      </template>
+                    </card>
+                    <card
+                      clickable
+                      @click.native="locationSelect = true">
+                      <template #title>Lieu</template>
+                      <template #action-text>{{ routeForm.location }}</template>
+                      <template #action>
+                        <v-list-item-icon>
+                          <v-icon>mdi-chevron-right</v-icon>
+                        </v-list-item-icon>
+                      </template>
+                    </card>
+                    <card
+                      class="select-menu__trigger"
+                      clickable
+                      @click.native="gradeSelect = true">
+                      <template #title>
+                        Cotation
+                      </template>
+                      <template #action-text>
+                        {{ routeForm.grade }}
+                      </template>
+                      <template #action>
+                        <v-list-item-icon>
+                          <v-icon>mdi-chevron-right</v-icon>
+                        </v-list-item-icon>
+                      </template>
+                    </card>
+                    <card bottom>
+                      <template #title>Longueur</template>
+                      <template #input>
+                        <v-slider
+                          v-model="routeForm.length"
+                          class="align-center px-3"
+                          :max="300"
+                          :min="0"
+                          hide-details/>
+                        <span class="subtitle-1">{{ routeLength }}</span>
+                      </template>
+                    </card>
+                  </list-group>
+                  <list-group>
+                    <card
+                      top
+                      :bottom="routeForm.enableGoal">
+                      <template #title>Définir un objectif</template>
+                      <template #action>
+                        <v-switch
+                          v-model="routeForm.enableGoal"
+                          class="mt-0 pt-0"
+                          color="primary"
+                          hide-details
+                          inset/>
+                      </template>
+                    </card>
+                    <template v-if="routeForm.enableGoal">
+                      <card>
+                        <template #title>
+                          <span class="primary--text">
+                            {{ dateToText(routeForm.goal) }}
+                          </span>
+                        </template>
+                      </card>
+                      <card bottom>
+                        <template #title>
+                          <v-date-picker
+                            v-if="routeForm.enableGoal"
+                            v-model="routeForm.goal"
+                            style="box-shadow: 0;"
+                            first-day-of-week="1"
+                            color="primary"
+                            no-title
+                            full-width/>
+                        </template>
+                      </card>
+                    </template>
+                  </list-group>
+                  <list-group>
+                    <card
+                      top
+                      bottom>
+                      <template #title>Notes</template>
+                      <template #input>
+                        <v-textarea
+                          id="notes-textarea"
+                          v-model="routeForm.notes"
+                          placeholder="Notes à rajouter à propos de la voie"
+                          rows="1"
+                          auto-grow
+                          hide-details
+                          solo
+                          flat/>
+                      </template>
+                    </card>
+                  </list-group>
+                </page-body>
               </template>
             </v-card-text>
           </v-card>
         </v-bottom-sheet>
       </template>
     </app-bar>
-    <div class="page-body">
-      <div class="hidden-md-and-up list__group">
-        <h2>Lieux</h2>
-        <v-col
-          v-for="location in locations"
-          :key="location.id"
-          cols="12"
-          md="6">
-          <v-card
-            elevation="0"
-            :to="'/locations/' + location.id">
-            <v-img
-              class="white--text align-end"
-              :aspect-ratio="16/9"
-              :src="location.photos[0]">
-              <v-card-title>{{ location.name }}</v-card-title>
-            </v-img>
-          </v-card>
-        </v-col>
-      </div>
-      <div class="hidden-md-and-up list__group">
-        <h2>Tags</h2>
-        <v-list
-          class="background"
-          elevation="0">
-          <template v-for="(tag, i) in tags">
-            <v-list-item
-              :key="`${tag.name}--list-item`"
-              :to="`/tags/${tag.id}`"
-              link>
-              <v-list-item-icon>
-                <v-icon :color="tag.color">mdi-circle</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title>{{ tag.name }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-            <v-divider
-              v-if="i !== tags.length - 1"
-              :key="`${tag.name}--divider`"
-              inset/>
-          </template>
-        </v-list>
+    <page-body>
+      <div class="hidden-sm-and-up">
+        <list-group>
+          <h2>Lieux</h2>
+          <v-col
+            v-for="location in locations"
+            :key="location.id"
+            cols="12"
+            md="6">
+            <v-card
+              elevation="0"
+              :to="'/locations/' + location.id">
+              <v-img
+                class="white--text align-end"
+                :aspect-ratio="16/9"
+                :src="location.photos[0]">
+                <v-card-title>{{ location.name }}</v-card-title>
+              </v-img>
+            </v-card>
+          </v-col>
+        </list-group>
+        <list-group>
+          <h2>Tags</h2>
+          <v-list
+            class="background"
+            elevation="0">
+            <template v-for="(tag, i) in tags">
+              <v-list-item
+                :key="`${tag.name}--list-item`"
+                :to="`/tags/${tag.id}`"
+                link>
+                <v-list-item-icon>
+                  <v-icon :color="tag.color">mdi-circle</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title>{{ tag.name }}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-divider
+                v-if="i !== tags.length - 1"
+                :key="`${tag.name}--divider`"
+                inset/>
+            </template>
+          </v-list>
+        </list-group>
       </div>
       <list-group
         v-for="location in locations"
@@ -236,7 +217,7 @@
         <h2>{{ location.name }}</h2>
         <routes-list :routes="routes[location.id]"/>
       </list-group>
-    </div>
+    </page-body>
   </v-content>
 </template>
 
