@@ -28,6 +28,15 @@ export default Vue.component('card', {
       }
     },
     render(createElement) {
+      /*
+       * Truth table :
+       * | description | bottom property || divider |
+       * |     0       |       0         ||    1    |
+       * |     0       |       1         ||    0    |
+       * |     1       |       0         ||    0    |
+       * |     1       |       1         ||    0    |
+       */
+      let divider = this.$slots.description === undefined && !this.bottom
       return createElement(
         'div', [
           createElement(
@@ -35,7 +44,7 @@ export default Vue.component('card', {
               class: {
                 'card': true,
                 'card--top': this.top,
-                'card--bottom': this.bottom
+                'card--bottom': this.$slots.description === undefined ? this.bottom : true
               }
             },
             [
@@ -79,7 +88,7 @@ export default Vue.component('card', {
                   ),
                 ]
               ),
-              this.bottom ? '' : createElement('v-divider')
+              divider ? createElement('v-divider') : ''
             ]
           ),
           this.$slots.description !== undefined ? createElement(
