@@ -17,7 +17,7 @@ const mutations = {
       name: data.name,
       id: data.name.toLowerCase().replace(/ /, '-'),
       notes: data.notes,
-      photos: [data.photo]
+      photos: [data.picture]
     })
   }
 }
