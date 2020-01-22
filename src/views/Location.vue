@@ -64,31 +64,21 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Location',
   data: () => ({
     location: {},
-    routes: [],
-    form: {}
+    routes: []
   }),
   mounted () {
-    this.clearForm()
     this.refreshRoutes()
   },
   computed: {
     ...mapGetters(['getLocationById', 'getRoutesByLocation'])
   },
   methods: {
-    ...mapActions(['addRoute']),
-    clearForm () {
-      this.form = {
-        name: '',
-        photo: '',
-        notes: ''
-      }
-    },
     refreshRoutes () {
       const id = this.$route.params.location
       this.location = this.getLocationById(id)

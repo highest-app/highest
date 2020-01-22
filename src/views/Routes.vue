@@ -107,7 +107,7 @@
                   <list-group>
                     <card
                       top
-                      :bottom="routeForm.enableGoal">
+                      :bottom="!routeForm.enableGoal">
                       <template #title>Définir un objectif</template>
                       <template #action>
                         <v-switch
@@ -169,6 +169,25 @@
       <div class="hidden-sm-and-up">
         <list-group>
           <h2>Lieux</h2>
+          <v-bottom-sheet
+            v-model="locationAddingSheet"
+            scrollable
+            inset>
+            <template v-slot:activator="{ on }">
+              <v-col
+                cols="12"
+                md="6">
+                <v-card
+                  elevation="0"
+                  v-on="on">
+                  <v-card-title>Ajouter un lieu</v-card-title>
+                </v-card>
+              </v-col>
+            </template>
+            <v-card class="background">
+              <LocationAdding @close="locationAddingSheet = false"/>
+            </v-card>
+          </v-bottom-sheet>
           <v-col
             v-for="location in locations"
             :key="location.id"
@@ -225,9 +244,11 @@
 import { mapGetters, mapActions } from 'vuex'
 import { grades, tags, defaultRouteForm } from '@/utils/data'
 import { dateToText } from '@/utils/parsing'
+import LocationAdding from '@/views/parts/LocationAdding'
 
 export default {
   name: 'Routes',
+  components: { LocationAdding },
   data () {
     return {
       locations: [],
@@ -236,6 +257,7 @@ export default {
       routeForm: Object.assign({}, defaultRouteForm),
 
       routeAddingSheet: false,
+      locationAddingSheet: false,
       gradeSelect: false,
       locationSelect: false,
 

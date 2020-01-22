@@ -1,5 +1,12 @@
 <template>
   <v-app>
+    <v-dialog
+      v-model="locationDialog"
+      max-width="50%">
+      <v-card class="background">
+        <LocationAdding @close="locationDialog = false"/>
+      </v-card>
+    </v-dialog>
     <v-navigation-drawer
       :app="$vuetify.breakpoint.mdAndUp"
       class="hidden-sm-and-down"
@@ -43,7 +50,7 @@
         nav
         subheader>
         <v-subheader>LIEUX</v-subheader>
-        <v-list-item>
+        <v-list-item @click="locationDialog = true">
           <v-list-item-icon>
             <v-icon>mdi-plus</v-icon>
           </v-list-item-icon>
@@ -107,11 +114,14 @@
 <script>
 import { mapGetters } from 'vuex'
 import { tags } from '@/utils/data'
+import LocationAdding from '@/views/parts/LocationAdding'
 
 export default {
   name: 'App',
+  components: { LocationAdding },
   data: () => ({
     bottomNav: '',
+    locationDialog: false,
 
     tags,
     locations: [],

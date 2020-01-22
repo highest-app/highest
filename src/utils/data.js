@@ -64,6 +64,12 @@ const tags = [
   { id: 'gray', name: 'Gris', color: 'gray' },
 ]
 
+const defaultLocationForm = Object.freeze({
+  name: '',
+  picture: '',
+  notes: ''
+})
+
 const defaultRouteForm = Object.freeze({
   location: '',
   name: '',
@@ -79,4 +85,7 @@ const defaultProgressionForm = Object.freeze({
   notes: ''
 })
 
-export { grades, routeIcons, competitionIcons, tags, defaultRouteForm, defaultProgressionForm }
+export {
+  grades, routeIcons, competitionIcons, tags,
+  defaultLocationForm, defaultRouteForm, defaultProgressionForm
+}
