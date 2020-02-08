@@ -38,7 +38,7 @@ const routeIcons = {
 const competitionIcons = {
   notParticipating: {
     color: 'error',
-    icon: 'close-outline'
+    icon: 'mdi-close-outline'
   },
   thinking: {
     color: 'warning',
@@ -85,7 +85,15 @@ const defaultProgressionForm = Object.freeze({
   notes: ''
 })
 
+const defaultCompetitionForm = Object.freeze({
+  name: '',
+  location: '',
+  description: '',
+  participation: 'notParticipating',
+  date: new Date().toISOString().substr(0, 10),
+})
+
 export {
   grades, routeIcons, competitionIcons, tags,
-  defaultLocationForm, defaultRouteForm, defaultProgressionForm
+  defaultLocationForm, defaultRouteForm, defaultProgressionForm, defaultCompetitionForm
 }
