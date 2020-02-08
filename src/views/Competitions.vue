@@ -169,7 +169,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { competitionIcons, defaultCompetitionForm } from '@/utils/data'
+import { competitionIcons } from '@/utils/data'
+import { defaultCompetitionForm } from '@/utils/forms'
 import { dateToText } from '@/utils/parsing'
 
 export default {

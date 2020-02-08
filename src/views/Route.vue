@@ -123,7 +123,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import { defaultProgressionForm, defaultRouteForm } from '@/utils/data'
+import { defaultProgressionForm, defaultRouteForm } from '@/utils/forms'
 import { dateToText } from '@/utils/parsing'
 
 export default {

@@ -242,7 +242,8 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import { grades, tags, defaultRouteForm } from '@/utils/data'
+import { grades, tags } from '@/utils/data'
+import { defaultRouteForm } from '@/utils/forms'
 import { dateToText } from '@/utils/parsing'
 import LocationAdding from '@/views/parts/LocationAdding'
 

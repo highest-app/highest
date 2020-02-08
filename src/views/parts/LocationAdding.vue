@@ -62,7 +62,7 @@
 
 <script>
 import { mapActions } from 'vuex'
-import { defaultLocationForm } from '@/utils/data'
+import { defaultLocationForm } from '@/utils/forms'
 
 export default {
   name: 'LocationAdding',
