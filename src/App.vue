@@ -36,6 +36,7 @@
           v-for="item in menu"
           :key="item.name"
           :to="item.route"
+          class="primary--text"
           link>
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
@@ -62,6 +63,7 @@
           v-for="location in locations"
           :key="location.name"
           :to="`/locations/${location.id}`"
+          class="primary--text"
           link>
           <v-list-item-icon>
             <v-icon>mdi-map-marker-outline</v-icon>
@@ -132,7 +134,7 @@ export default {
       { name: 'Paramètres', route: '/settings', icon: 'mdi-settings-outline' }
     ],
     mobileMenu: [
-      { name: 'Accueil', route: '/', icon: 'mdi-rss' },
+      { name: 'Accueil', route: '/', icon: 'mdi-home-outline' },
       { name: 'Voies', route: '/routes', icon: 'mdi-routes' },
       { name: 'Compétitions', route: '/competitions', icon: 'mdi-medal' },
       { name: 'Recherche', route: '/search', icon: 'mdi-magnify' },

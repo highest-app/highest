@@ -1,23 +1,29 @@
 const grades = [
-  '4a', '4b', '4c',
-  '5a', '5b', '5c',
-  '6a', '6b', '6c',
-  '7a', '7b', '7c',
-  '8a', '8b', '8c',
-  '9a', '9b', '9c'
+  '4A', '4B', '4C',
+  '5A', '5B', '5C',
+  '6A', '6B', '6C',
+  '7A', '7B', '7C',
+  '8A', '8B', '8C',
+  '9A', '9B', '9C'
 ]
+
+const gradeElements = {
+  numbers: [5, 6, 7, 8, 9],
+  letters: ['A', 'B', 'C'],
+  modifiers: ['', '+']
+}
 
 const routeIcons = {
   finished: {
-    color: 'primary',
+    color: 'light-green',
     icon: 'mdi-check-outline'
   },
   goal: {
-    color: 'warning',
+    color: 'amber',
     icon: 'mdi-clock-outline'
   },
   outdatedGoal: {
-    color: 'error',
+    color: 'red darken-4',
     icon: 'mdi-clock-outline'
   },
   noGoal: {
@@ -37,15 +43,15 @@ const routeIcons = {
 
 const competitionIcons = {
   notParticipating: {
-    color: 'error',
+    color: 'red darken-4',
     icon: 'mdi-close-outline'
   },
   thinking: {
-    color: 'warning',
+    color: 'amber',
     icon: 'mdi-dots-horizontal'
   },
   participating: {
-    color: 'primary',
+    color: 'light-green',
     icon: 'mdi-check-outline'
   },
 
@@ -66,6 +72,7 @@ const tags = [
 
 export {
   grades,
+  gradeElements,
   routeIcons,
   competitionIcons,
   tags

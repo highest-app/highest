@@ -8,9 +8,6 @@ import 'vuetify/dist/vuetify.min.css'
 Vue.use(Vuetify)
 
 const theme = {
-  primary: colors.lightGreen.base,
-  secondary: colors.lime.base,
-  accent: colors.blue.accent1,
   error: colors.red.darken4,
   info: colors.blue.base,
   success: colors.green.darken1,
@@ -22,6 +19,9 @@ export default new Vuetify({
     themes: {
       light: {
         ...theme,
+        primary: '#1e3799',
+        secondary: '#E17B13',
+        accent: '#E1C413',
         background: '#f2f2f7',
         sheets: '#fff',
         paragraph: colors.grey.darken2,
@@ -29,6 +29,9 @@ export default new Vuetify({
       },
       dark: {
         ...theme,
+        primary: '#4a69bd',
+        secondary: '#FFA351',
+        accent: '#FFE351',
         background: '#000',
         sheets: '#1c1c1d',
         paragraph: colors.grey.lighten2,
