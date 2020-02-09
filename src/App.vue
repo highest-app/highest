@@ -19,7 +19,8 @@
             <v-list-item-title
               style="line-height: inherit;"
               class="title">
-              Climbing
+              <span class="secondary--text">H</span>
+              <span class="primary--text">ighest</span>
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -51,7 +52,9 @@
         nav
         subheader>
         <v-subheader>LIEUX</v-subheader>
-        <v-list-item @click="locationDialog = true">
+        <v-list-item
+          class="secondary"
+          @click="locationDialog = true">
           <v-list-item-icon>
             <v-icon>mdi-plus</v-icon>
           </v-list-item-icon>

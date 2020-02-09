@@ -1,6 +1,7 @@
-# Climbing
+# Highest
+### Your best climbing companion
 
-**A Progressive Web Application to track climbing routes activity, made with Vue**
+**🚀 Web Application to track climbing routes activity, made with Vue**
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/7dc9a45b-de70-46bd-b876-2909f9a483e3/deploy-status)](https://app.netlify.com/sites/climbing/deploys)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b12f922e68ee491982dd1f2e3df24812)](https://www.codacy.com/manual/exybore/climbing-app?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=exybore/climbing-app&amp;utm_campaign=Badge_Grade)

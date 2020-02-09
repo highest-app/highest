@@ -8,17 +8,12 @@
           inset>
           <template v-slot:activator="{ on }">
             <v-btn
-              :dark="!$vuetify.theme.dark"
-              :light="$vuetify.theme.dark"
+              color="secondary"
               elevation="0"
               fab
               small
               v-on="on">
-              <v-icon
-                :dark="$vuetify.theme.dark"
-                :light="!$vuetify.theme.dark">
-                mdi-plus
-              </v-icon>
+              <v-icon>mdi-plus</v-icon>
             </v-btn>
           </template>
           <v-card class="background">

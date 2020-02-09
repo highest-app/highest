@@ -1,6 +1,6 @@
 <template>
   <v-content>
-    <app-bar title="Climbing">
+    <app-bar title="Accueil">
       <template #top-bar-actions>
         <v-bottom-sheet
           v-model="profileSheet"
@@ -8,15 +8,12 @@
           inset>
           <template v-slot:activator="{ on }">
             <v-btn
-              :dark="!$vuetify.theme.dark"
-              :light="$vuetify.theme.dark"
+              color="secondary"
               elevation="0"
               fab
               small
               v-on="on">
-              <v-icon
-                :dark="$vuetify.theme.dark"
-                :light="!$vuetify.theme.dark">
+              <v-icon>
                 mdi-account-outline
               </v-icon>
             </v-btn>
@@ -59,9 +56,9 @@
             elevation="0"
             tile>
             <v-card-text>
-              <div>Votre app d'escalade</div>
+              <div>Votre companion pour grimper</div>
               <p class="display-1 text--primary">
-                Climbing
+                Highest
               </p>
               <div class="text--primary">
                 Travaillez vos voies en restant organisé : l'application d'escalade pratique !
