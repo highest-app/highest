@@ -1,48 +1,46 @@
 <template>
   <v-content>
-    <app-bar title="Paramètres"/>
+    <app-bar :title="$t('pages.settings')"/>
     <page-body>
       <v-dialog
         v-model="eraseDialog"
         max-width="290"
         persistent>
         <v-card>
-          <v-card-title class="headline">Êtes-vous sûr ?</v-card-title>
-          <v-card-text>
-            Si vous continuez, cette action va engendrer la perte de toutes vos données, incluant
-            vos lieux, voies et paramètres, et ce de manière définitive. Réfléchissez-bien !
-          </v-card-text>
+          <v-card-title class="headline">{{ $t('terms.actionConfirmation') }}</v-card-title>
+          <v-card-text>{{ $t('settings.eraseDataConfirmation') }}</v-card-text>
           <v-card-actions>
             <v-btn
               text
               @click="eraseDialog = false">
-              Annuler
+              {{ $t('terms.cancel') }}
             </v-btn>
             <v-spacer/>
             <v-btn
               color="error"
               text
               @click="eraseData">
-              Effacer
+              {{ $t('terms.erase') }}
             </v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
       <list-group>
-        <card-header>Affichage</card-header>
+        <card-header>{{ $t('settings.display') }}</card-header>
         <card top>
-          <template #title>Thème sombre</template>
+          <template #title>{{ $t('settings.darkTheme') }}</template>
           <template #action>
             <v-switch
               v-model="settings.darkTheme"
+              :disabled="settings.autoDarkTheme"
               class="pt-0 mt-0"
               color="primary"
               hide-details
               inset/>
           </template>
         </card>
-        <card bottom>
-          <template #title>Thème sombre automatique</template>
+        <card>
+          <template #title>{{ $t('settings.autoDarkTheme') }}</template>
           <template #action>
             <v-switch
               v-model="settings.autoDarkTheme"
@@ -51,21 +49,21 @@
               hide-details
               inset/>
           </template>
-          <template #description>Le thème s'ajustera à celui de l'appareil. Assurez-vous d'avoir mis à jour votre système afin de profiter de cette fonction.</template>
+          <template #description>{{ $t('settings.autoDarkThemeDescription') }}</template>
         </card>
       </list-group>
 
       <list-group>
-        <card-header>Données</card-header>
+        <card-header>{{ $t('settings.data') }}</card-header>
         <card top>
           <template #title>
-            <span class="primary--text">Exporter les données</span>
+            <span class="primary--text">{{ $t('settings.exportData') }}</span>
           </template>
         </card>
         <v-divider/>
         <card>
           <template #title>
-            <span class="primary--text">Importer les données</span>
+            <span class="primary--text">{{ $t('settings.importData') }}</span>
           </template>
         </card>
         <v-divider/>
@@ -74,17 +72,17 @@
           bottom
           @click.native="eraseDialog = true">
           <template #title>
-            <span class="error--text">Effacer les données</span>
+            <span class="error--text">{{ $t('settings.eraseData') }}</span>
           </template>
         </card>
       </list-group>
 
       <list-group>
-        <card-header>À propos</card-header>
+        <card-header>{{ $t('settings.about') }}</card-header>
         <card>
           <template #title>
             <p>
-              Créé par
+              {{ $t('settings.createdBy') }}
               <a
                 href="https://twitter.com/exybore"
                 target="_blank">
@@ -95,7 +93,7 @@
               href="https://github.com/exybore/climbing-app"
               target="_blank"
               class="primary--text">
-              Accéder au code source
+              {{ $t('settings.sourceCode') }}
             </a>
           </template>
         </card>

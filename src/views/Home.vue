@@ -1,6 +1,6 @@
 <template>
   <v-content>
-    <app-bar title="Accueil">
+    <app-bar :title="$t('pages.home')">
       <template #top-bar-actions>
         <v-bottom-sheet
           v-model="profileSheet"
@@ -23,17 +23,17 @@
               class="pa-0"
               style="overflow-x: hidden;">
               <app-bar
-                title="Profil"
+                :title="$t('pages.profile')"
                 small-only
                 fixed>
                 <template #bar-right-actions>
-                  <a @click="profileSheet = false">OK</a>
+                  <a @click="profileSheet = false">{{ $t('terms.ok') }}</a>
                 </template>
               </app-bar>
               <page-body>
                 <list-group>
                   <card to="/settings">
-                    <template #title>Paramètres</template>
+                    <template #title>{{ $t('pages.settings') }}</template>
                     <template #action>
                       <v-list-item-icon>
                         <v-icon>mdi-chevron-right</v-icon>
@@ -56,13 +56,9 @@
             elevation="0"
             tile>
             <v-card-text>
-              <div>Votre companion pour grimper</div>
-              <p class="display-1 text--primary">
-                Highest
-              </p>
-              <div class="text--primary">
-                Travaillez vos voies en restant organisé : l'application d'escalade pratique !
-              </div>
+              <div>{{ $t('home.appSubtitle') }}</div>
+              <p class="display-1 text--primary">Highest</p>
+              <div class="text--primary">{{ $t('home.appDescription') }}</div>
             </v-card-text>
           </v-card>
         </v-col>

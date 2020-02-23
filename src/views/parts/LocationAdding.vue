@@ -1,53 +1,53 @@
 <template>
   <div class="location-adding-menu">
     <app-bar
-      title="Ajouter un lieu"
+      :title="$t('locations.add')"
       small-only
       fixed>
       <template #bar-left-actions>
-        <a @click="close">Annuler</a>
+        <a @click="close">{{ $t('terms.cancel') }}</a>
       </template>
       <template #bar-right-actions>
-        <a @click="add">Ajouter</a>
+        <a @click="add">{{ $t('terms.add') }}</a>
       </template>
     </app-bar>
     <page-body>
       <list-group>
         <card top>
-          <template #title>Nom</template>
+          <template #title>{{ $t('terms.name') }}</template>
           <template #input>
             <v-text-field
               v-model="form.name"
-              placeholder="Nom du lieu"
+              :placeholder="$t('locations.namePlaceholder')"
               hide-details
               solo
               flat/>
           </template>
         </card>
         <card>
-          <template #title>Image</template>
+          <template #title>{{ $t('terms.picture') }}</template>
           <template #input>
             <v-text-field
               v-model="form.picture"
-              placeholder="URL vers l'image"
+              :placeholder="$t('terms.picturePlaceholder')"
               hide-details
               solo
               flat/>
           </template>
           <template #description>
-            Pour ajouter une image au lieu, vous pouvez utiliser des services gratuits d'hébergement d'images comme
+            {{ $t('terms.pictureDescription') }}
             <a href="https://imgur.com">Imgur</a>
           </template>
         </card>
         <card
           top
           bottom>
-          <template #title>Notes</template>
+          <template #title>{{ $t('terms.notes') }}</template>
           <template #input>
             <v-textarea
               id="notes-textarea"
               v-model="form.notes"
-              placeholder="Notes à rajouter à propos du lieu"
+              :placeholder="$t('locations.notesPlaceholder')"
               rows="1"
               auto-grow
               hide-details

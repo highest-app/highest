@@ -4,10 +4,10 @@
       :title="competition.name"
       small-only>
       <template #bar-left-actions>
-        <a @click="$router.back()">Retour</a>
+        <a @click="$router.back()">{{ $t('terms.return') }}</a>
       </template>
       <template #bar-right-actions>
-        <a>Modifier</a>
+        <a>{{ $t('terms.edit') }}</a>
       </template>
     </app-bar>
     <page-body>

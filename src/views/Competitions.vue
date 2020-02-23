@@ -1,6 +1,6 @@
 <template>
   <v-content>
-    <app-bar title="Compétitions">
+    <app-bar :title="$tc('generic.competition', 2)">
       <template #top-bar-actions>
         <v-bottom-sheet
           v-model="addingSheet"
@@ -21,29 +21,29 @@
               v-if="locationSelect"
               v-model="form.location"
               :choices="Object.keys(parsedLocations)"
-              name="Lieu"
+              :name="$tc('generic.location')"
               auto-back
               @back="locationSelect = false"/>
             <template v-else>
               <app-bar
-                title="Ajouter une compétition"
+                :title="$t('competitions.add')"
                 small-only
                 fixed>
                 <template #bar-left-actions>
-                  <a @click="resetForm">Annuler</a>
+                  <a @click="resetForm">{{ $t('terms.cancel') }}</a>
                 </template>
                 <template #bar-right-actions>
-                  <a @click="add">Ajouter</a>
+                  <a @click="add">{{ $t('terms.add') }}</a>
                 </template>
               </app-bar>
               <page-body>
                 <list-group>
                   <card top>
-                    <template #title>Nom</template>
+                    <template #title>{{ $t('terms.name') }}</template>
                     <template #input>
                       <v-text-field
                         v-model="form.name"
-                        placeholder="Nom de la compétition"
+                        :placeholder="$t('competitions.namePlaceholder')"
                         hide-details
                         solo
                         flat/>
@@ -52,7 +52,7 @@
                   <card
                     clickable
                     @click.native="locationSelect = true">
-                    <template #title>Lieu</template>
+                    <template #title>{{ $tc('generic.location') }}</template>
                     <template #action-text>{{ form.location }}</template>
                     <template #action>
                       <v-list-item-icon>
@@ -61,12 +61,12 @@
                     </template>
                   </card>
                   <card>
-                    <template #title>Description</template>
+                    <template #title>{{ $t('terms.description') }}</template>
                     <template #input>
                       <v-textarea
                         id="notes-textarea"
                         v-model="form.description"
-                        placeholder="Description de la compétition"
+                        :placeholder="$t('competitions.descriptionPlaceholder')"
                         rows="1"
                         auto-grow
                         hide-details
@@ -93,7 +93,7 @@
                     </template>
                   </card>
                   <card bottom>
-                    <template #title>Participation</template>
+                    <template #title>{{ $t('competitions.participation') }}</template>
                     <template #action>
                       <v-btn-toggle
                         v-model="form.participation"
@@ -117,7 +117,7 @@
       <list-group>
         <v-list class="background">
           <v-list-item v-if="competitions.length === 0">
-            Aucune compétition pour le moment. Ajoutez-en une !
+            {{ $t('competitions.noCompetitions') }}
           </v-list-item>
           <template v-for="(competition, i) in competitions">
             <v-list-item

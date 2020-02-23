@@ -26,7 +26,7 @@
         </v-list-item>
         <v-list-item>
           <v-text-field
-            label="Recherche..."
+            :label="`${$t('pages.search')}...`"
             append-icon="mdi-magnify"
             solo
             filled
@@ -51,7 +51,7 @@
         dense
         nav
         subheader>
-        <v-subheader>LIEUX</v-subheader>
+        <v-subheader>{{ $tc('generic.location', 2).toUpperCase() }}</v-subheader>
         <v-list-item
           class="secondary"
           @click="locationDialog = true">
@@ -59,7 +59,7 @@
             <v-icon>mdi-plus</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>Ajouter</v-list-item-title>
+            <v-list-item-title>{{ $t('terms.add') }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item
@@ -80,7 +80,7 @@
         dense
         nav
         subheader>
-        <v-subheader>TAGS</v-subheader>
+        <v-subheader>{{ $tc('generic.tag', 2).toUpperCase() }}</v-subheader>
 
         <v-list-item
           v-for="tag in tags"
@@ -91,7 +91,7 @@
             <v-icon :color="tag.color">mdi-circle</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>{{ tag.name }}</v-list-item-title>
+            <v-list-item-title>{{ $t(`terms.${tag.color}`) }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -124,25 +124,27 @@ import LocationAdding from '@/views/parts/LocationAdding'
 export default {
   name: 'App',
   components: { LocationAdding },
-  data: () => ({
-    bottomNav: '',
-    locationDialog: false,
+  data () {
+    return {
+      bottomNav: '',
+      locationDialog: false,
 
-    tags,
-    locations: [],
-    menu: [
-      { name: 'Accueil', route: '/', icon: 'mdi-home-outline' },
-      { name: 'Voies', route: '/routes', icon: 'mdi-routes' },
-      { name: 'Compétitions', route: '/competitions', icon: 'mdi-medal' },
-      { name: 'Paramètres', route: '/settings', icon: 'mdi-settings-outline' }
-    ],
-    mobileMenu: [
-      { name: 'Accueil', route: '/', icon: 'mdi-home-outline' },
-      { name: 'Voies', route: '/routes', icon: 'mdi-routes' },
-      { name: 'Compétitions', route: '/competitions', icon: 'mdi-medal' },
-      { name: 'Recherche', route: '/search', icon: 'mdi-magnify' },
-    ]
-  }),
+      tags,
+      locations: [],
+      menu: [
+        {name: this.$t('pages.home'), route: '/', icon: 'mdi-home-outline'},
+        {name: this.$tc('generic.route', 2), route: '/routes', icon: 'mdi-routes'},
+        {name: this.$tc('generic.competition', 2), route: '/competitions', icon: 'mdi-medal'},
+        {name: this.$t('pages.settings'), route: '/settings', icon: 'mdi-settings-outline'}
+      ],
+      mobileMenu: [
+        {name: this.$t('pages.home'), route: '/', icon: 'mdi-home-outline'},
+        {name: this.$tc('generic.route', 2), route: '/routes', icon: 'mdi-routes'},
+        {name: this.$tc('generic.competition', 2), route: '/competitions', icon: 'mdi-medal'},
+        {name: this.$t('pages.search'), route: '/search', icon: 'mdi-magnify'},
+      ]
+    }
+  },
   mounted () {
     this.setTheme()
     this.locations = this.getLocations

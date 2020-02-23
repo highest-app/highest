@@ -1,6 +1,6 @@
 <template>
   <v-content>
-    <app-bar title="Voies">
+    <app-bar :title="$tc('generic.route', 2)">
       <template #top-bar-actions>
         <v-bottom-sheet
           v-model="routeAddingSheet"
@@ -24,36 +24,36 @@
                 v-if="gradeSelect"
                 v-model="routeForm.grade"
                 :choices="grades"
-                name="Cotation"
+                :name="$t('terms.grade')"
                 auto-back
                 @back="gradeSelect = false"/>
               <select-menu
                 v-else-if="locationSelect"
                 v-model="routeForm.location"
                 :choices="Object.keys(parsedLocations)"
-                name="Lieu"
+                :name="$tc('generic.location', 1)"
                 auto-back
                 @back="locationSelect = false"/>
               <template v-else>
                 <app-bar
-                  title="Ajouter une voie"
+                  :title="$t('routes.add')"
                   small-only
                   fixed>
                   <template #bar-left-actions>
-                    <a @click="resetForm">Annuler</a>
+                    <a @click="resetForm">{{ $t('terms.cancel') }}</a>
                   </template>
                   <template #bar-right-actions>
-                    <a @click="add">Ajouter</a>
+                    <a @click="add">{{ $t('terms.add') }}</a>
                   </template>
                 </app-bar>
                 <page-body>
                   <list-group>
                     <card top>
-                      <template #title>Nom</template>
+                      <template #title>{{ $t('terms.name') }}</template>
                       <template #input>
                         <v-text-field
                           v-model="routeForm.name"
-                          placeholder="Nom de la voie"
+                          :placeholder="$t('routes.namePlaceholder')"
                           hide-details
                           solo
                           flat/>
@@ -62,7 +62,7 @@
                     <card
                       clickable
                       @click.native="locationSelect = true">
-                      <template #title>Lieu</template>
+                      <template #title>{{ $tc('generic.location', 1) }}</template>
                       <template #action-text>{{ routeForm.location }}</template>
                       <template #action>
                         <v-list-item-icon>
@@ -75,7 +75,7 @@
                       clickable
                       @click.native="gradeSelect = true">
                       <template #title>
-                        Cotation
+                        {{ $t('terms.grade') }}
                       </template>
                       <template #action-text>
                         {{ routeForm.grade }}
@@ -87,7 +87,7 @@
                       </template>
                     </card>
                     <card bottom>
-                      <template #title>Longueur</template>
+                      <template #title>{{ $t('terms.length') }}</template>
                       <template #input>
                         <v-slider
                           v-model="routeForm.length"
@@ -103,7 +103,7 @@
                     <card
                       top
                       :bottom="!routeForm.enableGoal">
-                      <template #title>Définir un objectif</template>
+                      <template #title>{{ $t('routes.defineGoal') }}</template>
                       <template #action>
                         <v-switch
                           v-model="routeForm.enableGoal"
@@ -139,12 +139,12 @@
                     <card
                       top
                       bottom>
-                      <template #title>Notes</template>
+                      <template #title>{{ $t('terms.notes') }}</template>
                       <template #input>
                         <v-textarea
                           id="notes-textarea"
                           v-model="routeForm.notes"
-                          placeholder="Notes à rajouter à propos de la voie"
+                          :placeholder="$t('routes.notesPlaceholder')"
                           rows="1"
                           auto-grow
                           hide-details
@@ -163,7 +163,7 @@
     <page-body>
       <div class="hidden-sm-and-up">
         <list-group>
-          <h2>Lieux</h2>
+          <h2>{{ $tc('generic.location', 2) }}</h2>
           <v-bottom-sheet
             v-model="locationAddingSheet"
             scrollable
@@ -175,7 +175,7 @@
                 <v-card
                   elevation="0"
                   v-on="on">
-                  <v-card-title>Ajouter un lieu</v-card-title>
+                  <v-card-title>{{ $t('locations.add') }}</v-card-title>
                 </v-card>
               </v-col>
             </template>
@@ -201,7 +201,7 @@
           </v-col>
         </list-group>
         <list-group>
-          <h2>Tags</h2>
+          <h2>{{ $tc('generic.tag', 2) }}</h2>
           <v-list
             class="background"
             elevation="0">
@@ -214,7 +214,7 @@
                   <v-icon :color="tag.color">mdi-circle</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
-                  <v-list-item-title>{{ tag.name }}</v-list-item-title>
+                  <v-list-item-title>{{ $t(`terms.${tag.color}`) }}</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
               <v-divider

@@ -4,10 +4,10 @@
       :title="route.name"
       small-only>
       <template #bar-left-actions>
-        <a @click="$router.back()">Retour</a>
+        <a @click="$router.back()">{{ $t('terms.return') }}</a>
       </template>
       <template #bar-right-actions>
-        <a>Modifier</a>
+        <a>{{ $t('terms.edit') }}</a>
       </template>
     </app-bar>
     <v-container>
@@ -25,7 +25,7 @@
                   <v-switch
                     v-model="route.finished"
                     color="primary"
-                    label="Marquer comme terminée"
+                    :label="$t('routes.markAsFinished')"
                     inset
                     @click.stop="switchFinishedRoute(route.id)"/>
                   <v-list>
@@ -48,7 +48,7 @@
                     </template>
                     <v-list-item>
                       <v-list-item-content>
-                        <v-list-item-title>Ajouter une progression :</v-list-item-title>
+                        <v-list-item-title>{{ $t('routes.addProgress') }} :</v-list-item-title>
                         <v-row>
                           <v-col
                             cols="12"
@@ -67,7 +67,7 @@
                                   <template v-slot:activator="{ on }">
                                     <v-text-field
                                       :value="progressionDatePicker"
-                                      label="Date"
+                                      :label="$t('terms.date')"
                                       readonly
                                       v-on="on"/>
                                   </template>
@@ -85,7 +85,7 @@
                                 <v-textarea
                                   v-model="progressionForm.notes"
                                   rows="1"
-                                  label="Notes"
+                                  :label="$t('terms.notes')"
                                   auto-grow/>
                               </v-col>
                             </v-row>
@@ -97,13 +97,13 @@
                               <v-btn
                                 text
                                 @click="progressionForm = Object.assign({}, defaultProgressionForm)">
-                                Annuler
+                                {{ $t('terms.cancel') }}
                               </v-btn>
                               <v-btn
                                 color="primary"
                                 text
                                 @click="add">
-                                Ajouter
+                                {{ $t('terms.add') }}
                               </v-btn>
                             </v-row>
                           </v-col>

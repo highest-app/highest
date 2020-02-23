@@ -6,7 +6,7 @@
         <a
           class="hidden-md-and-up"
           @click="$router.back()">
-          Retour
+          {{ $t('terms.return') }}
         </a>
       </template>
     </app-bar>
@@ -42,13 +42,13 @@
                 depressed
                 @click="editLocation">
                 <v-icon left>mdi-pencil-outline</v-icon>
-                Modifier
+                {{ $t('terms.edit') }}
               </v-btn>
               <v-btn
                 color="error"
                 depressed>
                 <v-icon left>mdi-delete-outline</v-icon>
-                Supprimer
+                {{ $t('terms.delete') }}
               </v-btn>
             </v-col>
             <v-col cols="12">
