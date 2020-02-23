@@ -1,4 +1,90 @@
 {
-  "location": "lieu | lieux",
-  "routes": "voie | voies"
+  "terms": {
+    "name": "Nom",
+    "description": "Description",
+    "notes": "Notes",
+    "date": "Date",
+    "picture": "Image",
+    "picturePlaceholder": "Adresse URL vers une image",
+    "pictureDescription": "Pour ajouter une image, vous pouvez utiliser des services gratuits d'hébergement d'images comme ",
+    "grade": "Cotation",
+    "length": "Longueur",
+
+    "add": "Ajouter",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "erase": "Effacer",
+    "cancel": "Annuler",
+    "return": "Retour",
+    "ok": "OK",
+
+    "actionConfirmation": "Êtes-vous sûr ?",
+
+    "red": "Rouge",
+    "orange": "Orange",
+    "yellow": "Jaune",
+    "green": "Vert",
+    "blue": "Bleu",
+    "purple": "Violet",
+    "gray": "Gris"
+  },
+  "generic": {
+    "location": "Lieu | Lieux",
+    "route": "Voie | Voies",
+    "competition": "Compétition | Compétitions",
+    "tag": "Tag | Tags"
+  },
+  "pages": {
+    "home": "Accueil",
+    "profile": "Profil",
+    "settings": "Paramètres",
+    "search": "Recherche"
+  },
+  "home": {
+    "appSubtitle": "Votre companion pour grimper",
+    "appDescription": "Travaillez vos voies en restant organisé : l'application d'escalade pratique !"
+  },
+  "routes": {
+    "add": "Ajouter une voie",
+    "namePlaceholder": "Nom de la voie",
+    "notesPlaceholder": "Notes à rajouter à propos de la voie",
+    "defineGoal": "Définir un objectif",
+
+    "noRoutes": "Aucune voie pour le moment. Ajoutez-en une !",
+    "for": "Pour le",
+    "noGoal": "Aucun objectif",
+    "markAsFinished": "Marquer comme terminée",
+
+    "addProgress": "Ajouter une progression"
+  },
+  "locations": {
+    "add": "Ajouter un lieu",
+    "namePlaceholder": "Nom du lieu",
+    "notesPlaceholder": "Notes à rajouter à propos du lieu"
+  },
+  "competitions": {
+    "noCompetitions": "Aucune compétition pour le moment. Ajoutez-en une !",
+
+    "add": "Ajouter une compétition",
+    "namePlaceholder": "Nom de la compétition",
+    "descriptionPlaceholder": "Description de la compétition",
+    "participation": "Participation"
+  },
+  "settings": {
+    "display": "Affichage",
+    "locale": "Langue",
+    "darkTheme": "Thème sombre",
+    "autoDarkTheme": "Thème sombre automatique",
+    "autoDarkThemeDescription": "Le thème s'ajustera à celui de l'appareil. Assurez-vous d'avoir mis à jour votre système afin de profiter de cette fonction.",
+
+    "data": "Données",
+    "exportData": "Exporter les données",
+    "importData": "Importer les données",
+    "eraseData": "Effacer les données",
+    "eraseDataConfirmation": "Si vous continuez, cette action va engendrer la perte de toutes vos données, incluant lieux, voies, compétitions et paramètres, et ce de manière définitive. Réfléchissez-bien !",
+
+    "about": "À propos",
+    "createdBy": "Créé par",
+    "sourceCode": "Accéder au code source"
+  }
 }

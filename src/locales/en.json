@@ -1,4 +1,90 @@
 {
-  "location": "location | locations",
-  "routes": "route | routes"
+  "terms": {
+    "name": "Name",
+    "description": "Description",
+    "notes": "Notes",
+    "date": "Date",
+    "picture": "Picture",
+    "picturePlaceholder": "URL address to a picture",
+    "pictureDescription": "In order to add a picture, you can use free image hosting services such as ",
+    "grade": "Grade",
+    "length": "Length",
+
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "erase": "Erase",
+    "cancel": "Cancel",
+    "return": "Return",
+    "ok": "OK",
+
+    "actionConfirmation": "Are you sure ?",
+
+    "red": "Red",
+    "orange": "Orange",
+    "yellow": "Yellow",
+    "green": "Green",
+    "blue": "Blue",
+    "purple": "Purple",
+    "gray": "Gray"
+  },
+  "generic": {
+    "location": "Location | Locations",
+    "route": "Route | Routes",
+    "competition": "Competition | Competitions",
+    "tag": "Tag | Tags"
+  },
+  "pages": {
+    "home": "Home",
+    "profile": "Profile",
+    "settings": "Settings",
+    "search": "Search"
+  },
+  "home": {
+    "appSubtitle": "Your climbing best friend",
+    "appDescription": "Work your routes while staying organized : the convenient climbing app !"
+  },
+  "routes": {
+    "add": "Add new route",
+    "namePlaceholder": "Name of the route",
+    "notesPlaceholder": "Notes to add about the route",
+    "defineGoal": "Define a goal",
+
+    "noRoutes": "Any routes for the moment. Let's add one !",
+    "for": "For the",
+    "noGoal": "No goal",
+    "markAsFinished": "Mark as finished",
+
+    "addProgress": "Add new progress"
+  },
+  "locations": {
+    "add": "Add new location",
+    "namePlaceholder": "Location's name",
+    "notesPlaceholder": "Notes to add about this location"
+  },
+  "competitions": {
+    "noCompetitions": "Any competitions for the moment. Let's add one !",
+
+    "add": "Add new competition",
+    "namePlaceholder": "Name of the competition",
+    "descriptionPlaceholder": "Competition's description",
+    "participation": "Participation"
+  },
+  "settings": {
+    "display": "Display",
+    "locale": "Locale",
+    "darkTheme": "Dark theme",
+    "autoDarkTheme": "Automatic dark theme",
+    "autoDarkThemeDescription": "Theme will adjust to your device's one. Make sure your system is up to date so as to take advantage of this feature.",
+
+    "data": "Data",
+    "exportData": "Export data",
+    "importData": "Import data",
+    "eraseData": "Erase data",
+    "eraseDataConfirmation": "If you continue, this action will make you lose all your data, including locations, routes, competitions and settings, definitively. Think about it !",
+
+    "about": "About",
+    "createdBy": "Created by",
+    "sourceCode": "Go to the source code"
+  }
 }
