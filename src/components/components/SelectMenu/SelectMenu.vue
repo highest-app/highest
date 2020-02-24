@@ -18,16 +18,16 @@
               <v-list-item-group
                 v-model="selected"
                 mandatory>
-                <template v-for="(item, i) in choices">
+                <template v-for="(choice, i) in choices">
                   <v-list-item
-                    :key="`${item}--list-item)`"
-                    :value="item"
+                    :key="`${choice}--list-item)`"
+                    :value="choice"
                     active-class="null">
                     <template
                       v-slot:default="{ active, toggle }"
                       @click="toggle">
                       <v-list-item-content>
-                        <v-list-item-title>{{ item }}</v-list-item-title>
+                        <v-list-item-title>{{ labels === null ? choice : labels[i] }}</v-list-item-title>
                       </v-list-item-content>
 
                       <v-list-item-icon v-if="active">
@@ -37,7 +37,7 @@
                   </v-list-item>
                   <v-divider
                     v-if="i !== choices.length - 1"
-                    :key="`${item}--divider)`"/>
+                    :key="`${choice}--divider)`"/>
                 </template>
               </v-list-item-group>
             </v-list>
@@ -61,6 +61,10 @@ export default {
     event: 'change'
   },
   props: {
+    labels: {
+      type: Array,
+      default: null
+    },
     choices: {
       type: Array,
       required: true
