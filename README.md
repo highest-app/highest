@@ -1,12 +1,21 @@
-# Highest
-### Your best climbing companion
-
-**🚀 Web Application to track climbing routes activity, made with Vue**
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/7dc9a45b-de70-46bd-b876-2909f9a483e3/deploy-status)](https://app.netlify.com/sites/climbing/deploys)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b12f922e68ee491982dd1f2e3df24812)](https://www.codacy.com/manual/exybore/climbing-app?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=exybore/climbing-app&amp;utm_campaign=Badge_Grade)
-[![License](https://img.shields.io/github/license/exybore/climbing-app)](https://github.com/exybore/climbing-app/blob/master/.LICENSE)
-[![Opened issues](https://img.shields.io/github/issues/exybore/climbing-app)](https://github.com/exybore/climbing-app/issues)
+<div align="center">
+  <h1>Highest</h1>
+  <h3>🧗‍ Your climbing best friend</h3>
+  <a href="https://highest.netlify.com">Website</a>
+  <br>
+  <a href="https://app.netlify.com/sites/climbing/deploys">
+    <img src="https://api.netlify.com/api/v1/badges/7dc9a45b-de70-46bd-b876-2909f9a483e3/deploy-status" alt="Netlify Status"/>
+  </a>
+  <a href="https://www.codacy.com/manual/exybore/climbing-app?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=exybore/climbing-app&amp;utm_campaign=Badge_Grade">
+    <img src="https://api.codacy.com/project/badge/Grade/b12f922e68ee491982dd1f2e3df24812" alt="Codacy Badge"/>
+  </a>
+  <a href="https://github.com/exybore/climbing-app/blob/master/.LICENSE">
+    <img src="https://img.shields.io/github/license/exybore/climbing-app" alt="License"/>
+  </a>
+  <a href="https://github.com/exybore/climbing-app/issues">
+    <img src="https://img.shields.io/github/issues/exybore/climbing-app" alt="Opened issues"/>
+  </a>
+</div>
 
 - [❓ Why this application ?](#-why-this-application-)
 - [🌈 How it works](#-how-it-works)
@@ -41,14 +50,14 @@ Thank you for being interested in helping the application to grow by expanding i
 First of all, clone the repository from GitHub on your local machine : (this requires Git to be installed)
 
 ```bash
-git clone https://github.com/exybore/climbing-app.git  # Using HTTP
-git clone git@github.com:exybore/climbing-app          # Using SSH
+git clone https://github.com/exybore/highest.git  # Using HTTP
+git clone git@github.com:exybore/highest          # Using SSH
 ```
 
 Install the required dependencies using your favorite package manager :
 
 ```bash
-npm i         # Using NPM
+npm install   # Using NPM
 yarn install  # Using Yarn
 ```
 
