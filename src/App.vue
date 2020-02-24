@@ -117,6 +117,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 import { mapGetters } from 'vuex'
 import { tags } from '@/utils/data'
 import LocationAdding from '@/views/parts/LocationAdding'
@@ -158,6 +159,8 @@ export default {
     },
     setLocale () {
       this.$i18n.locale = this.locale
+      this.$vuetify.lang.current = this.locale
+      moment.locale(this.locale)
     }
   },
   computed: {
