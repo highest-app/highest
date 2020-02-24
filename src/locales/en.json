@@ -73,6 +73,7 @@
   "settings": {
     "display": "Display",
     "locale": "Locale",
+    "localeDescription": "Application's locale",
     "darkTheme": "Dark theme",
     "autoDarkTheme": "Automatic dark theme",
     "autoDarkThemeDescription": "Theme will adjust to your device's one. Make sure your system is up to date so as to take advantage of this feature.",

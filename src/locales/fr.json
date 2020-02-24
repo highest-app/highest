@@ -73,9 +73,10 @@
   "settings": {
     "display": "Affichage",
     "locale": "Langue",
+    "localeDescription": "Langue de l'application",
     "darkTheme": "Thème sombre",
     "autoDarkTheme": "Thème sombre automatique",
-    "autoDarkThemeDescription": "Le thème s'ajustera à celui de l'appareil. Assurez-vous d'avoir mis à jour votre système afin de profiter de cette fonction.",
+    "autoDarkThemeDescription": "Le thème s'ajustera à celui de l'appareil. Assurez-vous d'avoir mis à jour votre système afin de profiter de cette fonctionnalité.",
 
     "data": "Données",
     "exportData": "Exporter les données",

@@ -2,8 +2,11 @@ import Vue from 'vue'
 import Vuetify from 'vuetify'
 
 import fr from 'vuetify/es5/locale/fr'
+import en from 'vuetify/es5/locale/en'
 import colors from 'vuetify/lib/util/colors'
 import 'vuetify/dist/vuetify.min.css'
+
+import store from '../store'
 
 Vue.use(Vuetify)
 
@@ -43,7 +46,7 @@ export default new Vuetify({
     }
   },
   lang: {
-    locales: { fr },
-    current: 'fr'
+    locales: { fr, en },
+    current: store.getters.locale
   }
 })

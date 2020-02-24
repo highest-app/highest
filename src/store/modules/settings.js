@@ -7,7 +7,8 @@ const state = {
 const getters = {
   getSettings: state => state.data,
   darkTheme: state => state.data.darkTheme,
-  autoDarkTheme: state => state.data.autoDarkTheme
+  autoDarkTheme: state => state.data.autoDarkTheme,
+  locale: state => state.data.locale
 }
 
 const mutations = {

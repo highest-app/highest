@@ -147,6 +147,7 @@ export default {
   },
   mounted () {
     this.setTheme()
+    this.setLocale()
     this.locations = this.getLocations
   },
   methods: {
@@ -154,10 +155,13 @@ export default {
       const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
       if (prefersDark && this.autoDarkTheme) this.$vuetify.theme.dark = true
       else this.$vuetify.theme.dark = this.darkTheme
+    },
+    setLocale () {
+      this.$i18n.locale = this.locale
     }
   },
   computed: {
-    ...mapGetters(['darkTheme', 'autoDarkTheme', 'getLocations']),
+    ...mapGetters(['darkTheme', 'autoDarkTheme', 'locale', 'getLocations']),
   },
   watch: {
     darkTheme () {
@@ -165,6 +169,9 @@ export default {
     },
     autoDarkTheme () {
       this.setTheme()
+    },
+    locale () {
+      this.setLocale()
     }
   }
 }
