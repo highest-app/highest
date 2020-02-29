@@ -11,6 +11,8 @@ import store from '../store'
 Vue.use(Vuetify)
 
 const theme = {
+  primary: '#5EA7EF',
+  secondary: '#EFA65E',
   error: colors.red.darken4,
   info: colors.blue.base,
   success: colors.green.darken1,
@@ -22,9 +24,6 @@ export default new Vuetify({
     themes: {
       light: {
         ...theme,
-        primary: '#1e3799',
-        secondary: '#E17B13',
-        accent: '#E1C413',
         background: '#f2f2f7',
         sheets: '#fff',
         paragraph: colors.grey.darken2,
@@ -32,9 +31,6 @@ export default new Vuetify({
       },
       dark: {
         ...theme,
-        primary: '#4a69bd',
-        secondary: '#FFA351',
-        accent: '#FFE351',
         background: '#000',
         sheets: '#1c1c1d',
         paragraph: colors.grey.lighten2,
