@@ -14,16 +14,10 @@
       <v-list
         dense
         nav>
-        <v-list-item class="pb-1">
-          <v-list-item-content>
-            <v-list-item-title
-              style="line-height: inherit;"
-              class="title">
-              <span class="secondary--text">H</span>
-              <span class="primary--text">ighest</span>
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+        <img
+          width="90%"
+          src="/img/logo-large.png"
+          alt="Highest logo">
         <v-list-item>
           <v-text-field
             :label="`${$t('pages.search')}...`"
@@ -56,10 +50,10 @@
           class="secondary"
           @click="locationDialog = true">
           <v-list-item-icon>
-            <v-icon>mdi-plus</v-icon>
+            <v-icon color="white">mdi-plus</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>{{ $t('terms.add') }}</v-list-item-title>
+            <v-list-item-title class="white--text">{{ $t('terms.add') }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item
@@ -133,16 +127,16 @@ export default {
       tags,
       locations: [],
       menu: [
-        {name: this.$t('pages.home'), route: '/', icon: 'mdi-home-outline'},
-        {name: this.$tc('generic.route', 2), route: '/routes', icon: 'mdi-routes'},
-        {name: this.$tc('generic.competition', 2), route: '/competitions', icon: 'mdi-medal'},
-        {name: this.$t('pages.settings'), route: '/settings', icon: 'mdi-settings-outline'}
+        { name: this.$t('pages.home'), route: '/', icon: 'mdi-home-outline' },
+        { name: this.$tc('generic.route', 2), route: '/routes', icon: 'mdi-routes' },
+        { name: this.$tc('generic.competition', 2), route: '/competitions', icon: 'mdi-medal' },
+        { name: this.$t('pages.settings'), route: '/settings', icon: 'mdi-settings-outline' }
       ],
       mobileMenu: [
-        {name: this.$t('pages.home'), route: '/', icon: 'mdi-home-outline'},
-        {name: this.$tc('generic.route', 2), route: '/routes', icon: 'mdi-routes'},
-        {name: this.$tc('generic.competition', 2), route: '/competitions', icon: 'mdi-medal'},
-        {name: this.$t('pages.search'), route: '/search', icon: 'mdi-magnify'},
+        { name: this.$t('pages.home'), route: '/', icon: 'mdi-home-outline' },
+        { name: this.$tc('generic.route', 2), route: '/routes', icon: 'mdi-routes' },
+        { name: this.$tc('generic.competition', 2), route: '/competitions', icon: 'mdi-medal' },
+        { name: this.$t('pages.search'), route: '/search', icon: 'mdi-magnify' },
       ]
     }
   },

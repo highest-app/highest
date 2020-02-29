@@ -27,12 +27,15 @@
                 small-only
                 fixed>
                 <template #bar-right-actions>
-                  <a @click="profileSheet = false">{{ $t('terms.ok') }}</a>
+                  <a @click="profileSheet = false">{{ $t('terms.close') }}</a>
                 </template>
               </app-bar>
               <page-body>
                 <list-group>
-                  <card to="/settings">
+                  <card
+                    to="/settings"
+                    top
+                    bottom>
                     <template #title>{{ $t('pages.settings') }}</template>
                     <template #action>
                       <v-list-item-icon>
@@ -57,7 +60,10 @@
             tile>
             <v-card-text>
               <div>{{ $t('home.appSubtitle') }}</div>
-              <p class="display-1 text--primary">Highest</p>
+              <img
+                width="50%"
+                src="/img/logo-large.png"
+                alt="Highest logo">
               <div class="text--primary">{{ $t('home.appDescription') }}</div>
             </v-card-text>
           </v-card>
