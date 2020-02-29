@@ -3,9 +3,7 @@
     <v-dialog
       v-model="locationDialog"
       max-width="50%">
-      <v-card class="background">
-        <LocationAdding @close="locationDialog = false"/>
-      </v-card>
+      <LocationAdding @close="locationDialog = false"/>
     </v-dialog>
     <v-navigation-drawer
       :app="$vuetify.breakpoint.mdAndUp"
@@ -129,8 +127,7 @@ export default {
       menu: [
         { name: this.$t('pages.home'), route: '/', icon: 'mdi-home-outline' },
         { name: this.$tc('generic.route', 2), route: '/routes', icon: 'mdi-routes' },
-        { name: this.$tc('generic.competition', 2), route: '/competitions', icon: 'mdi-medal' },
-        { name: this.$t('pages.settings'), route: '/settings', icon: 'mdi-settings-outline' }
+        { name: this.$tc('generic.competition', 2), route: '/competitions', icon: 'mdi-medal' }
       ],
       mobileMenu: [
         { name: this.$t('pages.home'), route: '/', icon: 'mdi-home-outline' },

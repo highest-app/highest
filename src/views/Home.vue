@@ -1,53 +1,40 @@
 <template>
   <v-content>
+    <v-dialog
+      v-model="profileDialog"
+      max-width="50%">
+      <profile @close="profileDialog = false"/>
+    </v-dialog>
     <app-bar :title="$t('pages.home')">
       <template #top-bar-actions>
-        <v-bottom-sheet
-          v-model="profileSheet"
-          scrollable
-          inset>
-          <template v-slot:activator="{ on }">
-            <v-btn
-              color="secondary"
-              elevation="0"
-              fab
-              small
-              v-on="on">
-              <v-icon>
-                mdi-account-outline
-              </v-icon>
-            </v-btn>
-          </template>
-          <v-card class="background">
-            <v-card-text
-              class="pa-0"
-              style="overflow-x: hidden;">
-              <app-bar
-                :title="$t('pages.profile')"
-                small-only
-                fixed>
-                <template #bar-right-actions>
-                  <a @click="profileSheet = false">{{ $t('terms.close') }}</a>
-                </template>
-              </app-bar>
-              <page-body>
-                <list-group>
-                  <card
-                    to="/settings"
-                    top
-                    bottom>
-                    <template #title>{{ $t('pages.settings') }}</template>
-                    <template #action>
-                      <v-list-item-icon>
-                        <v-icon>mdi-chevron-right</v-icon>
-                      </v-list-item-icon>
-                    </template>
-                  </card>
-                </list-group>
-              </page-body>
-            </v-card-text>
-          </v-card>
-        </v-bottom-sheet>
+        <div class="hidden-md-and-up">
+          <v-bottom-sheet
+            v-model="profileSheet"
+            scrollable
+            inset>
+            <template v-slot:activator="{ on }">
+              <v-btn
+                color="secondary"
+                elevation="0"
+                fab
+                small
+                v-on="on">
+                <v-icon>mdi-account-outline</v-icon>
+              </v-btn>
+            </template>
+            <profile @close="profileSheet = false"/>
+          </v-bottom-sheet>
+        </div>
+        <div class="hidden-sm-and-down">
+          <v-btn
+            color="secondary"
+            elevation="0"
+            fab
+            small
+            @click="profileDialog = true">
+            <v-icon>mdi-account-outline</v-icon>
+          </v-btn>
+        </div>
       </template>
     </app-bar>
     <v-container>
@@ -81,11 +68,15 @@
 </template>
 
 <script>
+import Profile from './parts/Profile.vue'
+
 export default {
   name: 'Home',
+  components: { Profile },
   data () {
     return {
-      profileSheet: false
+      profileSheet: false,
+      profileDialog: false
     }
   }
 }
