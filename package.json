@@ -1,7 +1,33 @@
 {
-  "name": "climbing-app",
+  "name": "highest",
+  "description": "🧗‍ An application to keep track of climbing activity",
   "version": "0.1.0",
-  "private": true,
+  "keywords": [
+    "climbing",
+    "bouldering",
+    "pwa",
+    "sports"
+  ],
+  "maintainers": [
+    {
+      "name": "Exybore",
+      "email": "exybore@becauseofprog.fr",
+      "web": "https://exybore.becauseofprog.fr"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/highest-app/highest.git"
+    }
+  ],
+  "licenses": [
+    {
+      "name": "GPL-3.0",
+      "url": "https://github.com/highest-app/highest/blob/master/LICENSE"
+    }
+  ],
+  "homepage": "https://highest.netlify.com",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
