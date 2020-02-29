@@ -1,19 +1,19 @@
 <div align="center">
-  <h1>Highest</h1>
+  <img src="./public/img/logo-large.png" alt="Highest logo" height="120">
   <h3>🧗‍ Your climbing best friend</h3>
   <a href="https://highest.netlify.com">Website</a>
   <br>
-  <a href="https://app.netlify.com/sites/climbing/deploys">
+  <a href="https://app.netlify.com/sites/highest/deploys">
     <img src="https://api.netlify.com/api/v1/badges/7dc9a45b-de70-46bd-b876-2909f9a483e3/deploy-status" alt="Netlify Status"/>
   </a>
-  <a href="https://www.codacy.com/manual/exybore/climbing-app?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=exybore/climbing-app&amp;utm_campaign=Badge_Grade">
+  <a href="https://www.codacy.com/manual/exybore/Highest?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=highest-app/highest&amp;utm_campaign=Badge_Grade">
     <img src="https://api.codacy.com/project/badge/Grade/b12f922e68ee491982dd1f2e3df24812" alt="Codacy Badge"/>
   </a>
-  <a href="https://github.com/exybore/climbing-app/blob/master/.LICENSE">
-    <img src="https://img.shields.io/github/license/exybore/climbing-app" alt="License"/>
+  <a href="https://github.com/highest-app/highest/blob/master/.LICENSE">
+    <img src="https://img.shields.io/github/license/highest-app/highest" alt="License"/>
   </a>
-  <a href="https://github.com/exybore/climbing-app/issues">
-    <img src="https://img.shields.io/github/issues/exybore/climbing-app" alt="Opened issues"/>
+  <a href="https://github.com/highest-app/highest/issues">
+    <img src="https://img.shields.io/github/issues/exybore/highest" alt="Opened issues"/>
   </a>
 </div>
 
@@ -50,8 +50,8 @@ Thank you for being interested in helping the application to grow by expanding i
 First of all, clone the repository from GitHub on your local machine : (this requires Git to be installed)
 
 ```bash
-git clone https://github.com/exybore/highest.git  # Using HTTP
-git clone git@github.com:exybore/highest          # Using SSH
+git clone https://github.com/highest-app/highest.git  # Using HTTP
+git clone git@github.com:highest-app/highest          # Using SSH
 ```
 
 Install the required dependencies using your favorite package manager :
