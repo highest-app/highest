@@ -6,6 +6,7 @@ import router from './plugins/router'
 import vuetify from './plugins/vuetify'
 import store from './store'
 import './plugins/components'
+import './registerServiceWorker'
 
 import '@babel/polyfill'
 import '@mdi/font/css/materialdesignicons.css'
