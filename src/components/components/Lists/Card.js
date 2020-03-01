@@ -18,6 +18,10 @@ export default Vue.component('card', {
         type: String,
         default: null
       },
+      target: {
+        type: String,
+        default: null
+      },
       to: {
         type: String,
         default: null
@@ -53,6 +57,7 @@ export default Vue.component('card', {
                   props: {
                     link: this.clickable,
                     href: this.href,
+                    target: this.target,
                     to: this.to
                   }
                 },
@@ -74,6 +79,7 @@ export default Vue.component('card', {
                         this.$slots.title
                       ),
                       this.$slots.input,
+                      this.$slots.action === undefined ? '' :
                       createElement('v-spacer'),
                       createElement(
                         'span', {

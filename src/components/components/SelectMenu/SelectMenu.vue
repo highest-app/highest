@@ -5,7 +5,7 @@
       small-only
       fixed>
       <template #bar-left-actions>
-        <a @click="$emit('back')">Retour</a>
+        <a @click="$emit('back')">{{ $t('terms.back') }}</a>
       </template>
     </app-bar>
     <v-container class="px-0">
@@ -15,9 +15,7 @@
             tile
             elevation="0">
             <v-list flat>
-              <v-list-item-group
-                v-model="selected"
-                mandatory>
+              <v-list-item-group v-model="selected">
                 <template v-for="(choice, i) in choices">
                   <v-list-item
                     :key="`${choice}--list-item)`"
