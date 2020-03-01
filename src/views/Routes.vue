@@ -2,170 +2,28 @@
   <v-content>
     <app-bar :title="$tc('generic.route', 2)">
       <template #top-bar-actions>
-        <v-bottom-sheet
-          v-model="routeAddingSheet"
-          scrollable
-          inset>
-          <template v-slot:activator="{ on }">
+        <responsive-dialog>
+          <template #activator>
             <v-btn
               color="secondary"
               elevation="0"
               fab
-              small
-              v-on="on">
+              small>
               <v-icon>mdi-plus</v-icon>
             </v-btn>
           </template>
-          <v-card class="background">
-            <v-card-text
-              class="pa-0"
-              style="overflow-x: hidden;">
-              <select-menu
-                v-if="gradeSelect"
-                v-model="routeForm.grade"
-                :choices="grades"
-                :name="$t('terms.grade')"
-                auto-back
-                @back="gradeSelect = false"/>
-              <select-menu
-                v-else-if="locationSelect"
-                v-model="routeForm.location"
-                :choices="Object.keys(parsedLocations)"
-                :name="$tc('generic.location', 1)"
-                auto-back
-                @back="locationSelect = false"/>
-              <template v-else>
-                <app-bar
-                  :title="$t('routes.add')"
-                  small-only
-                  fixed>
-                  <template #bar-left-actions>
-                    <a @click="resetForm">{{ $t('terms.cancel') }}</a>
-                  </template>
-                  <template #bar-right-actions>
-                    <a @click="add">{{ $t('terms.add') }}</a>
-                  </template>
-                </app-bar>
-                <page-body>
-                  <list-group>
-                    <card top>
-                      <template #title>{{ $t('terms.name') }}</template>
-                      <template #input>
-                        <v-text-field
-                          v-model="routeForm.name"
-                          :placeholder="$t('routes.namePlaceholder')"
-                          hide-details
-                          solo
-                          flat/>
-                      </template>
-                    </card>
-                    <card
-                      clickable
-                      @click.native="locationSelect = true">
-                      <template #title>{{ $tc('generic.location', 1) }}</template>
-                      <template #action-text>{{ routeForm.location }}</template>
-                      <template #action>
-                        <v-list-item-icon>
-                          <v-icon>mdi-chevron-right</v-icon>
-                        </v-list-item-icon>
-                      </template>
-                    </card>
-                    <card
-                      class="select-menu__trigger"
-                      clickable
-                      @click.native="gradeSelect = true">
-                      <template #title>
-                        {{ $t('terms.grade') }}
-                      </template>
-                      <template #action-text>
-                        {{ routeForm.grade }}
-                      </template>
-                      <template #action>
-                        <v-list-item-icon>
-                          <v-icon>mdi-chevron-right</v-icon>
-                        </v-list-item-icon>
-                      </template>
-                    </card>
-                    <card bottom>
-                      <template #title>{{ $t('terms.length') }}</template>
-                      <template #input>
-                        <v-slider
-                          v-model="routeForm.length"
-                          class="align-center px-3"
-                          :max="300"
-                          :min="0"
-                          hide-details/>
-                        <span class="subtitle-1">{{ routeLength }}</span>
-                      </template>
-                    </card>
-                  </list-group>
-                  <list-group>
-                    <card
-                      top
-                      :bottom="!routeForm.enableGoal">
-                      <template #title>{{ $t('routes.defineGoal') }}</template>
-                      <template #action>
-                        <v-switch
-                          v-model="routeForm.enableGoal"
-                          class="mt-0 pt-0"
-                          color="primary"
-                          hide-details
-                          inset/>
-                      </template>
-                    </card>
-                    <template v-if="routeForm.enableGoal">
-                      <card>
-                        <template #title>
-                          <span class="primary--text">
-                            {{ dateToText(routeForm.goal) }}
-                          </span>
-                        </template>
-                      </card>
-                      <card bottom>
-                        <template #title>
-                          <v-date-picker
-                            v-if="routeForm.enableGoal"
-                            v-model="routeForm.goal"
-                            style="box-shadow: 0;"
-                            first-day-of-week="1"
-                            color="primary"
-                            no-title
-                            full-width/>
-                        </template>
-                      </card>
-                    </template>
-                  </list-group>
-                  <list-group>
-                    <card
-                      top
-                      bottom>
-                      <template #title>{{ $t('terms.notes') }}</template>
-                      <template #input>
-                        <v-textarea
-                          id="notes-textarea"
-                          v-model="routeForm.notes"
-                          :placeholder="$t('routes.notesPlaceholder')"
-                          rows="1"
-                          auto-grow
-                          hide-details
-                          solo
-                          flat/>
-                      </template>
-                    </card>
-                  </list-group>
-                </page-body>
-              </template>
-            </v-card-text>
-          </v-card>
-        </v-bottom-sheet>
+          <template #dialog>
+            <route-adding @close="refreshRoutes"/>
+          </template>
+        </responsive-dialog>
       </template>
     </app-bar>
     <page-body>
-      <div class="hidden-sm-and-up">
+      <div class="hidden-md-and-up">
         <list-group>
           <h2>{{ $tc('generic.location', 2) }}</h2>
           <v-bottom-sheet
-            v-model="locationAddingSheet"
+            v-model="locationDialog"
             scrollable
             inset>
             <template v-slot:activator="{ on }">
@@ -180,7 +38,7 @@
               </v-col>
             </template>
             <v-card class="background">
-              <LocationAdding @close="locationAddingSheet = false"/>
+              <location-adding @close="locationDialog = false"/>
             </v-card>
           </v-bottom-sheet>
           <v-col
@@ -236,26 +94,22 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 import { grades, tags } from '@/utils/data'
-import { defaultRouteForm } from '@/utils/forms'
 import { dateToText } from '@/utils/parsing'
 import LocationAdding from '@/views/parts/LocationAdding'
+import RouteAdding from '@/views/parts/RouteAdding'
 
 export default {
   name: 'Routes',
-  components: { LocationAdding },
+  components: { LocationAdding, RouteAdding },
   data () {
     return {
       locations: [],
       parsedLocations: {},
       routes: {},
-      routeForm: Object.assign({}, defaultRouteForm),
 
-      routeAddingSheet: false,
-      locationAddingSheet: false,
-      gradeSelect: false,
-      locationSelect: false,
+      locationDialog: false,
 
       grades,
       tags
@@ -269,27 +123,10 @@ export default {
     this.refreshRoutes()
   },
   computed: {
-    ...mapGetters(['getLocations', 'getRoutesByLocation', 'getLocationById']),
-    routeLength () {
-      return `${this.routeForm.length}m`
-    }
+    ...mapGetters(['getLocations', 'getRoutesByLocation', 'getLocationById'])
   },
   methods: {
-    ...mapActions(['addRoute']),
     dateToText,
-    add () {
-      this.routeForm.location = this.parsedLocations[this.routeForm.location]
-      if (!this.routeForm.enableGoal) this.routeForm.goal = false
-      this.addRoute(this.routeForm)
-      this.resetForm()
-      this.refreshRoutes()
-    },
-    resetForm () {
-      this.routeForm = Object.assign({}, this.defaultRouteForm)
-      this.routeAddingSheet = false
-      this.gradeSelect = false
-      this.locationSelect = false
-    },
     refreshRoutes () {
       this.routes = {}
       this.locations.forEach(location => {
@@ -299,9 +136,3 @@ export default {
   }
 }
 </script>
-
-<style>
-#notes-textarea {
-  margin-top: 0;
-}
-</style>
