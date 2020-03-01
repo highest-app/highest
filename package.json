@@ -1,12 +1,19 @@
 {
   "name": "highest",
-  "description": "🧗‍ An application to keep track of climbing activity",
   "version": "0.1.0",
+  "description": "🧗‍ An application to keep track of climbing activity",
+  "homepage": "https://highest.netlify.com",
   "keywords": [
     "climbing",
     "bouldering",
     "pwa",
     "sports"
+  ],
+  "licenses": [
+    {
+      "name": "GPL-3.0",
+      "url": "https://github.com/highest-app/highest/blob/master/LICENSE"
+    }
   ],
   "maintainers": [
     {
@@ -21,13 +28,6 @@
       "url": "https://github.com/highest-app/highest.git"
     }
   ],
-  "licenses": [
-    {
-      "name": "GPL-3.0",
-      "url": "https://github.com/highest-app/highest/blob/master/LICENSE"
-    }
-  ],
-  "homepage": "https://highest.netlify.com",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -36,29 +36,30 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.3",
-    "@mdi/font": "^4.8.95",
+    "@mdi/font": "^4.9.95",
     "core-js": "^3.6.4",
     "moment": "^2.24.0",
+    "register-service-worker": "^1.6.2",
     "roboto-fontface": "*",
     "vue": "^2.6.11",
-    "vue-i18n": "^8.15.3",
-    "vue-router": "^3.1.5",
-    "vuetify": "^2.2.4",
+    "vue-i18n": "^8.15.4",
+    "vue-router": "^3.1.6",
+    "vuetify": "^2.2.15",
     "vuex": "^3.1.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.1.2",
-    "@vue/cli-plugin-eslint": "^4.1.2",
-    "@vue/cli-plugin-pwa": "^4.1.2",
-    "@vue/cli-plugin-router": "^4.1.2",
-    "@vue/cli-service": "^4.1.2",
-    "babel-eslint": "^10.0.3",
+    "@vue/cli-plugin-babel": "^4.2.3",
+    "@vue/cli-plugin-eslint": "^4.2.3",
+    "@vue/cli-plugin-pwa": "^4.2.3",
+    "@vue/cli-plugin-router": "^4.2.3",
+    "@vue/cli-service": "^4.2.3",
+    "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
-    "eslint-plugin-vue": "^6.1.2",
+    "eslint-plugin-vue": "^6.2.1",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
     "vue-cli-plugin-i18n": "^0.6.1",
-    "vue-cli-plugin-vuetify": "^2.0.3",
+    "vue-cli-plugin-vuetify": "^2.0.5",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
@@ -67,10 +68,9 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/essential",
+      "plugin:vue/strongly-recommended",
       "eslint:recommended"
     ],
-    "rules": {},
     "parserOptions": {
       "parser": "babel-eslint"
     }
