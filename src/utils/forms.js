@@ -1,3 +1,5 @@
+import { today } from './parsing'
+
 const defaultLocationForm = Object.freeze({
   name: '',
   picture: '',
@@ -11,11 +13,11 @@ const defaultRouteForm = Object.freeze({
   notes: '',
   length: 0,
   enableGoal: false,
-  goal: new Date().toISOString().substr(0, 10),
+  goal: today,
 })
 
 const defaultProgressionForm = Object.freeze({
-  date: new Date().toISOString().substr(0, 10),
+  date: today,
   notes: ''
 })
 
@@ -24,7 +26,7 @@ const defaultCompetitionForm = Object.freeze({
   location: '',
   description: '',
   participation: 'notParticipating',
-  date: new Date().toISOString().substr(0, 10),
+  date: today,
 })
 
 export {

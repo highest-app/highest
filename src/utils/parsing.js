@@ -1,17 +1,19 @@
 import moment from 'moment'
 import i18n from '../plugins/i18n'
 
+const today = new Date().toISOString().substr(0, 10)
+const formats = {
+  fr: 'dddd Do MMMM YYYY',
+  en: 'dddd D MMM YYYY'
+}
+
 function dateToText(date) {
-  let format = ''
-  switch (i18n.locale) {
-    case 'fr':
-      format = 'dddd Do MMMM YYYY'
-      break
-    case 'en':
-      format = 'dddd, MMMM Do YYYY'
-      break
-  }
+  let format = formats[i18n.locale]
   return moment(date).format(format)
 }
 
-export { dateToText }
+export {
+  today,
+  formats,
+  dateToText
+}
