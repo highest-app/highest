@@ -3,7 +3,8 @@
     <template v-if="$vuetify.breakpoint.mdAndUp">
       <v-dialog
         v-model="value"
-        max-width="50%">
+        :max-width="dialogWidth"
+        class="responsive-dialog__dialog">
         <v-card class="background">
           <v-card-text
             class="location-adding-menu pa-0"
@@ -21,6 +22,7 @@
     <v-bottom-sheet
       v-else
       v-model="value"
+      class="responsive-dialog__sheet"
       scrollable
       inset>
       <template v-slot:activator="{ on }">
@@ -45,7 +47,11 @@
 export default {
   name: 'ResponsiveDialog',
   props: {
-    value: Boolean
+    value: Boolean,
+    dialogWidth: {
+      type: String,
+      default: '50%'
+    }
   }
 }
 </script>

@@ -8,7 +8,7 @@
         <a @click="$emit('back')">{{ $t('terms.back') }}</a>
       </template>
     </app-bar>
-    <v-container class="px-0">
+    <v-container class="px-0 pb-0">
       <v-row>
         <v-col cols="12">
           <v-card
