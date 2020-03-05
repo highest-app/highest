@@ -15,8 +15,10 @@
     "delete": "Delete",
     "erase": "Erase",
     "cancel": "Cancel",
-    "return": "Return",
+    "back": "Back",
     "ok": "OK",
+    "close": "Close",
+    "done": "Done",
 
     "actionConfirmation": "Are you sure ?",
 
@@ -36,6 +38,8 @@
   },
   "pages": {
     "home": "Home",
+    "routes": "Routes",
+    "competitions": "Competitions",
     "profile": "Profile",
     "settings": "Settings",
     "search": "Search"
@@ -49,8 +53,13 @@
     "namePlaceholder": "Name of the route",
     "notesPlaceholder": "Notes to add about the route",
     "defineGoal": "Define a goal",
+    "color": "Couleur",
 
-    "noRoutes": "Any routes for the moment. Let's add one !",
+    "progressionNotesPlaceholder": "Notes to add about this progression",
+
+    "edit": "Edit route",
+
+    "noRoutes": "Any route for the moment. Let's add one !",
     "for": "For the",
     "noGoal": "No goal",
     "markAsFinished": "Mark as finished",
@@ -60,10 +69,14 @@
   "locations": {
     "add": "Add new location",
     "namePlaceholder": "Location's name",
-    "notesPlaceholder": "Notes to add about this location"
+    "notesPlaceholder": "Notes to add about this location",
+
+    "noLocations": "Any location for the moment. Create one to add your routes.",
+
+    "deleteConfirmation": "If you delete this location, routes saved on it will be deleted as well. Therefore, you'll lose your progressions on this location. Think about it !"
   },
   "competitions": {
-    "noCompetitions": "Any competitions for the moment. Let's add one !",
+    "noCompetitions": "Any competition for the moment. Let's add one !",
 
     "add": "Add new competition",
     "namePlaceholder": "Name of the competition",
@@ -72,7 +85,7 @@
   },
   "settings": {
     "display": "Display",
-    "locale": "Locale",
+    "language": "Language",
     "localeDescription": "Application's locale",
     "darkTheme": "Dark theme",
     "autoDarkTheme": "Automatic dark theme",

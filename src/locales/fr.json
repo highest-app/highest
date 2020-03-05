@@ -15,8 +15,10 @@
     "delete": "Supprimer",
     "erase": "Effacer",
     "cancel": "Annuler",
-    "return": "Retour",
+    "back": "Retour",
     "ok": "OK",
+    "close": "Fermer",
+    "done": "Terminé",
 
     "actionConfirmation": "Êtes-vous sûr ?",
 
@@ -36,19 +38,26 @@
   },
   "pages": {
     "home": "Accueil",
+    "routes": "Voies",
+    "competitions": "Compétitions",
     "profile": "Profil",
     "settings": "Paramètres",
     "search": "Recherche"
   },
   "home": {
-    "appSubtitle": "Votre companion pour grimper",
+    "appSubtitle": "Votre compagnon pour grimper",
     "appDescription": "Travaillez vos voies en restant organisé : l'application d'escalade pratique !"
   },
   "routes": {
     "add": "Ajouter une voie",
     "namePlaceholder": "Nom de la voie",
     "notesPlaceholder": "Notes à rajouter à propos de la voie",
+    "color": "Couleur",
     "defineGoal": "Définir un objectif",
+
+    "progressionNotesPlaceholder": "Notes à rajouter à propos de cette progression",
+
+    "edit": "Modifier la voie",
 
     "noRoutes": "Aucune voie pour le moment. Ajoutez-en une !",
     "for": "Pour le",
@@ -60,7 +69,11 @@
   "locations": {
     "add": "Ajouter un lieu",
     "namePlaceholder": "Nom du lieu",
-    "notesPlaceholder": "Notes à rajouter à propos du lieu"
+    "notesPlaceholder": "Notes à rajouter à propos du lieu",
+
+    "noLocations": "Aucun lieu pour le moment. Créez-en un afin d'ajouter vos voies.",
+
+    "deleteConfirmation": "Si vous supprimez ce lieu, les voies enregistrées dessus le seront également. Vous perdrez ainsi vos progressions sur ce lieu. Réfléchissez-bien !"
   },
   "competitions": {
     "noCompetitions": "Aucune compétition pour le moment. Ajoutez-en une !",
@@ -72,7 +85,7 @@
   },
   "settings": {
     "display": "Affichage",
-    "locale": "Langue",
+    "language": "Langue",
     "localeDescription": "Langue de l'application",
     "darkTheme": "Thème sombre",
     "autoDarkTheme": "Thème sombre automatique",
