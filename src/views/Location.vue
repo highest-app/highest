@@ -1,12 +1,35 @@
 <template>
   <v-content>
+    <v-dialog
+      v-model="deleteDialog"
+      max-width="290"
+      persistent>
+      <v-card>
+        <v-card-title class="headline">{{ $t('terms.actionConfirmation') }}</v-card-title>
+        <v-card-text>{{ $t('locations.deleteConfirmation') }}</v-card-text>
+        <v-card-actions>
+          <v-btn
+            text
+            @click="deleteDialog = false">
+            {{ $t('terms.cancel') }}
+          </v-btn>
+          <v-spacer/>
+          <v-btn
+            color="error"
+            text
+            @click="deleteThis">
+            {{ $t('terms.delete') }}
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <app-bar
       small-only>
       <template v-slot:bar-left-actions>
         <a
           class="hidden-md-and-up"
           @click="$router.back()">
-          {{ $t('terms.return') }}
+          {{ $t('terms.back') }}
         </a>
       </template>
     </app-bar>
@@ -46,7 +69,8 @@
               </v-btn>
               <v-btn
                 color="error"
-                depressed>
+                depressed
+                @click="deleteDialog = true">
                 <v-icon left>mdi-delete-outline</v-icon>
                 {{ $t('terms.delete') }}
               </v-btn>
@@ -64,13 +88,15 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Location',
   data: () => ({
     location: {},
-    routes: []
+    routes: [],
+
+    deleteDialog: false
   }),
   mounted () {
     this.refreshRoutes()
@@ -79,6 +105,7 @@ export default {
     ...mapGetters(['getLocationById', 'getRoutesByLocation'])
   },
   methods: {
+    ...mapActions(['deleteLocation']),
     refreshRoutes () {
       const id = this.$route.params.location
       this.location = this.getLocationById(id)
@@ -87,6 +114,10 @@ export default {
     },
     editLocation () {
 
+    },
+    deleteThis () {
+      this.deleteLocation(this.location.id)
+      this.$router.push({ name: 'routes' })
     }
   }
 }
