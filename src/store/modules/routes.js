@@ -36,15 +36,15 @@ const mutations = {
     state.data.find(route => route.id === id).finished = !state.data.find(route => route.id === id).finished
   },
   ADD_PROGRESSION (state, data) {
-    let route = state.data.filter(route => route.id === data.id)[0]
+    let route = state.data.find(route => route.id === data.id)
     route.progressions.push({
       date: data.date,
       notes: data.notes
     })
   },
   REMOVE_PROGRESSION (state, data) {
-    let route = state.data.find(route => route.id === data.id)
-    route.progressions.splice(route.progressions.findIndex(progression => progression.date === data.date), 1)
+    let route = state.data.find(route => route.id === data.route)
+    route.progressions.splice(route.progressions.findIndex(progression => progression.notes === data.notes), 1)
   },
   REMOVE_ROUTE (state, id) {
     state.data.splice(state.data.findIndex(route => route.id === id), 1)
@@ -60,16 +60,16 @@ const actions = {
     commit('SWITCH_FINISHED', route)
     saveToStorage('routes', state.data)
   },
-  deleteRoute ({ commit, state }, id) {
-    commit('REMOVE_ROUTE', id)
-    saveToStorage('routes', state.data)
-  },
   addProgression ({ commit, state }, entryData) {
     commit('ADD_PROGRESSION', entryData)
     saveToStorage('routes', state.data)
   },
   removeProgression({ commit, state }, entryData) {
     commit('REMOVE_PROGRESSION', entryData)
+    saveToStorage('routes', state.data)
+  },
+  deleteRoute ({ commit, state }, id) {
+    commit('REMOVE_ROUTE', id)
     saveToStorage('routes', state.data)
   }
 }
