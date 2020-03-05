@@ -11,6 +11,7 @@ const defaultRouteForm = Object.freeze({
   name: '',
   grade: '',
   notes: '',
+  color: '#00FF00',
   length: 0,
   enableGoal: false,
   goal: today,

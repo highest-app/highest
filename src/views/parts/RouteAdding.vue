@@ -62,6 +62,37 @@
               </v-list-item-icon>
             </template>
           </card>
+          <responsive-dialog dialog-width="300px">
+            <template #activator>
+              <card clickable>
+                <template #title>{{ $t('routes.color') }}</template>
+                <template #action-text>{{ form.color }}</template>
+                <template #action>
+                  <v-list-item-icon>
+                    <v-icon>mdi-chevron-right</v-icon>
+                  </v-list-item-icon>
+                </template>
+              </card>
+            </template>
+            <template #dialog>
+              <app-bar
+                :title="$t('routes.color')"
+                small-only
+                fixed/>
+              <v-row
+                justify="center"
+                align="center">
+                <v-color-picker
+                  v-model="form.color"
+                  style="max-width: 100%; border-radius: 0"
+                  mode="hexa"
+                  swatches-max-height="100%"
+                  hide-mode-switch
+                  show-swatches
+                  flat/>
+              </v-row>
+            </template>
+          </responsive-dialog>
           <card bottom>
             <template #title>{{ $t('terms.length') }}</template>
             <template #input>

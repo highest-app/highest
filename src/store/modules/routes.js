@@ -25,6 +25,7 @@ const mutations = {
       location: data.location,
       grade: data.grade,
       length: data.length,
+      color: data.color,
       notes: data.notes,
       photos: [],
       goal: data.goal,

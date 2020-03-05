@@ -19,7 +19,10 @@
           </v-avatar>
         </div>
         <v-list-item-content>
-          <v-list-item-title>{{ route.grade }}</v-list-item-title>
+          <v-list-item-title>
+            <v-icon :style="`color: ${route.color}`">mdi-circle</v-icon>
+            {{ route.grade }}
+          </v-list-item-title>
           <v-list-item-subtitle>
             <span class="text--primary">{{ route.goal ? `${$t('routes.for')} ${dateToText(route.goal)}` : $t('routes.noGoal') }}</span>
             <template v-if="route.name !== ''">
