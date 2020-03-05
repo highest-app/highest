@@ -40,7 +40,7 @@
             top
             clickable
             @click.native="localeSelect = true">
-            <template #title>{{ $tc('settings.locale', 1) }}</template>
+            <template #title>{{ $tc('settings.language', 1) }}</template>
             <template #action>
               <v-list-item-icon>
                 <v-icon>mdi-chevron-right</v-icon>
@@ -99,22 +99,27 @@
 
         <list-group>
           <card-header>{{ $t('settings.about') }}</card-header>
-          <card>
+          <card top>
             <template #title>
-              <p>
-                {{ $t('settings.createdBy') }}
-                <a
-                  href="https://twitter.com/exybore"
-                  target="_blank">
-                  Exybore
-                </a>
-              </p>
+              {{ $t('settings.createdBy') }}
               <a
-                href="https://github.com/exybore/climbing-app"
-                target="_blank"
-                class="primary--text">
-                {{ $t('settings.sourceCode') }}
+                href="https://twitter.com/exybore"
+                target="_blank">
+                Exybore
               </a>
+            </template>
+          </card>
+          <card
+            href="https://github.com/highest-app/highest"
+            target="_blank"
+            bottom>
+            <template #title>
+              <span class="primary--text">
+                {{ $t('settings.sourceCode') }}
+              </span>
+            </template>
+            <template #action>
+              <v-icon color="primary">mdi-open-in-new</v-icon>
             </template>
           </card>
         </list-group>

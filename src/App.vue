@@ -35,7 +35,7 @@
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>{{ item.name }}</v-list-item-title>
+            <v-list-item-title>{{ $t(item.name) }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -89,7 +89,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <router-view/>
+    <router-view :key="$route.fullPath"/>
 
     <v-bottom-navigation
       v-model="bottomNav"
@@ -125,15 +125,15 @@ export default {
       tags,
       locations: [],
       menu: [
-        { name: this.$t('pages.home'), route: '/', icon: 'mdi-home-outline' },
-        { name: this.$tc('generic.route', 2), route: '/routes', icon: 'mdi-routes' },
-        { name: this.$tc('generic.competition', 2), route: '/competitions', icon: 'mdi-medal' }
+        { name: 'pages.home', route: '/', icon: 'mdi-home-outline' },
+        { name: 'pages.routes', route: '/routes', icon: 'mdi-routes' },
+        { name: 'pages.competitions', route: '/competitions', icon: 'mdi-medal' }
       ],
       mobileMenu: [
-        { name: this.$t('pages.home'), route: '/', icon: 'mdi-home-outline' },
-        { name: this.$tc('generic.route', 2), route: '/routes', icon: 'mdi-routes' },
-        { name: this.$tc('generic.competition', 2), route: '/competitions', icon: 'mdi-medal' },
-        { name: this.$t('pages.search'), route: '/search', icon: 'mdi-magnify' },
+        { name: 'pages.home', route: '/', icon: 'mdi-home-outline' },
+        { name: 'pages.routes', route: '/routes', icon: 'mdi-routes' },
+        { name: 'pages.competitions', route: '/competitions', icon: 'mdi-medal' },
+        { name: 'pages.search', route: '/search', icon: 'mdi-magnify' },
       ]
     }
   },

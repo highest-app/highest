@@ -2,20 +2,9 @@
   <v-content>
     <app-bar :title="$tc('generic.route', 2)">
       <template #top-bar-actions>
-        <responsive-dialog>
-          <template #activator>
-            <v-btn
-              color="secondary"
-              elevation="0"
-              fab
-              small>
-              <v-icon>mdi-plus</v-icon>
-            </v-btn>
-          </template>
-          <template #dialog>
-            <route-adding @close="refreshRoutes"/>
-          </template>
-        </responsive-dialog>
+        <route-adding
+          v-if="locations.length > 0"
+          @close="refreshRoutes"/>
       </template>
     </app-bar>
     <page-body>
@@ -83,12 +72,15 @@
           </v-list>
         </list-group>
       </div>
-      <list-group
-        v-for="location in locations"
-        :key="location.id">
-        <h2>{{ location.name }}</h2>
-        <routes-list :routes="routes[location.id]"/>
-      </list-group>
+      <template v-if="locations.length > 0">
+        <list-group
+          v-for="location in locations"
+          :key="location.id">
+          <h2>{{ location.name }}</h2>
+          <routes-list :routes="routes[location.id]"/>
+        </list-group>
+      </template>
+      <p v-else>{{ $t('locations.noLocations') }}</p>
     </page-body>
   </v-content>
 </template>
