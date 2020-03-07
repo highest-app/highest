@@ -2,11 +2,8 @@
   <v-content>
     <app-bar :title="$tc('generic.competition', 2)">
       <template #top-bar-actions>
-        <v-bottom-sheet
-          v-model="addingSheet"
-          scrollable
-          inset>
-          <template v-slot:activator="{ on }">
+        <responsive-dialog>
+          <template #activator>
             <v-btn
               color="secondary"
               elevation="0"
@@ -16,101 +13,12 @@
               <v-icon>mdi-plus</v-icon>
             </v-btn>
           </template>
-          <v-card class="background">
-            <select-menu
-              v-if="locationSelect"
-              v-model="form.location"
-              :choices="Object.keys(parsedLocations)"
-              :name="$tc('generic.location')"
-              auto-back
-              @back="locationSelect = false"/>
-            <template v-else>
-              <app-bar
-                :title="$t('competitions.add')"
-                small-only
-                fixed>
-                <template #bar-left-actions>
-                  <a @click="resetForm">{{ $t('terms.cancel') }}</a>
-                </template>
-                <template #bar-right-actions>
-                  <a @click="add">{{ $t('terms.add') }}</a>
-                </template>
-              </app-bar>
-              <page-body>
-                <list-group>
-                  <card top>
-                    <template #title>{{ $t('terms.name') }}</template>
-                    <template #input>
-                      <v-text-field
-                        v-model="form.name"
-                        :placeholder="$t('competitions.namePlaceholder')"
-                        hide-details
-                        solo
-                        flat/>
-                    </template>
-                  </card>
-                  <card
-                    clickable
-                    @click.native="locationSelect = true">
-                    <template #title>{{ $tc('generic.location') }}</template>
-                    <template #action-text>{{ form.location }}</template>
-                    <template #action>
-                      <v-list-item-icon>
-                        <v-icon>mdi-chevron-right</v-icon>
-                      </v-list-item-icon>
-                    </template>
-                  </card>
-                  <card>
-                    <template #title>{{ $t('terms.description') }}</template>
-                    <template #input>
-                      <v-textarea
-                        id="notes-textarea"
-                        v-model="form.description"
-                        :placeholder="$t('competitions.descriptionPlaceholder')"
-                        rows="1"
-                        auto-grow
-                        hide-details
-                        solo
-                        flat/>
-                    </template>
-                  </card>
-                  <card>
-                    <template #title>
-                      <span class="primary--text">
-                        {{ dateToText(form.date) }}
-                      </span>
-                    </template>
-                  </card>
-                  <card>
-                    <template #title>
-                      <v-date-picker
-                        v-model="form.date"
-                        style="box-shadow: 0;"
-                        first-day-of-week="1"
-                        color="primary"
-                        no-title
-                        full-width/>
-                    </template>
-                  </card>
-                  <card bottom>
-                    <template #title>{{ $t('competitions.participation') }}</template>
-                    <template #action>
-                      <v-btn-toggle
-                        v-model="form.participation"
-                        mandatory>
-                        <v-btn
-                          v-for="icon in [icons.notParticipating, icons.thinking, icons.participating]"
-                          :key="icon.icon">
-                          <v-icon :color="icon.color">{{ icon.icon }}</v-icon>
-                        </v-btn>
-                      </v-btn-toggle>
-                    </template>
-                  </card>
-                </list-group>
-              </page-body>
-            </template>
-          </v-card>
-        </v-bottom-sheet>
+          <template #dialog>
+            <competition-adding
+              :locations="parsedLocations"
+              @close="refreshCompetitions"/>
+          </template>
+        </responsive-dialog>
       </template>
     </app-bar>
     <page-body>
@@ -129,14 +37,18 @@
               <v-list-item-content>
                 <v-list-item-title>{{ competition.name }}</v-list-item-title>
                 <v-list-item-subtitle>
-                  <span
-                    v-if="competition.location.type === 'string'"
-                    class="text--primary">
+                  <span class="text--primary">
                     <template v-if="competition.location.type === 'string'">
-                      {{ competition.location.value }}
+                      <a
+                        :href="`https://www.openstreetmap.org/search?query=${competition.location.value}`"
+                        target="_blank">
+                        {{ competition.location.value }}
+                      </a>
                     </template>
                     <template v-if="competition.location.type === 'location'">
-                      {{ getLocationById(competition.location.value).name }}
+                      <router-link :to="`/locations/${locations[competition.location.value].id}`">
+                        {{ locations[competition.location.value].name }}
+                      </router-link>
                     </template>
                   </span>
                   &mdash; {{ dateToText(competition.date) }}
@@ -164,28 +76,31 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { competitionIcons } from '@/utils/data'
+import { competitionIcons as icons } from '@/utils/data'
 import { defaultCompetitionForm } from '@/utils/forms'
 import { dateToText } from '@/utils/parsing'
+import CompetitionAdding from '@/views/parts/CompetitionAdding'
 
 export default {
   name: 'Competitions',
+  components: { CompetitionAdding },
   data () {
     return {
       competitions: [],
+      locations: {},
       parsedLocations: {},
 
-      addingSheet: false,
       locationSelect: false,
       form: Object.assign({}, defaultCompetitionForm),
 
-      icons: competitionIcons
+      icons
     }
   },
   mounted () {
-    this.competitions = this.getCompetitions
-    let locations = this.getLocations
-    locations.forEach((location) => {
+    this.refreshCompetitions()
+    let locationList = this.getLocations
+    locationList.forEach((location) => {
+      this.locations[location.id] = location
       this.parsedLocations[location.name] = location.id
     })
   },
@@ -194,10 +109,8 @@ export default {
   },
   methods: {
     dateToText,
-    resetForm () {
-      this.form = Object.assign({}, defaultCompetitionForm)
-      this.addingSheet = false
-      this.locationSelect = false
+    refreshCompetitions () {
+      this.competitions = this.getCompetitions
     }
   }
 }

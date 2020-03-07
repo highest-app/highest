@@ -1,4 +1,5 @@
-import { loadFromStorage, saveToStorage } from '../../utils/storage.js'
+import flake from '../../utils/flake'
+import { loadFromStorage, saveToStorage } from '../../utils/storage'
 
 const state = {
   data: loadFromStorage('competitions')
@@ -12,7 +13,17 @@ const getters = {
 }
 
 const mutations = {
-
+  ADD_COMPETITION (state, data) {
+    state.data.push({
+      id: flake.gen(),
+      name: data.name,
+      description: data.description,
+      location: data.location,
+      date: data.date,
+      participation: data.participation,
+      website: data.website
+    })
+  }
 }
 
 const actions = {
