@@ -53,7 +53,7 @@
     "namePlaceholder": "Name of the route",
     "notesPlaceholder": "Notes to add about the route",
     "defineGoal": "Define a goal",
-    "color": "Couleur",
+    "color": "Colour",
 
     "progressionNotesPlaceholder": "Notes to add about this progression",
 
@@ -81,7 +81,11 @@
     "add": "Add new competition",
     "namePlaceholder": "Name of the competition",
     "descriptionPlaceholder": "Competition's description",
-    "participation": "Participation"
+    "participation": "Participation",
+
+    "notParticipating": "Not participating",
+    "thinking": "Thinking",
+    "participating": "Participating"
   },
   "settings": {
     "display": "Display",

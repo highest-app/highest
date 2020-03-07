@@ -31,9 +31,28 @@
             <v-list-item
               :key="`${competition.id}--list-item`"
               no-action>
-              <div class="v-list-item__icon v-list-group__header__prepend-icon">
-                <v-icon :color="icons.get(competition).color">{{ icons.get(competition).icon }}</v-icon>
-              </div>
+              <v-menu offset-y>
+                <template v-slot:activator="{ on }">
+                  <div class="v-list-item__icon v-list-group__header__prepend-icon">
+                    <v-btn
+                      icon
+                      v-on="on">
+                      <v-icon :color="icons.get(competition).color">{{ icons.get(competition).icon }}</v-icon>
+                    </v-btn>
+                  </div>
+                </template>
+                <v-list>
+                  <v-list-item
+                    v-for="icon in [icons.notParticipating, icons.thinking, icons.participating]"
+                    :key="icon.icon"
+                    @click="setParticipation(competition.id, icon.name)">
+                    <v-list-item-icon>
+                      <v-icon :color="icon.color">{{ icon.icon }}</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-title>{{ $t(`competitions.${icon.name}`) }}</v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
               <v-list-item-content>
                 <v-list-item-title>{{ competition.name }}</v-list-item-title>
                 <v-list-item-subtitle>
@@ -75,7 +94,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import { competitionIcons as icons } from '@/utils/data'
 import { defaultCompetitionForm } from '@/utils/forms'
 import { dateToText } from '@/utils/parsing'
@@ -108,9 +127,17 @@ export default {
     ...mapGetters(['getCompetitions', 'getLocations', 'getLocationById'])
   },
   methods: {
+    ...mapActions(['setCompetitionParticipation']),
     dateToText,
     refreshCompetitions () {
       this.competitions = this.getCompetitions
+    },
+    setParticipation (id, participation) {
+      this.setCompetitionParticipation({
+        id,
+        participation
+      })
+      this.refreshCompetitions()
     }
   }
 }

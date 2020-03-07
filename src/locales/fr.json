@@ -81,7 +81,11 @@
     "add": "Ajouter une compétition",
     "namePlaceholder": "Nom de la compétition",
     "descriptionPlaceholder": "Description de la compétition",
-    "participation": "Participation"
+    "participation": "Participation",
+
+    "notParticipating": "Ne participant pas",
+    "thinking": "Réfléchissant",
+    "participating": "Participant"
   },
   "settings": {
     "display": "Affichage",

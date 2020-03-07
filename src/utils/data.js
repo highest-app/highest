@@ -43,14 +43,17 @@ const routeIcons = {
 
 const competitionIcons = {
   notParticipating: {
+    name: 'notParticipating',
     color: 'red darken-4',
     icon: 'mdi-close-outline'
   },
   thinking: {
+    name: 'thinking',
     color: 'amber',
     icon: 'mdi-dots-horizontal'
   },
   participating: {
+    name: 'participating',
     color: 'light-green',
     icon: 'mdi-check-outline'
   },

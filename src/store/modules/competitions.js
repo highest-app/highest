@@ -23,12 +23,19 @@ const mutations = {
       participation: data.participation,
       website: data.website
     })
+  },
+  SET_COMPETITION_PARTICIPATION (state, data) {
+    state.data.find(competition => competition.id === data.id).participation = data.participation
   }
 }
 
 const actions = {
   addCompetition ({ commit, state }, entryData) {
     commit('ADD_COMPETITION', entryData)
+    saveToStorage('competitions', state.data)
+  },
+  setCompetitionParticipation ({ commit, state }, entryData) {
+    commit('SET_COMPETITION_PARTICIPATION', entryData)
     saveToStorage('competitions', state.data)
   }
 }
