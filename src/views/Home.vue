@@ -13,14 +13,23 @@
             scrollable
             inset>
             <template v-slot:activator="{ on }">
-              <v-btn
-                color="secondary"
-                elevation="0"
-                fab
-                small
-                v-on="on">
-                <v-icon>mdi-account-outline</v-icon>
-              </v-btn>
+              <div v-on="on">
+                <v-tooltip
+                  open-delay="500"
+                  bottom>
+                  <template #activator="{ on }">
+                    <v-btn
+                      color="secondary"
+                      elevation="0"
+                      fab
+                      small
+                      v-on="on">
+                      <v-icon>mdi-account-outline</v-icon>
+                    </v-btn>
+                  </template>
+                  <span>{{ $t('pages.profile') }}</span>
+                </v-tooltip>
+              </div>
             </template>
             <profile @close="profileSheet = false"/>
           </v-bottom-sheet>
@@ -59,7 +68,32 @@
           cols="12"
           md="6">
           <v-row>
-            <v-col cols="12"/>
+            <v-col cols="12">
+              <div
+                v-for="feed in feeds"
+                :key="feed.name">
+                <h2>{{ feed.name }}</h2>
+                <v-list>
+                  <v-lazy
+                    v-for="item in feed.items"
+                    :key="item.link"
+                    v-model="item.active"
+                    :options="{
+                      threshold: .5
+                    }"
+                    transition="fade-transition">
+                    <v-list-item
+                      :href="item.link"
+                      target="_blank">
+                      <v-list-item-content>
+                        <v-list-item-title>{{ item.title }}</v-list-item-title>
+                        <v-list-item-subtitle>{{ dateToText(item.date) }}</v-list-item-subtitle>
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-lazy>
+                </v-list>
+              </div>
+            </v-col>
           </v-row>
         </v-col>
       </v-row>
@@ -68,6 +102,8 @@
 </template>
 
 <script>
+import { dateToText } from '@/utils/parsing'
+import { getFeeds } from '../utils/feeds'
 import Profile from './parts/Profile.vue'
 
 export default {
@@ -75,9 +111,21 @@ export default {
   components: { Profile },
   data () {
     return {
+      feedUrls: [
+        'https://www.ffme.fr/feed/',
+        'https://www.climbing.com/.rss/excerpt/'
+      ],
+      feeds: [],
+
       profileSheet: false,
       profileDialog: false
     }
+  },
+  mounted () {
+    getFeeds(this, this.feedUrls)
+  },
+  methods: {
+    dateToText
   }
 }
 </script>
