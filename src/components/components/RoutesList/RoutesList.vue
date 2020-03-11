@@ -7,14 +7,24 @@
       <v-list-item
         :key="`${route.id}--list-item`"
         no-action>
-        <div
-          class="v-list-item__icon v-list-group__header__prepend-icon"
-          @click.stop="switchFinishedRoute(route.id)">
+        <div class="v-list-item__icon v-list-group__header__prepend-icon">
           <v-avatar>
             <v-img
               :src="route.photos[0]"
               style="background: rgba(0,0,0,.3)">
-              <v-icon :color="icons.get(route).color">{{ icons.get(route).icon }}</v-icon>
+              <v-tooltip
+                open-delay="500"
+                bottom>
+                <template #activator="{ on }">
+                  <v-btn
+                    icon
+                    @click.stop="switchFinishedRoute(route.id)"
+                    v-on="on">
+                    <v-icon :color="icons.get(route).color">{{ icons.get(route).icon }}</v-icon>
+                  </v-btn>
+                </template>
+                <span>{{ $t('routes.markAsFinished') }}</span>
+              </v-tooltip>
             </v-img>
           </v-avatar>
         </div>

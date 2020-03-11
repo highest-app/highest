@@ -1,13 +1,21 @@
 <template>
   <responsive-dialog>
     <template #activator>
-      <v-btn
-        color="secondary"
-        elevation="0"
-        fab
-        small>
-        <v-icon>mdi-plus</v-icon>
-      </v-btn>
+      <v-tooltip
+        open-delay="500"
+        bottom>
+        <template #activator="{ on }">
+          <v-btn
+            color="secondary"
+            elevation="0"
+            fab
+            small
+            v-on="on">
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+        </template>
+        <span>{{ $t('routes.add') }}</span>
+      </v-tooltip>
     </template>
     <template #dialog>
       <select-menu

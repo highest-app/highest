@@ -4,14 +4,21 @@
       <template #top-bar-actions>
         <responsive-dialog>
           <template #activator>
-            <v-btn
-              color="secondary"
-              elevation="0"
-              fab
-              small
-              v-on="on">
-              <v-icon>mdi-plus</v-icon>
-            </v-btn>
+            <v-tooltip
+              open-delay="500"
+              bottom>
+              <template #activator="{ on }">
+                <v-btn
+                  color="secondary"
+                  elevation="0"
+                  fab
+                  small
+                  v-on="on">
+                  <v-icon>mdi-plus</v-icon>
+                </v-btn>
+              </template>
+              <span>{{ $t('competitions.add') }}</span>
+            </v-tooltip>
           </template>
           <template #dialog>
             <competition-adding
@@ -33,12 +40,21 @@
               no-action>
               <v-menu offset-y>
                 <template v-slot:activator="{ on }">
-                  <div class="v-list-item__icon v-list-group__header__prepend-icon">
-                    <v-btn
-                      icon
-                      v-on="on">
-                      <v-icon :color="icons.get(competition).color">{{ icons.get(competition).icon }}</v-icon>
-                    </v-btn>
+                  <div
+                    class="v-list-item__icon v-list-group__header__prepend-icon"
+                    v-on="on">
+                    <v-tooltip
+                      open-delay="500"
+                      bottom>
+                      <template #activator="{ on }">
+                        <v-btn
+                          icon
+                          v-on="on">
+                          <v-icon :color="icons.get(competition).color">{{ icons.get(competition).icon }}</v-icon>
+                        </v-btn>
+                      </template>
+                      <span>{{ $t('competitions.participation') }}</span>
+                    </v-tooltip>
                   </div>
                 </template>
                 <v-list>
