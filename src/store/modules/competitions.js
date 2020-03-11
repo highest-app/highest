@@ -13,7 +13,7 @@ const getters = {
 }
 
 const mutations = {
-  ADD_COMPETITION (state, data) {
+  ADD_COMPETITION(state, data) {
     state.data.push({
       id: flake.gen(),
       name: data.name,
@@ -24,17 +24,18 @@ const mutations = {
       website: data.website
     })
   },
-  SET_COMPETITION_PARTICIPATION (state, data) {
-    state.data.find(competition => competition.id === data.id).participation = data.participation
+  SET_COMPETITION_PARTICIPATION(state, data) {
+    state.data.find(competition => competition.id === data.id).participation =
+      data.participation
   }
 }
 
 const actions = {
-  addCompetition ({ commit, state }, entryData) {
+  addCompetition({ commit, state }, entryData) {
     commit('ADD_COMPETITION', entryData)
     saveToStorage('competitions', state.data)
   },
-  setCompetitionParticipation ({ commit, state }, entryData) {
+  setCompetitionParticipation({ commit, state }, entryData) {
     commit('SET_COMPETITION_PARTICIPATION', entryData)
     saveToStorage('competitions', state.data)
   }
