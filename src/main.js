@@ -11,9 +11,10 @@ import './registerServiceWorker'
 import VueResource from 'vue-resource'
 
 import '@babel/polyfill'
+import '@/css/index.styl'
 import '@mdi/font/css/materialdesignicons.css'
 import 'roboto-fontface/css/roboto/roboto-fontface.css'
-import '@/css/index.styl'
+import 'leaflet/dist/leaflet.css'
 
 Vue.config.productionTip = false
 
