@@ -101,7 +101,7 @@
         v-for="item in mobileMenu"
         :key="item.name"
         :to="item.route">
-        <span>{{ item.name }}</span>
+        <span>{{ $t(item.name) }}</span>
         <v-icon>{{ item.icon }}</v-icon>
       </v-btn>
     </v-bottom-navigation>
