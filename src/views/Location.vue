@@ -37,7 +37,7 @@
       <v-row>
         <v-col
           cols="12"
-          md="6">
+          md="3">
           <v-carousel
             v-if="location.photos.length > 1"
             :continuous="false"
@@ -54,7 +54,7 @@
         </v-col>
         <v-col
           cols="12"
-          md="6">
+          md="9">
           <v-row>
             <v-col cols="12">
               <h1>{{ location.name }}</h1>
@@ -89,9 +89,11 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import RoutesList from '@/views/parts/RoutesList'
 
 export default {
   name: 'Location',
+  components: { RoutesList },
   data: () => ({
     location: {},
     routes: [],

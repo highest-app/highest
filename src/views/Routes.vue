@@ -91,10 +91,11 @@ import { grades, tags } from '@/utils/data'
 import { dateToText } from '@/utils/parsing'
 import LocationAdding from '@/views/parts/LocationAdding'
 import RouteAdding from '@/views/parts/RouteAdding'
+import RoutesList from '@/views/parts/RoutesList'
 
 export default {
   name: 'Routes',
-  components: { LocationAdding, RouteAdding },
+  components: { LocationAdding, RouteAdding, RoutesList },
   data () {
     return {
       locations: [],
