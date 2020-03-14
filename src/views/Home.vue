@@ -50,7 +50,7 @@
       <v-row wrap>
         <v-col
           cols="12"
-          md="6">
+          md="3">
           <v-card
             elevation="0"
             tile>
@@ -66,33 +66,50 @@
         </v-col>
         <v-col
           cols="12"
-          md="6">
+          md="9">
           <v-row>
             <v-col cols="12">
-              <div
-                v-for="feed in feeds"
-                :key="feed.name">
-                <h2>{{ feed.name }}</h2>
-                <v-list>
-                  <v-lazy
-                    v-for="item in feed.items"
-                    :key="item.link"
-                    v-model="item.active"
-                    :options="{
-                      threshold: .5
-                    }"
-                    transition="fade-transition">
-                    <v-list-item
-                      :href="item.link"
-                      target="_blank">
-                      <v-list-item-content>
-                        <v-list-item-title>{{ item.title }}</v-list-item-title>
-                        <v-list-item-subtitle>{{ dateToText(item.date) }}</v-list-item-subtitle>
-                      </v-list-item-content>
-                    </v-list-item>
-                  </v-lazy>
-                </v-list>
-              </div>
+              <template v-if="feedLoader">
+                <v-progress-linear
+                  indeterminate
+                  color="primary"/>
+              </template>
+              <template v-else>
+                <div
+                  v-for="feed in feeds"
+                  :key="feed.title">
+                  <v-row>
+                    <h2>{{ feed.title }}</h2>
+                    <v-btn
+                      :href="feed.link"
+                      target="_blank"
+                      icon>
+                      <v-icon>mdi-open-in-new</v-icon>
+                    </v-btn>
+                  </v-row>
+                  <p>{{ feed.description }}</p>
+                  <list>
+                    <v-lazy
+                      v-for="item in feed.items"
+                      :key="item.link"
+                      v-model="item.active"
+                      :options="{
+                        threshold: .5
+                      }"
+                      transition="fade-transition">
+                      <card
+                        top
+                        :href="item.link"
+                        target="_blank">
+                        <template #title>{{ item.title }} - {{ dateToText(item.pubDate) }}</template>
+                        <template #description>
+                          <span v-html="item.content"/>
+                        </template>
+                      </card>
+                    </v-lazy>
+                  </list>
+                </div>
+              </template>
             </v-col>
           </v-row>
         </v-col>
@@ -116,6 +133,7 @@ export default {
         'https://www.climbing.com/.rss/excerpt/'
       ],
       feeds: [],
+      feedLoader: true,
 
       profileSheet: false,
       profileDialog: false
