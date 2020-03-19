@@ -75,7 +75,10 @@
 
         <list-group>
           <card-header>{{ $t('settings.data') }}</card-header>
-          <card top>
+          <card
+            top
+            clickable
+            @click.native="exportData">
             <template #title>
               <span class="primary--text">{{ $t('settings.exportData') }}</span>
             </template>
@@ -130,6 +133,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import { download } from '@/utils/storage'
 
 export default {
   name: 'Settings',
@@ -145,15 +149,18 @@ export default {
   }),
   mounted () { this.settings = this.getSettings },
   computed: {
-    ...mapGetters(['getSettings'])
+    ...mapGetters(['getSettings', 'getRawData'])
   },
   methods: {
-    ...mapActions(['updateSettings']),
+    ...mapActions(['updateSettings', 'importData']),
     eraseData () {
       localStorage.removeItem('routes')
       localStorage.removeItem('locations')
       localStorage.removeItem('settings')
       window.location.reload()
+    },
+    exportData () {
+      download('highest', 'application/json', this.getRawData)
     }
   },
   watch: {

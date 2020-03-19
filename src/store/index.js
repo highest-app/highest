@@ -9,11 +9,28 @@ import settings from './modules/settings'
 Vue.use(Vuex)
 
 const state = {}
-const getters = {}
+const getters = {
+  getRawData: (_, getters) => {
+    return JSON.stringify({
+      locations: getters.getLocations,
+      routes: getters.getRoutes,
+      competitions: getters.getCompetitions,
+      settings: getters.getSettings
+    })
+  }
+}
 const mutations = {}
-const actions = {}
+const actions = {
+  importData({ store }, data) {
+    data = JSON.parse(data)
+    store.dispatch('addLocations', data.locations)
+    store.dispatch('addRoutes', data.routes)
+    store.dispatch('addCompetitions', data.competitions)
+    store.dispatch('setSettings', data.settings)
+  }
+}
 
-export default new Vuex.Store({
+let store = new Vuex.Store({
   state,
   getters,
   mutations,
@@ -25,3 +42,6 @@ export default new Vuex.Store({
     settings
   }
 })
+
+global.store = store
+export default store
