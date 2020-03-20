@@ -116,8 +116,9 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import { dateToText } from '@/utils/parsing'
-import { getFeeds } from '../utils/feeds'
+import { getFeeds } from '@/utils/feeds'
 import Profile from './parts/Profile.vue'
 
 export default {
@@ -125,10 +126,6 @@ export default {
   components: { Profile },
   data () {
     return {
-      feedUrls: [
-        'https://www.ffme.fr/feed/',
-        'https://www.climbing.com/.rss/excerpt/'
-      ],
       feeds: [],
       feedLoader: true,
 
@@ -137,7 +134,10 @@ export default {
     }
   },
   mounted () {
-    getFeeds(this, this.feedUrls)
+    getFeeds(this, this.getFeeds)
+  },
+  computed: {
+    ...mapGetters(['getFeeds'])
   },
   methods: {
     dateToText

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import competitions from './modules/competitions'
+import feeds from './modules/feeds'
 import locations from './modules/locations'
 import routes from './modules/routes'
 import settings from './modules/settings'
@@ -37,6 +38,7 @@ let store = new Vuex.Store({
   actions,
   modules: {
     competitions,
+    feeds,
     locations,
     routes,
     settings
