@@ -69,12 +69,11 @@
           md="9">
           <v-row>
             <v-col cols="12">
-              <template v-if="feedLoader">
-                <v-progress-linear
-                  indeterminate
-                  color="primary"/>
-              </template>
-              <template v-else>
+              <v-switch
+                v-model="separatedFeeds"
+                :label="$t('home.separatedFeeds')"
+                inset/>
+              <template v-if="separatedFeeds">
                 <div
                   v-for="feed in feeds"
                   :key="feed.title">
@@ -88,24 +87,14 @@
                     </v-btn>
                   </v-row>
                   <p class="mb-0">{{ feed.description }}</p>
-                  <v-pagination
-                    v-model="feed.page"
-                    :length="Math.round(feed.items.length / 5.0)"
-                    class="my-2"/>
-                  <list>
-                    <card
-                      v-for="item in feed.items.slice((feed.page - 1) * 5, (feed.page - 1) * 5 + 5)"
-                      :key="item.link"
-                      top
-                      :href="item.link"
-                      target="_blank">
-                      <template #title>{{ item.title }} - {{ dateToText(item.pubDate) }}</template>
-                      <template #description>
-                        <span v-html="item.content"/>
-                      </template>
-                    </card>
-                  </list>
+                  <feeds-list
+                    :items="feed.items"
+                    :page="feed.page"
+                    pagination/>
                 </div>
+              </template>
+              <template v-else>
+                <feeds-list :items="feedItems"/>
               </template>
             </v-col>
           </v-row>
@@ -119,15 +108,18 @@
 import { mapGetters } from 'vuex'
 import { dateToText } from '@/utils/parsing'
 import { getFeeds } from '@/utils/feeds'
-import Profile from './parts/Profile.vue'
+import FeedsList from '@/views/parts/FeedsList'
+import Profile from '@/views/parts/Profile.vue'
 
 export default {
   name: 'Home',
-  components: { Profile },
+  components: { FeedsList, Profile },
   data () {
     return {
       feeds: [],
-      feedLoader: true,
+      feedItems: [],
+      feedPage: 1,
+      separatedFeeds: false,
 
       profileSheet: false,
       profileDialog: false

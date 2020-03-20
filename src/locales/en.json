@@ -46,7 +46,9 @@
   },
   "home": {
     "appSubtitle": "Your climbing best friend",
-    "appDescription": "Work your routes while staying organized : the convenient climbing app !"
+    "appDescription": "Work your routes while staying organized : the convenient climbing app !",
+
+    "separatedFeeds": "Separated feeds"
   },
   "routes": {
     "add": "Add new route",
