@@ -6,6 +6,7 @@ const CORS_PROXY = "https://cors-anywhere.herokuapp.com/"
 function getFeeds(context) {
   context.feedUrls.forEach(url => {
     parser.parseURL(CORS_PROXY + url, function (err, feed) {
+      feed.page = 1
       context.feeds.push(feed)
     })
     context.feedLoader = false

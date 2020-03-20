@@ -87,26 +87,23 @@
                       <v-icon>mdi-open-in-new</v-icon>
                     </v-btn>
                   </v-row>
-                  <p>{{ feed.description }}</p>
+                  <p class="mb-0">{{ feed.description }}</p>
+                  <v-pagination
+                    v-model="feed.page"
+                    :length="Math.round(feed.items.length / 5.0)"
+                    class="my-2"/>
                   <list>
-                    <v-lazy
-                      v-for="item in feed.items"
+                    <card
+                      v-for="item in feed.items.slice((feed.page - 1) * 5, (feed.page - 1) * 5 + 5)"
                       :key="item.link"
-                      v-model="item.active"
-                      :options="{
-                        threshold: .5
-                      }"
-                      transition="fade-transition">
-                      <card
-                        top
-                        :href="item.link"
-                        target="_blank">
-                        <template #title>{{ item.title }} - {{ dateToText(item.pubDate) }}</template>
-                        <template #description>
-                          <span v-html="item.content"/>
-                        </template>
-                      </card>
-                    </v-lazy>
+                      top
+                      :href="item.link"
+                      target="_blank">
+                      <template #title>{{ item.title }} - {{ dateToText(item.pubDate) }}</template>
+                      <template #description>
+                        <span v-html="item.content"/>
+                      </template>
+                    </card>
                   </list>
                 </div>
               </template>
