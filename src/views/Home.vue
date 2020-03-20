@@ -78,13 +78,35 @@
                   v-for="feed in feeds"
                   :key="feed.title">
                   <v-row>
-                    <h2>{{ feed.title }}</h2>
-                    <v-btn
-                      :href="feed.link"
-                      target="_blank"
-                      icon>
-                      <v-icon>mdi-open-in-new</v-icon>
-                    </v-btn>
+                    <h2 class="ml-3">{{ feed.title }}</h2>
+                    <v-tooltip
+                      open-delay="500"
+                      bottom>
+                      <template #activator="{ on }">
+                        <v-btn
+                          :href="feed.link"
+                          target="_blank"
+                          icon
+                          v-on="on">
+                          <v-icon>mdi-open-in-new</v-icon>
+                        </v-btn>
+                      </template>
+                      <span>{{ $t('home.visitWebsite') }}</span>
+                    </v-tooltip>
+                    <v-tooltip
+                      open-delay="500"
+                      bottom>
+                      <template #activator="{ on }">
+                        <v-btn
+                          icon
+                          color="error"
+                          v-on="on"
+                          @click="feedDelete(feed.feedUrl)">
+                          <v-icon>mdi-delete-outline</v-icon>
+                        </v-btn>
+                      </template>
+                      <span>{{ $t('home.deleteFeed') }}</span>
+                    </v-tooltip>
                   </v-row>
                   <p class="mb-0">{{ feed.description }}</p>
                   <feeds-list
@@ -105,7 +127,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import { dateToText } from '@/utils/parsing'
 import { getFeeds } from '@/utils/feeds'
 import FeedsList from '@/views/parts/FeedsList'
@@ -132,6 +154,12 @@ export default {
     ...mapGetters(['getFeeds'])
   },
   methods: {
+    ...mapActions(['addFeed', 'deleteFeed']),
+    feedDelete (url) {
+      this.deleteFeed(url)
+      this.feeds = this.feeds.filter(feed => feed.feedUrl !== url)
+      this.feedItems = this.feedItems.filter(item => item.feedUrl !== url)
+    },
     dateToText
   }
 }

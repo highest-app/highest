@@ -48,7 +48,9 @@
     "appSubtitle": "Your climbing best friend",
     "appDescription": "Work your routes while staying organized : the convenient climbing app !",
 
-    "separatedFeeds": "Separated feeds"
+    "visitWebsite": "Visit website",
+    "separatedFeeds": "Separated feeds",
+    "deleteFeed": "Delete feed"
   },
   "routes": {
     "add": "Add new route",

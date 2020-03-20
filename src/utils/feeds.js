@@ -8,7 +8,10 @@ function getFeeds(context, list) {
     parser.parseURL(CORS_PROXY + url, function (err, feed) {
       feed.page = 1
       context.feeds.push(feed)
-      feed.items.forEach(item => context.feedItems.push(item))
+      feed.items.forEach(item => {
+        item.feedUrl = feed.feedUrl
+        context.feedItems.push(item)
+      })
       context.feedItems.sort((a,b) => {
         const dateA = new Date(a.pubDate).getTime()
         const dateB = new Date(b.pubDate).getTime()

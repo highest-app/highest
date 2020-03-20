@@ -48,7 +48,9 @@
     "appSubtitle": "Votre compagnon pour grimper",
     "appDescription": "Travaillez vos voies en restant organisé : l'application d'escalade pratique !",
 
-    "separatedFeeds": "Flux séparés"
+    "visitWebsite": "Visiter le site",
+    "separatedFeeds": "Flux séparés",
+    "deleteFeed": "Supprimer le flux"
   },
   "routes": {
     "add": "Ajouter une voie",
