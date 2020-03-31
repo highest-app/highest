@@ -1,15 +1,41 @@
 function loadFromStorage(category) {
   let defaults = {
-    competitions: '[]',
-    feeds: '[]',
-    locations: '[]',
-    routes: '[]',
-    settings: '{}'
+    competitions: [],
+    feeds: ['https://www.climbing.com/.rss/excerpt/'],
+    locations: [
+      {
+        name: 'My climbing gym',
+        id: 'my-climbing-gym',
+        notes: 'This is where I practice !',
+        photos: ['https://static.gymlib.com/legacy/img/gyms/cours-decouverte-climb-up-lyon/0b2acc4b-1d80-4288-a3ac-ac34b39df417.jpeg']
+      }
+    ],
+    routes: [
+      {
+        name: 'The one I love',
+        id: 'the-one-i-love',
+        location: 'my-climbing-gym',
+        grade: '6B',
+        length: 21,
+        color: '#FF0FF0',
+        notes: "It's my favorite route !",
+        photos: [],
+        goal: '2020-04-01',
+        finished: false,
+        progressions: [
+          {
+            date: '2020-04-01',
+            notes: 'First try! Just two more meters...'
+          }
+        ]
+      }
+    ],
+    settings: {}
   }
 
   let data = localStorage.getItem(category)
   if (data === null) {
-    data = defaults[category]
+    data = JSON.stringify(defaults[category])
     localStorage.setItem(category, data)
   }
 
