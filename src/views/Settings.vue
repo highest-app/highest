@@ -154,8 +154,10 @@ export default {
   methods: {
     ...mapActions(['updateSettings', 'importData']),
     eraseData () {
-      localStorage.removeItem('routes')
+      localStorage.removeItem('competitions')
+      localStorage.removeItem('feeds')
       localStorage.removeItem('locations')
+      localStorage.removeItem('routes')
       localStorage.removeItem('settings')
       window.location.reload()
     },
