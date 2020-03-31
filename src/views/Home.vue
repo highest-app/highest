@@ -12,24 +12,22 @@
             v-model="profileSheet"
             scrollable
             inset>
-            <template v-slot:activator="{ on }">
-              <div v-on="on">
-                <v-tooltip
-                  open-delay="500"
-                  bottom>
-                  <template #activator="{ on }">
-                    <v-btn
-                      color="secondary"
-                      elevation="0"
-                      fab
-                      small
-                      v-on="on">
-                      <v-icon>mdi-account-outline</v-icon>
-                    </v-btn>
-                  </template>
-                  <span>{{ $t('pages.profile') }}</span>
-                </v-tooltip>
-              </div>
+            <template #activator="{ on: sheet }">
+              <v-tooltip
+                open-delay="500"
+                bottom>
+                <template #activator="{ on: tooltip }">
+                  <v-btn
+                    color="secondary"
+                    elevation="0"
+                    fab
+                    small
+                    v-on="{ ...sheet, ...tooltip }">
+                    <v-icon>mdi-account-outline</v-icon>
+                  </v-btn>
+                </template>
+                <span>{{ $t('pages.profile') }}</span>
+              </v-tooltip>
             </template>
             <profile @close="profileSheet = false"/>
           </v-bottom-sheet>

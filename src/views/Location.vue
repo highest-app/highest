@@ -25,7 +25,7 @@
     </v-dialog>
     <app-bar
       small-only>
-      <template v-slot:bar-left-actions>
+      <template #bar-left-actions>
         <a
           class="hidden-md-and-up"
           @click="$router.back()">

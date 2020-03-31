@@ -78,11 +78,18 @@
               <v-btn-toggle
                 v-model="form.participation"
                 mandatory>
-                <v-btn
+                <v-tooltip
                   v-for="icon in [icons.notParticipating, icons.thinking, icons.participating]"
-                  :key="icon.icon">
-                  <v-icon :color="icon.color">{{ icon.icon }}</v-icon>
-                </v-btn>
+                  :key="icon.icon"
+                  open-delay="500"
+                  bottom>
+                  <template #activator="{ on }">
+                    <v-btn v-on="on">
+                      <v-icon :color="icon.color">{{ icon.icon }}</v-icon>
+                    </v-btn>
+                  </template>
+                  <span>{{ $t(`competitions.${icon.name}`)}}</span>
+                </v-tooltip>
               </v-btn-toggle>
             </template>
           </card>

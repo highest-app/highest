@@ -39,17 +39,15 @@
               :key="`${competition.id}--list-item`"
               no-action>
               <v-menu offset-y>
-                <template v-slot:activator="{ on }">
-                  <div
-                    class="v-list-item__icon v-list-group__header__prepend-icon"
-                    v-on="on">
+                <template #activator="{ on: menu }">
+                  <div class="v-list-item__icon v-list-group__header__prepend-icon">
                     <v-tooltip
                       open-delay="500"
                       bottom>
-                      <template #activator="{ on }">
+                      <template #activator="{ on: tooltip }">
                         <v-btn
                           icon
-                          v-on="on">
+                          v-on="{ ...menu, ...tooltip }">
                           <v-icon :color="icons.get(competition).color">{{ icons.get(competition).icon }}</v-icon>
                         </v-btn>
                       </template>

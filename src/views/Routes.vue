@@ -15,7 +15,7 @@
             v-model="locationDialog"
             scrollable
             inset>
-            <template v-slot:activator="{ on }">
+            <template #activator="{ on }">
               <v-col
                 cols="12"
                 md="6">
