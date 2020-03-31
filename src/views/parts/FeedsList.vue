@@ -5,7 +5,7 @@
       v-model="page"
       :length="Math.round(items.length / 5.0)"
       class="my-2"/>
-    <list>
+    <list-group>
       <template v-for="item in feedItems">
         <v-img
           v-if="item.enclosure !== undefined"
@@ -23,7 +23,7 @@
           </template>
         </card>
       </template>
-    </list>
+    </list-group>
   </div>
 </template>
 
