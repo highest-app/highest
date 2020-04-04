@@ -11,6 +11,7 @@
           <v-avatar>
             <v-img
               :src="route.photos[0]"
+              class="routes-list"
               style="background: rgba(0,0,0,.3)">
               <v-tooltip
                 open-delay="500"
@@ -79,3 +80,9 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus">
+  .v-image.routes-list .v-responsive__content
+    justify-content: center
+    align-items: center
+</style>
