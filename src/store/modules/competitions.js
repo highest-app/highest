@@ -9,6 +9,15 @@ const getters = {
   getCompetitions: state => state.data,
   getCompetitionById: state => id => {
     return state.data.find(competition => competition.id === id)
+  },
+  searchCompetitions: (state, getters) => query => {
+    query = query.toLowerCase()
+    return getters.getCompetitions.filter(competition => {
+      let name = competition.name.toLowerCase()
+      let description = competition.description.toLowerCase()
+
+      return name.match(query) !== null || description.match(query) !== null
+    })
   }
 }
 

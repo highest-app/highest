@@ -15,6 +15,15 @@ const getters = {
   },
   getRoutesByLocation: state => id => {
     return state.data.filter(route => route.location === id)
+  },
+  searchRoutes: (state, getters) => query => {
+    query = query.toLowerCase()
+    return getters.getRoutes.filter(routes => {
+      let name = routes.name.toLowerCase()
+      let notes = routes.notes.toLowerCase()
+
+      return name.match(query) !== null || notes.match(query) !== null
+    })
   }
 }
 

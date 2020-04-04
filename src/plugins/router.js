@@ -13,6 +13,12 @@ export default new VueRouter({
       component: () => import(/* webpackChunkName: "general" */ '../views/Home.vue')
     },
     {
+      path: '/search',
+      name: 'search',
+      component: () => import(/* webpackChunkName: "general" */ '../views/Search.vue'),
+      props: true
+    },
+    {
       path: '/locations/:location',
       name: 'location',
       component: () => import(/* webpackChunkName: "routes" */ '../views/Location.vue')

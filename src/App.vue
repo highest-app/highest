@@ -18,12 +18,14 @@
           alt="Highest logo">
         <v-list-item>
           <v-text-field
+            v-model="search"
             :label="`${$t('pages.search')}...`"
-            append-icon="mdi-magnify"
-            solo
+            clearable
+            rounded
             filled
             dense
-            rounded/>
+            solo
+            @keydown.enter="gotoSearch"/>
         </v-list-item>
         <v-list-item
           v-for="item in menu"
@@ -122,6 +124,8 @@ export default {
       bottomNav: '',
       locationDialog: false,
 
+      search: '',
+
       tags,
       locations: [],
       menu: [
@@ -152,6 +156,13 @@ export default {
       this.$i18n.locale = this.locale
       this.$vuetify.lang.current = this.locale
       moment.locale(this.locale)
+    },
+    gotoSearch () {
+      this.$router.push({
+        name: 'search',
+        params: { query: this.search },
+        query: { q: this.search }
+      })
     }
   },
   computed: {
@@ -166,6 +177,11 @@ export default {
     },
     locale () {
       this.setLocale()
+    },
+    search () {
+      if (this.$router.currentRoute.name === 'search') {
+        this.gotoSearch()
+      }
     }
   }
 }
