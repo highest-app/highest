@@ -79,7 +79,7 @@
                 v-model="form.participation"
                 mandatory>
                 <v-tooltip
-                  v-for="icon in [icons.notParticipating, icons.thinking, icons.participating]"
+                  v-for="icon in icons"
                   :key="icon.icon"
                   open-delay="500"
                   bottom>
