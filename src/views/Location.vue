@@ -39,7 +39,6 @@
           cols="12"
           md="3">
           <v-carousel
-            v-if="location.photos.length > 1"
             :continuous="false"
             height="auto"
             hide-delimiters>
@@ -58,6 +57,10 @@
           <v-row>
             <v-col cols="12">
               <h1>{{ location.name }}</h1>
+              <span class="overline list-description--text">
+                <v-icon color="list-description">mdi-map-marker-outline</v-icon>
+                {{ location.address }}
+              </span>
               <p>{{ location.notes }}</p>
               <v-btn
                 class="mr-3"

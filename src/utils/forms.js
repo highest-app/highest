@@ -2,6 +2,7 @@ import { today } from './parsing'
 
 const defaultLocationForm = Object.freeze({
   name: '',
+  address: '',
   picture: '',
   notes: ''
 })

@@ -28,6 +28,17 @@
             </template>
           </card>
           <card>
+            <template #title>{{ $t('terms.address') }}</template>
+            <template #input>
+              <v-text-field
+                v-model="form.address"
+                :placeholder="$t('locations.addressPlaceholder')"
+                hide-details
+                solo
+                flat/>
+            </template>
+          </card>
+          <card>
             <template #title>{{ $t('terms.picture') }}</template>
             <template #input>
               <v-text-field

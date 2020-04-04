@@ -5,6 +5,7 @@ function loadFromStorage(category) {
     locations: [
       {
         name: 'My climbing gym',
+        address: 'Planet Earth',
         id: 'my-climbing-gym',
         notes: 'This is where I practice !',
         photos: ['https://static.gymlib.com/legacy/img/gyms/cours-decouverte-climb-up-lyon/0b2acc4b-1d80-4288-a3ac-ac34b39df417.jpeg']
