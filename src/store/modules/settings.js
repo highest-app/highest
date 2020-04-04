@@ -8,7 +8,7 @@ const getters = {
   getSettings: state => state.data,
   darkTheme: state => state.data.darkTheme,
   autoDarkTheme: state => state.data.autoDarkTheme,
-  locale: state => state.data.locale
+  locale: state => state.data.locale === undefined ? 'en' : state.data.locale
 }
 
 const mutations = {

@@ -1,5 +1,6 @@
 import moment from 'moment'
-import i18n from '../plugins/i18n'
+
+import store from '../store'
 
 const today = new Date().toISOString().substr(0, 10)
 const formats = {
@@ -8,7 +9,7 @@ const formats = {
 }
 
 function dateToText(date) {
-  let format = formats[i18n.locale]
+  let format = formats[store.getters.locale]
   return moment(date).format(format)
 }
 
