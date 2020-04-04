@@ -3,6 +3,7 @@
     "name": "Name",
     "description": "Description",
     "notes": "Notes",
+    "address": "Address",
     "date": "Date",
     "picture": "Picture",
     "picturePlaceholder": "URL address to a picture",
@@ -52,6 +53,14 @@
     "separatedFeeds": "Separated feeds",
     "deleteFeed": "Delete feed"
   },
+  "search": {
+    "starter": "Start typing a key word to find routes, locations and competitions.",
+
+    "notFound": "No elements found",
+    "notFoundHelp": "Try re-lauching your search with other key words.",
+
+    "placeholder": "Search for a route, a location, a competition..."
+  },
   "routes": {
     "add": "Add new route",
     "namePlaceholder": "Name of the route",
@@ -73,6 +82,7 @@
   "locations": {
     "add": "Add new location",
     "namePlaceholder": "Location's name",
+    "addressPlaceholder": "Physical address of the location",
     "notesPlaceholder": "Notes to add about this location",
 
     "noLocations": "Any location for the moment. Create one to add your routes.",

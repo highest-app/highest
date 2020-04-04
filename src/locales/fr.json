@@ -3,6 +3,7 @@
     "name": "Nom",
     "description": "Description",
     "notes": "Notes",
+    "address": "Adresse",
     "date": "Date",
     "picture": "Image",
     "picturePlaceholder": "Adresse URL vers une image",
@@ -52,6 +53,14 @@
     "separatedFeeds": "Flux séparés",
     "deleteFeed": "Supprimer le flux"
   },
+  "search": {
+    "starter": "Commencez à taper un mot-clé pour trouver voies, lieux et compétitions.",
+
+    "notFound": "Aucun élément trouvé",
+    "notFoundHelp": "Essayez de relancer la recherche avec d'autres mots-clés.",
+
+    "placeholder": "Recherchez une voie, un lieu, une compétition..."
+  },
   "routes": {
     "add": "Ajouter une voie",
     "namePlaceholder": "Nom de la voie",
@@ -73,6 +82,7 @@
   "locations": {
     "add": "Ajouter un lieu",
     "namePlaceholder": "Nom du lieu",
+    "addressPlaceholder": "Adresse physique du lieu",
     "notesPlaceholder": "Notes à rajouter à propos du lieu",
 
     "noLocations": "Aucun lieu pour le moment. Créez-en un afin d'ajouter vos voies.",
