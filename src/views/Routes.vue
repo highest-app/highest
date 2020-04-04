@@ -30,22 +30,7 @@
               <location-adding @close="locationDialog = false"/>
             </v-card>
           </v-bottom-sheet>
-          <v-col
-            v-for="location in locations"
-            :key="location.id"
-            cols="12"
-            md="6">
-            <v-card
-              elevation="0"
-              :to="'/locations/' + location.id">
-              <v-img
-                class="white--text align-end"
-                :aspect-ratio="16/9"
-                :src="location.photos[0]">
-                <v-card-title>{{ location.name }}</v-card-title>
-              </v-img>
-            </v-card>
-          </v-col>
+          <locations-list :locations="locations"/>
         </list-group>
         <list-group>
           <h2>{{ $tc('generic.tag', 2) }}</h2>
@@ -92,10 +77,11 @@ import { dateToText } from '@/utils/parsing'
 import LocationAdding from '@/views/parts/LocationAdding'
 import RouteAdding from '@/views/parts/RouteAdding'
 import RoutesList from '@/views/parts/RoutesList'
+import LocationsList from '@/views/parts/LocationsList'
 
 export default {
   name: 'Routes',
-  components: { LocationAdding, RouteAdding, RoutesList },
+  components: {LocationsList, LocationAdding, RouteAdding, RoutesList },
   data () {
     return {
       locations: [],
