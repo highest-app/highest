@@ -56,10 +56,6 @@ const competitionIcons = {
     name: 'participating',
     color: 'light-green',
     icon: 'mdi-check-outline'
-  },
-
-  get (competition) {
-    return this[competition.participation]
   }
 }
 
