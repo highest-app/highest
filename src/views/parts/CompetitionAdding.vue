@@ -139,7 +139,7 @@ export default {
       }
       this.form.location = {
         type: 'location',
-        value: this.locations[this.form.location]
+        id: this.locations[this.form.location]
       }
       this.addCompetition(this.form)
       this.form = Object.assign({}, this.defaultCompetitionForm)

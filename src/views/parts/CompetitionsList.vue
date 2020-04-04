@@ -43,14 +43,14 @@
               <span class="text--primary">
                 <template v-if="competition.location.type === 'string'">
                   <a
-                    :href="`https://www.openstreetmap.org/search?query=${competition.location.value}`"
+                    :href="`https://www.openstreetmap.org/search?query=${competition.location.address}`"
                     target="_blank">
-                    {{ competition.location.value }}
+                    {{ competition.location.address }}
                   </a>
                 </template>
                 <template v-if="competition.location.type === 'location'">
-                  <router-link :to="`/locations/${competition.location.value.id}`">
-                    {{ competition.location.value.name }}
+                  <router-link :to="`/locations/${competition.location.id}`">
+                    {{ competition.location.name }}
                   </router-link>
                 </template>
               </span>
@@ -96,7 +96,10 @@ export default {
   mounted () {
     this.competitions.forEach((competition) => {
       if (competition.location.type === 'location') {
-        competition.location.value = this.getLocationById(competition.location.value)
+        competition.location = {
+          type: competition.type,
+          ...this.getLocationById(competition.location.value)
+        }
       }
     })
   },

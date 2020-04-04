@@ -28,6 +28,10 @@
           cols="12"
           md="6">
           <h1>{{ competition.name }}</h1>
+          <span class="overline list-description--text">
+            <v-icon color="list-description">mdi-map-marker-outline</v-icon>
+            {{ competition.location.address }}
+          </span>
           <p>{{ competition.description }}</p>
           <span class="primary--text">{{ dateToText(competition.date) }}</span>
         </v-col>
@@ -51,7 +55,6 @@ export default {
   data () {
     return {
       competition: {},
-      location: {},
 
       showMap: false,
       mapInfo: {}
@@ -59,24 +62,21 @@ export default {
   },
   mounted () {
     this.competition = this.getCompetitionById(this.$route.params.competition)
+    let query = ''
+
     if (this.competition.location.type === 'string') {
-      this.location = {
-        type: 'external',
-        name: this.competition.location.value,
-        link: new URL(`https://www.openstreetmap.org/search?query=${this.competition.location.value}`)
-      }
-      provider.search({ query: this.competition.location.value }).then(response => {
-        this.mapInfo = response[0]
-        this.showMap = true
-      })
+      query = this.competition.location.address
     } else if (this.competition.location.type === 'location') {
-      const internalLocation = this.getLocationById(this.competition.location.value)
-      this.location = {
-        type: 'internal',
-        name: internalLocation.name,
-        link: `/locations/${internalLocation.id}`
+      this.competition.location = {
+        type: this.competition.location.type,
+        ...this.getLocationById(this.competition.location.id)
       }
+      query = this.competition.location.address
     }
+    provider.search({ query }).then(response => {
+      this.mapInfo = response[0]
+      this.showMap = true
+    })
   },
   computed: {
     ...mapGetters(['getCompetitionById', 'getLocationById'])
