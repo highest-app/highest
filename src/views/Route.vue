@@ -1,5 +1,28 @@
 <template>
   <v-content>
+    <v-dialog
+      v-model="deleteDialog"
+      max-width="290"
+      persistent>
+      <v-card>
+        <v-card-title class="headline">{{ $t('terms.actionConfirmation') }}</v-card-title>
+        <v-card-text>{{ $t('routes.deleteConfirmation') }}</v-card-text>
+        <v-card-actions>
+          <v-btn
+            text
+            @click="deleteDialog = false">
+            {{ $t('terms.cancel') }}
+          </v-btn>
+          <v-spacer/>
+          <v-btn
+            color="error"
+            text
+            @click="deleteThis">
+            {{ $t('terms.delete') }}
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <template v-if="editMode">
       <app-bar
         :title="$t('routes.edit')"
@@ -8,11 +31,17 @@
           <a @click="validateEdit">{{ $t('terms.ok') }}</a>
         </template>
       </app-bar>
+      <v-container>
+        <v-btn
+          class="gradient--error"
+          block
+          @click="deleteDialog = true">
+          {{ $t('routes.delete') }}
+        </v-btn>
+      </v-container>
     </template>
     <template v-else>
-      <app-bar
-        :title="route.name"
-        small-only>
+      <app-bar small-only>
         <template #bar-left-actions>
           <a @click="$router.back()">{{ $t('terms.back') }}</a>
         </template>
@@ -36,92 +65,75 @@
                 <v-img :src="photo"/>
               </v-carousel-item>
             </v-carousel>
+            <v-img
+              v-else
+              :src="location.photos[0]"/>
           </v-col>
           <v-col
             cols="12"
             md="6">
-            <p>{{ route.notes }}</p>
-            <v-switch
-              v-model="route.finished"
-              color="primary"
-              :label="$t('routes.markAsFinished')"
-              inset
-              @click.stop="switchFinishedRoute(route.id)"/>
-            <v-list class="background">
-              <v-divider/>
-              <template
-                v-for="(progression, i) in route.progressions">
-                <v-list-item :key="`${progression.date}-${i}-0`">
-                  <v-list-item-content>
-                    <v-list-item-title>{{ dateToText(progression.date) }}</v-list-item-title>
-                    <p class="mb-0 paragraph--text">{{ progression.notes }}</p>
-                  </v-list-item-content>
-                  <v-list-item-action>
+            <h1>{{ route.name }}</h1>
+            <span class="overline list-description--text">
+              <v-icon color="list-description">mdi-map-marker-outline</v-icon>
+              {{ location.name }} &mdash; {{ location.address }}
+            </span>
+            <v-row>
+              <v-col cols="12">
+                <card-header>{{ $t('routes.information') }}</card-header>
+                <p>{{ route.notes }}</p>
+                <v-switch
+                  v-model="route.finished"
+                  color="primary"
+                  :label="$t('routes.markAsFinished')"
+                  inset
+                  @click.stop="switchFinishedRoute(route.id)"/>
+              </v-col>
+              <v-col cols="12">
+                <card-header>{{ $t('routes.progressions') }}</card-header>
+                <v-date-picker
+                  v-model="progressionForm.date"
+                  :events="progressionDates"
+                  :max="today"
+                  event-color="secondary"
+                  style="box-shadow: 0;"
+                  color="primary"
+                  no-title
+                  full-width/>
+              </v-col>
+              <v-col cols="12">
+                <v-row class="mx-2">
+                  <template v-if="selectedProgress === undefined">
+                    <v-text-field
+                      v-model="progressionForm.notes"
+                      :placeholder="$t('routes.addProgress')"
+                      rows="1"
+                      auto-grow
+                      hide-details
+                      solo
+                      flat
+                      @keydown.enter="progressionAdd"/>
+                    <v-btn
+                      icon
+                      @click="progressionAdd">
+                      <v-icon>mdi-plus</v-icon>
+                    </v-btn>
+                  </template>
+                  <template v-else>
+                    <strong>{{ dateToText(selectedProgress.date) }} : </strong>
+                    {{ selectedProgress.notes }}
+                    <v-spacer/>
                     <v-btn
                       icon
                       @click="removeProgression({
                         route: route.id,
-                        notes: progression.notes
+                        notes: selectedProgress.notes
                       })">
                       <v-icon color="red darken-4">mdi-delete-outline</v-icon>
                     </v-btn>
-                  </v-list-item-action>
-                </v-list-item>
-                <v-divider :key="`${progression.date}-${i}-1`"/>
-              </template>
-            </v-list>
-            <responsive-dialog>
-              <template #activator>
-                <v-btn block>{{ $t('routes.addProgress') }}</v-btn>
-              </template>
-              <template #dialog>
-                <app-bar
-                  :title="$t('routes.addProgress')"
-                  small-only
-                  fixed>
-                  <template #bar-right-actions>
-                    <a @click="progressionAdd">{{ $t('terms.add') }}</a>
                   </template>
-                </app-bar>
-                <page-body>
-                  <list-group>
-                    <card top>
-                      <template #title>
-                        <span class="primary--text">
-                          {{ dateToText(progressionForm.date) }}
-                        </span>
-                      </template>
-                    </card>
-                    <card>
-                      <template #title>
-                        <v-date-picker
-                          v-model="progressionForm.date"
-                          style="box-shadow: 0;"
-                          first-day-of-week="1"
-                          color="primary"
-                          :max="today"
-                          no-title
-                          full-width/>
-                      </template>
-                    </card>
-                    <card bottom>
-                      <template #title>{{ $t('terms.notes') }}</template>
-                      <template #input>
-                        <v-textarea
-                          id="notes-textarea"
-                          v-model="progressionForm.notes"
-                          :placeholder="$t('routes.progressionNotesPlaceholder')"
-                          rows="1"
-                          auto-grow
-                          hide-details
-                          solo
-                          flat/>
-                      </template>
-                    </card>
-                  </list-group>
-                </page-body>
-              </template>
-            </responsive-dialog>
+                </v-row>
+              </v-col>
+            </v-row>
           </v-col>
         </v-row>
       </v-container>
@@ -139,8 +151,10 @@ export default {
   data() {
     return {
       route: {},
+      location: {},
 
       editMode: false,
+      deleteDialog: false,
 
       progressionForm: Object.assign({}, defaultProgressionForm),
       today
@@ -151,14 +165,29 @@ export default {
     if (this.route === undefined) {
       this.$router.back()
     }
+    this.location = this.getLocationById(this.route.location)
   },
   computed: {
-    ...mapGetters(['getRoute'])
+    ...mapGetters(['getRoute', 'getLocationById']),
+    progressionDates () {
+      let dates = []
+      this.route.progressions.forEach((progress) => {
+        dates.push(progress.date)
+      })
+      return dates
+    },
+    selectedProgress () {
+      let progression = this.route.progressions.find(progress => progress.date === this.progressionForm.date)
+      if (progression === null) {
+        return undefined
+      }
+      return progression
+    }
   },
   methods: {
     ...mapActions(['deleteRoute', 'switchFinishedRoute', 'addProgression', 'removeProgression']),
     dateToText,
-    delete () {
+    deleteThis () {
       this.deleteRoute(this.route.id)
       this.$router.back()
     },
@@ -171,7 +200,7 @@ export default {
         date: this.progressionForm.date,
         notes: this.progressionForm.notes
       })
-      this.progressionForm = Object.assign({}, defaultProgressionForm)
+      this.progressionForm.notes = ''
     }
   }
 }
