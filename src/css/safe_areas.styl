@@ -2,5 +2,15 @@
   padding-left: env(safe-area-inset-left)
   padding-right: env(safe-area-inset-right)
 
-.v-bottom-navigation
-  padding-bottom: env(safe-area-inset-bottom) !important
+@css {
+  @supports(padding: max(0px)) {
+    .v-bottom-navigation {
+      height: min(56px, env(safe-area-inset-bottom)px) !important;
+    }
+    .v-bottom-navigation .v-btn {
+      margin-top: 15px;
+      margin-bottom: max(15px, env(safe-area-inset-bottom));
+      height: auto;
+    }
+  }
+}
