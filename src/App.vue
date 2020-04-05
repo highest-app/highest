@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app v-cloak>
     <v-dialog
       v-model="locationDialog"
       max-width="50%">
