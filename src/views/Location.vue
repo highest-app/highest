@@ -63,15 +63,14 @@
               </span>
               <p>{{ location.notes }}</p>
               <v-btn
-                class="mr-3"
-                color="primary"
+                class="mr-3 gradient--primary"
                 depressed
                 @click="editLocation">
                 <v-icon left>mdi-pencil-outline</v-icon>
                 {{ $t('terms.edit') }}
               </v-btn>
               <v-btn
-                color="error"
+                class="gradient--error"
                 depressed
                 @click="deleteDialog = true">
                 <v-icon left>mdi-delete-outline</v-icon>

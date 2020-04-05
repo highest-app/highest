@@ -5,6 +5,7 @@ const CORS_PROXY = "https://cors-anywhere.herokuapp.com/"
 
 function getFeeds(context, list) {
   list.forEach(url => {
+    context.feedsLoaded = false
     parser.parseURL(CORS_PROXY + url, function (err, feed) {
       feed.page = 1
       context.feeds.push(feed)
@@ -17,6 +18,7 @@ function getFeeds(context, list) {
         const dateB = new Date(b.pubDate).getTime()
         return (dateA > dateB) ? -1 : ((dateB > dateA) ? 1 : 0)
       })
+      context.feedsLoaded = true
     })
   })
 }

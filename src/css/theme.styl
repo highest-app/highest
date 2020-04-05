@@ -9,6 +9,12 @@
 .v-navigation-drawer
   background: var(--v-sheets-base) !important
 
+.v-bottom-navigation
+  &.theme--dark
+    border-top: 1px solid rgba(255, 255, 255, 0.08)
+  &.theme--light
+    border-top: 1px solid rgba(0, 0, 0, 0.08)
+
 @css {
   .translucent {
     -webkit-backdrop-filter: blur(30px);
@@ -16,3 +22,10 @@
     background-color: rgba(var(--v-background-base), 0.4) !important;
   }
 }
+
+.gradient--primary
+  background: linear-gradient(to bottom left, var(--v-primary-light-base), var(--v-primary-base))
+.gradient--secondary
+  background: linear-gradient(to bottom left, var(--v-secondary-light-base), var(--v-secondary-base))
+.gradient--error
+  background: linear-gradient(to bottom left, var(--v-error-light-base), var(--v-error-base))

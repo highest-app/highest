@@ -18,7 +18,7 @@
                 bottom>
                 <template #activator="{ on: tooltip }">
                   <v-btn
-                    color="secondary"
+                    class="gradient--secondary"
                     elevation="0"
                     fab
                     small
@@ -34,7 +34,7 @@
         </div>
         <div class="hidden-sm-and-down">
           <v-btn
-            color="secondary"
+            class="gradient--secondary"
             elevation="0"
             fab
             small
@@ -71,6 +71,10 @@
                 v-model="separatedFeeds"
                 :label="$t('home.separatedFeeds')"
                 inset/>
+              <v-progress-linear
+                v-if="!feedsLoaded"
+                class="mb-4"
+                indeterminate/>
               <template v-if="separatedFeeds">
                 <div
                   v-for="feed in feeds"
@@ -140,6 +144,7 @@ export default {
       feedItems: [],
       feedPage: 1,
       separatedFeeds: false,
+      feedsLoaded: false,
 
       profileSheet: false,
       profileDialog: false

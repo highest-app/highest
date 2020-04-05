@@ -9,7 +9,7 @@
               bottom>
               <template #activator="{ on }">
                 <v-btn
-                  color="secondary"
+                  class="gradient--secondary"
                   elevation="0"
                   fab
                   small

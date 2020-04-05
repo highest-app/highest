@@ -33,8 +33,8 @@
           :to="item.route"
           class="primary--text"
           link>
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
+          <v-list-item-icon class="box-icon gradient--primary">
+            <v-icon medium>{{ item.icon }}</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>{{ $t(item.name) }}</v-list-item-title>
@@ -47,7 +47,7 @@
         subheader>
         <v-subheader>{{ $tc('generic.location', 2).toUpperCase() }}</v-subheader>
         <v-list-item
-          class="secondary"
+          class="gradient--secondary"
           @click="locationDialog = true">
           <v-list-item-icon>
             <v-icon color="white">mdi-plus</v-icon>
@@ -62,7 +62,7 @@
           :to="`/locations/${location.id}`"
           class="primary--text"
           link>
-          <v-list-item-icon>
+          <v-list-item-icon class="box-icon gradient--secondary">
             <v-icon>mdi-map-marker-outline</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
@@ -89,6 +89,22 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+
+      <template v-slot:append>
+        <div class="pa-2">
+          <v-divider/>
+          <v-list dense>
+            <v-list-item to="/settings">
+              <v-list-item-icon>
+                <v-icon left>mdi-cog-outline</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ $t('pages.settings') }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </div>
+      </template>
     </v-navigation-drawer>
 
     <router-view :key="$route.fullPath"/>

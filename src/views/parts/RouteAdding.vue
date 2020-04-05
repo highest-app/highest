@@ -6,7 +6,7 @@
         bottom>
         <template #activator="{ on }">
           <v-btn
-            color="secondary"
+            class="gradient--secondary"
             elevation="0"
             fab
             small
@@ -152,7 +152,6 @@
                     v-if="form.enableGoal"
                     v-model="form.goal"
                     style="box-shadow: 0;"
-                    first-day-of-week="1"
                     color="primary"
                     no-title
                     full-width/>

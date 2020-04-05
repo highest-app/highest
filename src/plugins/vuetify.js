@@ -12,8 +12,11 @@ Vue.use(Vuetify)
 
 const theme = {
   primary: '#5EA7EF',
+  'primary-light': '#ABCCED',
   secondary: '#EFA65E',
-  error: colors.red.darken4,
+  'secondary-light': '#EECAA6',
+  error: '#B71C1C',
+  'error-light': '#B76565',
   info: colors.blue.base,
   success: colors.green.darken1,
   warning: colors.amber.base
