@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import NProgress from 'nprogress'
 
 Vue.use(VueRouter)
 
-export default new VueRouter({
+let router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -50,3 +51,16 @@ export default new VueRouter({
     }
   ]
 })
+
+router.beforeResolve((to, from, next) => {
+  if (to.name) {
+    NProgress.start()
+  }
+  next()
+})
+
+router.afterEach(() => {
+  NProgress.done()
+})
+
+export default router
