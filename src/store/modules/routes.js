@@ -7,14 +7,14 @@ const state = {
 
 const getters = {
   getRoutes: state => state.data,
-  getRoute: state => (location, route) => {
-    return state.data.filter(i => i.location === location && i.id === route)[0]
-  },
   getFinishedRoutes: state => {
     return state.data.filter(route => route.finished)
   },
   getRoutesByLocation: state => id => {
     return state.data.filter(route => route.location === id)
+  },
+  getRoutesByTag: state => tag => {
+    return state.data.filter(route => route.tags.includes(tag))
   },
   searchRoutes: (state, getters) => query => {
     query = query.toLowerCase()
@@ -24,7 +24,10 @@ const getters = {
 
       return name.match(query) !== null || notes.match(query) !== null
     })
-  }
+  },
+  getRoute: state => (location, route) => {
+    return state.data.find(i => i.location === location && i.id === route)
+  },
 }
 
 const mutations = {
@@ -38,6 +41,7 @@ const mutations = {
       color: data.color,
       notes: data.notes,
       photos: [],
+      tags: [],
       goal: data.goal,
       finished: false,
       progressions: []

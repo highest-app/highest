@@ -59,14 +59,14 @@ const competitionIcons = {
   }
 }
 
-const tags = [
-  { id: 'red', name: 'Rouge', color: 'red' },
-  { id: 'orange', name: 'Orange', color: 'orange' },
-  { id: 'yellow', name: 'Jaune', color: 'yellow' },
-  { id: 'green', name: 'Vert', color: 'green' },
-  { id: 'blue', name: 'Bleu', color: 'blue' },
-  { id: 'purple', name: 'Violet', color: 'purple' },
-  { id: 'gray', name: 'Gris', color: 'gray' },
+const defaultTags = [
+  { id: 'red', name: 'Rouge', color: 'red', default: true },
+  { id: 'orange', name: 'Orange', color: 'orange', default: true },
+  { id: 'yellow', name: 'Jaune', color: 'yellow', default: true },
+  { id: 'green', name: 'Vert', color: 'green', default: true },
+  { id: 'blue', name: 'Bleu', color: 'blue', default: true },
+  { id: 'purple', name: 'Violet', color: 'purple', default: true },
+  { id: 'gray', name: 'Gris', color: 'gray', default: true },
 ]
 
 export {
@@ -74,5 +74,5 @@ export {
   gradeElements,
   routeIcons,
   competitionIcons,
-  tags
+  defaultTags
 }

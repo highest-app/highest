@@ -34,7 +34,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { grades, tags } from '@/utils/data'
+import { grades } from '@/utils/data'
 import { dateToText } from '@/utils/parsing'
 import RouteCategories from '@/views/parts/RouteCategories'
 import RouteAdding from '@/views/parts/RouteAdding'
@@ -50,8 +50,7 @@ export default {
 
       locationDialog: false,
 
-      grades,
-      tags
+      grades
     }
   },
   mounted () {

@@ -1,3 +1,5 @@
+import { defaultTags } from './data'
+
 function loadFromStorage(category) {
   let defaults = {
     competitions: [],
@@ -21,6 +23,7 @@ function loadFromStorage(category) {
         color: '#FF0FF0',
         notes: "It's my favorite route !",
         photos: [],
+        tags: ['red', 'yellow'],
         goal: '2020-04-01',
         finished: false,
         progressions: [
@@ -31,7 +34,8 @@ function loadFromStorage(category) {
         ]
       }
     ],
-    settings: {}
+    settings: {},
+    tags: defaultTags
   }
 
   let data = localStorage.getItem(category)

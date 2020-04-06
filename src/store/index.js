@@ -6,6 +6,7 @@ import feeds from './modules/feeds'
 import locations from './modules/locations'
 import routes from './modules/routes'
 import settings from './modules/settings'
+import tags from './modules/tags'
 
 Vue.use(Vuex)
 
@@ -32,18 +33,8 @@ const actions = {
 }
 
 let store = new Vuex.Store({
-  state,
-  getters,
-  mutations,
-  actions,
-  modules: {
-    competitions,
-    feeds,
-    locations,
-    routes,
-    settings
-  }
+  state, getters, mutations, actions,
+  modules: { competitions, feeds, locations, routes, settings, tags }
 })
 
-global.store = store
 export default store
