@@ -1,5 +1,6 @@
 {
   "terms": {
+    "general": "Général",
     "name": "Nom",
     "description": "Description",
     "notes": "Notes",
@@ -53,6 +54,10 @@
     "separatedFeeds": "Flux séparés",
     "deleteFeed": "Supprimer le flux"
   },
+  "profile": {
+    "user": "Utilisateur",
+    "login": "Se connecter"
+  },
   "search": {
     "starter": "Commencez à taper un mot-clé pour trouver voies, lieux et compétitions.",
 
@@ -68,10 +73,16 @@
     "color": "Couleur",
     "defineGoal": "Définir un objectif",
 
+    "information": "Informations",
+    "progressions": "Progressions",
     "progressionNotesPlaceholder": "Notes à rajouter à propos de cette progression",
 
     "edit": "Modifier la voie",
 
+    "delete": "Supprimer la voie",
+    "deleteConfirmation": "Si vous supprimez cette voie, les progressions sauvegardées dessus vont également l'être. Réfléchissez bien !",
+
+    "all": "Toutes les voies",
     "noRoutes": "Aucune voie pour le moment. Ajoutez-en une !",
     "for": "Pour le",
     "noGoal": "Aucun objectif",
@@ -87,7 +98,7 @@
 
     "noLocations": "Aucun lieu pour le moment. Créez-en un afin d'ajouter vos voies.",
 
-    "deleteConfirmation": "Si vous supprimez ce lieu, les voies enregistrées dessus le seront également. Vous perdrez ainsi vos progressions sur ce lieu. Réfléchissez-bien !"
+    "deleteConfirmation": "Si vous supprimez ce lieu, les voies enregistrées dessus le seront également. Vous perdrez ainsi vos progressions sur ce lieu. Réfléchissez bien !"
   },
   "competitions": {
     "noCompetitions": "Aucune compétition pour le moment. Ajoutez-en une !",
@@ -102,10 +113,13 @@
     "participating": "Participant"
   },
   "settings": {
+    "adjustments": "Réglages",
+
     "display": "Affichage",
     "language": "Langue",
     "localeDescription": "Langue de l'application",
     "darkTheme": "Thème sombre",
+    "invertColors": "Inverser les couleurs",
     "autoDarkTheme": "Thème sombre automatique",
     "autoDarkThemeDescription": "Le thème s'ajustera à celui de l'appareil. Assurez-vous d'avoir mis à jour votre système afin de profiter de cette fonctionnalité.",
 

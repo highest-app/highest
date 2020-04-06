@@ -1,5 +1,6 @@
 {
   "terms": {
+    "general": "General",
     "name": "Name",
     "description": "Description",
     "notes": "Notes",
@@ -53,6 +54,10 @@
     "separatedFeeds": "Separated feeds",
     "deleteFeed": "Delete feed"
   },
+  "profile": {
+    "user": "User",
+    "login": "Log in"
+  },
   "search": {
     "starter": "Start typing a key word to find routes, locations and competitions.",
 
@@ -68,10 +73,16 @@
     "defineGoal": "Define a goal",
     "color": "Colour",
 
+    "information": "Informations",
+    "progressions": "Progressions",
     "progressionNotesPlaceholder": "Notes to add about this progression",
 
     "edit": "Edit route",
 
+    "delete": "Delete route",
+    "deleteConfirmation": "If you delete this route, all your registered progressions on it will be lost. Think about it !",
+
+    "all": "All routes",
     "noRoutes": "Any route for the moment. Let's add one !",
     "for": "For the",
     "noGoal": "No goal",
@@ -102,10 +113,13 @@
     "participating": "Participating"
   },
   "settings": {
+    "adjustments": "Adjustments",
+
     "display": "Display",
     "language": "Language",
     "localeDescription": "Application's locale",
     "darkTheme": "Dark theme",
+    "invertColors": "Invert colors",
     "autoDarkTheme": "Automatic dark theme",
     "autoDarkThemeDescription": "Theme will adjust to your device's one. Make sure your system is up to date so as to take advantage of this feature.",
 
