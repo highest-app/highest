@@ -14,7 +14,7 @@
                   fab
                   small
                   v-on="on">
-                  <v-icon>mdi-plus</v-icon>
+                  <v-icon color="white">mdi-plus</v-icon>
                 </v-btn>
               </template>
               <span>{{ $t('competitions.add') }}</span>

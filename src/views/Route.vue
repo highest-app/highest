@@ -33,7 +33,7 @@
       </app-bar>
       <v-container>
         <v-btn
-          class="gradient--error"
+          class="gradient--error white--text"
           block
           @click="deleteDialog = true">
           {{ $t('routes.delete') }}
