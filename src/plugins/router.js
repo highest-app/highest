@@ -40,6 +40,11 @@ let router = new VueRouter({
       component: () => import(/* webpackChunkName: "routes" */ '../views/AllRoutes.vue')
     },
     {
+      path: '/tags/:tag',
+      name: 'tag',
+      component: () => import(/* webpackChunkName: "routes" */ '../views/Tag.vue')
+    },
+    {
       path: '/competitions',
       name: 'competitions',
       component: () => import(/* webpackChunkName: "competitions" */ '../views/Competitions.vue')

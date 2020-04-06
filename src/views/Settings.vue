@@ -156,6 +156,7 @@ export default {
     eraseData () {
       localStorage.removeItem('competitions')
       localStorage.removeItem('feeds')
+      localStorage.removeItem('tags')
       localStorage.removeItem('locations')
       localStorage.removeItem('routes')
       localStorage.removeItem('settings')
