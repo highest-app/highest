@@ -6,8 +6,10 @@
       elevation="0"
       clipped-left
       prominent>
-      <v-toolbar-title>
-        <h2>{{ title }}</h2>
+      <v-toolbar-title
+        class="row"
+        style="margin: inherit">
+        <slot name="title-prepend"/><h2>{{ title }}</h2>
       </v-toolbar-title>
       <v-spacer/>
       <div class="top-bar__actions">
@@ -25,7 +27,9 @@
       elevation="0">
       <slot name="bar-left-actions"/>
       <v-spacer/>
-      <v-toolbar-title>{{ title }}</v-toolbar-title>
+      <v-toolbar-title>
+        <slot name="title-prepend"/>{{ title }}
+      </v-toolbar-title>
       <v-spacer/>
       <slot name="bar-right-actions"/>
     </v-app-bar>

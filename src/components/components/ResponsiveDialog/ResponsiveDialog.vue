@@ -25,7 +25,7 @@
       class="responsive-dialog__sheet"
       scrollable
       inset>
-      <template v-slot:activator="{ on }">
+      <template #activator="{ on }">
         <div
           class="responsive-dialog__trigger"
           v-on="on">

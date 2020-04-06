@@ -22,7 +22,7 @@
                     :value="choice"
                     active-class="null">
                     <template
-                      v-slot:default="{ active, toggle }"
+                      #default="{ active, toggle }"
                       @click="toggle">
                       <v-list-item-content>
                         <v-list-item-title>{{ labels === null ? choice : labels[i] }}</v-list-item-title>

@@ -6,10 +6,6 @@ export default Vue.component('card', {
         type: Boolean,
         default: false
       },
-      class: {
-        type: String,
-        default: ''
-      },
       clickable: {
         type: Boolean,
         default: false
@@ -62,6 +58,11 @@ export default Vue.component('card', {
                   }
                 },
                 [
+                  this.$slots.avatar === undefined ? '' :
+                  createElement(
+                    'v-list-item-avatar',
+                    this.$slots.avatar
+                  ),
                   createElement(
                     'v-row', {
                       class: {

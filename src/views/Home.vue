@@ -7,41 +7,28 @@
     </v-dialog>
     <app-bar :title="$t('pages.home')">
       <template #top-bar-actions>
-        <div class="hidden-md-and-up">
-          <v-bottom-sheet
-            v-model="profileSheet"
-            scrollable
-            inset>
-            <template #activator="{ on: sheet }">
-              <v-tooltip
-                open-delay="500"
-                bottom>
-                <template #activator="{ on: tooltip }">
-                  <v-btn
-                    class="gradient--secondary"
-                    elevation="0"
-                    fab
-                    small
-                    v-on="{ ...sheet, ...tooltip }">
-                    <v-icon>mdi-account-outline</v-icon>
-                  </v-btn>
-                </template>
-                <span>{{ $t('pages.profile') }}</span>
-              </v-tooltip>
-            </template>
+        <responsive-dialog>
+          <template #activator>
+            <v-tooltip
+              open-delay="500"
+              bottom>
+              <template #activator="{ on }">
+                <v-btn
+                  class="gradient--secondary"
+                  elevation="0"
+                  fab
+                  small
+                  v-on="on">
+                  <v-icon color="white">mdi-account-outline</v-icon>
+                </v-btn>
+              </template>
+              <span>{{ $t('pages.profile') }}</span>
+            </v-tooltip>
+          </template>
+          <template #dialog>
             <profile @close="profileSheet = false"/>
-          </v-bottom-sheet>
-        </div>
-        <div class="hidden-sm-and-down">
-          <v-btn
-            class="gradient--secondary"
-            elevation="0"
-            fab
-            small
-            @click="profileDialog = true">
-            <v-icon>mdi-account-outline</v-icon>
-          </v-btn>
-        </div>
+          </template>
+        </responsive-dialog>
       </template>
     </app-bar>
     <v-container>
