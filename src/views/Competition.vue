@@ -30,6 +30,7 @@
           <h1>{{ competition.name }}</h1>
           <span class="overline list-description--text">
             <v-icon color="list-description">mdi-map-marker-outline</v-icon>
+            <template v-if="competition.location.type === 'location'">{{ competition.location.name }} &mdash;</template>
             {{ competition.location.address }}
           </span>
           <p>{{ competition.description }}</p>

@@ -4,7 +4,7 @@
       <v-list-item v-if="competitions.length === 0">
         {{ $t('competitions.noCompetitions') }}
       </v-list-item>
-      <template v-for="(competition, i) in competitions">
+      <template v-for="(competition, i) in parsedCompetitions">
         <v-list-item
           :key="`${competition.id}--list-item`"
           no-action>
@@ -90,18 +90,9 @@ export default {
   },
   data () {
     return {
-      icons
+      icons,
+      parsedCompetitions: []
     }
-  },
-  mounted () {
-    this.competitions.forEach((competition) => {
-      if (competition.location.type === 'location') {
-        competition.location = {
-          type: competition.type,
-          ...this.getLocationById(competition.location.value)
-        }
-      }
-    })
   },
   computed: {
     ...mapGetters(['getLocationById'])
@@ -115,6 +106,19 @@ export default {
         participation
       })
       this.refreshCompetitions()
+    }
+  },
+  watch: {
+    competitions () {
+      this.competitions.forEach((competition) => {
+        if (competition.location.type === "location") {
+          competition.location = {
+            type: competition.location.type,
+            ...this.getLocationById(competition.location.id)
+          }
+        }
+        this.parsedCompetitions.push(competition)
+      })
     }
   }
 }
