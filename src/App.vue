@@ -1,10 +1,5 @@
 <template>
   <v-app v-cloak>
-    <v-dialog
-      v-model="locationDialog"
-      max-width="50%">
-      <LocationAdding @close="locationDialog = false"/>
-    </v-dialog>
     <v-navigation-drawer
       :app="$vuetify.breakpoint.mdAndUp"
       class="hidden-sm-and-down"
@@ -41,69 +36,32 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-      <v-list
-        dense
-        nav
-        subheader>
-        <v-subheader>{{ $tc('generic.location', 2).toUpperCase() }}</v-subheader>
-        <v-list-item
-          class="gradient--secondary"
-          @click="locationDialog = true">
-          <v-list-item-icon>
-            <v-icon color="white">mdi-plus</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title class="white--text">{{ $t('terms.add') }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item
-          v-for="location in locations"
-          :key="location.name"
-          :to="`/locations/${location.id}`"
-          class="primary--text"
-          link>
-          <v-list-item-icon class="box-icon gradient--secondary">
-            <v-icon>mdi-map-marker-outline</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>{{ location.name }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-      <v-list
-        dense
-        nav
-        subheader>
-        <v-subheader>{{ $tc('generic.tag', 2).toUpperCase() }}</v-subheader>
 
-        <v-list-item
-          v-for="tag in tags"
-          :key="tag.name"
-          :to="`/tags/${tag.id}`"
-          link>
-          <v-list-item-icon>
-            <v-icon :color="tag.color">mdi-circle</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>{{ $t(`terms.${tag.color}`) }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
+      <route-categories/>
 
-      <template v-slot:append>
-        <div class="pa-2">
-          <v-divider/>
-          <v-list dense>
-            <v-list-item to="/settings">
-              <v-list-item-icon>
-                <v-icon left>mdi-cog-outline</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title>{{ $t('pages.settings') }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </div>
+      <template #append>
+        <v-divider/>
+        <v-row class="px-4 py-2">
+          <v-btn
+            text
+            to="/settings">
+            <v-icon left>mdi-cog-outline</v-icon> {{ $t('pages.settings') }}
+          </v-btn>
+          <v-spacer/>
+          <v-tooltip
+            open-delay="500"
+            top>
+            <template #activator="{ on }">
+              <v-btn
+                icon
+                v-on="on"
+                @click="invertColors">
+                <v-icon>mdi-invert-colors</v-icon>
+              </v-btn>
+            </template>
+            <span>{{ $t('settings.invertColors') }}</span>
+          </v-tooltip>
+        </v-row>
       </template>
     </v-navigation-drawer>
 
@@ -128,13 +86,13 @@
 
 <script>
 import moment from 'moment'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import { tags } from '@/utils/data'
-import LocationAdding from '@/views/parts/LocationAdding'
+import RouteCategories from '@/views/parts/RouteCategories'
 
 export default {
   name: 'App',
-  components: { LocationAdding },
+  components: { RouteCategories },
   data () {
     return {
       bottomNav: '',
@@ -146,7 +104,7 @@ export default {
       locations: [],
       menu: [
         { name: 'pages.home', route: '/', icon: 'mdi-home-outline' },
-        { name: 'pages.routes', route: '/routes', icon: 'mdi-routes' },
+        { name: 'pages.routes', route: '/routes/all', icon: 'mdi-routes' },
         { name: 'pages.competitions', route: '/competitions', icon: 'mdi-medal' }
       ],
       mobileMenu: [
@@ -163,6 +121,7 @@ export default {
     this.locations = this.getLocations
   },
   methods: {
+    ...mapActions(['invertColors']),
     setTheme () {
       const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
       if (prefersDark && this.autoDarkTheme) this.$vuetify.theme.dark = true

@@ -8,64 +8,26 @@
       </template>
     </app-bar>
     <page-body>
-      <div class="hidden-md-and-up">
-        <list-group>
-          <h2>{{ $tc('generic.location', 2) }}</h2>
-          <v-bottom-sheet
-            v-model="locationDialog"
-            scrollable
-            inset>
-            <template #activator="{ on }">
-              <v-col
-                cols="12"
-                md="6">
-                <v-card
-                  elevation="0"
-                  v-on="on">
-                  <v-card-title>{{ $t('locations.add') }}</v-card-title>
-                </v-card>
-              </v-col>
-            </template>
-            <v-card class="background">
-              <location-adding @close="locationDialog = false"/>
-            </v-card>
-          </v-bottom-sheet>
-          <locations-list :locations="locations"/>
-        </list-group>
-        <list-group>
-          <h2>{{ $tc('generic.tag', 2) }}</h2>
-          <v-list
-            class="background"
-            elevation="0">
-            <template v-for="(tag, i) in tags">
-              <v-list-item
-                :key="`${tag.name}--list-item`"
-                :to="`/tags/${tag.id}`"
-                link>
-                <v-list-item-icon>
-                  <v-icon :color="tag.color">mdi-circle</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>
-                  <v-list-item-title>{{ $t(`terms.${tag.color}`) }}</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-              <v-divider
-                v-if="i !== tags.length - 1"
-                :key="`${tag.name}--divider`"
-                inset/>
-            </template>
-          </v-list>
-        </list-group>
+      <div>
+        <v-list
+          v-if="locations.length > 0"
+          class="background"
+          subheader
+          dense>
+          <v-subheader>{{ $t('terms.general').toUpperCase() }}</v-subheader>
+          <v-list-item
+            to="/routes/all">
+            <v-list-item-icon class="box-icon gradient--gray">
+              <v-icon>mdi-routes</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ $t('routes.all') }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+        <p v-else>{{ $t('locations.noLocations') }}</p>
       </div>
-      <template v-if="locations.length > 0">
-        <list-group
-          v-for="location in locations"
-          :key="location.id">
-          <h2>{{ location.name }}</h2>
-          <routes-list :routes="routes[location.id]"/>
-        </list-group>
-      </template>
-      <p v-else>{{ $t('locations.noLocations') }}</p>
+      <route-categories mobile/>
     </page-body>
   </v-content>
 </template>
@@ -74,19 +36,17 @@
 import { mapGetters } from 'vuex'
 import { grades, tags } from '@/utils/data'
 import { dateToText } from '@/utils/parsing'
-import LocationAdding from '@/views/parts/LocationAdding'
+import RouteCategories from '@/views/parts/RouteCategories'
 import RouteAdding from '@/views/parts/RouteAdding'
-import RoutesList from '@/views/parts/RoutesList'
-import LocationsList from '@/views/parts/LocationsList'
 
 export default {
   name: 'Routes',
-  components: {LocationsList, LocationAdding, RouteAdding, RoutesList },
+  components: { RouteAdding, RouteCategories },
   data () {
     return {
       locations: [],
       parsedLocations: {},
-      routes: {},
+      routes: [],
 
       locationDialog: false,
 
@@ -102,15 +62,12 @@ export default {
     this.refreshRoutes()
   },
   computed: {
-    ...mapGetters(['getLocations', 'getRoutesByLocation', 'getLocationById'])
+    ...mapGetters(['getLocations', 'getRoutesByLocation', 'getLocationById', 'getRoutes'])
   },
   methods: {
     dateToText,
     refreshRoutes () {
-      this.routes = {}
-      this.locations.forEach(location => {
-        this.routes[location.id] = this.getRoutesByLocation(location.id)
-      })
+      this.routes = this.getRoutes
     }
   }
 }

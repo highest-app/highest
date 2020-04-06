@@ -35,6 +35,11 @@ let router = new VueRouter({
       component: () => import(/* webpackChunkName: "routes" */ '../views/Routes.vue')
     },
     {
+      path: '/routes/all',
+      name: 'all-routes',
+      component: () => import(/* webpackChunkName: "routes" */ '../views/AllRoutes.vue')
+    },
+    {
       path: '/competitions',
       name: 'competitions',
       component: () => import(/* webpackChunkName: "competitions" */ '../views/Competitions.vue')

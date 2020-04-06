@@ -10,7 +10,7 @@
         <div class="v-list-item__icon v-list-group__header__prepend-icon">
           <v-avatar>
             <v-img
-              :src="route.photos[0]"
+              :src="getPicture(route)"
               class="routes-list"
               style="background: rgba(0,0,0,.3)">
               <v-tooltip
@@ -32,6 +32,12 @@
         <v-list-item-content>
           <v-list-item-title>
             <v-icon :style="`color: ${route.color}`">mdi-circle</v-icon>
+            <template v-if="showLocation">
+              <router-link :to="`/locations/${route.location}`">
+                {{ getLocationById(route.location).name }}
+              </router-link>
+              &mdash;
+            </template>
             {{ route.grade }}
           </v-list-item-title>
           <v-list-item-subtitle>
@@ -59,7 +65,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import { routeIcons } from '@/utils/data'
 import { dateToText } from '@/utils/parsing'
 
@@ -69,14 +75,28 @@ export default {
     routes: {
       type: Array,
       required: true
+    },
+    showLocation: {
+      type: Boolean,
+      default: false
     }
   },
   data: () => ({
     icons: routeIcons
   }),
+  computed: {
+    ...mapGetters(['getLocationById'])
+  },
   methods: {
     ...mapActions(['switchFinishedRoute']),
-    dateToText
+    dateToText,
+    getPicture (route) {
+      if (route.photos[0] === undefined) {
+        return this.getLocationById(route.location).photos[0]
+      } else {
+        return route.photos[0]
+      }
+    }
   }
 }
 </script>

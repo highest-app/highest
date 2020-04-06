@@ -1,15 +1,22 @@
 <template>
-  <v-card class="background">
-    <v-card-text
-      class="location-adding-menu pa-0"
-      style="overflow-x: hidden;">
+  <responsive-dialog>
+    <template #activator>
+      <v-list-item
+        class="gradient--secondary"
+        @click="null">
+        <v-list-item-icon>
+          <v-icon color="white">mdi-plus</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title class="white--text">{{ $t('terms.add') }}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </template>
+    <template #dialog>
       <app-bar
         :title="$t('locations.add')"
         small-only
         fixed>
-        <template #bar-left-actions>
-          <a @click="close">{{ $t('terms.cancel') }}</a>
-        </template>
         <template #bar-right-actions>
           <a @click="add">{{ $t('terms.add') }}</a>
         </template>
@@ -71,8 +78,8 @@
           </card>
         </list-group>
       </page-body>
-    </v-card-text>
-  </v-card>
+    </template>
+  </responsive-dialog>
 </template>
 
 <script>
@@ -96,10 +103,6 @@ export default {
     },
     add () {
       this.addLocation(this.form)
-      this.resetForm()
-      this.$emit('close')
-    },
-    close () {
       this.resetForm()
       this.$emit('close')
     }
