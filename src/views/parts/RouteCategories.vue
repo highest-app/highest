@@ -45,7 +45,7 @@
             <v-icon :color="tag.color">mdi-circle</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>{{ $t(`terms.${tag.color}`) }}</v-list-item-title>
+            <v-list-item-title>{{ tag.default ? $t(`terms.${tag.color}`) : tag.name }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-divider
@@ -59,7 +59,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { tags } from '@/utils/data'
 import LocationAdding from '@/views/parts/LocationAdding'
 
 export default {
@@ -74,14 +73,15 @@ export default {
   data () {
     return {
       locations: [],
-      tags
+      tags: []
     }
   },
   mounted () {
+    this.tags = this.getTags
     this.locations = this.getLocations
   },
   computed: {
-    ...mapGetters(['getLocations'])
+    ...mapGetters(['getTags', 'getLocations'])
   }
 }
 </script>

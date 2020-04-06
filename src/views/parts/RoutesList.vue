@@ -8,37 +8,47 @@
         :key="`${route.id}--list-item`"
         no-action>
         <div class="v-list-item__icon v-list-group__header__prepend-icon">
-          <v-avatar>
-            <v-img
-              :src="getPicture(route)"
-              class="routes-list"
-              style="background: rgba(0,0,0,.3)">
-              <v-tooltip
-                open-delay="500"
-                bottom>
-                <template #activator="{ on }">
-                  <v-btn
-                    icon
-                    @click.stop="switchFinishedRoute(route.id)"
-                    v-on="on">
-                    <v-icon :color="icons.get(route).color">{{ icons.get(route).icon }}</v-icon>
-                  </v-btn>
-                </template>
-                <span>{{ $t('routes.markAsFinished') }}</span>
-              </v-tooltip>
-            </v-img>
-          </v-avatar>
+          <v-badge
+            :value="route.tags.length > 0"
+            :color="tag(route.tags[0]).color"
+            overlap
+            bordered>
+            <v-avatar>
+              <v-img
+                :src="getPicture(route)"
+                class="routes-list shadowed"
+                style="background: rgba(0,0,0,.5)">
+                <v-tooltip
+                  open-delay="500"
+                  bottom>
+                  <template #activator="{ on }">
+                    <v-btn
+                      icon
+                      @click.stop="switchFinishedRoute(route.id)"
+                      v-on="on">
+                      <v-icon :color="icons.get(route).color">{{ icons.get(route).icon }}</v-icon>
+                    </v-btn>
+                  </template>
+                  <span>{{ $t('routes.markAsFinished') }}</span>
+                </v-tooltip>
+              </v-img>
+            </v-avatar>
+          </v-badge>
         </div>
         <v-list-item-content>
           <v-list-item-title>
-            <v-icon :style="`color: ${route.color}`">mdi-circle</v-icon>
-            <template v-if="showLocation">
-              <router-link :to="`/locations/${route.location}`">
-                {{ getLocationById(route.location).name }}
-              </router-link>
-              &mdash;
-            </template>
-            {{ route.grade }}
+            <v-chip
+              :style="`background-color: ${route.color}`"
+              tile>
+              {{ route.grade }}
+            </v-chip>
+            &nbsp;
+            <span
+              v-if="showLocation"
+              :to="`/locations/${route.location}`"
+              class="overline">
+              {{ getLocationById(route.location).name }}
+            </span>
           </v-list-item-title>
           <v-list-item-subtitle>
             <span class="text--primary">{{ route.goal ? `${$t('routes.for')} ${dateToText(route.goal)}` : $t('routes.noGoal') }}</span>
@@ -81,11 +91,13 @@ export default {
       default: false
     }
   },
-  data: () => ({
-    icons: routeIcons
-  }),
+  data () {
+    return {
+      icons: routeIcons
+    }
+  },
   computed: {
-    ...mapGetters(['getLocationById'])
+    ...mapGetters(['getLocationById', 'getTagById'])
   },
   methods: {
     ...mapActions(['switchFinishedRoute']),
@@ -96,6 +108,9 @@ export default {
       } else {
         return route.photos[0]
       }
+    },
+    tag (id) {
+      return this.getTagById(id)
     }
   }
 }
