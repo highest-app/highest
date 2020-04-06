@@ -87,7 +87,6 @@
 <script>
 import moment from 'moment'
 import { mapGetters, mapActions } from 'vuex'
-import { tags } from '@/utils/data'
 import RouteCategories from '@/views/parts/RouteCategories'
 
 export default {
@@ -100,8 +99,6 @@ export default {
 
       search: '',
 
-      tags,
-      locations: [],
       menu: [
         { name: 'pages.home', route: '/', icon: 'mdi-home-outline' },
         { name: 'pages.routes', route: '/routes/all', icon: 'mdi-routes' },
@@ -118,7 +115,6 @@ export default {
   mounted () {
     this.setTheme()
     this.setLocale()
-    this.locations = this.getLocations
   },
   methods: {
     ...mapActions(['invertColors']),
@@ -141,7 +137,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['darkTheme', 'autoDarkTheme', 'locale', 'getLocations']),
+    ...mapGetters(['darkTheme', 'autoDarkTheme', 'locale']),
   },
   watch: {
     darkTheme () {

@@ -14,12 +14,20 @@ const getters = {
 const mutations = {
   UPDATE_SETTINGS (state, data) {
     state.data = data
+  },
+  INVERT_COLORS (state) {
+    state.data.autoDarkTheme = false
+    state.data.darkTheme = !state.data.darkTheme
   }
 }
 
 const actions = {
   updateSettings ({ commit, state }, data) {
     commit('UPDATE_SETTINGS', data)
+    saveToStorage('settings', state.data)
+  },
+  invertColors ({ commit, state}) {
+    commit('INVERT_COLORS')
     saveToStorage('settings', state.data)
   }
 }
