@@ -38,8 +38,7 @@
           <card-header>{{ $t('settings.display') }}</card-header>
           <card
             top
-            clickable
-            @click.native="localeSelect = true">
+            @click="localeSelect = true">
             <template #title>{{ $tc('settings.language', 1) }}</template>
             <template #action>
               <v-list-item-icon>
@@ -154,6 +153,7 @@ export default {
   methods: {
     ...mapActions(['updateSettings', 'importData']),
     eraseData () {
+      localStorage.removeItem('assets')
       localStorage.removeItem('competitions')
       localStorage.removeItem('feeds')
       localStorage.removeItem('tags')
