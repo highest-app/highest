@@ -4,6 +4,7 @@ const defaultLocationForm = Object.freeze({
   name: '',
   address: '',
   picture: '',
+  file: '',
   notes: ''
 })
 

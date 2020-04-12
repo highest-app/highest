@@ -47,7 +47,7 @@
               :key="photo">
               <v-img
                 :aspect-ratio="16/9"
-                :src="photo"/>
+                :src="assets[photo]"/>
             </v-carousel-item>
           </v-carousel>
         </v-col>
@@ -90,7 +90,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 import RoutesList from '@/views/parts/RoutesList'
 
 export default {
@@ -106,6 +106,7 @@ export default {
     this.refreshRoutes()
   },
   computed: {
+    ...mapState(['assets']),
     ...mapGetters(['getLocationById', 'getRoutesByLocation'])
   },
   methods: {

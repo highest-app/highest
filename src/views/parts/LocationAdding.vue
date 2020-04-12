@@ -1,9 +1,9 @@
 <template>
-  <responsive-dialog>
-    <template #activator>
+  <responsive-dialog v-model="enabled">
+    <template #activator="{ on }">
       <v-list-item
         class="gradient--secondary"
-        @click="null">
+        v-on="on">
         <v-list-item-icon>
           <v-icon color="white">mdi-plus</v-icon>
         </v-list-item-icon>
@@ -17,6 +17,9 @@
         :title="$t('locations.add')"
         small-only
         fixed>
+        <template #bar-left-actions>
+          <a @click="enabled = false">{{ $t('terms.cancel') }}</a>
+        </template>
         <template #bar-right-actions>
           <a @click="add">{{ $t('terms.add') }}</a>
         </template>
@@ -45,21 +48,7 @@
                 flat/>
             </template>
           </card>
-          <card>
-            <template #title>{{ $t('terms.picture') }}</template>
-            <template #input>
-              <v-text-field
-                v-model="form.picture"
-                :placeholder="$t('terms.picturePlaceholder')"
-                hide-details
-                solo
-                flat/>
-            </template>
-            <template #description>
-              {{ $t('terms.pictureDescription') }}
-              <a href="https://imgur.com">Imgur</a>
-            </template>
-          </card>
+          <asset-uploader v-model="form.picture"/>
           <card
             top
             bottom>
@@ -85,12 +74,16 @@
 <script>
 import { mapActions } from 'vuex'
 import { defaultLocationForm } from '@/utils/forms'
+import AssetUploader from '@/views/parts/AssetUploader'
 
 export default {
   name: 'LocationAdding',
+  components: { AssetUploader },
   data () {
     return {
       form: Object.assign({}, defaultLocationForm),
+
+      enabled: false
     }
   },
   mounted () {
