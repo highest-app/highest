@@ -70,6 +70,10 @@ const mutations = {
   },
   REMOVE_ROUTE(state, id) {
     state.data.splice(state.data.findIndex(route => route.id === id), 1)
+  },
+  PURGE_ROUTES(state, id) {
+    state.data = state.data.filter(route => route.location !== id)
+    saveToStorage('routes', state.data)
   }
 }
 

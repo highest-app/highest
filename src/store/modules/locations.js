@@ -52,7 +52,6 @@ const actions = {
     commit('DELETE_LOCATION', id)
     commit('PURGE_ROUTES', id)
     saveToStorage('locations', state.data)
-    saveToStorage('routes', state.data)
   }
 }
 
