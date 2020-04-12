@@ -6,10 +6,6 @@ export default Vue.component('card', {
         type: Boolean,
         default: false
       },
-      clickable: {
-        type: Boolean,
-        default: false
-      },
       href: {
         type: String,
         default: null
@@ -50,6 +46,13 @@ export default Vue.component('card', {
             [
               createElement(
                 'v-list-item', {
+                  on: {
+                    click: this.$listeners.click === undefined ? undefined
+                    : (event) => {
+                      console.log(this.$listeners)
+                      this.$emit('click', event)
+                    }
+                  },
                   props: {
                     link: this.clickable,
                     href: this.href,
