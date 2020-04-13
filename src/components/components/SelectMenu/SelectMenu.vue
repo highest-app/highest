@@ -15,7 +15,9 @@
             tile
             elevation="0">
             <v-list flat>
-              <v-list-item-group v-model="selected">
+              <v-list-item-group
+                v-model="selected"
+                :multiple="multiple">
                 <template v-for="(choice, i) in choices">
                   <v-list-item
                     :key="`${choice}--list-item)`"
@@ -25,7 +27,13 @@
                       #default="{ active, toggle }"
                       @click="toggle">
                       <v-list-item-content>
-                        <v-list-item-title>{{ labels === null ? choice : labels[i] }}</v-list-item-title>
+                        <v-list-item-title>
+                          <slot
+                            name="label"
+                            v-bind:label="labels === null ? choice : labels[i]">
+                            {{ labels === null ? choice : labels[i] }}
+                          </slot>
+                        </v-list-item-title>
                       </v-list-item-content>
 
                       <v-list-item-icon v-if="active">
@@ -70,6 +78,10 @@ export default {
     selected: {
       type: String,
       default: ''
+    },
+    multiple: {
+      type: Boolean,
+      default: false
     },
     name: {
       type: String,
