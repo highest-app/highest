@@ -37,7 +37,10 @@ function loadFromStorage(category) {
         ]
       }
     ],
-    settings: {},
+    settings: {
+      darkTheme: false,
+      autoDarkTheme: true
+    },
     tags: defaultTags
   }
 
