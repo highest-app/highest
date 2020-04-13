@@ -41,7 +41,7 @@ const mutations = {
       color: data.color,
       notes: data.notes,
       photos: [],
-      tags: [],
+      tags: data.tags,
       goal: data.goal,
       finished: false,
       progressions: []

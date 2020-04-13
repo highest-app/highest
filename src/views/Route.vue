@@ -32,12 +32,24 @@
         </template>
       </app-bar>
       <v-container>
-        <v-btn
-          class="gradient--error white--text"
-          block
-          @click="deleteDialog = true">
-          {{ $t('routes.delete') }}
-        </v-btn>
+        <v-row>
+          <v-col
+            cols="12"
+            md="6"/>
+          <v-col
+            cols="12"
+            md="6">
+            <list-group>
+              <card top/>
+            </list-group>
+            <v-btn
+              class="gradient--error white--text"
+              block
+              @click="deleteDialog = true">
+              {{ $t('routes.delete') }}
+            </v-btn>
+          </v-col>
+        </v-row>
       </v-container>
     </template>
     <template v-else>
@@ -62,12 +74,12 @@
               <v-carousel-item
                 v-for="photo in route.photos"
                 :key="photo">
-                <v-img :src="photo"/>
+                <v-img :src="assets[photo]"/>
               </v-carousel-item>
             </v-carousel>
             <v-img
               v-else
-              :src="location.photos[0]"/>
+              :src="assets[location.photos[0]]"/>
           </v-col>
           <v-col
             cols="12"
@@ -142,7 +154,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 import { defaultProgressionForm } from '@/utils/forms'
 import { today, dateToText } from '@/utils/parsing'
 
@@ -157,6 +169,7 @@ export default {
       deleteDialog: false,
 
       progressionForm: Object.assign({}, defaultProgressionForm),
+      routeForm: {},
       today
     }
   },
@@ -166,8 +179,10 @@ export default {
       this.$router.back()
     }
     this.location = this.getLocationById(this.route.location)
+    this.validateEdit()
   },
   computed: {
+    ...mapState(['assets']),
     ...mapGetters(['getRoute', 'getLocationById']),
     progressionDates () {
       let dates = []
@@ -192,6 +207,7 @@ export default {
       this.$router.back()
     },
     validateEdit () {
+      this.routeForm = Object.assign({}, this.route)
       this.editMode = false
     },
     progressionAdd () {

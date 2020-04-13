@@ -14,7 +14,7 @@
         class="primary--text"
         link>
         <v-list-item-avatar v-if="mobile">
-          <v-img :src="location.photos[0]"/>
+          <v-img :src="assets[location.photos[0]]"/>
         </v-list-item-avatar>
         <v-list-item-icon
           v-else
@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import LocationAdding from '@/views/parts/LocationAdding'
 
 export default {
@@ -81,6 +81,7 @@ export default {
     this.locations = this.getLocations
   },
   computed: {
+    ...mapState(['assets']),
     ...mapGetters(['getTags', 'getLocations'])
   }
 }

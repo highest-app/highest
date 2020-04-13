@@ -1,10 +1,16 @@
 <template>
-  <responsive-dialog>
+  <responsive-dialog v-model="enabled">
     <template #activator="{ on }">
       <card v-on="on">
         <template #title>{{ $t('terms.picture') }}</template>
-        <template #description>
-          {{ $t('terms.pictureDescription') }}
+        <template #action-text>{{ $t('terms.select') }}</template>
+        <template #action>
+          <v-list-item-icon v-if="id === ''">
+            <v-icon>mdi-chevron-right</v-icon>
+          </v-list-item-icon>
+          <v-list-item-avatar v-else>
+            <v-img :src="blob"/>
+          </v-list-item-avatar>
         </template>
       </card>
     </template>
@@ -42,7 +48,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'AssetUploader',
@@ -58,10 +64,12 @@ export default {
   data () {
     return {
       file: '',
-      blob: ''
+      blob: '',
+      enabled: false
     }
   },
   methods: {
+    ...mapState(['assets']),
     ...mapActions(['addAsset']),
     update () {
       let reader = new FileReader()
@@ -74,6 +82,7 @@ export default {
       this.addAsset(this.blob).then((id) => {
         this.$emit('input', id)
       })
+      this.enabled = false
     }
   }
 }

@@ -7,8 +7,6 @@
     "address": "Address",
     "date": "Date",
     "picture": "Picture",
-    "picturePlaceholder": "URL address to a picture",
-    "pictureDescription": "In order to add a picture, you can use free image hosting services such as ",
     "grade": "Grade",
     "length": "Length",
 
@@ -21,6 +19,8 @@
     "ok": "OK",
     "close": "Close",
     "done": "Done",
+    "select": "Select",
+    "selected": "Selected",
 
     "actionConfirmation": "Are you sure ?",
 
@@ -111,6 +111,9 @@
     "notParticipating": "Not participating",
     "thinking": "Thinking",
     "participating": "Participating"
+  },
+  "assets": {
+    "add": "Add an asset"
   },
   "settings": {
     "adjustments": "Adjustments",

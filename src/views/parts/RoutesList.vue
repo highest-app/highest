@@ -10,7 +10,7 @@
         <div class="v-list-item__icon v-list-group__header__prepend-icon">
           <v-badge
             :value="route.tags.length > 0"
-            :color="tag(route.tags[0]).color"
+            :color="route.tags.length > 0 ? tag(route.tags[0]).color : ''"
             overlap
             bordered>
             <v-avatar>
@@ -75,7 +75,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 import { routeIcons } from '@/utils/data'
 import { dateToText } from '@/utils/parsing'
 
@@ -97,17 +97,19 @@ export default {
     }
   },
   computed: {
+    ...mapState(['assets']),
     ...mapGetters(['getLocationById', 'getTagById'])
   },
   methods: {
     ...mapActions(['switchFinishedRoute']),
     dateToText,
     getPicture (route) {
-      if (route.photos[0] === undefined) {
-        return this.getLocationById(route.location).photos[0]
-      } else {
-        return route.photos[0]
-      }
+      let key = ''
+      if (route.photos[0] === undefined)
+        key = this.getLocationById(route.location).photos[0]
+      else
+        key = route.photos[0]
+      return this.assets[key]
     },
     tag (id) {
       return this.getTagById(id)

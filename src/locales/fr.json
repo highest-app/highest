@@ -7,8 +7,6 @@
     "address": "Adresse",
     "date": "Date",
     "picture": "Image",
-    "picturePlaceholder": "Adresse URL vers une image",
-    "pictureDescription": "Pour ajouter une image, vous pouvez utiliser des services gratuits d'hébergement d'images comme ",
     "grade": "Cotation",
     "length": "Longueur",
 
@@ -21,6 +19,8 @@
     "ok": "OK",
     "close": "Fermer",
     "done": "Terminé",
+    "select": "Sélectionner",
+    "selected": "Sélectionné",
 
     "actionConfirmation": "Êtes-vous sûr ?",
 
@@ -111,6 +111,9 @@
     "notParticipating": "Ne participant pas",
     "thinking": "Réfléchissant",
     "participating": "Participant"
+  },
+  "assets": {
+    "add": "Ajouter une ressource"
   },
   "settings": {
     "adjustments": "Réglages",
