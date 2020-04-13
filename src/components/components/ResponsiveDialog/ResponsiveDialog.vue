@@ -7,14 +7,13 @@
         class="responsive-dialog__dialog">
         <v-card class="background">
           <v-card-text
-            class="location-adding-menu pa-0"
+            class="pa-0"
             style="overflow-x: hidden;">
             <slot name="dialog"/>
           </v-card-text>
         </v-card>
       </v-dialog>
-      <div
-        class="responsive-dialog__trigger">
+      <div class="responsive-dialog__trigger">
         <slot
           name="activator"
           v-bind:on="events"/>
@@ -26,10 +25,8 @@
         class="responsive-dialog__sheet"
         scrollable
         inset>
-        <template #activator="{ on }">
-          <div
-            class="responsive-dialog__trigger"
-            v-on="on">
+        <template #activator>
+          <div class="responsive-dialog__trigger">
             <slot
               name="activator"
               v-bind:on="events"/>
@@ -67,14 +64,15 @@ export default {
   data () {
     return {
       events: {
-        click: this.activate
+        click: this.enable
       }
     }
   },
   methods: {
-    activate () {
+    enable () {
       this.active = true
       this.$emit('change', true)
+      this.$emit('enable')
     }
   }
 }
