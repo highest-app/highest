@@ -48,10 +48,7 @@ export default Vue.component('card', {
                 'v-list-item', {
                   on: {
                     click: this.$listeners.click === undefined ? undefined
-                    : (event) => {
-                      console.log(this.$listeners)
-                      this.$emit('click', event)
-                    }
+                    : (event) => this.$emit('click', event)
                   },
                   props: {
                     link: this.clickable,
