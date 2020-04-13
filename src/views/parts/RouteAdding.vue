@@ -1,16 +1,16 @@
 <template>
-  <responsive-dialog>
-    <template #activator>
+  <responsive-dialog v-model="enabled">
+    <template #activator="{ on: dialog }">
       <v-tooltip
         open-delay="500"
         bottom>
-        <template #activator="{ on }">
+        <template #activator="{ on: tooltip }">
           <v-btn
             class="gradient--secondary"
             elevation="0"
             fab
             small
-            v-on="on">
+            v-on="{ ...dialog, ...tooltip }">
             <v-icon color="white">mdi-plus</v-icon>
           </v-btn>
         </template>
@@ -19,7 +19,22 @@
     </template>
     <template #dialog>
       <select-menu
-        v-if="gradeSelect"
+        v-if="tagsSelect"
+        v-model="form.tags"
+        :labels="getTags"
+        :choices="getTags.map(tag => tag.id)"
+        :name="$tc('generic.tag', 2)"
+        multiple
+        @back="tagsSelect = false">
+        <template #label="{ label }">
+          <v-icon :color="label.color">
+            mdi-circle
+          </v-icon>
+          {{ label.name }}
+        </template>
+      </select-menu>
+      <select-menu
+        v-else-if="gradeSelect"
         v-model="form.grade"
         :choices="grades"
         :name="$t('terms.grade')"
@@ -37,6 +52,9 @@
           :title="$t('routes.add')"
           small-only
           fixed>
+          <template #bar-left-actions>
+            <a @click="resetForm">{{ $t('terms.cancel') }}</a>
+          </template>
           <template #bar-right-actions>
             <a @click="add">{{ $t('terms.add') }}</a>
           </template>
@@ -54,9 +72,7 @@
                   flat/>
               </template>
             </card>
-            <card
-              clickable
-              @click.native="locationSelect = true">
+            <card @click="locationSelect = true">
               <template #title>{{ $tc('generic.location', 1) }}</template>
               <template #action-text>{{ form.location }}</template>
               <template #action>
@@ -65,9 +81,7 @@
                 </v-list-item-icon>
               </template>
             </card>
-            <card
-              clickable
-              @click.native="gradeSelect = true">
+            <card @click="gradeSelect = true">
               <template #title>
                 {{ $t('terms.grade') }}
               </template>
@@ -80,11 +94,35 @@
                 </v-list-item-icon>
               </template>
             </card>
-            <responsive-dialog dialog-width="300px">
-              <template #activator>
-                <card clickable>
+            <card @click="tagsSelect = true">
+              <template #title>
+                {{ $tc('generic.tag', 2) }}
+              </template>
+              <template #action-text>
+                <v-icon
+                  v-for="tag in form.tags"
+                  :key="tag"
+                  :color="getTagById(tag).color">
+                  mdi-circle
+                </v-icon>
+              </template>
+              <template #action>
+                <v-list-item-icon>
+                  <v-icon>mdi-chevron-right</v-icon>
+                </v-list-item-icon>
+              </template>
+            </card>
+            <responsive-dialog
+              v-model="colorDialog"
+              dialog-width="300px">
+              <template #activator="{ on }">
+                <card v-on="on">
                   <template #title>{{ $t('routes.color') }}</template>
-                  <template #action-text>{{ form.color }}</template>
+                  <template #action-text>
+                    <v-icon :color="form.color">
+                      mdi-square
+                    </v-icon>
+                  </template>
                   <template #action>
                     <v-list-item-icon>
                       <v-icon>mdi-chevron-right</v-icon>
@@ -96,7 +134,11 @@
                 <app-bar
                   :title="$t('routes.color')"
                   small-only
-                  fixed/>
+                  fixed>
+                  <template #bar-right-actions>
+                    <a @click="colorDialog = false">{{ $t('terms.ok') }}</a>
+                  </template>
+                </app-bar>
                 <v-row
                   justify="center"
                   align="center">
@@ -197,7 +239,9 @@ export default {
       parsedLocations: {},
       form: Object.assign({}, defaultRouteForm),
 
-      routeDialog: false,
+      enabled: false,
+      tagsSelect: false,
+      colorDialog: false,
       locationSelect: false,
       gradeSelect: false,
 
@@ -211,7 +255,7 @@ export default {
     })
   },
   computed: {
-    ...mapGetters(['getLocations']),
+    ...mapGetters(['getLocations', 'getTagById', 'getTags']),
     routeLength () {
       return `${this.form.length}m`
     }
@@ -223,8 +267,12 @@ export default {
       this.form.location = this.parsedLocations[this.form.location]
       if (!this.form.enableGoal) this.form.goal = false
       this.addRoute(this.form)
-      this.form = Object.assign({}, this.defaultRouteForm)
+      this.resetForm()
       this.$emit('close')
+    },
+    resetForm () {
+      this.form = Object.assign({}, this.defaultRouteForm)
+      this.enabled = false
     }
   }
 }
