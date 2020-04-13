@@ -18,7 +18,7 @@
         small-only
         fixed>
         <template #bar-left-actions>
-          <a @click="enabled = false">{{ $t('terms.cancel') }}</a>
+          <a @click="resetForm">{{ $t('terms.cancel') }}</a>
         </template>
         <template #bar-right-actions>
           <a @click="add">{{ $t('terms.add') }}</a>
@@ -93,6 +93,7 @@ export default {
     ...mapActions(['addLocation']),
     resetForm () {
       this.form = Object.assign({}, this.defaultLocationForm)
+      this.enabled = false
     },
     add () {
       this.addLocation(this.form)

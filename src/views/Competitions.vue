@@ -2,30 +2,7 @@
   <v-content>
     <app-bar :title="$tc('generic.competition', 2)">
       <template #top-bar-actions>
-        <responsive-dialog>
-          <template #activator>
-            <v-tooltip
-              open-delay="500"
-              bottom>
-              <template #activator="{ on }">
-                <v-btn
-                  class="gradient--secondary"
-                  elevation="0"
-                  fab
-                  small
-                  v-on="on">
-                  <v-icon color="white">mdi-plus</v-icon>
-                </v-btn>
-              </template>
-              <span>{{ $t('competitions.add') }}</span>
-            </v-tooltip>
-          </template>
-          <template #dialog>
-            <competition-adding
-              :locations="parsedLocations"
-              @close="refreshCompetitions"/>
-          </template>
-        </responsive-dialog>
+        <competition-adding :locations="parsedLocations"/>
       </template>
     </app-bar>
     <page-body>
