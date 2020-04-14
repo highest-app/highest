@@ -123,7 +123,6 @@
 import { mapActions } from 'vuex'
 import { competitionIcons as icons } from '@/utils/data'
 import { defaultCompetitionForm } from '@/utils/forms'
-import { dateToText } from '@/utils/parsing'
 
 export default {
   name: 'CompetitionAdding',
@@ -145,7 +144,6 @@ export default {
   },
   methods: {
     ...mapActions(['addCompetition']),
-    dateToText,
     add () {
       switch (this.form.participation) {
       case 0:

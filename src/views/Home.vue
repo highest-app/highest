@@ -117,7 +117,6 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import { dateToText } from '@/utils/parsing'
 import { getFeeds } from '@/utils/feeds'
 import FeedsList from '@/views/parts/FeedsList'
 import Profile from '@/views/parts/Profile.vue'
@@ -149,8 +148,7 @@ export default {
       this.deleteFeed(url)
       this.feeds = this.feeds.filter(feed => feed.feedUrl !== url)
       this.feedItems = this.feedItems.filter(item => item.feedUrl !== url)
-    },
-    dateToText
+    }
   }
 }
 </script>

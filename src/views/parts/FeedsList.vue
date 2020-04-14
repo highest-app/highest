@@ -9,11 +9,11 @@
       <template v-for="item in feedItems">
         <v-img
           v-if="item.enclosure !== undefined"
-          :key="item.link"
+          :key="item.link + 'img'"
           :src="item.enclosure.url"
           :alt="item.title"/>
         <card
-          :key="item.link"
+          :key="item.link + 'card'"
           :top="item.enclosure === undefined"
           :href="item.link"
           target="_blank">
@@ -28,8 +28,6 @@
 </template>
 
 <script>
-import { dateToText } from '@/utils/parsing'
-
 export default {
   props: {
     items: {
@@ -49,9 +47,6 @@ export default {
     feedItems () {
       return this.pagination ? this.items.slice((this.page - 1) * 5, (this.page - 1) * 5 + 5) : this.items
     }
-  },
-  methods: {
-    dateToText
   }
 }
 </script>

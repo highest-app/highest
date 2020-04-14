@@ -77,7 +77,6 @@
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
 import { routeIcons } from '@/utils/data'
-import { dateToText } from '@/utils/parsing'
 
 export default {
   name: 'RoutesList',
@@ -102,7 +101,6 @@ export default {
   },
   methods: {
     ...mapActions(['switchFinishedRoute']),
-    dateToText,
     getPicture (route) {
       let key = ''
       if (route.photos[0] === undefined)

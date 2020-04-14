@@ -1,4 +1,4 @@
-import { today } from './parsing'
+import { today } from '@/utils/dates'
 
 const defaultLocationForm = Object.freeze({
   name: '',

@@ -46,7 +46,6 @@ import { latLng } from 'leaflet'
 import { LMap, LTileLayer, LMarker } from 'vue2-leaflet'
 import { OpenStreetMapProvider } from 'leaflet-geosearch'
 import { mapGetters } from 'vuex'
-import { dateToText } from '@/utils/parsing'
 
 const provider = new OpenStreetMapProvider()
 
@@ -83,8 +82,7 @@ export default {
     ...mapGetters(['getCompetitionById', 'getLocationById'])
   },
   methods: {
-    latLng,
-    dateToText
+    latLng
   }
 }
 </script>

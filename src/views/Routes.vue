@@ -35,7 +35,6 @@
 <script>
 import { mapGetters } from 'vuex'
 import { grades } from '@/utils/data'
-import { dateToText } from '@/utils/parsing'
 import RouteCategories from '@/views/parts/RouteCategories'
 import RouteAdding from '@/views/parts/RouteAdding'
 
@@ -64,7 +63,6 @@ export default {
     ...mapGetters(['getLocations', 'getRoutesByLocation', 'getLocationById', 'getRoutes'])
   },
   methods: {
-    dateToText,
     refreshRoutes () {
       this.routes = this.getRoutes
     }

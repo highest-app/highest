@@ -8,6 +8,8 @@ import store from './store'
 import './plugins/components'
 import './registerServiceWorker'
 
+import '@/utils/dates'
+
 import VueResource from 'vue-resource'
 
 import '@babel/polyfill'
@@ -20,10 +22,12 @@ Vue.config.productionTip = false
 
 Vue.use(VueResource)
 
-new Vue({
+let app = new Vue({
   vuetify,
   router,
   store,
   i18n,
   render: h => h(App)
 }).$mount('#app')
+
+export default app

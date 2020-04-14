@@ -23,11 +23,11 @@ const routeIcons = {
     icon: 'mdi-clock-outline'
   },
   outdatedGoal: {
-    color: 'red darken-4',
+    color: 'red darken-1',
     icon: 'mdi-clock-outline'
   },
   noGoal: {
-    color: '',
+    color: 'white',
     icon: 'mdi-dots-horizontal'
   },
 

@@ -229,7 +229,6 @@
 import { mapGetters, mapActions } from 'vuex'
 import { grades } from '@/utils/data'
 import { defaultRouteForm } from '@/utils/forms'
-import { dateToText } from '@/utils/parsing'
 
 export default {
   name: 'RouteAdding',
@@ -262,7 +261,6 @@ export default {
   },
   methods: {
     ...mapActions(['addRoute']),
-    dateToText,
     add () {
       this.form.location = this.parsedLocations[this.form.location]
       if (!this.form.enableGoal) this.form.goal = false

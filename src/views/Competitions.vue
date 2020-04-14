@@ -15,7 +15,6 @@
 import { mapGetters } from 'vuex'
 import { competitionIcons as icons } from '@/utils/data'
 import { defaultCompetitionForm } from '@/utils/forms'
-import { dateToText } from '@/utils/parsing'
 import CompetitionAdding from '@/views/parts/CompetitionAdding'
 import CompetitionsList from '@/views/parts/CompetitionsList'
 
@@ -46,7 +45,6 @@ export default {
     ...mapGetters(['getCompetitions', 'getLocations', 'getLocationById'])
   },
   methods: {
-    dateToText,
     refreshCompetitions () {
       this.competitions = this.getCompetitions
     }

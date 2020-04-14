@@ -156,7 +156,6 @@
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
 import { defaultProgressionForm } from '@/utils/forms'
-import { today, dateToText } from '@/utils/parsing'
 
 export default {
   name: 'Route',
@@ -169,8 +168,7 @@ export default {
       deleteDialog: false,
 
       progressionForm: Object.assign({}, defaultProgressionForm),
-      routeForm: {},
-      today
+      routeForm: {}
     }
   },
   mounted () {
@@ -201,7 +199,6 @@ export default {
   },
   methods: {
     ...mapActions(['deleteRoute', 'switchFinishedRoute', 'addProgression', 'removeProgression']),
-    dateToText,
     deleteThis () {
       this.deleteRoute(this.route.id)
       this.$router.back()

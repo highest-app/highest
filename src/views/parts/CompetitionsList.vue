@@ -78,7 +78,6 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import { competitionIcons as icons } from '@/utils/data'
-import { dateToText } from '@/utils/parsing'
 
 export default {
   name: 'CompetitionsList',
@@ -99,7 +98,6 @@ export default {
   },
   methods: {
     ...mapActions(['setCompetitionParticipation']),
-    dateToText,
     setParticipation (id, participation) {
       this.setCompetitionParticipation({
         id,

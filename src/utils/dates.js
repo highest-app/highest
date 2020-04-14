@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import moment from 'moment'
 
 import store from '../store'
@@ -13,8 +14,16 @@ function dateToText(date) {
   return moment(date).format(format)
 }
 
-export {
-  today,
-  formats,
-  dateToText
-}
+Vue.mixin({
+  data () {
+    return {
+      today,
+      formats
+    }
+  },
+  methods: {
+    dateToText
+  }
+})
+
+export { today }
