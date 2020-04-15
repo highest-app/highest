@@ -1,4 +1,5 @@
 export * from './AppBar'
+export * from './AssetUploader'
 export * from './Lists'
 export * from './ResponsiveDialog'
 export * from './SelectMenu'
