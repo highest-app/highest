@@ -59,7 +59,7 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-import LocationAdding from '@/views/parts/LocationAdding'
+import LocationAdding from '@/views/locations/LocationAdding'
 
 export default {
   name: 'RouteCategories',

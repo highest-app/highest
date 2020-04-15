@@ -36,9 +36,9 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import CompetitionsList from '@/views/parts/CompetitionsList'
-import LocationsList from '@/views/parts/LocationsList'
-import RoutesList from '@/views/parts/RoutesList'
+import CompetitionsList from '@/views/competitions/CompetitionsList'
+import LocationsList from '@/views/locations/LocationsList'
+import RoutesList from '@/views/routes/RoutesList'
 
 export default {
   name: 'Search',

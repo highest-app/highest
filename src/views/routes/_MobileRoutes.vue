@@ -35,8 +35,8 @@
 <script>
 import { mapGetters } from 'vuex'
 import { grades } from '@/utils/data'
-import RouteCategories from '@/views/parts/RouteCategories'
-import RouteAdding from '@/views/parts/RouteAdding'
+import RouteCategories from '@/views/routes/RouteCategories'
+import RouteAdding from '@/views/routes/RouteAdding'
 
 export default {
   name: 'Routes',

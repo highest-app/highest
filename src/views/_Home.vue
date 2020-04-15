@@ -1,34 +1,8 @@
 <template>
   <v-content>
-    <v-dialog
-      v-model="profileDialog"
-      max-width="50%">
-      <profile @close="profileDialog = false"/>
-    </v-dialog>
     <app-bar :title="$t('pages.home')">
       <template #top-bar-actions>
-        <responsive-dialog>
-          <template #activator>
-            <v-tooltip
-              open-delay="500"
-              bottom>
-              <template #activator="{ on }">
-                <v-btn
-                  class="gradient--secondary"
-                  elevation="0"
-                  fab
-                  small
-                  v-on="on">
-                  <v-icon color="white">mdi-account-outline</v-icon>
-                </v-btn>
-              </template>
-              <span>{{ $t('pages.profile') }}</span>
-            </v-tooltip>
-          </template>
-          <template #dialog>
-            <profile @close="profileSheet = false"/>
-          </template>
-        </responsive-dialog>
+        <profile/>
       </template>
     </app-bar>
     <v-container>

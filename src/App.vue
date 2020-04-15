@@ -87,7 +87,7 @@
 <script>
 import moment from 'moment'
 import { mapGetters, mapActions } from 'vuex'
-import RouteCategories from '@/views/parts/RouteCategories'
+import RouteCategories from '@/views/routes/RouteCategories'
 
 export default {
   name: 'App',

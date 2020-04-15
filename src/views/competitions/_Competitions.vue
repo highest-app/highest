@@ -15,8 +15,8 @@
 import { mapGetters } from 'vuex'
 import { competitionIcons as icons } from '@/utils/data'
 import { defaultCompetitionForm } from '@/utils/forms'
-import CompetitionAdding from '@/views/parts/CompetitionAdding'
-import CompetitionsList from '@/views/parts/CompetitionsList'
+import CompetitionAdding from '@/views/competitions/CompetitionAdding'
+import CompetitionsList from '@/views/competitions/CompetitionsList'
 
 export default {
   name: 'Competitions',

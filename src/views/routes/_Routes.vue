@@ -33,8 +33,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import RouteAdding from '@/views/parts/RouteAdding'
-import RoutesList from '@/views/parts/RoutesList'
+import RouteAdding from '@/views/routes/RouteAdding'
+import RoutesList from '@/views/routes/RoutesList'
 
 export default {
   name: 'AllRoutes',

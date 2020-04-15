@@ -26,7 +26,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import RoutesList from '@/views/parts/RoutesList'
+import RoutesList from '@/views/routes/RoutesList'
 
 export default {
   name: 'Tag',

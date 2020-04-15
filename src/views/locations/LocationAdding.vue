@@ -74,11 +74,9 @@
 <script>
 import { mapActions } from 'vuex'
 import { defaultLocationForm } from '@/utils/forms'
-import AssetUploader from '@/views/parts/AssetUploader'
 
 export default {
   name: 'LocationAdding',
-  components: { AssetUploader },
   data () {
     return {
       form: Object.assign({}, defaultLocationForm),

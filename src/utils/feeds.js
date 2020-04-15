@@ -1,7 +1,7 @@
 import RSSParser from 'rss-parser'
 
 const parser = new RSSParser()
-const CORS_PROXY = "https://cors-anywhere.herokuapp.com/"
+const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/'
 
 function getFeeds(context, list) {
   list.forEach(url => {
