@@ -46,6 +46,6 @@ export default new Vuetify({
   },
   lang: {
     locales: { en, fr },
-    current: store.getters.locale
+    current: store.state.settings.locale
   }
 })

@@ -1,18 +1,15 @@
 import flake from '../../utils/flake'
-import { loadFromStorage, saveToStorage } from '../../utils/storage'
+import { loadFromStorage, saveToStorage } from '@/utils/storage'
 
-const state = {
-  data: loadFromStorage('locations')
-}
+const state = loadFromStorage('locations')
 
 const getters = {
-  getLocations: state => state.data,
   getLocationById: state => id => {
-    return state.data.find(location => location.id === id)
+    return state.find(location => location.id === id)
   },
-  searchLocations: (state, getters) => query => {
+  searchLocations: state => query => {
     query = query.toLowerCase()
-    return getters.getLocations.filter(location => {
+    return state.filter(location => {
       let name = location.name.toLowerCase()
       let notes = location.notes.toLowerCase()
 
@@ -23,10 +20,10 @@ const getters = {
 
 const mutations = {
   ADD_LOCATIONS(state, data) {
-    state.data = [...state.data, ...data]
+    state = [...state, ...data]
   },
   ADD_LOCATION(state, data) {
-    state.data.push({
+    state.push({
       name: data.name,
       address: data.address,
       id: flake.gen(),
@@ -35,23 +32,24 @@ const mutations = {
     })
   },
   DELETE_LOCATION(state, id) {
-    state.data.splice(state.data.findIndex(location => location.id === id), 1)
+    let indexToDelete = state.findIndex(location => location.id === id)
+    state.splice(indexToDelete, 1)
   }
 }
 
 const actions = {
   addLocations({ commit, state }, data) {
     commit('ADD_LOCATIONS', data)
-    saveToStorage('locations', state.data)
+    saveToStorage('locations', state)
   },
   addLocation({ commit, state }, entryData) {
     commit('ADD_LOCATION', entryData)
-    saveToStorage('locations', state.data)
+    saveToStorage('locations', state)
   },
   deleteLocation({ commit, state }, id) {
     commit('DELETE_LOCATION', id)
     commit('PURGE_ROUTES', id)
-    saveToStorage('locations', state.data)
+    saveToStorage('locations', state)
   }
 }
 

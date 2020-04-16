@@ -1,15 +1,13 @@
-import flake from '../../utils/flake'
+import flake from '@/utils/flake'
 import { loadFromStorage, saveToStorage } from '@/utils/storage'
 
-const state = {
-  ...loadFromStorage('assets')
-}
+const state = loadFromStorage('assets')
 
 const getters = {}
 
 const mutations = {
   ADD_ASSET (state, data) {
-    this.state.assets[data.id] = data.content
+    state[data.id] = data.content
   }
 }
 

@@ -1,38 +1,35 @@
-import flake from '../../utils/flake'
-import { loadFromStorage, saveToStorage } from '../../utils/storage'
+import flake from '@/utils/flake'
+import { loadFromStorage, saveToStorage } from '@/utils/storage'
 
-const state = {
-  data: loadFromStorage('routes')
-}
+const state = loadFromStorage('routes')
 
 const getters = {
-  getRoutes: state => state.data,
   getFinishedRoutes: state => {
-    return state.data.filter(route => route.finished)
+    return state.filter(route => route.finished)
   },
   getRoutesByLocation: state => id => {
-    return state.data.filter(route => route.location === id)
+    return state.filter(route => route.location === id)
   },
   getRoutesByTag: state => tag => {
-    return state.data.filter(route => route.tags.includes(tag))
+    return state.filter(route => route.tags.includes(tag))
   },
-  searchRoutes: (state, getters) => query => {
+  searchRoutes: (state) => query => {
     query = query.toLowerCase()
-    return getters.getRoutes.filter(routes => {
-      let name = routes.name.toLowerCase()
-      let notes = routes.notes.toLowerCase()
+    return state.filter(route => {
+      let name = route.name === undefined ? '' : route.name.toLowerCase()
+      let notes = route.notes === undefined ? '' : route.notes.toLowerCase()
 
       return name.match(query) !== null || notes.match(query) !== null
     })
   },
   getRoute: state => (location, route) => {
-    return state.data.find(i => i.location === location && i.id === route)
+    return state.find(i => i.location === location && i.id === route)
   },
 }
 
 const mutations = {
   ADD_ROUTE(state, data) {
-    state.data.push({
+    state.push({
       name: data.name,
       id: flake.gen(),
       location: data.location,
@@ -48,9 +45,8 @@ const mutations = {
     })
   },
   SWITCH_FINISHED(state, id) {
-    state.data.find(route => route.id === id).finished = !state.data.find(
-      route => route.id === id
-    ).finished
+    let route = state.find(route => route.id === id)
+    route.finished = !route.finished
   },
   ADD_PROGRESSION(state, data) {
     let route = state.data.find(route => route.id === data.id)
@@ -60,43 +56,40 @@ const mutations = {
     })
   },
   REMOVE_PROGRESSION(state, data) {
-    let route = state.data.find(route => route.id === data.route)
-    route.progressions.splice(
-      route.progressions.findIndex(
-        progression => progression.notes === data.notes
-      ),
-      1
-    )
+    let route = state.find(route => route.id === data.route)
+    let progressionIndex = route.progressions.findIndex(progression => progression.notes === data.notes)
+    route.progressions.splice(progressionIndex, 1)
   },
   REMOVE_ROUTE(state, id) {
-    state.data.splice(state.data.findIndex(route => route.id === id), 1)
+    let indexToRemove = state.findIndex(route => route.id === id)
+    state.splice(indexToRemove, 1)
   },
   PURGE_ROUTES(state, id) {
-    state.data = state.data.filter(route => route.location !== id)
-    saveToStorage('routes', state.data)
+    state = state.filter(route => route.location !== id)
+    saveToStorage('routes', state)
   }
 }
 
 const actions = {
   addRoute({ commit, state }, entryData) {
     commit('ADD_ROUTE', entryData)
-    saveToStorage('routes', state.data)
+    saveToStorage('routes', state)
   },
   switchFinishedRoute({ commit, state }, route) {
     commit('SWITCH_FINISHED', route)
-    saveToStorage('routes', state.data)
+    saveToStorage('routes', state)
   },
   addProgression({ commit, state }, entryData) {
     commit('ADD_PROGRESSION', entryData)
-    saveToStorage('routes', state.data)
+    saveToStorage('routes', state)
   },
   removeProgression({ commit, state }, entryData) {
     commit('REMOVE_PROGRESSION', entryData)
-    saveToStorage('routes', state.data)
+    saveToStorage('routes', state)
   },
   deleteRoute({ commit, state }, id) {
     commit('REMOVE_ROUTE', id)
-    saveToStorage('routes', state.data)
+    saveToStorage('routes', state)
   }
 }
 

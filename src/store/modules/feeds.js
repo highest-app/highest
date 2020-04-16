@@ -1,30 +1,26 @@
 import {loadFromStorage, saveToStorage} from '@/utils/storage'
 
-const state = {
-  data: loadFromStorage('feeds')
-}
+const state = loadFromStorage('feeds')
 
-const getters = {
-  getFeeds: state => state.data
-}
+const getters = {}
 
 const mutations = {
   ADD_FEED (state, url) {
-    state.data.push(url)
+    state.push(url)
   },
   DELETE_FEED (state, url) {
-    state.data = state.data.filter(feed => feed !== url)
+    state = state.filter(feed => feed !== url)
   }
 }
 
 const actions = {
   addFeed ({ commit, state }, url) {
     commit('ADD_FEED', url)
-    saveToStorage('feeds', state.data)
+    saveToStorage('feeds', state)
   },
   deleteFeed ({ commit, state }, url) {
     commit('DELETE_FEED', url)
-    saveToStorage('feeds', state.data)
+    saveToStorage('feeds', state)
   }
 }
 

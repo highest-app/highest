@@ -1,13 +1,10 @@
 import { loadFromStorage, saveToStorage } from '../../utils/storage'
 
-const state = {
-  data: loadFromStorage('tags')
-}
+const state = loadFromStorage('tags')
 
 const getters = {
-  getTags: state => state.data,
   getTagById: state => id => {
-    return state.data.find(tag => tag.id === id)
+    return state.find(tag => tag.id === id)
   }
 }
 
@@ -20,7 +17,7 @@ const mutations = {
 const actions = {
   addTag ({ commit, state }, entryData) {
     commit('ADD_TAG', entryData)
-    saveToStorage('tags', state.data)
+    saveToStorage('tags', state)
   }
 }
 

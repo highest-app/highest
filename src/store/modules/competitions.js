@@ -1,18 +1,15 @@
-import flake from '../../utils/flake'
-import { loadFromStorage, saveToStorage } from '../../utils/storage'
+import flake from '@/utils/flake'
+import { loadFromStorage, saveToStorage } from '@/utils/storage'
 
-const state = {
-  data: loadFromStorage('competitions')
-}
+const state = loadFromStorage('competitions')
 
 const getters = {
-  getCompetitions: state => state.data,
   getCompetitionById: state => id => {
-    return state.data.find(competition => competition.id === id)
+    return state.find(competition => competition.id === id)
   },
-  searchCompetitions: (state, getters) => query => {
+  searchCompetitions: state => query => {
     query = query.toLowerCase()
-    return getters.getCompetitions.filter(competition => {
+    return state.filter(competition => {
       let name = competition.name.toLowerCase()
       let description = competition.description.toLowerCase()
 
@@ -23,7 +20,7 @@ const getters = {
 
 const mutations = {
   ADD_COMPETITION(state, data) {
-    state.data.push({
+    state.push({
       id: flake.gen(),
       name: data.name,
       description: data.description,
@@ -34,19 +31,19 @@ const mutations = {
     })
   },
   SET_COMPETITION_PARTICIPATION(state, data) {
-    state.data.find(competition => competition.id === data.id).participation =
-      data.participation
+    let competition = state.find(competition => competition.id === data.id)
+    competition.participation = data.participation
   }
 }
 
 const actions = {
   addCompetition({ commit, state }, entryData) {
     commit('ADD_COMPETITION', entryData)
-    saveToStorage('competitions', state.data)
+    saveToStorage('competitions', state)
   },
   setCompetitionParticipation({ commit, state }, entryData) {
     commit('SET_COMPETITION_PARTICIPATION', entryData)
-    saveToStorage('competitions', state.data)
+    saveToStorage('competitions', state)
   }
 }
 
