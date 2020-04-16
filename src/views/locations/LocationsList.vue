@@ -11,7 +11,7 @@
         <v-img
           class="white--text align-end"
           :aspect-ratio="16/9"
-          :src="location.photos[0]">
+          :src="assets[location.photos[0]]">
           <v-card-title>{{ location.name }}</v-card-title>
         </v-img>
       </v-card>
@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'LocationsList',
   props: {
@@ -27,6 +29,9 @@ export default {
       type: Array,
       required: true
     }
+  },
+  computed: {
+    ...mapState(['assets'])
   }
 }
 </script>
