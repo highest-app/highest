@@ -2,9 +2,7 @@
   <v-content>
     <app-bar :title="$tc('generic.route', 2)">
       <template #top-bar-actions>
-        <route-adding
-          v-if="locations.length > 0"
-          @close="refreshRoutes"/>
+        <route-adding v-if="locations.length > 0"/>
       </template>
     </app-bar>
     <page-body>
@@ -33,8 +31,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import { grades } from '@/utils/data'
+import { mapState } from 'vuex'
 import RouteCategories from '@/views/routes/RouteCategories'
 import RouteAdding from '@/views/routes/RouteAdding'
 
@@ -43,29 +40,11 @@ export default {
   components: { RouteAdding, RouteCategories },
   data () {
     return {
-      locations: [],
-      parsedLocations: {},
-      routes: [],
-
-      locationDialog: false,
-
-      grades
+      locationDialog: false
     }
-  },
-  mounted () {
-    this.locations = this.getLocations
-    this.locations.forEach((location) => {
-      this.parsedLocations[location.name] = location.id
-    })
-    this.refreshRoutes()
   },
   computed: {
-    ...mapGetters(['getLocations', 'getRoutesByLocation', 'getLocationById', 'getRoutes'])
-  },
-  methods: {
-    refreshRoutes () {
-      this.routes = this.getRoutes
-    }
+    ...mapState(['locations'])
   }
 }
 </script>

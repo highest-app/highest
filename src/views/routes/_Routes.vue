@@ -4,9 +4,7 @@
       v-if="$vuetify.breakpoint.mdAndUp"
       :title="$tc('generic.route', 2)">
       <template #top-bar-actions>
-        <route-adding
-          v-if="getLocations.length > 0"
-          @close="refreshRoutes"/>
+        <route-adding v-if="locations.length > 0"/>
       </template>
     </app-bar>
     <app-bar
@@ -32,28 +30,15 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import RouteAdding from '@/views/routes/RouteAdding'
 import RoutesList from '@/views/routes/RoutesList'
 
 export default {
   name: 'AllRoutes',
   components: { RouteAdding, RoutesList },
-  data () {
-    return {
-      routes: []
-    }
-  },
-  mounted () {
-    this.refreshRoutes()
-  },
   computed: {
-    ...mapGetters(['getRoutes', 'getLocations'])
-  },
-  methods: {
-    refreshRoutes () {
-      this.routes = this.getRoutes
-    }
+    ...mapState(['routes', 'locations'])
   }
 }
 </script>

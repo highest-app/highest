@@ -89,12 +89,26 @@ export default {
   },
   data () {
     return {
-      icons,
-      parsedCompetitions: []
+      icons
     }
   },
   computed: {
-    ...mapGetters(['getLocationById'])
+    ...mapGetters(['getLocationById']),
+    parsedCompetitions() {
+      let parsed = []
+      this.competitions.forEach((rawCompetition) => {
+        let competition = {}
+        Object.assign(competition, rawCompetition)
+        if (competition.location.type === "location") {
+          competition.location = {
+            type: competition.location.type,
+            ...this.getLocationById(competition.location.id)
+          }
+        }
+        parsed.push(competition)
+      })
+      return parsed
+    }
   },
   methods: {
     ...mapActions(['setCompetitionParticipation']),
@@ -102,20 +116,6 @@ export default {
       this.setCompetitionParticipation({
         id,
         participation
-      })
-      this.refreshCompetitions()
-    }
-  },
-  watch: {
-    competitions () {
-      this.competitions.forEach((competition) => {
-        if (competition.location.type === "location") {
-          competition.location = {
-            type: competition.location.type,
-            ...this.getLocationById(competition.location.id)
-          }
-        }
-        this.parsedCompetitions.push(competition)
       })
     }
   }

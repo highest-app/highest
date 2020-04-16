@@ -21,10 +21,20 @@
       <select-menu
         v-if="locationSelect"
         v-model="form.location"
-        :choices="Object.keys(locations)"
+        :choices="locations.map(l => l.id)"
+        :labels="locations"
         :name="$tc('generic.location')"
         auto-back
-        @back="locationSelect = false"/>
+        @back="locationSelect = false">
+        <template #label="{ label }">
+          <v-list-item-avatar>
+            <v-avatar>
+              <v-img :src="label.photos[0]"/>
+            </v-avatar>
+          </v-list-item-avatar>
+          {{ label.name }}
+        </template>
+      </select-menu>
       <template v-else>
         <app-bar
           :title="$t('competitions.add')"
@@ -52,7 +62,11 @@
             </card>
             <card @click="locationSelect = true">
               <template #title>{{ $tc('generic.location') }}</template>
-              <template #action-text>{{ form.location }}</template>
+              <template
+                v-if="form.location !== '' && form.location !== undefined"
+                #action-text>
+                {{ locations.find(l => l.id === form.location).name }}
+              </template>
               <template #action>
                 <v-list-item-icon>
                   <v-icon>mdi-chevron-right</v-icon>
@@ -120,18 +134,12 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import { competitionIcons as icons } from '@/utils/data'
 import { defaultCompetitionForm } from '@/utils/forms'
 
 export default {
   name: 'CompetitionAdding',
-  props: {
-    locations: {
-      type: Object,
-      required: true
-    }
-  },
   data () {
     return {
       form: Object.assign({}, defaultCompetitionForm),
@@ -141,6 +149,9 @@ export default {
 
       icons
     }
+  },
+  computed: {
+    ...mapState(['locations'])
   },
   methods: {
     ...mapActions(['addCompetition']),
@@ -158,7 +169,7 @@ export default {
       }
       this.form.location = {
         type: 'location',
-        id: this.locations[this.form.location]
+        id: this.form.location
       }
       this.addCompetition(this.form)
       this.resetForm()

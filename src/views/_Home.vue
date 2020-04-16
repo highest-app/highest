@@ -90,7 +90,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import { getFeeds } from '@/utils/feeds'
 import FeedsList from '@/views/parts/FeedsList'
 import Profile from '@/views/parts/Profile.vue'
@@ -111,10 +111,12 @@ export default {
     }
   },
   mounted () {
-    getFeeds(this, this.getFeeds)
+    getFeeds(this, this.feedLinks)
   },
   computed: {
-    ...mapGetters(['getFeeds'])
+    ...mapState({
+      feedLinks: 'feeds'
+    })
   },
   methods: {
     ...mapActions(['addFeed', 'deleteFeed']),

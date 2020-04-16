@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import LocationAdding from '@/views/locations/LocationAdding'
 
 export default {
@@ -70,19 +70,8 @@ export default {
       default: false
     }
   },
-  data () {
-    return {
-      locations: [],
-      tags: []
-    }
-  },
-  mounted () {
-    this.tags = this.getTags
-    this.locations = this.getLocations
-  },
   computed: {
-    ...mapState(['assets']),
-    ...mapGetters(['getTags', 'getLocations'])
+    ...mapState(['assets', 'tags', 'locations']),
   }
 }
 </script>

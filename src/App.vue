@@ -86,7 +86,7 @@
 
 <script>
 import moment from 'moment'
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import RouteCategories from '@/views/routes/RouteCategories'
 
 export default {
@@ -120,13 +120,13 @@ export default {
     ...mapActions(['invertColors']),
     setTheme () {
       const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-      if (prefersDark && this.autoDarkTheme) this.$vuetify.theme.dark = true
-      else this.$vuetify.theme.dark = this.darkTheme
+      if (prefersDark && this.settings.autoDarkTheme) this.$vuetify.theme.dark = true
+      else this.$vuetify.theme.dark = this.settings.darkTheme
     },
     setLocale () {
-      this.$i18n.locale = this.locale
-      this.$vuetify.lang.current = this.locale
-      moment.locale(this.locale)
+      this.$i18n.locale = this.settings.locale
+      this.$vuetify.lang.current = this.settings.locale
+      moment.locale(this.settings.locale)
     },
     gotoSearch () {
       this.$router.push({
@@ -137,16 +137,16 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['darkTheme', 'autoDarkTheme', 'locale']),
+    ...mapState(['settings'])
   },
   watch: {
-    darkTheme () {
+    'settings.darkTheme' () {
       this.setTheme()
     },
-    autoDarkTheme () {
+    'settings.autoDarkTheme' () {
       this.setTheme()
     },
-    locale () {
+    'settings.locale' () {
       this.setLocale()
     },
     search () {

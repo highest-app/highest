@@ -131,13 +131,12 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 import { download } from '@/utils/storage'
 
 export default {
   name: 'Settings',
   data: () => ({
-    settings: {},
     locales: {
       ids: ['en', 'fr'],
       labels: ['English (EN-UK)', 'Français (FR)']
@@ -146,9 +145,9 @@ export default {
     localeSelect: false,
     eraseDialog: false
   }),
-  mounted () { this.settings = this.getSettings },
   computed: {
-    ...mapGetters(['getSettings', 'getRawData'])
+    ...mapState(['settings']),
+    ...mapGetters(['getRawData'])
   },
   methods: {
     ...mapActions(['updateSettings', 'importData']),

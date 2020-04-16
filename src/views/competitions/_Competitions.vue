@@ -2,7 +2,7 @@
   <v-content>
     <app-bar :title="$tc('generic.competition', 2)">
       <template #top-bar-actions>
-        <competition-adding :locations="parsedLocations"/>
+        <competition-adding/>
       </template>
     </app-bar>
     <page-body>
@@ -12,42 +12,15 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import { competitionIcons as icons } from '@/utils/data'
-import { defaultCompetitionForm } from '@/utils/forms'
+import { mapState } from 'vuex'
 import CompetitionAdding from '@/views/competitions/CompetitionAdding'
 import CompetitionsList from '@/views/competitions/CompetitionsList'
 
 export default {
   name: 'Competitions',
   components: { CompetitionAdding, CompetitionsList },
-  data () {
-    return {
-      competitions: [],
-      locations: {},
-      parsedLocations: {},
-
-      locationSelect: false,
-      form: Object.assign({}, defaultCompetitionForm),
-
-      icons
-    }
-  },
-  mounted () {
-    this.refreshCompetitions()
-    let locationList = this.getLocations
-    locationList.forEach((location) => {
-      this.locations[location.id] = location
-      this.parsedLocations[location.name] = location.id
-    })
-  },
   computed: {
-    ...mapGetters(['getCompetitions', 'getLocations', 'getLocationById'])
-  },
-  methods: {
-    refreshCompetitions () {
-      this.competitions = this.getCompetitions
-    }
+    ...mapState(['competitions']),
   }
 }
 </script>
