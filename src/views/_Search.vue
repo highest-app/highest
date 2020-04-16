@@ -14,7 +14,9 @@
             v-if="routes.length > 0"
             cols="12">
             <h2>{{ $tc('generic.route', 2) }}</h2>
-            <routes-list :routes="routes"/>
+            <routes-list
+              :routes="routes"
+              show-location/>
           </v-col>
           <v-col
             v-if="competitions.length > 0"
