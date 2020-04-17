@@ -31,6 +31,12 @@ const mutations = {
       photos: [data.picture]
     })
   },
+  UPDATE_LOCATION(state, data) {
+    let location = state.find(location => location.id === data.id)
+    location.name = data.name
+    location.address = data.address
+    location.notes = data.notes
+  },
   DELETE_LOCATION(state, id) {
     let indexToDelete = state.findIndex(location => location.id === id)
     state.splice(indexToDelete, 1)
@@ -49,6 +55,10 @@ const actions = {
     saveToStorage('locations', state)
 
     return id
+  },
+  updateLocation({ commit, state }, data) {
+    commit('UPDATE_LOCATION', data)
+    saveToStorage('locations', state)
   },
   deleteLocation({ commit, state }, id) {
     commit('DELETE_LOCATION', id)
