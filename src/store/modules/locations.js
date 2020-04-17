@@ -22,11 +22,11 @@ const mutations = {
   ADD_LOCATIONS(state, data) {
     state = [...state, ...data]
   },
-  ADD_LOCATION(state, data) {
+  ADD_LOCATION(state, { data, id }) {
     state.push({
       name: data.name,
       address: data.address,
-      id: flake.gen(),
+      id,
       notes: data.notes,
       photos: [data.picture]
     })
@@ -42,9 +42,13 @@ const actions = {
     commit('ADD_LOCATIONS', data)
     saveToStorage('locations', state)
   },
-  addLocation({ commit, state }, entryData) {
-    commit('ADD_LOCATION', entryData)
+  addLocation({ commit, state }, data) {
+    let id = flake.gen()
+
+    commit('ADD_LOCATION', { data, id })
     saveToStorage('locations', state)
+
+    return id
   },
   deleteLocation({ commit, state }, id) {
     commit('DELETE_LOCATION', id)

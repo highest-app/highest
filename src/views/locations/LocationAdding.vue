@@ -89,15 +89,17 @@ export default {
   },
   methods: {
     ...mapActions(['addLocation']),
+    async add () {
+      let id = await this.addLocation(this.form)
+      await this.$router.push({
+        name: 'location',
+        params: { location: id }
+      })
+    },
     resetForm () {
       this.form = Object.assign({}, this.defaultLocationForm)
       this.enabled = false
     },
-    add () {
-      this.addLocation(this.form)
-      this.resetForm()
-      this.$emit('close')
-    }
   }
 }
 </script>
