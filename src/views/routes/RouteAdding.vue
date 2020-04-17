@@ -44,7 +44,6 @@ export default {
   components: { RouteForm },
   data () {
     return {
-
       form: Object.assign({}, defaultRouteForm),
 
       enabled: false
@@ -52,14 +51,20 @@ export default {
   },
   methods: {
     ...mapActions(['addRoute']),
-    add () {
+    async add () {
       if (!this.form.enableGoal) this.form.goal = false
-      this.addRoute(this.form)
-      this.resetForm()
-      this.$emit('close')
+      let id = await this.addRoute(this.form)
+      this.enabled = false
+      await this.$router.push({
+        name: 'route',
+        params: {
+          location: this.form.location,
+          route: id
+        }
+      })
     },
     resetForm () {
-      this.form = Object.assign({}, this.defaultRouteForm)
+      this.form = Object.assign({}, defaultRouteForm)
       this.enabled = false
     }
   }

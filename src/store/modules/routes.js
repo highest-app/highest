@@ -28,10 +28,10 @@ const getters = {
 }
 
 const mutations = {
-  ADD_ROUTE(state, data) {
+  ADD_ROUTE(state, { data, id }) {
     state.push({
       name: data.name,
-      id: flake.gen(),
+      id,
       location: data.location,
       grade: data.grade,
       length: data.length,
@@ -71,9 +71,13 @@ const mutations = {
 }
 
 const actions = {
-  addRoute({ commit, state }, entryData) {
-    commit('ADD_ROUTE', entryData)
+  addRoute({ commit, state }, data) {
+    let id = flake.gen()
+
+    commit('ADD_ROUTE', { data, id })
     saveToStorage('routes', state)
+
+    return id
   },
   switchFinishedRoute({ commit, state }, route) {
     commit('SWITCH_FINISHED', route)
