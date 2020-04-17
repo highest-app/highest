@@ -155,7 +155,7 @@ export default {
   },
   methods: {
     ...mapActions(['addCompetition']),
-    add () {
+    async add () {
       switch (this.form.participation) {
       case 0:
         this.form.participation = 'notParticipating'
@@ -171,9 +171,13 @@ export default {
         type: 'location',
         id: this.form.location
       }
-      this.addCompetition(this.form)
-      this.resetForm()
-      this.$emit('close')
+      let id = await this.addCompetition(this.form)
+      await this.$router.push({
+        name: 'competition',
+        params: {
+          competition: id
+        }
+      })
     },
     resetForm () {
       this.form = Object.assign({}, this.defaultCompetitionForm)
