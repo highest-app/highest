@@ -6,7 +6,7 @@ import en from 'vuetify/es5/locale/en'
 import colors from 'vuetify/lib/util/colors'
 import 'vuetify/dist/vuetify.min.css'
 
-import store from '../store'
+import store from '@/store'
 
 Vue.use(Vuetify)
 

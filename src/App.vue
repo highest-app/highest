@@ -136,9 +136,7 @@ export default {
       })
     }
   },
-  computed: {
-    ...mapState(['settings'])
-  },
+  computed: mapState(['settings']),
   watch: {
     'settings.darkTheme' () {
       this.setTheme()

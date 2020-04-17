@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import moment from 'moment'
 
-import store from '../store'
+import store from '@/store'
 
 const today = new Date().toISOString().substr(0, 10)
 const formats = {

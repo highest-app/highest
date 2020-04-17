@@ -1,4 +1,4 @@
-import {loadFromStorage, saveToStorage} from '@/utils/storage'
+import { loadFromStorage, saveToStorage } from '@/utils/storage'
 
 const state = loadFromStorage('feeds')
 

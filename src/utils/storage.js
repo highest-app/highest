@@ -1,4 +1,4 @@
-import { defaultTags } from './data'
+import { defaultTags } from '@/utils/data'
 
 function loadFromStorage(category) {
   let defaults = {

@@ -1,4 +1,4 @@
-import flake from '../../utils/flake'
+import flake from '@/utils/flake'
 import { loadFromStorage, saveToStorage } from '@/utils/storage'
 
 const state = loadFromStorage('locations')
