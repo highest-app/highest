@@ -76,23 +76,17 @@
           <card-header>{{ $t('settings.data') }}</card-header>
           <card
             top
-            clickable
-            @click.native="exportData">
+            @click="exportData">
             <template #title>
               <span class="primary--text">{{ $t('settings.exportData') }}</span>
             </template>
           </card>
-          <v-divider/>
-          <card>
-            <template #title>
-              <span class="primary--text">{{ $t('settings.importData') }}</span>
-            </template>
+          <card disabled>
+            <template #title>{{ $t('settings.importData') }}</template>
           </card>
-          <v-divider/>
           <card
-            clickable
             bottom
-            @click.native="eraseDialog = true">
+            @click="eraseDialog = true">
             <template #title>
               <span class="error--text">{{ $t('settings.eraseData') }}</span>
             </template>
