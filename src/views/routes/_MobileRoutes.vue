@@ -43,8 +43,6 @@ export default {
       locationDialog: false
     }
   },
-  computed: {
-    ...mapState(['locations'])
-  }
+  computed: mapState(['locations'])
 }
 </script>

@@ -30,8 +30,6 @@ export default {
       required: true
     }
   },
-  computed: {
-    ...mapState(['assets'])
-  }
+  computed: mapState(['assets'])
 }
 </script>

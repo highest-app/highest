@@ -43,8 +43,6 @@ export default {
     if (this.tag === undefined) this.$router.push('/routes')
     this.routes = this.getRoutesByTag(id)
   },
-  computed: {
-    ...mapGetters(['getTagById', 'getRoutesByTag'])
-  }
+  computed: mapGetters(['getTagById', 'getRoutesByTag'])
 }
 </script>

@@ -70,8 +70,6 @@ export default {
       default: false
     }
   },
-  computed: {
-    ...mapState(['assets', 'tags', 'locations']),
-  }
+  computed: mapState(['assets', 'tags', 'locations'])
 }
 </script>

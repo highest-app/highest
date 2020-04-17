@@ -78,11 +78,7 @@ export default {
       this.showMap = true
     })
   },
-  computed: {
-    ...mapGetters(['getCompetitionById', 'getLocationById'])
-  },
-  methods: {
-    latLng
-  }
+  computed: mapGetters(['getCompetitionById', 'getLocationById']),
+  methods: { latLng }
 }
 </script>

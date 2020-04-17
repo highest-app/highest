@@ -19,8 +19,6 @@ import CompetitionsList from '@/views/competitions/CompetitionsList'
 export default {
   name: 'Competitions',
   components: { CompetitionAdding, CompetitionsList },
-  computed: {
-    ...mapState(['competitions']),
-  }
+  computed: mapState(['competitions'])
 }
 </script>

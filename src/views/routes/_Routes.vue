@@ -37,8 +37,6 @@ import RoutesList from '@/views/routes/RoutesList'
 export default {
   name: 'AllRoutes',
   components: { RouteAdding, RoutesList },
-  computed: {
-    ...mapState(['routes', 'locations'])
-  }
+  computed: mapState(['routes', 'locations'])
 }
 </script>
