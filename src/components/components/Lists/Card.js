@@ -6,6 +6,10 @@ export default Vue.component('card', {
         type: Boolean,
         default: false
       },
+      disabled: {
+        type: Boolean,
+        default: false
+      },
       href: {
         type: String,
         default: null
@@ -51,8 +55,9 @@ export default Vue.component('card', {
                     : (event) => this.$emit('click', event)
                   },
                   props: {
-                    link: this.clickable,
+                    disabled: this.disabled,
                     href: this.href,
+                    link: this.clickable,
                     target: this.target,
                     to: this.to
                   }
