@@ -97,8 +97,7 @@ export default {
     parsedCompetitions() {
       let parsed = []
       this.competitions.forEach((rawCompetition) => {
-        let competition = {}
-        Object.assign(competition, rawCompetition)
+        let competition = Object.assign({}, rawCompetition)
         if (competition.location.type === "location") {
           competition.location = {
             type: competition.location.type,

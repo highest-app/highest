@@ -61,7 +61,7 @@ export default {
     }
   },
   mounted () {
-    this.competition = this.getCompetitionById(this.$route.params.competition)
+    this.competition = Object.assign({}, this.getCompetitionById(this.$route.params.competition))
     let query = ''
 
     if (this.competition.location.type === 'string') {
@@ -69,7 +69,7 @@ export default {
     } else if (this.competition.location.type === 'location') {
       this.competition.location = {
         type: this.competition.location.type,
-        ...this.getLocationById(this.competition.location.id)
+        ...this.getLocationById(this.competition.location.locationID)
       }
       query = this.competition.location.address
     }

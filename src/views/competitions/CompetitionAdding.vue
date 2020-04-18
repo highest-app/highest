@@ -169,7 +169,7 @@ export default {
       }
       this.form.location = {
         type: 'location',
-        id: this.form.location
+        locationID: this.form.location
       }
       let id = await this.addCompetition(this.form)
       await this.$router.push({
