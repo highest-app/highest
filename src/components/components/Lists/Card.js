@@ -50,9 +50,9 @@ export default Vue.component('card', {
             [
               createElement(
                 'v-list-item', {
-                  on: {
-                    click: this.$listeners.click === undefined ? undefined
-                    : (event) => this.$emit('click', event)
+                  on: this.$listeners.click === undefined ? ''
+                    : {
+                    click: (event) => this.$emit('click', event)
                   },
                   props: {
                     disabled: this.disabled,
