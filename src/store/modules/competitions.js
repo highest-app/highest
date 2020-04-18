@@ -40,6 +40,16 @@ const mutations = {
   SET_COMPETITION_PARTICIPATION(state, data) {
     let competition = state.find(competition => competition.id === data.id)
     competition.participation = data.participation
+  },
+  EXTRACT_COMPETITIONS(state, location) {
+    let competitions = state.filter(competition => competition.location.type === 'location' && competition.location.locationID === location.id)
+    competitions.forEach(competition => {
+      competition.location = {
+        type: 'string',
+        address: location.address
+      }
+    })
+    saveToStorage('competitions', state)
   }
 }
 
