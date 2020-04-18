@@ -39,7 +39,8 @@ function loadFromStorage(category) {
     ],
     settings: {
       darkTheme: false,
-      autoDarkTheme: true
+      autoDarkTheme: true,
+      locale: 'en'
     },
     tags: defaultTags
   }
