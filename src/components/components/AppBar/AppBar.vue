@@ -25,13 +25,18 @@
       :fixed="!fixed"
       :app="!fixed"
       elevation="0">
-      <slot name="bar-left-actions"/>
+      <div class="app-bar__left-actions">
+        <slot name="bar-left-actions"/>
+      </div>
       <v-spacer/>
       <v-toolbar-title>
-        <slot name="title-prepend"/>{{ title }}
+        <slot name="title-prepend"/>
+        {{ title }}
       </v-toolbar-title>
       <v-spacer/>
-      <slot name="bar-right-actions"/>
+      <div class="app-bar__right-actions">
+        <slot name="bar-right-actions"/>
+      </div>
     </v-app-bar>
   </div>
 </template>
