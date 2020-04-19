@@ -1,45 +1,56 @@
 <template>
   <div>
-    <select-menu
-      v-if="tagsSelect"
-      v-model="form.tags"
-      :labels="tags"
-      :choices="tags.map(tag => tag.id)"
-      :name="$tc('generic.tag', 2)"
-      multiple
-      @back="tagsSelect = false">
-      <template #label="{ label }">
-        <v-icon :color="label.color">
-          mdi-circle
-        </v-icon>
-        {{ label.name }}
-      </template>
-    </select-menu>
-    <select-menu
-      v-else-if="gradeSelect"
-      v-model="form.grade"
-      :choices="grades"
-      :name="$t('terms.grade')"
-      auto-back
-      @back="gradeSelect = false"/>
-    <select-menu
-      v-else-if="locationSelect"
-      v-model="form.location"
-      :choices="locations.map(l => l.id)"
-      :labels="locations"
-      :name="$tc('generic.location', 1)"
-      auto-back
-      @back="locationSelect = false">
-      <template #label="{ label }">
-        <v-list-item-avatar>
-          <v-avatar>
-            <v-img :src="label.photos[0]"/>
-          </v-avatar>
-        </v-list-item-avatar>
-        {{ label.name }}
-      </template>
-    </select-menu>
-    <template v-else>
+    <v-slide-x-reverse-transition>
+      <select-menu
+        v-if="tagsSelect"
+        v-model="form.tags"
+        :labels="tags"
+        :choices="tags.map(tag => tag.id)"
+        :name="$tc('generic.tag', 2)"
+        :hook="hook"
+        :page="!dialog"
+        :dialog="dialog"
+        multiple
+        @back="tagsSelect = false">
+        <template #label="{ label }">
+          <v-icon :color="label.color">
+            mdi-circle
+          </v-icon>
+          {{ label.default ? $t(`terms.${label.color}`) : label.name }}
+        </template>
+      </select-menu>
+      <select-menu
+        v-if="gradeSelect"
+        v-model="form.grade"
+        :choices="grades"
+        :name="$t('terms.grade')"
+        :hook="hook"
+        :page="!dialog"
+        :dialog="dialog"
+        auto-back
+        @back="gradeSelect = false"/>
+      <select-menu
+        v-if="locationSelect"
+        v-model="form.location"
+        :choices="locations.map(l => l.id)"
+        :labels="locations"
+        :name="$tc('generic.location', 1)"
+        :hook="hook"
+        :page="!dialog"
+        :dialog="dialog"
+        auto-back
+        @back="locationSelect = false">
+        <template #label="{ label }">
+          <v-list-item-avatar>
+            <v-avatar>
+              <v-img :src="label.photos[0]"/>
+            </v-avatar>
+          </v-list-item-avatar>
+          {{ label.name }}
+        </template>
+      </select-menu>
+    </v-slide-x-reverse-transition>
+    <template>
       <page-body>
         <list-group>
           <card top>
@@ -53,7 +64,9 @@
                 flat/>
             </template>
           </card>
-          <card @click="locationSelect = true">
+          <card
+            v-if="acceptLocation"
+            @click="locationSelect = true">
             <template #title>{{ $tc('generic.location', 1) }}</template>
             <template
               v-if="form.location !== '' && form.location !== undefined"
@@ -223,6 +236,14 @@ export default {
     form: {
       type: Object,
       required: true
+    },
+    acceptLocation: {
+      type: Boolean,
+      default: false
+    },
+    dialog: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -235,11 +256,17 @@ export default {
       grades
     }
   },
+  mounted() {
+    console.log(this.$parent.$refs.content.style)
+  },
   computed: {
     ...mapState(['tags', 'locations']),
     ...mapGetters(['getTagById']),
     routeLength () {
       return `${this.form.length}m`
+    },
+    hook() {
+      return this.dialog ? this.$parent.$parent.$parent.$refs.dialog : this.$parent.$refs.content
     }
   },
 }

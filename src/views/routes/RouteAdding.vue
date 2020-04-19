@@ -18,18 +18,23 @@
       </v-tooltip>
     </template>
     <template #dialog>
-      <app-bar
-        :title="$t('routes.add')"
-        small-only
-        fixed>
-        <template #bar-left-actions>
-          <a @click="resetForm">{{ $t('terms.cancel') }}</a>
-        </template>
-        <template #bar-right-actions>
-          <a @click="add">{{ $t('terms.add') }}</a>
-        </template>
-      </app-bar>
-      <route-form v-model="form"/>
+      <div ref="dialog">
+        <app-bar
+          :title="$t('routes.add')"
+          small-only
+          fixed>
+          <template #bar-left-actions>
+            <a @click="resetForm">{{ $t('terms.cancel') }}</a>
+          </template>
+          <template #bar-right-actions>
+            <a @click="add">{{ $t('terms.add') }}</a>
+          </template>
+        </app-bar>
+        <route-form
+          v-model="form"
+          dialog
+          accept-location/>
+      </div>
     </template>
   </responsive-dialog>
 </template>
