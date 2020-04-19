@@ -25,11 +25,11 @@
         class="responsive-dialog__sheet"
         scrollable
         inset>
-        <template #activator>
+        <template #activator="{ on: sheet }">
           <div class="responsive-dialog__trigger">
             <slot
               name="activator"
-              v-bind:on="events"/>
+              v-bind:on="{ ...sheet, ...events }"/>
           </div>
         </template>
         <v-card class="background">
