@@ -24,49 +24,10 @@
           <a @click="add">{{ $t('terms.add') }}</a>
         </template>
       </app-bar>
-      <page-body>
-        <list-group>
-          <card top>
-            <template #title>{{ $t('terms.name') }}</template>
-            <template #input>
-              <v-text-field
-                v-model="form.name"
-                :placeholder="$t('locations.namePlaceholder')"
-                hide-details
-                solo
-                flat/>
-            </template>
-          </card>
-          <card>
-            <template #title>{{ $t('terms.address') }}</template>
-            <template #input>
-              <v-text-field
-                v-model="form.address"
-                :placeholder="$t('locations.addressPlaceholder')"
-                hide-details
-                solo
-                flat/>
-            </template>
-          </card>
-          <asset-uploader v-model="form.picture"/>
-          <card
-            top
-            bottom>
-            <template #title>{{ $t('terms.notes') }}</template>
-            <template #input>
-              <v-textarea
-                id="notes-textarea"
-                v-model="form.notes"
-                :placeholder="$t('locations.notesPlaceholder')"
-                rows="1"
-                auto-grow
-                hide-details
-                solo
-                flat/>
-            </template>
-          </card>
-        </list-group>
-      </page-body>
+      <location-form
+        v-model="form"
+        with-assets
+        dialog/>
     </template>
   </responsive-dialog>
 </template>
@@ -74,9 +35,11 @@
 <script>
 import { mapActions } from 'vuex'
 import { defaultLocationForm } from '@/utils/forms'
+import LocationForm from '@/views/locations/LocationForm'
 
 export default {
   name: 'LocationAdding',
+  components: { LocationForm },
   data () {
     return {
       form: Object.assign({}, defaultLocationForm),
@@ -95,6 +58,7 @@ export default {
         name: 'location',
         params: { location: id }
       })
+      this.resetForm()
     },
     resetForm () {
       this.form = Object.assign({}, this.defaultLocationForm)
