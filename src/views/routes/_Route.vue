@@ -27,6 +27,9 @@
       <app-bar
         :title="$t('routes.edit')"
         small-only>
+        <template #bar-left-actions>
+          <a @click="quitEdit">{{ $t('terms.cancel') }}</a>
+        </template>
         <template #bar-right-actions>
           <a @click="validateEdit">{{ $t('terms.ok') }}</a>
         </template>
@@ -39,15 +42,23 @@
           <v-col
             cols="12"
             md="6">
-            <list-group>
-              <card top/>
-            </list-group>
-            <v-btn
-              class="gradient--error white--text"
-              block
-              @click="deleteDialog = true">
-              {{ $t('routes.delete') }}
-            </v-btn>
+            <route-form v-model="routeForm"/>
+            <div class="mt-4">
+              <list-group>
+                <card top>
+                  <template #title>
+                    <span class="primary--text">{{ $t('routes.transfer')}}</span>
+                  </template>
+                </card>
+                <card
+                  bottom
+                  @click="deleteDialog = true">
+                  <template #title>
+                    <span class="error--text">{{ $t('routes.delete') }}</span>
+                  </template>
+                </card>
+              </list-group>
+            </div>
           </v-col>
         </v-row>
       </v-container>
@@ -156,9 +167,11 @@
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
 import { defaultProgressionForm } from '@/utils/forms'
+import RouteForm from '@/views/routes/RouteForm'
 
 export default {
   name: 'Route',
+  components: { RouteForm },
   data() {
     return {
       route: {},
@@ -177,7 +190,7 @@ export default {
       this.$router.back()
     }
     this.location = this.getLocationById(this.route.location)
-    this.validateEdit()
+    this.routeForm = Object.assign({}, this.route)
   },
   computed: {
     ...mapState(['assets']),
@@ -198,12 +211,16 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['deleteRoute', 'switchFinishedRoute', 'addProgression', 'removeProgression']),
+    ...mapActions(['updateRoute', 'deleteRoute', 'switchFinishedRoute', 'addProgression', 'removeProgression']),
     deleteThis () {
       this.deleteRoute(this.route.id)
       this.$router.back()
     },
     validateEdit () {
+      this.updateRoute(this.routeForm)
+      this.quitEdit()
+    },
+    quitEdit() {
       this.routeForm = Object.assign({}, this.route)
       this.editMode = false
     },
