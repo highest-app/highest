@@ -190,7 +190,7 @@ export default {
       this.$router.back()
     }
     this.location = this.getLocationById(this.route.location)
-    this.routeForm = Object.assign({}, this.route)
+    this.quitEdit()
   },
   computed: {
     ...mapState(['assets']),
