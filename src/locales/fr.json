@@ -78,7 +78,7 @@
     "progressionNotesPlaceholder": "Notes à rajouter à propos de cette progression",
 
     "edit": "Modifier la voie",
-
+    "transfer": "Transférer vers un autre lieu",
     "delete": "Supprimer la voie",
     "deleteConfirmation": "Si vous supprimez cette voie, les progressions sauvegardées dessus vont également l'être. Réfléchissez bien !",
 
@@ -95,6 +95,7 @@
     "namePlaceholder": "Nom du lieu",
     "addressPlaceholder": "Adresse physique du lieu",
     "notesPlaceholder": "Notes à rajouter à propos du lieu",
+    "edit": "Modifier le lieu",
 
     "noLocations": "Aucun lieu pour le moment. Créez-en un afin d'ajouter vos voies.",
 
@@ -113,7 +114,10 @@
     "participating": "Participant"
   },
   "assets": {
-    "add": "Ajouter une ressource"
+    "add": "Ajouter une ressource",
+
+    "uploadHelper": "Choisissez une image de votre appareil",
+    "existingHelper": "...ou choisissez-en une déjà sur Highest"
   },
   "settings": {
     "adjustments": "Réglages",

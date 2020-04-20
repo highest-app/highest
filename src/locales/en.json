@@ -73,12 +73,12 @@
     "defineGoal": "Define a goal",
     "color": "Colour",
 
-    "information": "Informations",
+    "information": "Information",
     "progressions": "Progressions",
     "progressionNotesPlaceholder": "Notes to add about this progression",
 
     "edit": "Edit route",
-
+    "transfer": "Transfer to another location",
     "delete": "Delete route",
     "deleteConfirmation": "If you delete this route, all your registered progressions on it will be lost. Think about it !",
 
@@ -95,6 +95,7 @@
     "namePlaceholder": "Location's name",
     "addressPlaceholder": "Physical address of the location",
     "notesPlaceholder": "Notes to add about this location",
+    "edit": "Edit location",
 
     "noLocations": "Any location for the moment. Create one to add your routes.",
 
@@ -113,7 +114,10 @@
     "participating": "Participating"
   },
   "assets": {
-    "add": "Add an asset"
+    "add": "Add an asset",
+
+    "uploadHelper": "Upload an asset from your device...",
+    "existingHelper": "...or choose one already on Highest"
   },
   "settings": {
     "adjustments": "Adjustments",
