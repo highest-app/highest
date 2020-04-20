@@ -104,6 +104,9 @@
               <v-col cols="12">
                 <card-header>{{ $t('routes.information') }}</card-header>
                 <p>{{ route.notes }}</p>
+                <p>
+                  <strong>{{ $t('terms.length') }} : </strong>{{ route.length }}m
+                </p>
                 <v-switch
                   v-model="route.finished"
                   color="primary"

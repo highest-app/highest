@@ -262,9 +262,6 @@ export default {
       grades
     }
   },
-  mounted() {
-    console.log(this.$parent.$refs.content.style)
-  },
   computed: {
     ...mapState(['tags', 'locations']),
     ...mapGetters(['getTagById']),
