@@ -99,23 +99,20 @@
             <template #title>
               {{ $t('settings.createdBy') }}
               <a
-                href="https://twitter.com/exybore"
+                href="https://exybore.becauseofprog.fr"
                 target="_blank">
-                Exybore
+                Théo Vidal
               </a>
             </template>
           </card>
-          <card
-            href="https://github.com/highest-app/highest"
-            target="_blank"
-            bottom>
+          <card bottom>
             <template #title>
-              <span class="primary--text">
+              {{ $t('settings.openSource') }}<br>
+              <a
+                href="https://github.com/highest-app/highest"
+                target="_blank">
                 {{ $t('settings.sourceCode') }}
-              </span>
-            </template>
-            <template #action>
-              <v-icon color="primary">mdi-open-in-new</v-icon>
+              </a>
             </template>
           </card>
         </list-group>

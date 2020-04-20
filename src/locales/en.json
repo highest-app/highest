@@ -138,6 +138,7 @@
 
     "about": "About",
     "createdBy": "Created by",
+    "openSource": "This project is distributed in open-source under the MIT license.",
     "sourceCode": "Go to the source code"
   }
 }
