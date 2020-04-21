@@ -62,7 +62,7 @@
     "starter": "Start typing a key word to find routes, locations and competitions.",
 
     "notFound": "No elements found",
-    "notFoundHelp": "Try re-lauching your search with other key words.",
+    "notFoundHelp": "Try to search with other keywords.",
 
     "placeholder": "Search for a route, a location, a competition..."
   },

@@ -129,8 +129,8 @@ export default {
   name: 'Settings',
   data: () => ({
     locales: {
-      ids: ['en', 'fr'],
-      labels: ['English (EN-UK)', 'Français (FR)']
+      ids: ['en', 'fr', 'es'],
+      labels: ['English (EN-GB)', 'Français (FR)', 'Español (ES-ES)']
     },
 
     localeSelect: false,
