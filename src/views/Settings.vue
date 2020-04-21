@@ -141,7 +141,7 @@ export default {
     settings: {},
     locales: {
       ids: ['en', 'fr'],
-      labels: ['English (EN-UK)', 'Français (FR)']
+      labels: ['English (EN-GB)', 'Français (FR)']
     },
 
     localeSelect: false,
