@@ -101,7 +101,7 @@ export default {
         if (competition.location.type === "location") {
           competition.location = {
             type: competition.location.type,
-            ...this.getLocationById(competition.location.id)
+            ...this.getLocationById(competition.location.locationID)
           }
         }
         parsed.push(competition)
