@@ -78,7 +78,7 @@
     "progressionNotesPlaceholder": "Notas para añadir sobre esta progresión",
 
     "edit": "Editar la ruta",
-
+    "transfer": "Trasladar a otra ubicación",
     "delete": "Borrar la ruta",
     "deleteConfirmation": "Si borra esta ruta, todas sus progresiones registradas en ella se perderán. ¡Piensa en ello!",
 
@@ -110,7 +110,12 @@
 
     "notParticipating": "No participar",
     "thinking": "Pensando",
-    "participating": "Participantes"
+    "participating": "Participantes",
+
+    "edit": "Editar la competencia",
+    "transfer": "Trasladar a otra ubicación",
+    "delete": "Borrar la competencia",
+    "deleteConfirmation": "Si borra esta competencia, perderás las estadísticas guardadas en él. ¡Piénsalo!"
   },
   "settings": {
     "adjustments": "Ajustes",

@@ -111,7 +111,12 @@
 
     "notParticipating": "Ne participant pas",
     "thinking": "Réfléchissant",
-    "participating": "Participant"
+    "participating": "Participant",
+
+    "edit": "Modifier la compétition",
+    "transfer": "Transférer vers un autre lieu",
+    "delete": "Supprimer la compétition",
+    "deleteConfirmation": "Si vous supprimez cette compétition, vous allez perdre les statistiques enregistrées dessus. Réfléchissez bien !"
   },
   "assets": {
     "add": "Ajouter une ressource",
