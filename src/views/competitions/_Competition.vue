@@ -158,10 +158,7 @@ export default {
       } else {
         // TODO : error handling
       }
-      provider.search({ query }).then(response => {
-        this.mapInfo = response[0]
-        this.showMap = true
-      })
+      this.updateMap(query)
       return location
     }
   },
@@ -179,6 +176,12 @@ export default {
     deleteThis() {
       this.deleteCompetition(this.competition.id)
       this.$router.push({ name: 'competitions' })
+    },
+    async updateMap(query) {
+      provider.search({ query }).then(response => {
+        this.mapInfo = response[0]
+        this.showMap = true
+      })
     }
   }
 }
