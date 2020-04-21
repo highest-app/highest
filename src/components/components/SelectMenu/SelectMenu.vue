@@ -3,54 +3,50 @@
     <app-bar
       :title="name"
       small-only
-      fixed>
+      sticky>
       <template #bar-left-actions>
         <a @click="$emit('back')">{{ $t('terms.back') }}</a>
       </template>
     </app-bar>
-    <v-container class="px-0 pb-0">
-      <v-row>
-        <v-col cols="12">
-          <v-card
-            tile
-            elevation="0">
-            <v-list flat>
-              <v-list-item-group
-                v-model="selected"
-                :multiple="multiple">
-                <template v-for="(choice, i) in choices">
-                  <v-list-item
-                    :key="`${choice}--list-item)`"
-                    :value="choice"
-                    active-class="null">
-                    <template
-                      #default="{ active, toggle }"
-                      @click="toggle">
-                      <v-list-item-content>
-                        <v-list-item-title>
-                          <slot
-                            name="label"
-                            v-bind:label="labels === null ? choice : labels[i]">
-                            {{ labels === null ? choice : labels[i] }}
-                          </slot>
-                        </v-list-item-title>
-                      </v-list-item-content>
+    <page-body>
+      <v-card
+        tile
+        elevation="0">
+        <v-list flat>
+          <v-list-item-group
+            v-model="selected"
+            :multiple="multiple">
+            <template v-for="(choice, i) in choices">
+              <v-list-item
+                :key="`${choice}--list-item)`"
+                :value="choice"
+                active-class="null">
+                <template
+                  #default="{ active, toggle }"
+                  @click="toggle">
+                  <v-list-item-content>
+                    <v-list-item-title>
+                      <slot
+                        name="label"
+                        v-bind:label="labels === null ? choice : labels[i]">
+                        {{ labels === null ? choice : labels[i] }}
+                      </slot>
+                    </v-list-item-title>
+                  </v-list-item-content>
 
-                      <v-list-item-icon v-if="active">
-                        <v-icon color="primary">mdi-check</v-icon>
-                      </v-list-item-icon>
-                    </template>
-                  </v-list-item>
-                  <v-divider
-                    v-if="i !== choices.length - 1"
-                    :key="`${choice}--divider)`"/>
+                  <v-list-item-icon v-if="active">
+                    <v-icon color="primary">mdi-check</v-icon>
+                  </v-list-item-icon>
                 </template>
-              </v-list-item-group>
-            </v-list>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
+              </v-list-item>
+              <v-divider
+                v-if="i !== choices.length - 1"
+                :key="`${choice}--divider)`"/>
+            </template>
+          </v-list-item-group>
+        </v-list>
+      </v-card>
+    </page-body>
   </div>
 </template>
 

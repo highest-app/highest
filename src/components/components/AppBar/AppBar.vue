@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'app-bar--fixed': fixed, 'app-bar__container': true }">
+  <div :class="classes">
     <v-app-bar
       v-if="!smallOnly"
       class="top-bar background"
@@ -20,10 +20,10 @@
       class="app-bar translucent"
       :hide-on-scroll="!smallOnly"
       :inverted-scroll="!smallOnly"
-      :scroll-threshold="fixed ? 0 : 128"
-      :absolute="fixed"
-      :fixed="!fixed"
-      :app="!fixed"
+      :scroll-threshold="fix ? 0 : 128"
+      :absolute="fix"
+      :fixed="!fix"
+      :app="!fix"
       elevation="0">
       <div class="app-bar__left-actions">
         <slot name="bar-left-actions"/>
@@ -45,17 +45,33 @@
 export default {
   name: 'AppBar',
   props: {
+    fixed: {
+      type: Boolean,
+      default: false
+    },
     smallOnly: {
       type: Boolean,
       default: false
     },
-    fixed: {
+    sticky: {
       type: Boolean,
       default: false
     },
     title: {
       type: String,
       default: ''
+    }
+  },
+  computed: {
+    fix() {
+      return this.fixed || this.sticky
+    },
+    classes() {
+      return {
+        'app-bar__container': true,
+        'app-bar--fixed': this.fix,
+        'app-bar--sticky': this.sticky
+      }
     }
   }
 }
