@@ -18,140 +18,38 @@
       </v-tooltip>
     </template>
     <template #dialog>
-      <select-menu
-        v-if="locationSelect"
-        v-model="form.location"
-        :choices="locations.map(l => l.id)"
-        :labels="locations"
-        :name="$tc('generic.location')"
-        auto-back
-        @back="locationSelect = false">
-        <template #label="{ label }">
-          <v-list-item-avatar>
-            <v-avatar>
-              <v-img :src="label.photos[0]"/>
-            </v-avatar>
-          </v-list-item-avatar>
-          {{ label.name }}
+      <app-bar
+        :title="$t('competitions.add')"
+        small-only
+        fixed>
+        <template #bar-left-actions>
+          <a @click="resetForm">{{ $t('terms.cancel') }}</a>
         </template>
-      </select-menu>
-      <template v-else>
-        <app-bar
-          :title="$t('competitions.add')"
-          small-only
-          fixed>
-          <template #bar-left-actions>
-            <a @click="resetForm">{{ $t('terms.cancel') }}</a>
-          </template>
-          <template #bar-right-actions>
-            <a @click="add">{{ $t('terms.add') }}</a>
-          </template>
-        </app-bar>
-        <page-body>
-          <list-group>
-            <card top>
-              <template #title>{{ $t('terms.name') }}</template>
-              <template #input>
-                <v-text-field
-                  v-model="form.name"
-                  :placeholder="$t('competitions.namePlaceholder')"
-                  hide-details
-                  solo
-                  flat/>
-              </template>
-            </card>
-            <card @click="locationSelect = true">
-              <template #title>{{ $tc('generic.location') }}</template>
-              <template
-                v-if="form.location !== '' && form.location !== undefined"
-                #action-text>
-                {{ locations.find(l => l.id === form.location).name }}
-              </template>
-              <template #action>
-                <v-list-item-icon>
-                  <v-icon>mdi-chevron-right</v-icon>
-                </v-list-item-icon>
-              </template>
-            </card>
-            <card>
-              <template #title>{{ $t('terms.description') }}</template>
-              <template #input>
-                <v-textarea
-                  id="notes-textarea"
-                  v-model="form.description"
-                  :placeholder="$t('competitions.descriptionPlaceholder')"
-                  rows="1"
-                  auto-grow
-                  hide-details
-                  solo
-                  flat/>
-              </template>
-            </card>
-            <card>
-              <template #title>
-                <span class="primary--text">
-                  {{ dateToText(form.date) }}
-                </span>
-              </template>
-            </card>
-            <card>
-              <template #title>
-                <v-date-picker
-                  v-model="form.date"
-                  style="box-shadow: 0;"
-                  first-day-of-week="1"
-                  color="primary"
-                  no-title
-                  full-width/>
-              </template>
-            </card>
-            <card bottom>
-              <template #title>{{ $t('competitions.participation') }}</template>
-              <template #action>
-                <v-btn-toggle
-                  v-model="form.participation"
-                  mandatory>
-                  <v-tooltip
-                    v-for="icon in icons"
-                    :key="icon.icon"
-                    open-delay="500"
-                    bottom>
-                    <template #activator="{ on }">
-                      <v-btn v-on="on">
-                        <v-icon :color="icon.color">{{ icon.icon }}</v-icon>
-                      </v-btn>
-                    </template>
-                    <span>{{ $t(`competitions.${icon.name}`)}}</span>
-                  </v-tooltip>
-                </v-btn-toggle>
-              </template>
-            </card>
-          </list-group>
-        </page-body>
-      </template>
+        <template #bar-right-actions>
+          <a @click="add">{{ $t('terms.add') }}</a>
+        </template>
+      </app-bar>
+      <competition-form
+        v-model="form"
+        accept-location
+        dialog/>
     </template>
   </responsive-dialog>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
-import { competitionIcons as icons } from '@/utils/data'
+import { mapActions } from 'vuex'
 import { defaultCompetitionForm } from '@/utils/forms'
+import CompetitionForm from '@/views/competitions/CompetitionForm'
 
 export default {
   name: 'CompetitionAdding',
+  components: { CompetitionForm },
   data () {
     return {
       form: Object.assign({}, defaultCompetitionForm),
-
-      enabled: false,
-      locationSelect: false,
-
-      icons
+      enabled: false
     }
-  },
-  computed: {
-    ...mapState(['locations'])
   },
   methods: {
     ...mapActions(['addCompetition']),
