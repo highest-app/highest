@@ -37,6 +37,10 @@ const mutations = {
     competition.date = data.date
     competition.website = data.website
   },
+  DELETE_COMPETITION(state, id) {
+    let indexToDelete = state.findIndex(competition => competition.id === id)
+    state.splice(indexToDelete, 1)
+  },
   SET_COMPETITION_PARTICIPATION(state, data) {
     let competition = state.find(competition => competition.id === data.id)
     competition.participation = data.participation
@@ -62,6 +66,10 @@ const actions = {
   },
   updateCompetition({ commit, state }, data) {
     commit('UPDATE_COMPETITION', data)
+    saveToStorage('competitions', state)
+  },
+  deleteCompetition({ commit, state }, id) {
+    commit('DELETE_COMPETITION', id)
     saveToStorage('competitions', state)
   },
   setCompetitionParticipation({ commit, state }, data) {
