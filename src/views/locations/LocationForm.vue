@@ -27,8 +27,8 @@
         v-if="withAssets"
         v-model="form.picture"/>
       <card
-        top
-        bottom>
+        bottom
+        extendable>
         <template #title>{{ $t('terms.notes') }}</template>
         <template #input>
           <v-textarea

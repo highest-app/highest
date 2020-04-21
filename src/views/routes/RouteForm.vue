@@ -208,7 +208,8 @@
         <list-group>
           <card
             top
-            bottom>
+            bottom
+            extendable>
             <template #title>{{ $t('terms.notes') }}</template>
             <template #input>
               <v-textarea

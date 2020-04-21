@@ -10,6 +10,10 @@ export default Vue.component('card', {
         type: Boolean,
         default: false
       },
+      extendable: {
+        type: Boolean,
+        default: false
+      },
       href: {
         type: String,
         default: null
@@ -44,7 +48,8 @@ export default Vue.component('card', {
               class: {
                 'card': true,
                 'card--top': this.top,
-                'card--bottom': this.$slots.description === undefined ? this.bottom : true
+                'card--bottom': this.$slots.description === undefined ? this.bottom : true,
+                'card--extendable': this.extendable
               }
             },
             [
