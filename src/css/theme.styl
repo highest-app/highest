@@ -16,10 +16,16 @@
     border-top: 1px solid rgba(0, 0, 0, 0.08)
 
 @css {
+  .translucent, .blurred {
+    background-color: rgba(var(--v-background-base), 0.4) !important;
+  }
   .translucent {
     -webkit-backdrop-filter: blur(30px);
     backdrop-filter: blur(30px);
-    background-color: rgba(var(--v-background-base), 0.4) !important;
+  }
+  .blurred {
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
   }
 }
 
