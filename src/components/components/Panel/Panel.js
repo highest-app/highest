@@ -21,6 +21,10 @@ export default Vue.component('panel', {
     width: {
       type: String,
       default: null
+    },
+    disableOffset: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -41,7 +45,9 @@ export default Vue.component('panel', {
           style += `left: 0; width: ${this.defaultWidth}px;`
         }
       } else if (this.dialog) {
-        style += `width: ${this.defaultWidth}px; height: ${this.defaultHeight}px; margin-top: -75px;`
+        style += `width: ${this.defaultWidth}px; height: ${this.defaultHeight}px;`
+        if (!this.disableOffset)
+          style += 'margin-top: -75px;'
       }
       return style
     }
