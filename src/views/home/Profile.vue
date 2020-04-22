@@ -18,6 +18,7 @@
       </v-tooltip>
     </template>
     <template #dialog>
+      <assets-managing v-model="assetsManaging"/>
       <app-bar
         :title="$t('pages.profile')"
         small-only
@@ -50,8 +51,17 @@
         <list-group>
           <card-header>{{ $t('settings.adjustments') }}</card-header>
           <card
-            to="/settings"
             top
+            @click="assetsManaging = true">
+            <template #title>{{ $t('terms.assets') }}</template>
+            <template #action>
+              <v-list-item-icon>
+                <v-icon>mdi-chevron-right</v-icon>
+              </v-list-item-icon>
+            </template>
+          </card>
+          <card
+            to="/settings"
             bottom>
             <template #title>{{ $t('pages.settings') }}</template>
             <template #action>
@@ -67,11 +77,15 @@
 </template>
 
 <script>
+import AssetsManaging from '@/views/home/AssetsManaging'
+
 export default {
   name: 'Profile',
+  components: { AssetsManaging },
   data() {
     return {
-      enabled: false
+      enabled: false,
+      assetsManaging: false
     }
   }
 }

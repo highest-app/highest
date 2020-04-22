@@ -69,6 +69,13 @@ const mutations = {
     route.notes = data.notes
     route.tags = data.tags
     route.goal = data.goal
+    route.photos = data.photos
+  },
+  PURGE_ROUTES_ASSET(state, id) {
+    state.forEach((route) => {
+      route.photos = route.photos.filter(photo => photo !== id)
+    })
+    saveToStorage('routes', state)
   },
   REMOVE_ROUTE(state, id) {
     let indexToRemove = state.findIndex(route => route.id === id)

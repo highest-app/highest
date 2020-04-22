@@ -36,6 +36,13 @@ const mutations = {
     location.name = data.name
     location.address = data.address
     location.notes = data.notes
+    location.photos = data.photos
+  },
+  PURGE_LOCATIONS_ASSET(state, id) {
+    state.forEach((location) => {
+      location.photos = location.photos.filter(photo => photo !== id)
+    })
+    saveToStorage('locations', state)
   },
   DELETE_LOCATION(state, id) {
     let indexToDelete = state.findIndex(location => location.id === id)
