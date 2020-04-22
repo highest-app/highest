@@ -23,9 +23,6 @@
             flat/>
         </template>
       </card>
-      <asset-uploader
-        v-if="withAssets"
-        v-model="form.picture"/>
       <card
         bottom
         extendable>
@@ -40,6 +37,14 @@
             hide-details
             solo
             flat/>
+        </template>
+        <template
+          v-if="adding"
+          #description>
+          <v-icon left>
+            mdi-lightbulb-outline
+          </v-icon>
+          {{ $t('locations.assetsTip')}}
         </template>
       </card>
     </list-group>
@@ -58,7 +63,7 @@ export default {
       type: Object,
       required: true
     },
-    withAssets: {
+    adding: {
       type: Boolean,
       default: false
     }

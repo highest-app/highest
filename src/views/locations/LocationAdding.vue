@@ -26,8 +26,7 @@
       </app-bar>
       <location-form
         v-model="form"
-        with-assets
-        dialog/>
+        adding/>
     </template>
   </responsive-dialog>
 </template>
