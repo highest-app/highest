@@ -38,7 +38,28 @@
         <v-row>
           <v-col
             cols="12"
-            md="3"/>
+            md="3">
+            <asset-uploader
+              v-model="form.photos"
+              :active="photoChoose"
+              title="locations.editAssets"
+              multiple>
+              <template #activator="{ on }">
+                <v-card v-on="on">
+                  <v-img :src="assets[location.photos[0]]">
+                    <v-row
+                      style="flex-direction: column"
+                      class="fill-height blurred"
+                      align="center"
+                      justify="center">
+                      <v-icon size="70">mdi-image-edit-outline</v-icon>
+                      <span class="headline">{{ $t('assets.edit') }}</span>
+                    </v-row>
+                  </v-img>
+                </v-card>
+              </template>
+            </asset-uploader>
+          </v-col>
           <v-col
             cols="12"
             md="9">
@@ -128,6 +149,7 @@ export default {
 
     form: {},
     editMode: false,
+    photoChoose: false,
     deleteDialog: false
   }),
   mounted () {

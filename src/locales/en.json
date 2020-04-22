@@ -9,6 +9,7 @@
     "picture": "Picture",
     "grade": "Grade",
     "length": "Length",
+    "assets": "Assets",
 
     "add": "Add",
     "edit": "Edit",
@@ -92,10 +93,14 @@
   },
   "locations": {
     "add": "Add new location",
+    "assetsTip": "Pro-tip: you'll be able to add pictures to your location after its creation.",
+
     "namePlaceholder": "Location's name",
     "addressPlaceholder": "Physical address of the location",
     "notesPlaceholder": "Notes to add about this location",
+
     "edit": "Edit location",
+    "editAssets": "Edit location's assets",
 
     "noLocations": "Any location for the moment. Create one to add your routes.",
 
@@ -120,6 +125,8 @@
   },
   "assets": {
     "add": "Add an asset",
+    "edit": "Edit assets",
+    "manage": "Manage assets",
 
     "uploadHelper": "Upload an asset from your device...",
     "existingHelper": "...or choose one already on Highest"
