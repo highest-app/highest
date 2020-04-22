@@ -2,21 +2,21 @@ import Vue from 'vue'
 
 export default Vue.component('panel', {
   props: {
-    page: {
-      type: Boolean,
-      default: false
-    },
     dialog: {
       type: Boolean,
       default: false
     },
-    hook: {
-      type: Object,
-      default: undefined
-    },
     height: {
       type: String,
       default: null
+    },
+    hook: {
+      type: HTMLElement,
+      default: undefined
+    },
+    page: {
+      type: Boolean,
+      default: false
     },
     width: {
       type: String,
