@@ -9,7 +9,6 @@
     "picture": "Image",
     "grade": "Cotation",
     "length": "Longueur",
-
     "add": "Ajouter",
     "edit": "Modifier",
     "delete": "Supprimer",
@@ -21,16 +20,15 @@
     "done": "Terminé",
     "select": "Sélectionner",
     "selected": "Sélectionné",
-
     "actionConfirmation": "Êtes-vous sûr ?",
-
     "red": "Rouge",
     "orange": "Orange",
     "yellow": "Jaune",
     "green": "Vert",
     "blue": "Bleu",
     "purple": "Violet",
-    "gray": "Gris"
+    "gray": "Gris",
+    "assets": "Ressources"
   },
   "generic": {
     "location": "Lieu | Lieux",
@@ -49,7 +47,6 @@
   "home": {
     "appSubtitle": "Votre compagnon pour grimper",
     "appDescription": "Travaillez vos voies en restant organisé : l'application d'escalade pratique !",
-
     "visitWebsite": "Visiter le site",
     "separatedFeeds": "Flux séparés",
     "deleteFeed": "Supprimer le flux"
@@ -60,10 +57,8 @@
   },
   "search": {
     "starter": "Commencez à taper un mot-clé pour trouver voies, lieux et compétitions.",
-
     "notFound": "Aucun élément trouvé",
     "notFoundHelp": "Essayez de relancer la recherche avec d'autres mots-clés.",
-
     "placeholder": "Recherchez une voie, un lieu, une compétition..."
   },
   "routes": {
@@ -72,23 +67,20 @@
     "notesPlaceholder": "Notes à rajouter à propos de la voie",
     "color": "Couleur",
     "defineGoal": "Définir un objectif",
-
     "information": "Informations",
     "progressions": "Progressions",
     "progressionNotesPlaceholder": "Notes à rajouter à propos de cette progression",
-
     "edit": "Modifier la voie",
     "transfer": "Transférer vers un autre lieu",
     "delete": "Supprimer la voie",
     "deleteConfirmation": "Si vous supprimez cette voie, les progressions sauvegardées dessus vont également l'être. Réfléchissez bien !",
-
     "all": "Toutes les voies",
     "noRoutes": "Aucune voie pour le moment. Ajoutez-en une !",
     "for": "Pour le",
     "noGoal": "Aucun objectif",
     "markAsFinished": "Marquer comme terminée",
-
-    "addProgress": "Ajouter une progression"
+    "addProgress": "Ajouter une progression",
+    "editAssets": "Modifier les ressources de la voie"
   },
   "locations": {
     "add": "Ajouter un lieu",
@@ -96,23 +88,20 @@
     "addressPlaceholder": "Adresse physique du lieu",
     "notesPlaceholder": "Notes à rajouter à propos du lieu",
     "edit": "Modifier le lieu",
-
     "noLocations": "Aucun lieu pour le moment. Créez-en un afin d'ajouter vos voies.",
-
-    "deleteConfirmation": "Si vous supprimez ce lieu, les voies enregistrées dessus le seront également. Vous perdrez ainsi vos progressions sur ce lieu. Réfléchissez bien !"
+    "deleteConfirmation": "Si vous supprimez ce lieu, les voies enregistrées dessus le seront également. Vous perdrez ainsi vos progressions sur ce lieu. Réfléchissez bien !",
+    "assetsTip": "Astuce de pro : vous pourrez ajouter des images à votre lieu après sa création.",
+    "editAssets": "Modifier les ressources du lieu"
   },
   "competitions": {
     "noCompetitions": "Aucune compétition pour le moment. Ajoutez-en une !",
-
     "add": "Ajouter une compétition",
     "namePlaceholder": "Nom de la compétition",
     "descriptionPlaceholder": "Description de la compétition",
     "participation": "Participation",
-
     "notParticipating": "Ne participant pas",
     "thinking": "Réfléchissant",
     "participating": "Participant",
-
     "edit": "Modifier la compétition",
     "transfer": "Transférer vers un autre lieu",
     "delete": "Supprimer la compétition",
@@ -120,30 +109,28 @@
   },
   "assets": {
     "add": "Ajouter une ressource",
-
-    "uploadHelper": "Choisissez une image de votre appareil",
-    "existingHelper": "...ou choisissez-en une déjà sur Highest"
+    "uploadHelper": "Choisissez une image depuis votre appareil",
+    "existingHelper": "...ou choisissez-en une déjà sur Highest",
+    "edit": "Modifier les ressources",
+    "manage": "Gérer les ressource"
   },
   "settings": {
     "adjustments": "Réglages",
-
     "display": "Affichage",
     "language": "Langue",
     "localeDescription": "Langue de l'application",
     "darkTheme": "Thème sombre",
     "invertColors": "Inverser les couleurs",
     "autoDarkTheme": "Thème sombre automatique",
-    "autoDarkThemeDescription": "Le thème s'ajustera à celui de l'appareil. Assurez-vous d'avoir mis à jour votre système afin de profiter de cette fonctionnalité.",
-
+    "autoDarkThemeDescription": "Le thème de Highest s'ajustera à celui de l'appareil. Assurez-vous d'avoir mis à jour votre système afin de profiter de cette fonctionnalité.",
     "data": "Données",
     "exportData": "Exporter les données",
     "importData": "Importer les données",
     "eraseData": "Effacer les données",
     "eraseDataConfirmation": "Si vous continuez, cette action va engendrer la perte de toutes vos données, incluant lieux, voies, compétitions et paramètres, et ce de manière définitive. Réfléchissez-bien !",
-
     "about": "À propos",
     "createdBy": "Créé par",
-    "openSource": "Ce projet est distribué en open-source sous licence MIT.",
+    "openSource": "Ce projet est distribué en open-source sous licence GNU GPLv3.",
     "sourceCode": "Accéder au code source"
   }
 }

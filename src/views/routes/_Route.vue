@@ -42,7 +42,7 @@
             <asset-uploader
               v-model="routeForm.photos"
               :active="photoChoose"
-              title="locations.editAssets"
+              title="routes.editAssets"
               multiple>
               <template #activator="{ on }">
                 <v-card v-on="on">

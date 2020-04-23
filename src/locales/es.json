@@ -7,11 +7,9 @@
     "address": "Dirección",
     "date": "Fecha",
     "picture": "Foto",
-    "picturePlaceholder": "La dirección URL de una foto",
-    "pictureDescription": "Para añadir una imagen, puede utilizar servicios de alojamiento de imágenes gratuitos como ",
     "grade": "Grado",
     "length": "Longitud",
-
+    "assets": "Recursos",
     "add": "Añade",
     "edit": "Edita",
     "delete": "Eliminar",
@@ -21,9 +19,9 @@
     "ok": "OK",
     "close": "Cerrar",
     "done": "Hecho",
-
+    "select": "Seleccionar",
+    "selected": "Seleccionado",
     "actionConfirmation": "¿Estás seguro?",
-
     "red": "Rojo",
     "orange": "Naranja",
     "yellow": "Amarillo",
@@ -49,8 +47,7 @@
   "home": {
     "appSubtitle": "Tu mejor amigo de la escalada",
     "appDescription": "Trabaja tus rutas mientras te organizas: ¡La conveniente aplicación de escalada!",
-
-    "visitWebsite": "Visita la pagina web",
+    "visitWebsite": "Visitar la pagina web",
     "separatedFeeds": "Noticias separadas",
     "deleteFeed": "Borrar noticia"
   },
@@ -60,82 +57,80 @@
   },
   "search": {
     "starter": "Empieza a escribir una palabra clave para encontrar rutas, lugares y competiciones.",
-
     "notFound": "No se han encontrado elementos.",
     "notFoundHelp": "Intenta relanzar tu búsqueda con otras palabras clave.",
-
     "placeholder": "Busca una ruta, un lugar, una competencia..."
   },
   "routes": {
-    "add": "Añadir una nueva ruta",
+    "add": "Añadir una ruta",
     "namePlaceholder": "Nombre de la ruta",
     "notesPlaceholder": "Notas para añadir sobre la ruta",
     "defineGoal": "Definir un objetivo",
     "color": "Color",
-
     "information": "Información",
     "progressions": "Progresiones",
     "progressionNotesPlaceholder": "Notas para añadir sobre esta progresión",
-
     "edit": "Editar la ruta",
     "transfer": "Trasladar a otra ubicación",
     "delete": "Borrar la ruta",
     "deleteConfirmation": "Si borra esta ruta, todas sus progresiones registradas en ella se perderán. ¡Piensa en ello!",
-
     "all": "Todas las rutas",
     "noRoutes": "Cualquier ruta por el momento. ¡Añadamos una!",
     "for": "Para el",
     "noGoal": "No hay objetivo",
     "markAsFinished": "Marque como terminado",
-
-    "addProgress": "Añade nuevos progresos"
+    "addProgress": "Añade nuevos progresos",
+    "editAssets": "Editar los recursos de la ruta"
   },
   "locations": {
-    "add": "Añade una nueva ubicación",
+    "add": "Añadir una ubicación",
+    "assetsTip": "Astucia : podría añadir fótos a tu úbicación después su creación.",
     "namePlaceholder": "El nombre del lugar",
     "addressPlaceholder": "Dirección física del lugar",
     "notesPlaceholder": "Notas para agregar sobre esta ubicación",
-
+    "edit": "Editar la ubicación",
+    "editAssets": "Editar recursos de la ubicación",
     "noLocations": "Cualquier lugar por el momento. Crea uno para añadir tus rutas.",
-
     "deleteConfirmation": "Si borra esta ubicación, las rutas guardadas en ella también se borrarán. Por lo tanto, perderás tus progresiones en esta ubicación. ¡Piénsalo!"
   },
   "competitions": {
     "noCompetitions": "Cualquier competencia por el momento. ¡Añadamos una!",
-
     "add": "Añade una nueva competencia",
     "namePlaceholder": "Nombre de la competencia",
     "descriptionPlaceholder": "Descripción de la competencia",
     "participation": "Participación",
-
     "notParticipating": "No participar",
     "thinking": "Pensando",
     "participating": "Participantes",
-
     "edit": "Editar la competencia",
     "transfer": "Trasladar a otra ubicación",
     "delete": "Borrar la competencia",
     "deleteConfirmation": "Si borra esta competencia, perderás las estadísticas guardadas en él. ¡Piénsalo!"
   },
+  "assets": {
+    "add": "Añadir un recurso",
+    "edit": "Editar los recursos",
+    "manage": "Gestionar los recursos",
+    "uploadHelper": "Sube un recurso desde usted aparato...",
+    "existingHelper": "...o selecciona una ya en Highest"
+  },
   "settings": {
     "adjustments": "Ajustes",
-
     "display": "Pantalla",
     "language": "Idioma",
     "localeDescription": "Locale de la aplicación",
     "darkTheme": "Tema oscuro",
     "invertColors": "Invertir los colores",
     "autoDarkTheme": "Tema oscuro automática",
-    "autoDarkThemeDescription": "El tema se ajustará al del dispositivo. Asegúrate de que tu sistema esté actualizado para aprovechar esta característica.",
-
+    "autoDarkThemeDescription": "El tema de Highest se ajustará al del dispositivo. Asegúrate de que tu sistema esté actualizado para aprovechar esta característica.",
     "data": "Datos",
     "exportData": "Exportar datos",
     "importData": "Importar datos",
     "eraseData": "Borrar los datos",
     "eraseDataConfirmation": "Si continúa, esta acción hará que pierda todos sus datos, incluyendo lugares, rutas, competencias y configuraciones, definitivamente. ¡Piénsalo!",
-
     "about": "Acerca de",
     "createdBy": "Creado por",
+    "openSource": "Este proyecto es distribuido en código abierto con licencia GNU GPLv3.",
     "sourceCode": "Ve al código fuente"
   }
 }

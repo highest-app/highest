@@ -10,7 +10,6 @@
     "grade": "Grade",
     "length": "Length",
     "assets": "Assets",
-
     "add": "Add",
     "edit": "Edit",
     "delete": "Delete",
@@ -22,9 +21,7 @@
     "done": "Done",
     "select": "Select",
     "selected": "Selected",
-
     "actionConfirmation": "Are you sure ?",
-
     "red": "Red",
     "orange": "Orange",
     "yellow": "Yellow",
@@ -50,7 +47,6 @@
   "home": {
     "appSubtitle": "Your climbing best friend",
     "appDescription": "Work your routes while staying organized : the convenient climbing app !",
-
     "visitWebsite": "Visit website",
     "separatedFeeds": "Separated feeds",
     "deleteFeed": "Delete feed"
@@ -61,10 +57,8 @@
   },
   "search": {
     "starter": "Start typing a key word to find routes, locations and competitions.",
-
     "notFound": "No elements found",
     "notFoundHelp": "Try to search with other keywords.",
-
     "placeholder": "Search for a route, a location, a competition..."
   },
   "routes": {
@@ -73,51 +67,41 @@
     "notesPlaceholder": "Notes to add about the route",
     "defineGoal": "Define a goal",
     "color": "Colour",
-
     "information": "Information",
     "progressions": "Progressions",
     "progressionNotesPlaceholder": "Notes to add about this progression",
-
     "edit": "Edit route",
     "transfer": "Transfer to another location",
     "delete": "Delete route",
     "deleteConfirmation": "If you delete this route, all your registered progressions on it will be lost. Think about it !",
-
     "all": "All routes",
     "noRoutes": "Any route for the moment. Let's add one !",
     "for": "For the",
     "noGoal": "No goal",
     "markAsFinished": "Mark as finished",
-
-    "addProgress": "Add new progress"
+    "addProgress": "Add new progress",
+    "editAssets": "Edit route's assets"
   },
   "locations": {
     "add": "Add new location",
     "assetsTip": "Pro-tip: you'll be able to add pictures to your location after its creation.",
-
     "namePlaceholder": "Location's name",
     "addressPlaceholder": "Physical address of the location",
     "notesPlaceholder": "Notes to add about this location",
-
     "edit": "Edit location",
     "editAssets": "Edit location's assets",
-
     "noLocations": "Any location for the moment. Create one to add your routes.",
-
     "deleteConfirmation": "If you delete this location, routes saved on it will be deleted as well. Therefore, you'll lose your progressions on this location. Think about it !"
   },
   "competitions": {
     "noCompetitions": "Any competition for the moment. Let's add one !",
-
     "add": "Add new competition",
     "namePlaceholder": "Name of the competition",
     "descriptionPlaceholder": "Competition's description",
     "participation": "Participation",
-
     "notParticipating": "Not participating",
     "thinking": "Thinking",
     "participating": "Participating",
-
     "edit": "Edit competition",
     "transfer": "Transfer to another location",
     "delete": "Delete competition",
@@ -127,30 +111,26 @@
     "add": "Add an asset",
     "edit": "Edit assets",
     "manage": "Manage assets",
-
     "uploadHelper": "Upload an asset from your device...",
     "existingHelper": "...or choose one already on Highest"
   },
   "settings": {
     "adjustments": "Adjustments",
-
     "display": "Display",
     "language": "Language",
     "localeDescription": "Application's locale",
     "darkTheme": "Dark theme",
     "invertColors": "Invert colors",
     "autoDarkTheme": "Automatic dark theme",
-    "autoDarkThemeDescription": "Theme will adjust to your device's one. Make sure your system is up to date so as to take advantage of this feature.",
-
+    "autoDarkThemeDescription": "Highest's theme will adjust to your device's one. Make sure your system is up to date so as to take advantage of this feature.",
     "data": "Data",
     "exportData": "Export data",
     "importData": "Import data",
     "eraseData": "Erase data",
     "eraseDataConfirmation": "If you continue, this action will make you lose all your data, including locations, routes, competitions and settings, definitively. Think about it !",
-
     "about": "About",
     "createdBy": "Created by",
-    "openSource": "This project is distributed in open-source under the MIT license.",
+    "openSource": "This project is distributed in open-source under the GNU GPLv3 license.",
     "sourceCode": "Go to the source code"
   }
 }
