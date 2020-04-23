@@ -11,7 +11,8 @@
           v-if="item.enclosure !== undefined"
           :key="item.link + 'img'"
           :src="item.enclosure.url"
-          :alt="item.title"/>
+          :alt="item.title"
+          :aspect-ratio="16/9"/>
         <card
           :key="item.link + 'card'"
           :top="item.enclosure === undefined"

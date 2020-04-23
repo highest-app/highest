@@ -9,7 +9,7 @@
       <v-row wrap>
         <v-col
           cols="12"
-          md="3">
+          md="6">
           <v-row>
             <v-col cols="12">
               <v-card
@@ -37,7 +37,7 @@
         </v-col>
         <v-col
           cols="12"
-          md="9">
+          md="6">
           <v-row>
             <v-col cols="12">
               <v-switch
