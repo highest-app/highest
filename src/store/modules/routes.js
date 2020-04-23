@@ -49,7 +49,7 @@ const mutations = {
     route.finished = !route.finished
   },
   ADD_PROGRESSION(state, data) {
-    let route = state.data.find(route => route.id === data.id)
+    let route = state.find(route => route.id === data.id)
     route.progressions.push({
       date: data.date,
       notes: data.notes
