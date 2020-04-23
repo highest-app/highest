@@ -38,7 +38,28 @@
         <v-row>
           <v-col
             cols="12"
-            md="6"/>
+            md="6">
+            <asset-uploader
+              v-model="routeForm.photos"
+              :active="photoChoose"
+              title="locations.editAssets"
+              multiple>
+              <template #activator="{ on }">
+                <v-card v-on="on">
+                  <v-img :src="getRouteThumbnail(route)">
+                    <v-row
+                      style="flex-direction: column"
+                      class="fill-height blurred"
+                      align="center"
+                      justify="center">
+                      <v-icon size="70">mdi-image-edit-outline</v-icon>
+                      <span class="headline">{{ $t('assets.edit') }}</span>
+                    </v-row>
+                  </v-img>
+                </v-card>
+              </template>
+            </asset-uploader>
+          </v-col>
           <v-col
             cols="12"
             md="6">
@@ -78,7 +99,7 @@
             cols="12"
             md="6">
             <v-carousel
-              v-if="route.photos.length > 0"
+              v-if="route.photos.length"
               :continuous="false"
               height="auto"
               hide-delimiters>
@@ -90,7 +111,7 @@
             </v-carousel>
             <v-img
               v-else
-              :src="assets[location.photos[0]]"/>
+              :src="getLocationThumbnail(location)"/>
           </v-col>
           <v-col
             cols="12"
@@ -170,6 +191,7 @@
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
 import { defaultProgressionForm } from '@/utils/forms'
+import { getRouteThumbnail, getLocationThumbnail } from '@/utils/assets'
 import RouteForm from '@/views/routes/RouteForm'
 
 export default {
@@ -181,6 +203,7 @@ export default {
       location: {},
 
       editMode: false,
+      photoChoose: false,
       deleteDialog: false,
 
       progressionForm: Object.assign({}, defaultProgressionForm),
@@ -215,6 +238,7 @@ export default {
   },
   methods: {
     ...mapActions(['updateRoute', 'deleteRoute', 'switchFinishedRoute', 'addProgression', 'removeProgression']),
+    getRouteThumbnail, getLocationThumbnail,
     deleteThis () {
       this.deleteRoute(this.route.id)
       this.$router.back()
