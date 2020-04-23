@@ -82,12 +82,12 @@
                       small-only
                       fixed>
                       <template #bar-left-actions>
-                        <a @click="transferDialog = false">{{ $t('terms.back') }}</a>
+                        <a @click="transferDialog = false">{{ $t('terms.cancel') }}</a>
                       </template>
                     </app-bar>
                     <page-body>
                       <card
-                        v-for="location in locations"
+                        v-for="location in locations.filter(location => location.id !== route.location)"
                         :key="location.id"
                         @click="transferRoute({
                           location: location.id,
