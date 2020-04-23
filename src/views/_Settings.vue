@@ -142,9 +142,6 @@ export default {
     localeSelect: false,
     eraseDialog: false
   }),
-  mounted() {
-    console.log(this.$refs)
-  },
   computed: {
     ...mapState(['settings']),
     ...mapGetters(['getRawData'])
