@@ -7,10 +7,12 @@
       <v-list
         dense
         nav>
-        <img
-          width="90%"
-          src="/img/logo-large.png"
-          alt="Highest logo">
+        <router-link to="/">
+          <v-img
+            width="90%"
+            src="/img/logo-large.png"
+            alt="Highest logo"/>
+        </router-link>
         <v-list-item>
           <v-text-field
             v-model="search"
