@@ -31,7 +31,7 @@
       </app-bar>
       <competition-form
         v-model="form"
-        accept-location
+        with-location
         dialog/>
     </template>
   </responsive-dialog>

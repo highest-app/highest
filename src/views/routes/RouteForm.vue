@@ -46,9 +46,9 @@
           auto-back
           @back="locationSelect = false">
           <template #label="{ label }">
-            <v-list-item-avatar>
+            <v-list-item-avatar class="my-0">
               <v-avatar>
-                <v-img :src="label.photos[0]"/>
+                <v-img :src="getLocationThumbnail(label)"/>
               </v-avatar>
             </v-list-item-avatar>
             {{ label.name }}
@@ -232,6 +232,7 @@
 <script>
 import { mapState, mapGetters } from 'vuex'
 import { grades } from '@/utils/data'
+import { getLocationThumbnail } from '@/utils/assets'
 
 export default {
   name: 'RouteForm',
@@ -273,5 +274,6 @@ export default {
       return this.dialog ? this.$parent.$parent.$parent.$refs.dialog : this.$parent.$refs.content
     }
   },
+  methods: { getLocationThumbnail }
 }
 </script>

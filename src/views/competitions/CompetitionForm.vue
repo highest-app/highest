@@ -14,9 +14,9 @@
           auto-back
           @back="locationSelect = false">
           <template #label="{ label }">
-            <v-list-item-avatar>
+            <v-list-item-avatar class="my-0">
               <v-avatar>
-                <v-img :src="label.photos[0]"/>
+                <v-img :src="getLocationThumbnail(label)"/>
               </v-avatar>
             </v-list-item-avatar>
             {{ label.name }}
@@ -111,8 +111,9 @@
 </template>
 
 <script>
-import { competitionIcons as icons } from '@/utils/data'
 import { mapState } from 'vuex'
+import { getLocationThumbnail } from '@/utils/assets'
+import { competitionIcons as icons } from '@/utils/data'
 
 export default {
   name: 'CompetitonForm',
@@ -146,5 +147,6 @@ export default {
       return this.dialog ? this.$parent.$parent.$parent.$refs.dialog : this.$parent.$refs.content
     }
   },
+  methods: { getLocationThumbnail }
 }
 </script>
