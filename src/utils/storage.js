@@ -2,9 +2,7 @@ import { defaultTags } from '@/utils/data'
 
 function loadFromStorage(category) {
   let defaults = {
-    assets: {
-      'default': 'https://static.gymlib.com/legacy/img/gyms/cours-decouverte-climb-up-lyon/0b2acc4b-1d80-4288-a3ac-ac34b39df417.jpeg'
-    },
+    assets: {},
     competitions: [],
     feeds: ['https://www.climbing.com/.rss/excerpt/'],
     locations: [
