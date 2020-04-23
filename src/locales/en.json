@@ -131,6 +131,7 @@
     "about": "About",
     "createdBy": "Created by",
     "openSource": "This project is distributed in open-source under the GNU GPLv3 license.",
-    "sourceCode": "Go to the source code"
+    "sourceCode": "Go to the source code",
+    "betaNotice": "Please note that the application is in <strong>beta</strong> : therefore, many bugs exist and some features aren't implemented. If you want to contribute to this projet, head over to <a href=\"https://github.com/highest-app/highest\">the GitHub repository</a>."
   }
 }

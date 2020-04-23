@@ -10,18 +10,30 @@
         <v-col
           cols="12"
           md="3">
-          <v-card
-            elevation="0"
-            tile>
-            <v-card-text>
-              <div>{{ $t('home.appSubtitle') }}</div>
-              <img
-                width="50%"
-                src="/img/logo-large.png"
-                alt="Highest logo">
-              <div class="text--primary">{{ $t('home.appDescription') }}</div>
-            </v-card-text>
-          </v-card>
+          <v-row>
+            <v-col cols="12">
+              <v-card
+                elevation="0"
+                tile>
+                <v-card-text>
+                  <div>{{ $t('home.appSubtitle') }}</div>
+                  <img
+                    width="50%"
+                    src="/img/logo-large.png"
+                    alt="Highest logo">
+                  <div class="text--primary">{{ $t('home.appDescription') }}</div>
+                </v-card-text>
+              </v-card>
+            </v-col>
+            <v-col cols="12">
+              <v-alert
+                type="warning"
+                icon="mdi-alert-outline"
+                outlined
+                text
+                v-html="$t('settings.betaNotice')"/>
+            </v-col>
+          </v-row>
         </v-col>
         <v-col
           cols="12"

@@ -131,6 +131,7 @@
     "about": "Acerca de",
     "createdBy": "Creado por",
     "openSource": "Este proyecto es distribuido en código abierto con licencia GNU GPLv3.",
-    "sourceCode": "Ve al código fuente"
+    "sourceCode": "Ve al código fuente",
+    "betaNotice": "Tenga en cuenta que la aplicación está en <strong>beta</strong>: por lo tanto, muchos bugs existen y algunas características no se implementan. Si desea contribuir al proyecto, vaya en <a href=\"https://github.com/highest-app/highest\">el repositorio GitHub</a>."
   }
 }
