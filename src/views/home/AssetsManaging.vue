@@ -14,6 +14,7 @@
         </template>
       </app-bar>
       <v-container>
+        <p>{{ $t('assets.help') }}</p>
         <v-row>
           <v-col
             v-for="(asset, id) in assets"

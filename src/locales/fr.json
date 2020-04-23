@@ -112,7 +112,8 @@
     "uploadHelper": "Choisissez une image depuis votre appareil",
     "existingHelper": "...ou choisissez-en une déjà sur Highest",
     "edit": "Modifier les ressources",
-    "manage": "Gérer les ressource"
+    "manage": "Gérer les ressources",
+    "help": "Une ressource est une image que vous ajoutez à une voie, un lieu... Depuis ce menu, vous pouvez voir toutes les ressources enregistrées sur Highest, et pouvez en supprimer certaines si vous le souhaitez."
   },
   "settings": {
     "adjustments": "Réglages",

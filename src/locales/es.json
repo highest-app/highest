@@ -112,7 +112,8 @@
     "edit": "Editar los recursos",
     "manage": "Gestionar los recursos",
     "uploadHelper": "Sube un recurso desde usted aparato...",
-    "existingHelper": "...o selecciona una ya en Highest"
+    "existingHelper": "...o selecciona una ya en Highest",
+    "help": "Un recurso es una imagen que añades a una ruta, una ubicación... Desde este menú, puedes ver todos recursos que son registrado en Highest, y puedes borrar algunos si quieres."
   },
   "settings": {
     "adjustments": "Ajustes",

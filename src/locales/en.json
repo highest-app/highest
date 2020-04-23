@@ -112,7 +112,8 @@
     "edit": "Edit assets",
     "manage": "Manage assets",
     "uploadHelper": "Upload an asset from your device...",
-    "existingHelper": "...or choose one already on Highest"
+    "existingHelper": "...or choose one already on Highest",
+    "help": "An asset is any image that you add to a route, a location... From this menu, you can see all of the assets stored on Highest, and you can delete some of them if you want."
   },
   "settings": {
     "adjustments": "Adjustments",
