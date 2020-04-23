@@ -66,11 +66,44 @@
             <route-form v-model="routeForm"/>
             <div class="mt-4">
               <list-group>
-                <card top>
-                  <template #title>
-                    <span class="primary--text">{{ $t('routes.transfer')}}</span>
+                <responsive-dialog v-model="transferDialog">
+                  <template #activator="{ on }">
+                    <card
+                      top
+                      v-on="on">
+                      <template #title>
+                        <span class="primary--text">{{ $t('routes.transfer') }}</span>
+                      </template>
+                    </card>
                   </template>
-                </card>
+                  <template #dialog>
+                    <app-bar
+                      :title="$t('routes.transfer')"
+                      small-only
+                      fixed>
+                      <template #bar-left-actions>
+                        <a @click="transferDialog = false">{{ $t('terms.back') }}</a>
+                      </template>
+                    </app-bar>
+                    <page-body>
+                      <card
+                        v-for="location in locations"
+                        :key="location.id"
+                        @click="transferRoute({
+                          location: location.id,
+                          route: route.id,
+                          $router
+                        })">
+                        <template #title>
+                          <v-list-item-avatar>
+                            <v-img :src="getLocationThumbnail(location)"/>
+                          </v-list-item-avatar>
+                          {{ location.name }}
+                        </template>
+                      </card>
+                    </page-body>
+                  </template>
+                </responsive-dialog>
                 <card
                   bottom
                   @click="deleteDialog = true">
@@ -196,10 +229,12 @@ import { mapState, mapGetters, mapActions } from 'vuex'
 import { defaultProgressionForm } from '@/utils/forms'
 import { getRouteThumbnail, getLocationThumbnail } from '@/utils/assets'
 import RouteForm from '@/views/routes/RouteForm'
+import ResponsiveDialog from '@/components/components/ResponsiveDialog/ResponsiveDialog'
+import AppBar from '@/components/components/AppBar/AppBar'
 
 export default {
   name: 'Route',
-  components: { RouteForm },
+  components: {AppBar, ResponsiveDialog, RouteForm },
   data() {
     return {
       route: {},
@@ -207,6 +242,7 @@ export default {
 
       editMode: false,
       photoChoose: false,
+      transferDialog: false,
       deleteDialog: false,
 
       progressionForm: Object.assign({}, defaultProgressionForm),
@@ -222,7 +258,7 @@ export default {
     this.quitEdit()
   },
   computed: {
-    ...mapState(['assets']),
+    ...mapState(['assets', 'locations']),
     ...mapGetters(['getRoute', 'getLocationById']),
     progressionDates () {
       let dates = []
@@ -240,7 +276,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['updateRoute', 'deleteRoute', 'switchFinishedRoute', 'addProgression', 'removeProgression']),
+    ...mapActions(['updateRoute', 'transferRoute', 'deleteRoute', 'switchFinishedRoute', 'addProgression', 'removeProgression']),
     getRouteThumbnail, getLocationThumbnail,
     deleteThis () {
       this.deleteRoute(this.route.id)

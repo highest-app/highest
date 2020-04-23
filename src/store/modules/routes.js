@@ -71,6 +71,10 @@ const mutations = {
     route.goal = data.goal
     route.photos = data.photos
   },
+  TRANSFER_ROUTE(state, data) {
+    let route = state.find(route => route.id === data.route)
+    route.location = data.location
+  },
   PURGE_ROUTES_ASSET(state, id) {
     state.forEach((route) => {
       route.photos = route.photos.filter(photo => photo !== id)
@@ -111,6 +115,17 @@ const actions = {
   updateRoute({ commit, state }, data) {
     commit('UPDATE_ROUTE', data)
     saveToStorage('routes', state)
+  },
+  transferRoute({ commit, state }, data) {
+    commit('TRANSFER_ROUTE', data)
+    saveToStorage('routes', state)
+    data.$router.push({
+      name: 'route',
+      params: {
+        location: data.location,
+        route: data.route
+      }
+    })
   },
   deleteRoute({ commit, state }, id) {
     commit('REMOVE_ROUTE', id)
