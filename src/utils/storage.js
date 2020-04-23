@@ -1,48 +1,82 @@
 import { defaultTags } from '@/utils/data'
 
-function loadFromStorage(category) {
-  let defaults = {
-    assets: {},
-    competitions: [],
-    feeds: ['https://www.climbing.com/.rss/excerpt/'],
-    locations: [
-      {
-        name: 'My climbing gym',
-        address: 'Planet Earth',
-        id: 'my-climbing-gym',
-        notes: 'This is where I practice !',
-        photos: ['default']
-      }
-    ],
-    routes: [
-      {
-        name: 'The one I love',
-        id: 'the-one-i-love',
-        location: 'my-climbing-gym',
-        grade: '6B',
-        length: 21,
-        color: '#FF0FF0',
-        notes: "It's my favorite route !",
-        photos: [],
-        tags: ['red', 'yellow'],
-        goal: '2020-04-01',
-        finished: false,
-        progressions: [
-          {
-            date: '2020-04-01',
-            notes: 'First try! Just two more meters...'
-          }
-        ]
-      }
-    ],
-    settings: {
-      darkTheme: false,
-      autoDarkTheme: true,
-      locale: 'en'
+const defaults = {
+  assets: {},
+  competitions: [
+    {
+      id: 'my-championship',
+      name: 'My championship',
+      description: 'Organised with some friend 🏆🥂',
+      location: {
+        type: 'location',
+        locationID: 'my-climbing-gym'
+      },
+      date: '2020-08-14',
+      participation: 'participating'
+    }
+  ],
+  feeds: ['https://www.climbing.com/.rss/excerpt/'],
+  locations: [
+    {
+      name: 'My climbing gym',
+      address: 'Paris, France',
+      id: 'my-climbing-gym',
+      notes: 'This is where I practice ! 🧗‍',
+      photos: []
+    }
+  ],
+  routes: [
+    {
+      name: 'The route I love',
+      id: 'the-one-i-love',
+      location: 'my-climbing-gym',
+      grade: '6B',
+      length: 21,
+      color: '#0665f1',
+      notes: "It's my favorite route! Pretty high-level but very fun for sure!",
+      photos: [],
+      tags: ['red', 'yellow'],
+      goal: false,
+      finished: true,
+      progressions: [
+        {
+          date: '2020-04-01',
+          notes: 'First try! Just two more meters...'
+        },
+        {
+          date: '2020-04-05',
+          notes: "Dave showed me how to deal that strange middle part... I still don't get it 😅"
+        },
+        {
+          date: '2020-04-10',
+          notes: 'Finished! 💪'
+        }
+      ]
     },
-    tags: defaultTags
-  }
+    {
+      name: 'My personal challenge',
+      id: 'my-personal-challenge',
+      location: 'my-climbing-gym',
+      grade: '7A',
+      length: 17,
+      color: '#7f26fa',
+      notes: 'Very hard route 🥵 I will succeed for sure!',
+      photos: [],
+      tags: ['blue', 'red'],
+      goal: '2021-04-01',
+      finished: false,
+      progressions: []
+    }
+  ],
+  settings: {
+    darkTheme: false,
+    autoDarkTheme: true,
+    locale: 'en'
+  },
+  tags: defaultTags
+}
 
+function loadFromStorage(category) {
   let data = localStorage.getItem(category)
   if (data === null) {
     data = JSON.stringify(defaults[category])
