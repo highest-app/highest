@@ -1,14 +1,20 @@
 <template>
-  <v-content>
-    <select-menu
-      v-if="localeSelect"
-      v-model="settings.locale"
-      :choices="locales.ids"
-      :labels="locales.labels"
-      :name="$t('settings.localeDescription')"
-      auto-back
-      @back="localeSelect = false"/>
-    <template v-else>
+  <v-content ref="contentComponent">
+    <v-slide-x-reverse-transition>
+      <panel
+        v-if="localeSelect"
+        :hook="$refs.contentComponent.$refs.content"
+        page>
+        <select-menu
+          v-model="settings.locale"
+          :choices="locales.ids"
+          :labels="locales.labels"
+          :name="$t('settings.localeDescription')"
+          auto-back
+          @back="localeSelect = false"/>
+      </panel>
+    </v-slide-x-reverse-transition>
+    <template>
       <app-bar :title="$t('pages.settings')"/>
       <page-body>
         <v-dialog
@@ -136,6 +142,9 @@ export default {
     localeSelect: false,
     eraseDialog: false
   }),
+  mounted() {
+    console.log(this.$refs)
+  },
   computed: {
     ...mapState(['settings']),
     ...mapGetters(['getRawData'])
