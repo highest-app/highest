@@ -7,11 +7,23 @@
         page>
         <select-menu
           v-model="settings.locale"
-          :choices="locales.ids"
-          :labels="locales.labels"
+          :choices="locales.map(locale => locale.locale)"
+          :labels="locales"
           :name="$t('settings.localeDescription')"
           auto-back
-          @back="localeSelect = false"/>
+          @back="localeSelect = false">
+          <template #label="{ label }">
+            <v-row class="mx-1">
+              <img
+                :src="`/img/locales/${label.locale}.png`"
+                :alt="label.name"
+                class="pr-2"
+                height="19"
+                width="auto">
+              {{ label.name }}
+            </v-row>
+          </template>
+        </select-menu>
       </panel>
     </v-slide-x-reverse-transition>
     <template>
@@ -134,10 +146,11 @@ import { download } from '@/utils/storage'
 export default {
   name: 'Settings',
   data: () => ({
-    locales: {
-      ids: ['en', 'fr', 'es'],
-      labels: ['English (EN-GB)', 'Français (FR)', 'Español (ES-ES)']
-    },
+    locales: [
+      { name: 'English (EN-GB)', locale: 'en' },
+      { name: 'Français (FR)', locale: 'fr' },
+      { name: 'Español (ES-ES)', locale: 'es' }
+    ],
 
     localeSelect: false,
     eraseDialog: false
