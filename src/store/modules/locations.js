@@ -28,7 +28,7 @@ const mutations = {
       address: data.address,
       id,
       notes: data.notes,
-      photos: [data.picture]
+      photos: []
     })
   },
   UPDATE_LOCATION(state, data) {
