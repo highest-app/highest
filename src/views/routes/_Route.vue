@@ -148,7 +148,9 @@
                   full-width/>
               </v-col>
               <v-col cols="12">
-                <v-row class="mx-2">
+                <v-row
+                  class="mx-2"
+                  align="center">
                   <template v-if="selectedProgress === undefined">
                     <v-text-field
                       v-model="progressionForm.notes"
@@ -160,6 +162,7 @@
                       flat
                       @keydown.enter="progressionAdd"/>
                     <v-btn
+                      :disabled="progressionForm.notes === ''"
                       icon
                       @click="progressionAdd">
                       <v-icon>mdi-plus</v-icon>
