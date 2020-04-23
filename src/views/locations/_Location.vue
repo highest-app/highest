@@ -46,7 +46,7 @@
               multiple>
               <template #activator="{ on }">
                 <v-card v-on="on">
-                  <v-img :src="assets[location.photos[0]]">
+                  <v-img :src="getLocationThumbnail(location)">
                     <v-row
                       style="flex-direction: column"
                       class="fill-height blurred"
@@ -84,6 +84,7 @@
             cols="12"
             md="3">
             <v-carousel
+              v-if="location.photos.length"
               :continuous="false"
               height="auto"
               hide-delimiters>
@@ -95,6 +96,9 @@
                   :src="assets[photo]"/>
               </v-carousel-item>
             </v-carousel>
+            <v-img
+              v-else
+              :src="getLocationThumbnail(location)"/>
           </v-col>
           <v-col
             cols="12"
@@ -137,6 +141,7 @@
 
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
+import { getLocationThumbnail } from '@/utils/assets'
 import LocationForm from '@/views/locations/LocationForm'
 import RoutesList from '@/views/routes/RoutesList'
 
@@ -162,6 +167,7 @@ export default {
   },
   methods: {
     ...mapActions(['updateLocation', 'deleteLocation']),
+    getLocationThumbnail,
     refreshRoutes () {
       const id = this.$route.params.location
       this.location = this.getLocationById(id)

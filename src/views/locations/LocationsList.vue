@@ -11,7 +11,7 @@
         <v-img
           class="white--text align-end"
           :aspect-ratio="16/9"
-          :src="assets[location.photos[0]]">
+          :src="getLocationThumbnail(location)">
           <v-card-title>{{ location.name }}</v-card-title>
         </v-img>
       </v-card>
@@ -21,6 +21,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import { getLocationThumbnail } from '@/utils/assets'
 
 export default {
   name: 'LocationsList',
@@ -30,6 +31,9 @@ export default {
       required: true
     }
   },
-  computed: mapState(['assets'])
+  computed: mapState(['assets']),
+  methods: {
+    getLocationThumbnail
+  }
 }
 </script>

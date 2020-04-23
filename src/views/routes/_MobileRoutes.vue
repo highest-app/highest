@@ -2,13 +2,13 @@
   <v-content>
     <app-bar :title="$tc('generic.route', 2)">
       <template #top-bar-actions>
-        <route-adding v-if="locations.length > 0"/>
+        <route-adding v-if="locations.length"/>
       </template>
     </app-bar>
     <page-body>
       <div>
         <v-list
-          v-if="locations.length > 0"
+          v-if="locations.length"
           class="background"
           subheader
           dense>

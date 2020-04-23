@@ -14,7 +14,7 @@
         class="primary--text"
         link>
         <v-list-item-avatar v-if="mobile">
-          <v-img :src="assets[location.photos[0]]"/>
+          <v-img :src="getLocationThumbnail(location)"/>
         </v-list-item-avatar>
         <v-list-item-icon
           v-else
@@ -60,6 +60,7 @@
 <script>
 import { mapState } from 'vuex'
 import LocationAdding from '@/views/locations/LocationAdding'
+import { getLocationThumbnail } from '@/utils/assets'
 
 export default {
   name: 'RouteCategories',
@@ -70,6 +71,9 @@ export default {
       default: false
     }
   },
-  computed: mapState(['assets', 'tags', 'locations'])
+  computed: mapState(['assets', 'tags', 'locations']),
+  methods: {
+    getLocationThumbnail
+  }
 }
 </script>

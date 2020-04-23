@@ -15,7 +15,7 @@
             bordered>
             <v-avatar>
               <v-img
-                :src="getPicture(route)"
+                :src="getRouteThumbnail(route)"
                 class="routes-list shadowed"
                 style="background: rgba(0,0,0,.5)">
                 <v-tooltip
@@ -76,6 +76,7 @@
 
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
+import { getRouteThumbnail } from '@/utils/assets'
 import { routeIcons } from '@/utils/data'
 
 export default {
@@ -101,14 +102,7 @@ export default {
   },
   methods: {
     ...mapActions(['switchFinishedRoute']),
-    getPicture (route) {
-      let key = ''
-      if (route.photos[0] === undefined)
-        key = this.getLocationById(route.location).photos[0]
-      else
-        key = route.photos[0]
-      return this.assets[key]
-    },
+    getRouteThumbnail,
     tag (id) {
       return this.getTagById(id)
     }
