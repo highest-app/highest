@@ -84,8 +84,12 @@
               v-if="showMap"
               :zoom="15"
               :center="[mapInfo['y'], mapInfo['x']]">
-              <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
-              <l-marker :lat-lng="latLng(mapInfo['y'], mapInfo['x'])"/>
+              <l-tile-layer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"/>
+              <l-marker
+                :lat-lng="[parseFloat(mapInfo['y']), parseFloat(mapInfo['x'])]"
+                visible/>
             </l-map>
           </v-col>
           <v-col
