@@ -45,12 +45,44 @@
             <competition-form v-model="form"/>
             <div class="mt-4">
               <list-group>
-                <card top>
-                  <template #title>
-                    <span class="primary--text">{{ $t('competitions.transfer')}}</span>
+                <responsive-dialog
+                  v-if="transferableLocations.length"
+                  v-model="transferDialog">
+                  <template #activator="{ on }">
+                    <card
+                      top
+                      v-on="on">
+                      <template #title>
+                        <span class="primary--text">{{ $t('competitions.transfer') }}</span>
+                      </template>
+                    </card>
                   </template>
-                </card>
+                  <template #dialog>
+                    <app-bar
+                      :title="$t('competitions.transfer')"
+                      small-only
+                      fixed>
+                      <template #bar-left-actions>
+                        <a @click="transferDialog = false">{{ $t('terms.cancel') }}</a>
+                      </template>
+                    </app-bar>
+                    <page-body>
+                      <card
+                        v-for="location in transferableLocations"
+                        :key="location.id"
+                        @click="transfer(location.id)">
+                        <template #title>
+                          <v-list-item-avatar>
+                            <v-img :src="getLocationThumbnail(location)"/>
+                          </v-list-item-avatar>
+                          {{ location.name }}
+                        </template>
+                      </card>
+                    </page-body>
+                  </template>
+                </responsive-dialog>
                 <card
+                  :top="!transferableLocations.length"
                   bottom
                   @click="deleteDialog = true">
                   <template #title>
@@ -114,8 +146,9 @@
 import { latLng } from 'leaflet'
 import { LMap, LTileLayer, LMarker } from 'vue2-leaflet'
 import { OpenStreetMapProvider } from 'leaflet-geosearch'
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 import CompetitionForm from '@/views/competitions/CompetitionForm'
+import { getLocationThumbnail } from '@/utils/assets'
 
 const provider = new OpenStreetMapProvider()
 
@@ -127,6 +160,7 @@ export default {
       form: {},
 
       editMode: false,
+      transferDialog: false,
       deleteDialog: false,
 
       showMap: false,
@@ -137,6 +171,7 @@ export default {
     this.resetEdit()
   },
   computed: {
+    ...mapState(['locations']),
     ...mapGetters(['getCompetitionById', 'getLocationById']),
     competition() {
       return this.getCompetitionById(this.$route.params.competition)
@@ -164,11 +199,14 @@ export default {
       }
       this.updateMap(query)
       return location
+    },
+    transferableLocations() {
+      return this.locations.filter(location => location.id !== this.location.id)
     }
   },
   methods: {
-    ...mapActions(['updateCompetition', 'deleteCompetition']),
-    latLng,
+    ...mapActions(['updateCompetition', 'transferCompetition', 'deleteCompetition']),
+    latLng, getLocationThumbnail,
     resetEdit() {
       this.form = Object.assign({}, this.competition)
       this.editMode = false
@@ -176,6 +214,15 @@ export default {
     validateEdit() {
       this.updateCompetition(this.form)
       this.resetEdit()
+    },
+    transfer(location) {
+      this.transferCompetition({
+        type: 'location',
+        location,
+        competition: this.competition.id
+      })
+      this.transferDialog = false
+      this.validateEdit()
     },
     deleteThis() {
       this.deleteCompetition(this.competition.id)
