@@ -238,7 +238,7 @@ import AppBar from '@/components/components/AppBar/AppBar'
 
 export default {
   name: 'Route',
-  components: {AppBar, ResponsiveDialog, RouteForm },
+  components: { AppBar, ResponsiveDialog, RouteForm },
   data() {
     return {
       route: {},

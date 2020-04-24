@@ -171,7 +171,7 @@ export default {
     refreshRoutes () {
       const id = this.$route.params.location
       this.location = this.getLocationById(id)
-      if (this.location === undefined) this.$router.push('/home')
+      if (this.location === undefined) this.$router.push({ name: 'home' })
       else this.routes = this.getRoutesByLocation(this.location.id)
     },
     validateEdit() {
@@ -184,7 +184,8 @@ export default {
     },
     deleteThis () {
       this.deleteLocation(this.location.id)
-      this.$router.push({ name: 'routes' })
+      const nextRoute = this.$vuetify.breakpoint.mdAndUp ? '/routes/all' : '/routes'
+      this.$router.push({ name: nextRoute })
     }
   }
 }
