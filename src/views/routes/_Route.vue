@@ -66,7 +66,9 @@
             <route-form v-model="routeForm"/>
             <div class="mt-4">
               <list-group>
-                <responsive-dialog v-model="transferDialog">
+                <responsive-dialog
+                  v-if="transferableLocations.length"
+                  v-model="transferDialog">
                   <template #activator="{ on }">
                     <card
                       top
@@ -87,7 +89,7 @@
                     </app-bar>
                     <page-body>
                       <card
-                        v-for="location in locations.filter(location => location.id !== route.location)"
+                        v-for="location in transferableLocations"
                         :key="location.id"
                         @click="transferRoute({
                           location: location.id,
@@ -105,6 +107,7 @@
                   </template>
                 </responsive-dialog>
                 <card
+                  :top="!transferableLocations.length"
                   bottom
                   @click="deleteDialog = true">
                   <template #title>
@@ -181,39 +184,40 @@
                   full-width/>
               </v-col>
               <v-col cols="12">
+                <card-header>{{ dateToText(progressionForm.date) }}</card-header>
                 <v-row
-                  class="mx-2"
+                  v-for="progression in selectedProgressions"
+                  :key="progression.id"
+                  class="mx-0">
+                  {{ progression.notes }}
+                  <v-spacer/>
+                  <v-btn
+                    icon
+                    @click="removeProgression({
+                      route: route.id,
+                      progression: progression.id
+                    })">
+                    <v-icon color="red darken-4">mdi-delete-outline</v-icon>
+                  </v-btn>
+                </v-row>
+                <v-row
+                  class="mx-0"
                   align="center">
-                  <template v-if="selectedProgress === undefined">
-                    <v-text-field
-                      v-model="progressionForm.notes"
-                      :placeholder="$t('routes.addProgress')"
-                      rows="1"
-                      auto-grow
-                      hide-details
-                      solo
-                      flat
-                      @keydown.enter="progressionAdd"/>
-                    <v-btn
-                      :disabled="progressionForm.notes === ''"
-                      icon
-                      @click="progressionAdd">
-                      <v-icon>mdi-plus</v-icon>
-                    </v-btn>
-                  </template>
-                  <template v-else>
-                    <strong>{{ dateToText(selectedProgress.date) }} : </strong>
-                    {{ selectedProgress.notes }}
-                    <v-spacer/>
-                    <v-btn
-                      icon
-                      @click="removeProgression({
-                        route: route.id,
-                        notes: selectedProgress.notes
-                      })">
-                      <v-icon color="red darken-4">mdi-delete-outline</v-icon>
-                    </v-btn>
-                  </template>
+                  <v-text-field
+                    v-model="progressionForm.notes"
+                    :placeholder="$t('routes.addProgress')"
+                    rows="1"
+                    auto-grow
+                    hide-details
+                    solo
+                    flat
+                    @keydown.enter="progressionAdd"/>
+                  <v-btn
+                    :disabled="progressionForm.notes === ''"
+                    icon
+                    @click="progressionAdd">
+                    <v-icon>mdi-plus</v-icon>
+                  </v-btn>
                 </v-row>
               </v-col>
             </v-row>
@@ -267,12 +271,11 @@ export default {
       })
       return dates
     },
-    selectedProgress () {
-      let progression = this.route.progressions.find(progress => progress.date === this.progressionForm.date)
-      if (progression === null) {
-        return undefined
-      }
-      return progression
+    selectedProgressions() {
+      return this.route.progressions.filter(progress => progress.date === this.progressionForm.date)
+    },
+    transferableLocations() {
+      return this.locations.filter(location => location.id !== this.route.location)
     }
   },
   methods: {
@@ -290,7 +293,7 @@ export default {
       this.routeForm = Object.assign({}, this.route)
       this.editMode = false
     },
-    progressionAdd () {
+    progressionAdd() {
       this.addProgression({
         id: this.route.id,
         date: this.progressionForm.date,
