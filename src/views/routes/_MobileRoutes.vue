@@ -23,7 +23,11 @@
             </v-list-item-content>
           </v-list-item>
         </v-list>
-        <p v-else>{{ $t('locations.noLocations') }}</p>
+        <p
+          v-else
+          class="ml-2">
+          {{ $t('locations.noLocations') }}
+        </p>
       </div>
       <route-categories mobile/>
     </page-body>

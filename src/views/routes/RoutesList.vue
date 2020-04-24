@@ -1,9 +1,14 @@
 <template>
   <v-list class="background">
-    <v-list-item v-if="routes.length === 0">
+    <v-list-item v-if="!locations.length">
+      {{ $t('locations.noLocations') }}
+    </v-list-item>
+    <v-list-item v-else-if="!routes.length">
       {{ $t('routes.noRoutes') }}
     </v-list-item>
-    <template v-for="(route, i) in routes">
+    <template
+      v-for="(route, i) in routes"
+      v-else>
       <v-list-item
         :key="`${route.id}--list-item`"
         no-action>
@@ -97,7 +102,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['assets']),
+    ...mapState(['assets', 'locations']),
     ...mapGetters(['getLocationById', 'getTagById'])
   },
   methods: {

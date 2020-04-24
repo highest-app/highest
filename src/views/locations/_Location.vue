@@ -171,7 +171,7 @@ export default {
     refreshRoutes () {
       const id = this.$route.params.location
       this.location = this.getLocationById(id)
-      if (this.location === undefined) this.$router.push('/routes')
+      if (this.location === undefined) this.$router.push('/home')
       else this.routes = this.getRoutesByLocation(this.location.id)
     },
     validateEdit() {
