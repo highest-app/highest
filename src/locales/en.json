@@ -130,9 +130,14 @@
     "eraseData": "Erase data",
     "eraseDataConfirmation": "If you continue, this action will make you lose all your data, including locations, routes, competitions and settings, definitively. Think about it !",
     "about": "About",
-    "createdBy": "Created by",
-    "openSource": "This project is distributed in open-source under the GNU GPLv3 license.",
+    "version": {
+      "retrieving": "Retrieving latest release...",
+      "latest": "Latest release : {number}",
+      "goto": "Go to the changelog"
+    },
+    "maintainedBy": "Maintained by Théo Vidal",
+    "openSource": "This project is distributed in open-source under the <a href='https://github.com/highest-app/highest/blob/master/LICENSE'>GNU GPL v3</a> license.",
     "sourceCode": "Go to the source code",
-    "betaNotice": "Please note that the application is in <strong>beta</strong> : therefore, many bugs exist and some features aren't implemented. If you want to contribute to this projet, head over to <a href=\"https://github.com/highest-app/highest\">the GitHub repository</a>."
+    "betaNotice": "Please note that the application is in <strong>beta</strong> : therefore, many bugs exist and some features aren't implemented. If you want to contribute to this projet, head over to <a href='https://github.com/highest-app/highest'>the GitHub repository</a>."
   }
 }

@@ -130,8 +130,13 @@
     "eraseData": "Effacer les données",
     "eraseDataConfirmation": "Si vous continuez, cette action va engendrer la perte de toutes vos données, incluant lieux, voies, compétitions et paramètres, et ce de manière définitive. Réfléchissez-bien !",
     "about": "À propos",
-    "createdBy": "Créé par",
-    "openSource": "Ce projet est distribué en open-source sous licence GNU GPLv3.",
+    "version": {
+      "retrieving": "Récupération de la dernière version",
+      "latest": "Dernière version : {number}",
+      "goto": "Accéder à la liste des changements"
+    },
+    "maintainedBy": "Maintenu par Théo Vidal",
+    "openSource": "Ce projet est distribué en open-source sous licence <a href='https://github.com/highest-app/highest/blob/master/LICENSE'>GNU GPL v3</a>.",
     "sourceCode": "Accéder au code source",
     "betaNotice": "Veuillez noter que l'application est en <strong>bêta</strong> : par conséquent, de nombreux bogues existent et certaines fonctionnalités ne sont pas implémentées. Si vous souhaitez contribuer au projet, rendez-vous sur <a href=\"https://github.com/highest-app/highest\">le dépôt GitHub</a>."
   }

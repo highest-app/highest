@@ -130,8 +130,8 @@
     "eraseData": "Borrar los datos",
     "eraseDataConfirmation": "Si continúa, esta acción hará que pierda todos sus datos, incluyendo lugares, rutas, competencias y configuraciones, definitivamente. ¡Piénsalo!",
     "about": "Acerca de",
-    "createdBy": "Creado por",
-    "openSource": "Este proyecto es distribuido en código abierto con licencia GNU GPLv3.",
+    "maintainedBy": "Mantenido por Théo Vidal",
+    "openSource": "Este proyecto es distribuido en código abierto con licencia <a href='https://github.com/highest-app/highest/blob/master/LICENSE'>GNU GPL v3</a>.",
     "sourceCode": "Ve al código fuente",
     "betaNotice": "Tenga en cuenta que la aplicación está en <strong>beta</strong>: por lo tanto, muchos bugs existen y algunas características no se implementan. Si desea contribuir al proyecto, vaya en <a href=\"https://github.com/highest-app/highest\">el repositorio GitHub</a>."
   }

@@ -115,19 +115,65 @@
 
         <list-group>
           <card-header>{{ $t('settings.about') }}</card-header>
-          <card top>
+          <card
+            v-if="release === {}"
+            top>
             <template #title>
-              {{ $t('settings.createdBy') }}
-              <a
-                href="https://exybore.becauseofprog.fr"
-                target="_blank">
-                Théo Vidal
-              </a>
+              <span class="font-italic">{{ $t('settings.version.retrieving') }}</span>
+            </template>
+          </card>
+          <card
+            v-else
+            top
+            :href="release.url"
+            target="_blank">
+            <template #title>
+              {{ $t('settings.version.latest', { number: release.number }) }}<br>
+              <span class="primary--text">{{ $t('settings.version.goto') }}</span>
+            </template>
+            <template #action>
+              <v-icon color="primary">mdi-open-in-new</v-icon>
+            </template>
+          </card>
+          <card>
+            <template #title>
+              <v-row
+                align="center"
+                class="mx-0">
+                <v-list-item-avatar
+                  class="my-0 ml-0"
+                  tile>
+                  <v-img src="https://exybore.becauseofprog.fr/img/avatar.png"/>
+                </v-list-item-avatar>
+                <v-col class="pa-0">
+                  {{ $t('settings.maintainedBy') }}
+                  <v-row class="mx-0">
+                    <v-btn
+                      href="https://twitter.com/exybore"
+                      target="_blank"
+                      icon>
+                      <v-icon>mdi-twitter</v-icon>
+                    </v-btn>
+                    <v-btn
+                      href="https://github.com/exybore"
+                      target="_blank"
+                      icon>
+                      <v-icon>mdi-github</v-icon>
+                    </v-btn>
+                    <v-btn
+                      href="https://www.youtube.com/channel/UC9Q3XhnYp-bZUgE995Csxww"
+                      target="_blank"
+                      icon>
+                      <v-icon>mdi-youtube</v-icon>
+                    </v-btn>
+                  </v-row>
+                </v-col>
+              </v-row>
             </template>
           </card>
           <card bottom>
             <template #title>
-              {{ $t('settings.openSource') }}<br>
+              <span v-html="$t('settings.openSource')"/><br>
               <a
                 href="https://github.com/highest-app/highest"
                 target="_blank">
@@ -153,10 +199,20 @@ export default {
       { name: 'Français (FR)', locale: 'fr' },
       { name: 'Español (ES-ES)', locale: 'es' }
     ],
+    release: {},
 
     localeSelect: false,
     eraseDialog: false
   }),
+  mounted() {
+    this.$http.get('https://api.github.com/repos/highest-app/highest/releases/latest').then(raw => {
+      const data = raw.body
+      this.release = {
+        number: data.tag_name,
+        url: data.html_url
+      }
+    })
+  },
   computed: {
     ...mapState(['settings']),
     ...mapGetters(['getRawData'])
