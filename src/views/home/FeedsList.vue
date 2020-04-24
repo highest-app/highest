@@ -7,12 +7,17 @@
       class="my-2"/>
     <list-group>
       <template v-for="item in feedItems">
-        <v-img
-          v-if="item.enclosure !== undefined"
+        <a
           :key="item.link + 'img'"
-          :src="item.enclosure.url"
-          :alt="item.title"
-          :aspect-ratio="16/9"/>
+          :href="item.link"
+          target="_blank">
+          <v-img
+            v-if="item.enclosure !== undefined"
+            v-ripple
+            :src="item.enclosure.url"
+            :alt="item.title"
+            :aspect-ratio="16/9"/>
+        </a>
         <card
           :key="item.link + 'card'"
           :top="item.enclosure === undefined"
