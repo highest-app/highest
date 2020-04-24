@@ -135,7 +135,7 @@
             cols="12"
             md="6">
             <v-carousel
-              v-if="route.photos.length"
+              v-if="route.photos !== undefined && route.photos.length"
               :continuous="false"
               height="auto"
               hide-delimiters>

@@ -10,6 +10,7 @@ function getRouteThumbnail(route) {
 }
 
 function getLocationThumbnail(location) {
+  if (location.photos === undefined) return undefined
   const thumbnail = location.photos[0]
   return thumbnail === undefined ? '/img/defaults/location.jpeg' : store.state.assets[thumbnail]
 }
