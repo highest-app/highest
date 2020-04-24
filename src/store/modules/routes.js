@@ -51,13 +51,14 @@ const mutations = {
   ADD_PROGRESSION(state, data) {
     let route = state.find(route => route.id === data.id)
     route.progressions.push({
+      id: flake.gen(),
       date: data.date,
       notes: data.notes
     })
   },
   REMOVE_PROGRESSION(state, data) {
     let route = state.find(route => route.id === data.route)
-    let progressionIndex = route.progressions.findIndex(progression => progression.notes === data.notes)
+    let progressionIndex = route.progressions.findIndex(progression => progression.id === data.progression)
     route.progressions.splice(progressionIndex, 1)
   },
   UPDATE_ROUTE(state, data) {

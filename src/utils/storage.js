@@ -40,15 +40,18 @@ const defaults = {
       finished: true,
       progressions: [
         {
+          id: 'pr-1',
           date: '2020-04-01',
           notes: 'First try! Just two more meters...'
         },
         {
-          date: '2020-04-05',
+          id: 'pr-2',
+          date: '2020-04-01',
           notes: "Dave showed me how to deal that strange middle part... I still don't get it 😅"
         },
         {
-          date: '2020-04-10',
+          id: 'pr-3',
+          date: '2020-04-05',
           notes: 'Finished! 💪'
         }
       ]
