@@ -92,6 +92,7 @@
 
         <list-group>
           <card-header>{{ $t('settings.data') }}</card-header>
+          <!-- To enable when data importing will become available
           <card
             top
             @click="exportData">
@@ -101,8 +102,9 @@
           </card>
           <card disabled>
             <template #title>{{ $t('settings.importData') }}</template>
-          </card>
+          </card> -->
           <card
+            top
             bottom
             @click="eraseDialog = true">
             <template #title>
