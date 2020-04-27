@@ -55,7 +55,7 @@
   },
   "feeds": {
     "actions": {
-      "remove": "Delete feed",
+      "remove": "Delete RSS feed",
       "visitWebsite": "Visit website"
     },
     "separated": "Separated feeds"
@@ -95,7 +95,7 @@
       "add": "Add new route",
       "editAssets": "Edit route's assets",
       "edit": "Edit route",
-      "addProgress": "Add new progress"
+      "addProgress": "Add a progression"
     },
     "title": "Routes"
   },
@@ -110,7 +110,7 @@
       "edit": "Edit location",
       "editAssets": "Edit location's assets",
       "removeConfirmation": "If you remove this location, routes saved on it will be deleted as well. Therefore, you'll lose your progressions on this location. Think about it !",
-      "add": "Add new location"
+      "add": "Add a location"
     },
     "noLocations": "Any location for the moment. Create one to add your routes.",
     "title": "Locations"
@@ -129,7 +129,7 @@
       "notParticipating": "Not participating"
     },
     "actions": {
-      "add": "Add new competition",
+      "add": "Add a competition",
       "edit": "Edit competition",
       "transfer": "Transfer to another location",
       "remove": "Remove competition",
@@ -154,7 +154,7 @@
       "title": "Display",
       "language": {
         "title": "Language",
-        "description": "Application's locale"
+        "description": "Application's language"
       },
       "theme": {
         "darkTheme": "Dark theme",

@@ -2,13 +2,13 @@
   "terms": {
     "actions": {
       "remove": "Eliminar",
-      "add": "Añade",
+      "add": "Añadir",
       "close": "Cerrar",
       "back": "Volver",
       "cancel": "Cancelar",
       "delete": "Eliminar",
       "done": "Hecho",
-      "edit": "Edita",
+      "edit": "Editar",
       "ok": "OK",
       "erase": "Borrar",
       "select": "Seleccionar",
@@ -55,7 +55,7 @@
   },
   "feeds": {
     "actions": {
-      "remove": "Borrar noticia",
+      "remove": "Borrar la fuente RSS",
       "visitWebsite": "Visitar la pagina web"
     },
     "separated": "Noticias separadas"
@@ -81,7 +81,7 @@
     },
     "view": {
       "all": "Todas las rutas",
-      "noRoutes": "Cualquier ruta por el momento. ¡Añadamos una!",
+      "noRoutes": "Cualquiera ruta por el momento. ¡Añadamos una!",
       "information": "Información",
       "progressions": "Progresiones",
       "noGoal": "No hay objetivo",
@@ -90,12 +90,12 @@
     "actions": {
       "remove": "Eliminar la ruta",
       "removeConfirmation": "Si elimina esta ruta, todas sus progresiones registradas en ella se perderán. ¡Piensa en ello!",
-      "markAsFinished": "Marque como terminado",
+      "markAsFinished": "Marcar como terminado",
       "transfer": "Trasladar a otra ubicación",
       "add": "Añadir una ruta",
       "editAssets": "Editar los recursos de la ruta",
       "edit": "Editar la ruta",
-      "addProgress": "Añade nuevos progresos"
+      "addProgress": "Añadir un progresos"
     },
     "title": "Rutas"
   },
@@ -112,8 +112,8 @@
       "removeConfirmation": "Si elimina esta ubicación, las rutas guardadas en ella también se borrarán. Por lo tanto, perderás tus progresiones en esta ubicación. ¡Piénsalo!",
       "add": "Añadir una ubicación"
     },
-    "noLocations": "Cualquier lugar por el momento. Crea uno para añadir tus rutas.",
-    "title": "Ubicacione"
+    "noLocations": "Cualquiera ubicación lugar por el momento. Crea uno para añadir tus rutas.",
+    "title": "Ubicaciones"
   },
   "competitions": {
     "form": {
@@ -129,7 +129,7 @@
       "notParticipating": "No participar"
     },
     "actions": {
-      "add": "Añade una nueva competición",
+      "add": "Añadi una competición",
       "edit": "Editar la competición",
       "transfer": "Trasladar a otra ubicación",
       "remove": "Eliminar la competición",
@@ -154,7 +154,7 @@
       "title": "Pantalla",
       "language": {
         "title": "Idioma",
-        "description": "Locale de la aplicación"
+        "description": "Idioma de la aplicación"
       },
       "theme": {
         "darkTheme": "Tema oscuro",
@@ -172,6 +172,11 @@
     },
     "about": {
       "title": "Acerca de",
+      "version": {
+        "retrieving": "Recuperación de la última versión",
+        "latest": "Última versión : {number}",
+        "goto": "Ir a la lista de los cambios"
+      },
       "maintainedBy": "Mantenido por Théo Vidal",
       "openSource": "Este proyecto es distribuido en código abierto con licencia <a href='https://github.com/highest-app/highest/blob/master/LICENSE'>GNU GPL v3</a>.",
       "sourceCode": "Ve al código fuente",

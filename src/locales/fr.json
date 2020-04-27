@@ -55,7 +55,7 @@
   },
   "feeds": {
     "actions": {
-      "remove": "Supprimer le flux",
+      "remove": "Supprimer le flux RSS",
       "visitWebsite": "Visiter le site"
     },
     "separated": "Flux séparés"
