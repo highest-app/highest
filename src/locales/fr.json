@@ -1,146 +1,184 @@
 {
   "terms": {
     "actions": {
-      "remove": "Supprimer"
+      "remove": "Supprimer",
+      "add": "Ajouter",
+      "close": "Fermer",
+      "back": "Retour",
+      "cancel": "Annuler",
+      "delete": "Supprimer",
+      "done": "Terminé",
+      "edit": "Modifier",
+      "ok": "OK",
+      "erase": "Effacer",
+      "select": "Sélectionner",
+      "selected": "Sélectionné"
+    },
+    "colors": {
+      "red": "Rouge",
+      "orange": "Orange",
+      "yellow": "Jaune",
+      "green": "Vert",
+      "blue": "Bleu",
+      "purple": "Violet",
+      "gray": "Gris"
+    },
+    "fields": {
+      "name": "Nom",
+      "description": "Description",
+      "notes": "Notes",
+      "address": "Adresse",
+      "date": "Date",
+      "picture": "Image",
+      "assets": "Ressources"
     },
     "general": "Général",
-    "name": "Nom",
-    "description": "Description",
-    "notes": "Notes",
-    "address": "Adresse",
-    "date": "Date",
-    "picture": "Image",
-    "grade": "Cotation",
-    "length": "Longueur",
-    "add": "Ajouter",
-    "edit": "Modifier",
-    "delete": "Supprimer",
-    "erase": "Effacer",
-    "cancel": "Annuler",
-    "back": "Retour",
-    "ok": "OK",
-    "close": "Fermer",
-    "done": "Terminé",
-    "select": "Sélectionner",
-    "selected": "Sélectionné",
-    "actionConfirmation": "Êtes-vous sûr ?",
-    "red": "Rouge",
-    "orange": "Orange",
-    "yellow": "Jaune",
-    "green": "Vert",
-    "blue": "Bleu",
-    "purple": "Violet",
-    "gray": "Gris",
-    "assets": "Ressources"
+    "actionConfirmation": "Êtes-vous sûr ?"
   },
   "generic": {
     "location": "Lieu | Lieux",
     "route": "Voie | Voies",
     "competition": "Compétition | Compétitions",
-    "tag": "Tag | Tags"
-  },
-  "pages": {
-    "home": "Accueil",
-    "routes": "Voies",
-    "competitions": "Compétitions",
-    "profile": "Profil",
-    "settings": "Paramètres",
-    "search": "Recherche"
+    "tag": "Tag | Tags",
+    "asset": "Ressource | Ressources",
+    "action": "Action | Actions"
   },
   "home": {
     "appSubtitle": "Votre compagnon pour grimper",
     "appDescription": "Travaillez vos voies en restant organisé : l'application d'escalade pratique !",
-    "visitWebsite": "Visiter le site",
-    "separatedFeeds": "Flux séparés",
-    "removeFeed": "Supprimer le flux"
+    "title": "Accueil"
   },
   "profile": {
     "user": "Utilisateur",
-    "login": "Se connecter"
+    "login": "Se connecter",
+    "title": "Profil"
+  },
+  "feeds": {
+    "actions": {
+      "remove": "Supprimer le flux",
+      "visitWebsite": "Visiter le site"
+    },
+    "separated": "Flux séparés"
   },
   "search": {
     "starter": "Commencez à taper un mot-clé pour trouver voies, lieux et compétitions.",
     "notFound": "Aucun élément trouvé",
     "notFoundHelp": "Essayez de relancer la recherche avec d'autres mots-clés.",
-    "placeholder": "Recherchez une voie, un lieu, une compétition..."
+    "placeholder": "Recherchez une voie, un lieu, une compétition...",
+    "title": "Recherche"
   },
   "routes": {
-    "add": "Ajouter une voie",
-    "namePlaceholder": "Nom de la voie",
-    "notesPlaceholder": "Notes à rajouter à propos de la voie",
-    "color": "Couleur",
-    "defineGoal": "Définir un objectif",
-    "information": "Informations",
-    "progressions": "Progressions",
-    "progressionNotesPlaceholder": "Notes à rajouter à propos de cette progression",
-    "edit": "Modifier la voie",
-    "transfer": "Transférer vers un autre lieu",
-    "all": "Toutes les voies",
-    "noRoutes": "Aucune voie pour le moment. Ajoutez-en une !",
-    "for": "Pour le",
-    "noGoal": "Aucun objectif",
-    "markAsFinished": "Marquer comme terminée",
-    "addProgress": "Ajouter une progression",
-    "editAssets": "Modifier les ressources de la voie",
-    "remove": "Supprimer la voie",
-    "removeConfirmation": "Si vous supprimez cette voie, les progressions sauvegardées dessus vont également l'être. Réfléchissez bien !"
+    "terms": {
+      "color": "Couleur",
+      "length": "Longueur",
+      "grade": "Cotation"
+    },
+    "form": {
+      "notesPlaceholder": "Notes à rajouter à propos de la voie",
+      "progressionNotesPlaceholder": "Notes à rajouter à propos de cette progression",
+      "namePlaceholder": "Nom de la voie",
+      "defineGoal": "Définir un objectif"
+    },
+    "view": {
+      "all": "Toutes les voies",
+      "noRoutes": "Aucune voie pour le moment. Ajoutez-en une !",
+      "information": "Informations",
+      "progressions": "Progressions",
+      "noGoal": "Aucun objectif",
+      "goal": "Pour le"
+    },
+    "actions": {
+      "remove": "Supprimer la voie",
+      "removeConfirmation": "Si vous supprimez cette voie, les progressions sauvegardées dessus vont également l'être. Réfléchissez bien !",
+      "markAsFinished": "Marquer comme terminée",
+      "transfer": "Transférer vers un autre lieu",
+      "add": "Ajouter une voie",
+      "editAssets": "Modifier les ressources de la voie",
+      "edit": "Modifier la voie",
+      "addProgress": "Ajouter une progression"
+    }
   },
   "locations": {
-    "add": "Ajouter un lieu",
-    "namePlaceholder": "Nom du lieu",
-    "addressPlaceholder": "Adresse physique du lieu",
-    "notesPlaceholder": "Notes à rajouter à propos du lieu",
-    "edit": "Modifier le lieu",
-    "noLocations": "Aucun lieu pour le moment. Créez-en un afin d'ajouter vos voies.",
-    "removeConfirmation": "Si vous supprimez ce lieu, les voies enregistrées dessus le seront également. Vous perdrez ainsi vos progressions sur ce lieu. Réfléchissez bien !",
-    "assetsTip": "Astuce de pro : vous pourrez ajouter des images à votre lieu après sa création.",
-    "editAssets": "Modifier les ressources du lieu"
+    "form": {
+      "addressPlaceholder": "Adresse physique du lieu",
+      "namePlaceholder": "Nom du lieu",
+      "notesPlaceholder": "Notes à rajouter à propos du lieu",
+      "assetsTip": "Astuce de pro : vous pourrez ajouter des images à votre lieu après sa création."
+    },
+    "actions": {
+      "edit": "Modifier le lieu",
+      "editAssets": "Modifier les ressources du lieu",
+      "removeConfirmation": "Si vous supprimez ce lieu, les voies enregistrées dessus le seront également. Vous perdrez ainsi vos progressions sur ce lieu. Réfléchissez bien !",
+      "add": "Ajouter un lieu"
+    },
+    "noLocations": "Aucun lieu pour le moment. Créez-en un afin d'ajouter vos voies."
   },
   "competitions": {
-    "noCompetitions": "Aucune compétition pour le moment. Ajoutez-en une !",
-    "add": "Ajouter une compétition",
-    "namePlaceholder": "Nom de la compétition",
-    "descriptionPlaceholder": "Description de la compétition",
-    "participation": "Participation",
-    "notParticipating": "Ne participant pas",
-    "thinking": "Réfléchissant",
-    "participating": "Participant",
-    "edit": "Modifier la compétition",
-    "transfer": "Transférer vers un autre lieu",
-    "remove": "Supprimer la compétition",
-    "removeConfirmation": "Si vous supprimez cette compétition, vous allez perdre les statistiques enregistrées dessus. Réfléchissez bien !"
+    "form": {
+      "namePlaceholder": "Nom de la compétition",
+      "descriptionPlaceholder": "Description de la compétition"
+    },
+    "terms": {
+      "participation": "Participation"
+    },
+    "status": {
+      "participating": "Participant",
+      "thinking": "Réfléchissant",
+      "notParticipating": "Ne participant pas"
+    },
+    "actions": {
+      "add": "Ajouter une compétition",
+      "edit": "Modifier la compétition",
+      "transfer": "Transférer vers un autre lieu",
+      "remove": "Supprimer la compétition",
+      "removeConfirmation": "Si vous supprimez cette compétition, vous allez perdre les statistiques enregistrées dessus. Réfléchissez bien !"
+    },
+    "noCompetitions": "Aucune compétition pour le moment. Ajoutez-en une !"
   },
   "assets": {
+    "help": {
+      "description": "Une ressource est une image que vous ajoutez à une voie, un lieu... Depuis ce menu, vous pouvez voir toutes les ressources enregistrées sur Highest, et pouvez en supprimer certaines si vous le souhaitez.",
+      "selectExisting": "...ou choisissez-en une déjà sur Highest",
+      "upload": "Choisissez une image depuis votre appareil"
+    },
     "add": "Ajouter une ressource",
-    "uploadHelper": "Choisissez une image depuis votre appareil",
-    "existingHelper": "...ou choisissez-en une déjà sur Highest",
     "edit": "Modifier les ressources",
-    "manage": "Gérer les ressources",
-    "help": "Une ressource est une image que vous ajoutez à une voie, un lieu... Depuis ce menu, vous pouvez voir toutes les ressources enregistrées sur Highest, et pouvez en supprimer certaines si vous le souhaitez."
+    "manage": "Gérer les ressources"
   },
   "settings": {
     "adjustments": "Réglages",
-    "display": "Affichage",
-    "language": "Langue",
-    "localeDescription": "Langue de l'application",
-    "darkTheme": "Thème sombre",
-    "invertColors": "Inverser les couleurs",
-    "autoDarkTheme": "Thème sombre automatique",
-    "autoDarkThemeDescription": "Le thème de Highest s'ajustera à celui de l'appareil. Assurez-vous d'avoir mis à jour votre système afin de profiter de cette fonctionnalité.",
-    "data": "Données",
-    "exportData": "Exporter les données",
-    "importData": "Importer les données",
-    "eraseData": "Effacer les données",
-    "eraseDataConfirmation": "Si vous continuez, cette action va engendrer la perte de toutes vos données, incluant lieux, voies, compétitions et paramètres, et ce de manière définitive. Réfléchissez-bien !",
-    "about": "À propos",
-    "version": {
-      "retrieving": "Récupération de la dernière version",
-      "latest": "Dernière version : {number}",
-      "goto": "Accéder à la liste des changements"
+    "display": {
+      "title": "Affichage",
+      "language": {
+        "title": "Langue",
+        "description": "Langue de l'application"
+      },
+      "theme": {
+        "darkTheme": "Thème sombre",
+        "invertColors": "Inverser les couleurs",
+        "autoDarkTheme": "Thème sombre automatique",
+        "autoDarkThemeDescription": "Le thème de Highest s'ajustera à celui de l'appareil. Assurez-vous d'avoir mis à jour votre système afin de profiter de cette fonctionnalité."
+      }
     },
-    "maintainedBy": "Maintenu par Théo Vidal",
-    "openSource": "Ce projet est distribué en open-source sous licence <a href='https://github.com/highest-app/highest/blob/master/LICENSE'>GNU GPL v3</a>.",
-    "sourceCode": "Accéder au code source",
-    "betaNotice": "Veuillez noter que l'application est en <strong>bêta</strong> : par conséquent, de nombreux bogues existent et certaines fonctionnalités ne sont pas implémentées. Si vous souhaitez contribuer au projet, rendez-vous sur <a href=\"https://github.com/highest-app/highest\">le dépôt GitHub</a>."
+    "data": {
+      "title": "Données",
+      "export": "Exporter les données",
+      "import": "Importer les données",
+      "erase": "Effacer les données",
+      "eraseConfirmation": "Si vous continuez, cette action va engendrer la perte de toutes vos données, incluant lieux, voies, compétitions et paramètres, et ce de manière définitive. Réfléchissez-bien !"
+    },
+    "about": {
+      "title": "À propos",
+      "version": {
+        "retrieving": "Récupération de la dernière version",
+        "latest": "Dernière version : {number}",
+        "goto": "Accéder à la liste des changements"
+      },
+      "maintainedBy": "Maintenu par Théo Vidal",
+      "openSource": "Ce projet est distribué en open-source sous licence <a href='https://github.com/highest-app/highest/blob/master/LICENSE'>GNU GPL v3</a>.",
+      "sourceCode": "Accéder au code source",
+      "betaNotice": "Veuillez noter que l'application est en <strong>bêta</strong> : par conséquent, de nombreux bogues existent et certaines fonctionnalités ne sont pas implémentées. Si vous souhaitez contribuer au projet, rendez-vous sur <a href=\"https://github.com/highest-app/highest\">le dépôt GitHub</a>."
+    },
+    "title": "Paramètres"
   }
 }

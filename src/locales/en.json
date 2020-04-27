@@ -1,146 +1,184 @@
 {
   "terms": {
     "actions": {
-      "remove": "Remove"
+      "add": "Add",
+      "edit": "Edit",
+      "remove": "Remove",
+      "delete": "Delete",
+      "erase": "Erase",
+      "cancel": "Cancel",
+      "back": "Back",
+      "close": "Close",
+      "done": "Done",
+      "ok": "OK",
+      "select": "Select",
+      "selected": "Selected"
+    },
+    "fields": {
+      "name": "Name",
+      "description": "Description",
+      "notes": "Notes",
+      "address": "Address",
+      "date": "Date",
+      "picture": "Picture",
+      "assets": "Assets"
+    },
+    "colors": {
+      "red": "Red",
+      "orange": "Orange",
+      "yellow": "Yellow",
+      "green": "Green",
+      "blue": "Blue",
+      "purple": "Purple",
+      "gray": "Gray"
     },
     "general": "General",
-    "name": "Name",
-    "description": "Description",
-    "notes": "Notes",
-    "address": "Address",
-    "date": "Date",
-    "picture": "Picture",
-    "grade": "Grade",
-    "length": "Length",
-    "assets": "Assets",
-    "add": "Add",
-    "edit": "Edit",
-    "delete": "Delete",
-    "erase": "Erase",
-    "cancel": "Cancel",
-    "back": "Back",
-    "ok": "OK",
-    "close": "Close",
-    "done": "Done",
-    "select": "Select",
-    "selected": "Selected",
-    "actionConfirmation": "Are you sure ?",
-    "red": "Red",
-    "orange": "Orange",
-    "yellow": "Yellow",
-    "green": "Green",
-    "blue": "Blue",
-    "purple": "Purple",
-    "gray": "Gray"
+    "actionConfirmation": "Are you sure ?"
   },
   "generic": {
     "location": "Location | Locations",
     "route": "Route | Routes",
     "competition": "Competition | Competitions",
-    "tag": "Tag | Tags"
-  },
-  "pages": {
-    "home": "Home",
-    "routes": "Routes",
-    "competitions": "Competitions",
-    "profile": "Profile",
-    "settings": "Settings",
-    "search": "Search"
+    "tag": "Tag | Tags",
+    "asset": "Asset | Assets",
+    "action": "Action | Actions"
   },
   "home": {
     "appSubtitle": "Your climbing best friend",
     "appDescription": "Work your routes while staying organized : the convenient climbing app !",
-    "visitWebsite": "Visit website",
-    "separatedFeeds": "Separated feeds",
-    "removeFeed": "Delete feed"
+    "title": "Home"
   },
   "profile": {
     "user": "User",
-    "login": "Log in"
+    "login": "Log in",
+    "title": "Profile"
+  },
+  "feeds": {
+    "actions": {
+      "remove": "Delete feed",
+      "visitWebsite": "Visit website"
+    },
+    "separated": "Separated feeds"
   },
   "search": {
     "starter": "Start typing a key word to find routes, locations and competitions.",
     "notFound": "No elements found",
     "notFoundHelp": "Try to search with other keywords.",
-    "placeholder": "Search for a route, a location, a competition..."
+    "placeholder": "Search for a route, a location, a competition...",
+    "title": "Search"
   },
   "routes": {
-    "add": "Add new route",
-    "namePlaceholder": "Name of the route",
-    "notesPlaceholder": "Notes to add about the route",
-    "defineGoal": "Define a goal",
-    "color": "Colour",
-    "information": "Information",
-    "progressions": "Progressions",
-    "progressionNotesPlaceholder": "Notes to add about this progression",
-    "edit": "Edit route",
-    "transfer": "Transfer to another location",
-    "all": "All routes",
-    "noRoutes": "Any route for the moment. Let's add one !",
-    "for": "For the",
-    "noGoal": "No goal",
-    "markAsFinished": "Mark as finished",
-    "addProgress": "Add new progress",
-    "editAssets": "Edit route's assets",
-    "remove": "Remove route",
-    "removeConfirmation": "If you remove this route, all your registered progressions on it will be lost. Think about it !"
+    "terms": {
+      "color": "Color",
+      "length": "Length",
+      "grade": "Grade"
+    },
+    "form": {
+      "notesPlaceholder": "Notes to add about the route",
+      "progressionNotesPlaceholder": "Notes to add about this progression",
+      "namePlaceholder": "Name of the route",
+      "defineGoal": "Define a goal"
+    },
+    "view": {
+      "all": "All routes",
+      "noRoutes": "Any route for the moment. Let's add one !",
+      "information": "Information",
+      "progressions": "Progressions",
+      "noGoal": "No goal",
+      "goal": "For the"
+    },
+    "actions": {
+      "remove": "Remove route",
+      "removeConfirmation": "If you remove this route, all your registered progressions on it will be lost. Think about it !",
+      "markAsFinished": "Mark as finished",
+      "transfer": "Transfer to another location",
+      "add": "Add new route",
+      "editAssets": "Edit route's assets",
+      "edit": "Edit route",
+      "addProgress": "Add new progress"
+    }
   },
   "locations": {
-    "add": "Add new location",
-    "assetsTip": "Pro-tip: you'll be able to add pictures to your location after its creation.",
-    "namePlaceholder": "Location's name",
-    "addressPlaceholder": "Physical address of the location",
-    "notesPlaceholder": "Notes to add about this location",
-    "edit": "Edit location",
-    "editAssets": "Edit location's assets",
-    "noLocations": "Any location for the moment. Create one to add your routes.",
-    "removeConfirmation": "If you remove this location, routes saved on it will be deleted as well. Therefore, you'll lose your progressions on this location. Think about it !"
+    "form": {
+      "addressPlaceholder": "Physical address of the location",
+      "namePlaceholder": "Location's name",
+      "notesPlaceholder": "Notes to add about this location",
+      "assetsTip": "Pro-tip: you'll be able to add pictures to your location after its creation."
+    },
+    "actions": {
+      "edit": "Edit location",
+      "editAssets": "Edit location's assets",
+      "removeConfirmation": "If you remove this location, routes saved on it will be deleted as well. Therefore, you'll lose your progressions on this location. Think about it !",
+      "add": "Add new location"
+    },
+    "noLocations": "Any location for the moment. Create one to add your routes."
   },
   "competitions": {
-    "noCompetitions": "Any competition for the moment. Let's add one !",
-    "add": "Add new competition",
-    "namePlaceholder": "Name of the competition",
-    "descriptionPlaceholder": "Competition's description",
-    "participation": "Participation",
-    "notParticipating": "Not participating",
-    "thinking": "Thinking",
-    "participating": "Participating",
-    "edit": "Edit competition",
-    "transfer": "Transfer to another location",
-    "remove": "Remove competition",
-    "removeConfirmation": "If you remove this competition, you'll lose saved statistics. Think about it !"
+    "form": {
+      "descriptionPlaceholder": "Competition's description",
+      "namePlaceholder": "Name of the competition"
+    },
+    "terms": {
+      "participation": "Participation"
+    },
+    "status": {
+      "participating": "Participating",
+      "thinking": "Thinking",
+      "notParticipating": "Not participating"
+    },
+    "actions": {
+      "add": "Add new competition",
+      "edit": "Edit competition",
+      "transfer": "Transfer to another location",
+      "remove": "Remove competition",
+      "removeConfirmation": "If you remove this competition, you'll lose saved statistics. Think about it !"
+    },
+    "noCompetitions": "Any competition for the moment. Let's add one !"
   },
   "assets": {
+    "help": {
+      "description": "An asset is any image that you add to a route, a location... From this menu, you can see all of the assets stored on Highest, and you can delete some of them if you want.",
+      "selectExisting": "...or choose one already on Highest",
+      "upload": "Upload an asset from your device..."
+    },
     "add": "Add an asset",
     "edit": "Edit assets",
-    "manage": "Manage assets",
-    "uploadHelper": "Upload an asset from your device...",
-    "existingHelper": "...or choose one already on Highest",
-    "help": "An asset is any image that you add to a route, a location... From this menu, you can see all of the assets stored on Highest, and you can delete some of them if you want."
+    "manage": "Manage assets"
   },
   "settings": {
     "adjustments": "Adjustments",
-    "display": "Display",
-    "language": "Language",
-    "localeDescription": "Application's locale",
-    "darkTheme": "Dark theme",
-    "invertColors": "Invert colors",
-    "autoDarkTheme": "Automatic dark theme",
-    "autoDarkThemeDescription": "Highest's theme will adjust to your device's one. Make sure your system is up to date so as to take advantage of this feature.",
-    "data": "Data",
-    "exportData": "Export data",
-    "importData": "Import data",
-    "eraseData": "Erase data",
-    "eraseDataConfirmation": "If you continue, this action will make you lose all your data, including locations, routes, competitions and settings, definitively. Think about it !",
-    "about": "About",
-    "version": {
-      "retrieving": "Retrieving latest release...",
-      "latest": "Latest release : {number}",
-      "goto": "Go to the changelog"
+    "display": {
+      "title": "Display",
+      "language": {
+        "title": "Language",
+        "description": "Application's locale"
+      },
+      "theme": {
+        "darkTheme": "Dark theme",
+        "invertColors": "Invert colors",
+        "autoDarkTheme": "Automatic dark theme",
+        "autoDarkThemeDescription": "Highest's theme will adjust to your device's one. Make sure your system is up to date so as to take advantage of this feature."
+      }
     },
-    "maintainedBy": "Maintained by Théo Vidal",
-    "openSource": "This project is distributed in open-source under the <a href='https://github.com/highest-app/highest/blob/master/LICENSE'>GNU GPL v3</a> license.",
-    "sourceCode": "Go to the source code",
-    "betaNotice": "Please note that the application is in <strong>beta</strong> : therefore, many bugs exist and some features aren't implemented. If you want to contribute to this projet, head over to <a href='https://github.com/highest-app/highest'>the GitHub repository</a>."
+    "data": {
+      "title": "Data",
+      "export": "Export data",
+      "import": "Import data",
+      "erase": "Erase data",
+      "eraseConfirmation": "If you continue, this action will make you lose all your data, including locations, routes, competitions and settings, definitively. Think about it !"
+    },
+    "about": {
+      "title": "About",
+      "version": {
+        "retrieving": "Retrieving latest release...",
+        "latest": "Latest release : {number}",
+        "goto": "Go to the changelog"
+      },
+      "maintainedBy": "Maintained by Théo Vidal",
+      "openSource": "This project is distributed in open-source under the <a href='https://github.com/highest-app/highest/blob/master/LICENSE'>GNU GPL v3</a> license.",
+      "sourceCode": "Go to the source code",
+      "betaNotice": "Please note that the application is in <strong>beta</strong> : therefore, many bugs exist and some features aren't implemented. If you want to contribute to this projet, head over to <a href='https://github.com/highest-app/highest'>the GitHub repository</a>."
+    },
+    "title": "Settings"
   }
 }
