@@ -1,6 +1,6 @@
 <template>
   <v-content>
-    <app-bar :title="$t('pages.search')"/>
+    <app-bar :title="$t('search.title')"/>
     <page-body>
       <v-text-field
         v-if="$vuetify.breakpoint.smAndDown"

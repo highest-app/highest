@@ -96,7 +96,8 @@
       "editAssets": "Editar los recursos de la ruta",
       "edit": "Editar la ruta",
       "addProgress": "Añade nuevos progresos"
-    }
+    },
+    "title": "Rutas"
   },
   "locations": {
     "form": {
@@ -111,7 +112,8 @@
       "removeConfirmation": "Si elimina esta ubicación, las rutas guardadas en ella también se borrarán. Por lo tanto, perderás tus progresiones en esta ubicación. ¡Piénsalo!",
       "add": "Añadir una ubicación"
     },
-    "noLocations": "Cualquier lugar por el momento. Crea uno para añadir tus rutas."
+    "noLocations": "Cualquier lugar por el momento. Crea uno para añadir tus rutas.",
+    "title": "Ubicacione"
   },
   "competitions": {
     "form": {
@@ -133,7 +135,8 @@
       "remove": "Eliminar la competencia",
       "removeConfirmation": "Si elimina esta competencia, perderás las estadísticas guardadas en él. ¡Piénsalo!"
     },
-    "noCompetitions": "Cualquier competencia por el momento. ¡Añadamos una!"
+    "noCompetitions": "Cualquier competencia por el momento. ¡Añadamos una!",
+    "title": "Competición"
   },
   "assets": {
     "help": {

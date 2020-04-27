@@ -14,19 +14,19 @@
             <v-icon color="white">mdi-plus</v-icon>
           </v-btn>
         </template>
-        <span>{{ $t('competitions.add') }}</span>
+        <span>{{ $t('competitions.actions.add') }}</span>
       </v-tooltip>
     </template>
     <template #dialog>
       <app-bar
-        :title="$t('competitions.add')"
+        :title="$t('competitions.actions.add')"
         small-only
         fixed>
         <template #bar-left-actions>
-          <a @click="resetForm">{{ $t('terms.cancel') }}</a>
+          <a @click="resetForm">{{ $t('terms.actions.cancel') }}</a>
         </template>
         <template #bar-right-actions>
-          <a @click="add">{{ $t('terms.add') }}</a>
+          <a @click="add">{{ $t('terms.actions.add') }}</a>
         </template>
       </app-bar>
       <competition-form

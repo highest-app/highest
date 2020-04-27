@@ -14,17 +14,17 @@
             <v-icon color="white">mdi-account-outline</v-icon>
           </v-btn>
         </template>
-        <span>{{ $t('pages.profile') }}</span>
+        <span>{{ $t('profile.title') }}</span>
       </v-tooltip>
     </template>
     <template #dialog>
       <assets-managing v-model="assetsManaging"/>
       <app-bar
-        :title="$t('pages.profile')"
+        :title="$t('profile.title')"
         small-only
         fixed>
         <template #bar-right-actions>
-          <a @click="enabled = false">{{ $t('terms.close') }}</a>
+          <a @click="enabled = false">{{ $t('terms.actions.close') }}</a>
         </template>
       </app-bar>
       <page-body>
@@ -53,7 +53,7 @@
           <card
             top
             @click="assetsManaging = true">
-            <template #title>{{ $t('terms.assets') }}</template>
+            <template #title>{{ $tc('generic.asset', 2) }}</template>
             <template #action>
               <v-list-item-icon>
                 <v-icon>mdi-chevron-right</v-icon>
@@ -63,7 +63,7 @@
           <card
             to="/settings"
             bottom>
-            <template #title>{{ $t('pages.settings') }}</template>
+            <template #title>{{ $t('settings.title') }}</template>
             <template #action>
               <v-list-item-icon>
                 <v-icon>mdi-chevron-right</v-icon>

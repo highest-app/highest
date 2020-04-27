@@ -8,20 +8,20 @@
           <v-icon color="white">mdi-plus</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title class="white--text">{{ $t('terms.add') }}</v-list-item-title>
+          <v-list-item-title class="white--text">{{ $t('terms.actions.add') }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </template>
     <template #dialog>
       <app-bar
-        :title="$t('locations.add')"
+        :title="$t('locations.actions.add')"
         small-only
         fixed>
         <template #bar-left-actions>
-          <a @click="resetForm">{{ $t('terms.cancel') }}</a>
+          <a @click="resetForm">{{ $t('terms.actions.cancel') }}</a>
         </template>
         <template #bar-right-actions>
-          <a @click="add">{{ $t('terms.add') }}</a>
+          <a @click="add">{{ $t('terms.actions.add') }}</a>
         </template>
       </app-bar>
       <location-form

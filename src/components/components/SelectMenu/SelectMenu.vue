@@ -5,7 +5,7 @@
       small-only
       sticky>
       <template #bar-left-actions>
-        <a @click="$emit('back')">{{ $t('terms.back') }}</a>
+        <a @click="$emit('back')">{{ $t('terms.actions.back') }}</a>
       </template>
     </app-bar>
     <page-body>

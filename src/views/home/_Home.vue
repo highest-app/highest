@@ -1,6 +1,6 @@
 <template>
   <v-content>
-    <app-bar :title="$t('pages.home')">
+    <app-bar :title="$t('home.title')">
       <template #top-bar-actions>
         <profile/>
       </template>
@@ -31,7 +31,7 @@
                 icon="mdi-alert-outline"
                 outlined
                 text
-                v-html="$t('settings.betaNotice')"/>
+                v-html="$t('settings.about.betaNotice')"/>
             </v-col>
           </v-row>
         </v-col>
@@ -42,7 +42,7 @@
             <v-col cols="12">
               <v-switch
                 v-model="separatedFeeds"
-                :label="$t('home.separatedFeeds')"
+                :label="$t('feeds.separated')"
                 inset/>
               <v-progress-linear
                 v-if="!feedsLoaded"
@@ -66,7 +66,7 @@
                           <v-icon>mdi-open-in-new</v-icon>
                         </v-btn>
                       </template>
-                      <span>{{ $t('home.visitWebsite') }}</span>
+                      <span>{{ $t('feeds.actions.visitWebsite') }}</span>
                     </v-tooltip>
                     <v-tooltip
                       open-delay="500"
@@ -80,7 +80,7 @@
                           <v-icon>mdi-delete-outline</v-icon>
                         </v-btn>
                       </template>
-                      <span>{{ $t('home.removeFeed') }}</span>
+                      <span>{{ $t('feeds.actions.remove') }}</span>
                     </v-tooltip>
                   </v-row>
                   <p class="mb-0">{{ feed.description }}</p>

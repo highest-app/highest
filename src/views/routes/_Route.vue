@@ -6,12 +6,12 @@
       persistent>
       <v-card>
         <v-card-title class="headline">{{ $t('terms.actionConfirmation') }}</v-card-title>
-        <v-card-text>{{ $t('routes.removeConfirmation') }}</v-card-text>
+        <v-card-text>{{ $t('routes.actions.removeConfirmation') }}</v-card-text>
         <v-card-actions>
           <v-btn
             text
             @click="removeDialog = false">
-            {{ $t('terms.cancel') }}
+            {{ $t('terms.actions.cancel') }}
           </v-btn>
           <v-spacer/>
           <v-btn
@@ -25,13 +25,13 @@
     </v-dialog>
     <template v-if="editMode">
       <app-bar
-        :title="$t('routes.edit')"
+        :title="$t('routes.actions.edit')"
         small-only>
         <template #bar-left-actions>
-          <a @click="quitEdit">{{ $t('terms.cancel') }}</a>
+          <a @click="quitEdit">{{ $t('terms.actions.cancel') }}</a>
         </template>
         <template #bar-right-actions>
-          <a @click="validateEdit">{{ $t('terms.ok') }}</a>
+          <a @click="validateEdit">{{ $t('terms.actions.ok') }}</a>
         </template>
       </app-bar>
       <v-container>
@@ -42,7 +42,7 @@
             <asset-uploader
               v-model="routeForm.photos"
               :active="photoChoose"
-              title="routes.editAssets"
+              title="routes.actions.editAssets"
               multiple>
               <template #activator="{ on }">
                 <v-card v-on="on">
@@ -74,7 +74,7 @@
                       top
                       v-on="on">
                       <template #title>
-                        <span class="primary--text">{{ $t('routes.transfer') }}</span>
+                        <span class="primary--text">{{ $t('routes.actions.transfer') }}</span>
                       </template>
                     </card>
                   </template>
@@ -84,7 +84,7 @@
                       small-only
                       fixed>
                       <template #bar-left-actions>
-                        <a @click="transferDialog = false">{{ $t('terms.cancel') }}</a>
+                        <a @click="transferDialog = false">{{ $t('terms.actions.cancel') }}</a>
                       </template>
                     </app-bar>
                     <page-body>
@@ -111,7 +111,7 @@
                   bottom
                   @click="removeDialog = true">
                   <template #title>
-                    <span class="error--text">{{ $t('routes.remove') }}</span>
+                    <span class="error--text">{{ $t('routes.actions.remove') }}</span>
                   </template>
                 </card>
               </list-group>
@@ -123,10 +123,10 @@
     <template v-else>
       <app-bar small-only>
         <template #bar-left-actions>
-          <a @click="$router.back()">{{ $t('terms.back') }}</a>
+          <a @click="$router.back()">{{ $t('terms.actions.back') }}</a>
         </template>
         <template #bar-right-actions>
-          <a @click="editMode = true">{{ $t('terms.edit') }}</a>
+          <a @click="editMode = true">{{ $t('terms.actions.edit') }}</a>
         </template>
       </app-bar>
       <v-container>
@@ -159,20 +159,20 @@
             </span>
             <v-row>
               <v-col cols="12">
-                <card-header>{{ $t('routes.information') }}</card-header>
+                <card-header>{{ $t('routes.view.information') }}</card-header>
                 <p>{{ route.notes }}</p>
                 <p>
-                  <strong>{{ $t('terms.length') }} : </strong>{{ route.length }}m
+                  <strong>{{ $t('routes.terms.length') }} : </strong>{{ route.length }}m
                 </p>
                 <v-switch
                   v-model="route.finished"
                   color="primary"
-                  :label="$t('routes.markAsFinished')"
+                  :label="$t('routes.actions.markAsFinished')"
                   inset
                   @click.stop="switchFinishedRoute(route.id)"/>
               </v-col>
               <v-col cols="12">
-                <card-header>{{ $t('routes.progressions') }}</card-header>
+                <card-header>{{ $t('routes.view.progressions') }}</card-header>
                 <v-date-picker
                   v-model="progressionForm.date"
                   :events="progressionDates"
@@ -205,7 +205,7 @@
                   align="center">
                   <v-text-field
                     v-model="progressionForm.notes"
-                    :placeholder="$t('routes.addProgress')"
+                    :placeholder="$t('routes.actions.addProgress')"
                     rows="1"
                     auto-grow
                     hide-details

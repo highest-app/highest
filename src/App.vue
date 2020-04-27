@@ -16,7 +16,7 @@
         <v-list-item>
           <v-text-field
             v-model="search"
-            :label="`${$t('pages.search')}...`"
+            :label="`${$t('search.title')}...`"
             clearable
             rounded
             filled
@@ -47,7 +47,7 @@
           <v-btn
             text
             to="/settings">
-            <v-icon left>mdi-cog-outline</v-icon> {{ $t('pages.settings') }}
+            <v-icon left>mdi-cog-outline</v-icon> {{ $t('settings.title') }}
           </v-btn>
           <v-spacer/>
           <v-tooltip
@@ -62,7 +62,7 @@
                 <v-icon>mdi-invert-colors</v-icon>
               </v-btn>
             </template>
-            <span>{{ $t('settings.invertColors') }}</span>
+            <span>{{ $t('settings.display.theme.invertColors') }}</span>
           </v-tooltip>
         </v-row>
       </template>
@@ -103,15 +103,15 @@ export default {
       search: '',
 
       menu: [
-        { name: 'pages.home', route: '/', icon: 'mdi-home-outline' },
-        { name: 'pages.routes', route: '/routes/all', icon: 'mdi-routes' },
-        { name: 'pages.competitions', route: '/competitions', icon: 'mdi-medal' }
+        { name: 'home.title', route: '/', icon: 'mdi-home-outline' },
+        { name: 'routes.title', route: '/routes/all', icon: 'mdi-routes' },
+        { name: 'competitions.title', route: '/competitions', icon: 'mdi-medal' }
       ],
       mobileMenu: [
-        { name: 'pages.home', route: '/', icon: 'mdi-home-outline' },
-        { name: 'pages.routes', route: '/routes', icon: 'mdi-routes' },
-        { name: 'pages.competitions', route: '/competitions', icon: 'mdi-medal' },
-        { name: 'pages.search', route: '/search', icon: 'mdi-magnify' },
+        { name: 'home.title', route: '/', icon: 'mdi-home-outline' },
+        { name: 'routes.title', route: '/routes', icon: 'mdi-routes' },
+        { name: 'competitions.title', route: '/competitions', icon: 'mdi-medal' },
+        { name: 'search.title', route: '/search', icon: 'mdi-magnify' },
       ]
     }
   },

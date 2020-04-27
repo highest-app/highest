@@ -9,13 +9,13 @@
     </app-bar>
     <app-bar
       v-else
-      :title="$t('routes.all')"
+      :title="$t('routes.view.all')"
       small-only>
       <template #bar-left-actions>
         <a
           class="hidden-md-and-up"
           @click="$router.back()">
-          {{ $t('terms.back') }}
+          {{ $t('terms.actions.back') }}
         </a>
       </template>
     </app-bar>

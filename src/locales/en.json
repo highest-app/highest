@@ -96,7 +96,8 @@
       "editAssets": "Edit route's assets",
       "edit": "Edit route",
       "addProgress": "Add new progress"
-    }
+    },
+    "title": "Routes"
   },
   "locations": {
     "form": {
@@ -111,7 +112,8 @@
       "removeConfirmation": "If you remove this location, routes saved on it will be deleted as well. Therefore, you'll lose your progressions on this location. Think about it !",
       "add": "Add new location"
     },
-    "noLocations": "Any location for the moment. Create one to add your routes."
+    "noLocations": "Any location for the moment. Create one to add your routes.",
+    "title": "Locations"
   },
   "competitions": {
     "form": {
@@ -133,7 +135,8 @@
       "remove": "Remove competition",
       "removeConfirmation": "If you remove this competition, you'll lose saved statistics. Think about it !"
     },
-    "noCompetitions": "Any competition for the moment. Let's add one !"
+    "noCompetitions": "Any competition for the moment. Let's add one !",
+    "title": "Competitions"
   },
   "assets": {
     "help": {

@@ -4,7 +4,7 @@
       {{ $t('locations.noLocations') }}
     </v-list-item>
     <v-list-item v-else-if="!routes.length">
-      {{ $t('routes.noRoutes') }}
+      {{ $t('routes.view.noRoutes') }}
     </v-list-item>
     <template
       v-for="(route, i) in routes"
@@ -34,7 +34,7 @@
                       <v-icon :color="icons.get(route).color">{{ icons.get(route).icon }}</v-icon>
                     </v-btn>
                   </template>
-                  <span>{{ $t('routes.markAsFinished') }}</span>
+                  <span>{{ $t('routes.actions.markAsFinished') }}</span>
                 </v-tooltip>
               </v-img>
             </v-avatar>
@@ -56,7 +56,7 @@
             </span>
           </v-list-item-title>
           <v-list-item-subtitle>
-            <span class="text--primary">{{ route.goal ? `${$t('routes.for')} ${dateToText(route.goal)}` : $t('routes.noGoal') }}</span>
+            <span class="text--primary">{{ route.goal ? `${$t('routes.view.goal')} ${dateToText(route.goal)}` : $t('routes.view.noGoal') }}</span>
             <template v-if="route.name !== ''">
               &mdash; {{ route.name }}
             </template>

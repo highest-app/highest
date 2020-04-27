@@ -14,20 +14,20 @@
             <v-icon color="white">mdi-plus</v-icon>
           </v-btn>
         </template>
-        <span>{{ $t('routes.add') }}</span>
+        <span>{{ $t('routes.actions.add') }}</span>
       </v-tooltip>
     </template>
     <template #dialog>
       <div ref="dialog">
         <app-bar
-          :title="$t('routes.add')"
+          :title="$t('routes.actions.add')"
           small-only
           fixed>
           <template #bar-left-actions>
-            <a @click="resetForm">{{ $t('terms.cancel') }}</a>
+            <a @click="resetForm">{{ $t('terms.actions.cancel') }}</a>
           </template>
           <template #bar-right-actions>
-            <a @click="add">{{ $t('terms.add') }}</a>
+            <a @click="add">{{ $t('terms.actions.add') }}</a>
           </template>
         </app-bar>
         <route-form

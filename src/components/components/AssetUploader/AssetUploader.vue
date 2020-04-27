@@ -13,7 +13,7 @@
           small-only
           fixed>
           <template #bar-right-actions>
-            <a @click="choose">{{ $t('terms.ok') }}</a>
+            <a @click="choose">{{ $t('terms.actions.ok') }}</a>
           </template>
         </app-bar>
         <v-container>
@@ -21,16 +21,15 @@
             <v-col
               cols="12"
               md="6">
-              <strong>{{ $t('assets.uploadHelper') }}</strong>
+              <strong>{{ $t('assets.help.upload') }}</strong>
               <list-group>
                 <card
                   top
                   bottom>
-                  <template #title>{{ $t('terms.picture') }}</template>
+                  <template #title>{{ $t('terms.fields.picture') }}</template>
                   <template #input>
                     <v-file-input
                       v-model="file"
-                      :placeholder="$t('terms.picturePlaceholder')"
                       prepend-icon=""
                       hide-details
                       solo
@@ -52,7 +51,7 @@
             <v-col
               cols="12"
               md="6">
-              <strong>{{ $t('assets.existingHelper') }}</strong>
+              <strong>{{ $t('assets.help.selectExisting') }}</strong>
               <v-item-group
                 v-model="selectedIds"
                 :multiple="multiple"

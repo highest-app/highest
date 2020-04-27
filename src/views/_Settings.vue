@@ -9,7 +9,7 @@
           v-model="settings.locale"
           :choices="locales.map(locale => locale.locale)"
           :labels="locales"
-          :name="$t('settings.localeDescription')"
+          :name="$t('settings.display.language.description')"
           auto-back
           @back="localeSelect = false">
           <template #label="{ label }">
@@ -27,7 +27,7 @@
       </panel>
     </v-slide-x-reverse-transition>
     <template>
-      <app-bar :title="$t('pages.settings')"/>
+      <app-bar :title="$t('settings.title')"/>
       <page-body>
         <v-dialog
           v-model="eraseDialog"
@@ -35,29 +35,29 @@
           persistent>
           <v-card>
             <v-card-title class="headline">{{ $t('terms.actionConfirmation') }}</v-card-title>
-            <v-card-text>{{ $t('settings.eraseDataConfirmation') }}</v-card-text>
+            <v-card-text>{{ $t('settings.data.eraseConfirmation') }}</v-card-text>
             <v-card-actions>
               <v-btn
                 text
                 @click="eraseDialog = false">
-                {{ $t('terms.cancel') }}
+                {{ $t('terms.actions.cancel') }}
               </v-btn>
               <v-spacer/>
               <v-btn
                 color="error"
                 text
                 @click="eraseData">
-                {{ $t('terms.erase') }}
+                {{ $t('terms.actions.erase') }}
               </v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
         <list-group>
-          <card-header>{{ $t('settings.display') }}</card-header>
+          <card-header>{{ $t('settings.display.title') }}</card-header>
           <card
             top
             @click="localeSelect = true">
-            <template #title>{{ $tc('settings.language', 1) }}</template>
+            <template #title>{{ $tc('settings.display.language.title', 1) }}</template>
             <template #action>
               <v-list-item-icon>
                 <v-icon>mdi-chevron-right</v-icon>
@@ -65,7 +65,7 @@
             </template>
           </card>
           <card>
-            <template #title>{{ $t('settings.darkTheme') }}</template>
+            <template #title>{{ $t('settings.display.theme.darkTheme') }}</template>
             <template #action>
               <v-switch
                 v-model="settings.darkTheme"
@@ -77,7 +77,7 @@
             </template>
           </card>
           <card>
-            <template #title>{{ $t('settings.autoDarkTheme') }}</template>
+            <template #title>{{ $t('settings.display.theme.autoDarkTheme') }}</template>
             <template #action>
               <v-switch
                 v-model="settings.autoDarkTheme"
@@ -86,40 +86,40 @@
                 hide-details
                 inset/>
             </template>
-            <template #description>{{ $t('settings.autoDarkThemeDescription') }}</template>
+            <template #description>{{ $t('settings.display.theme.autoDarkThemeDescription') }}</template>
           </card>
         </list-group>
 
         <list-group>
-          <card-header>{{ $t('settings.data') }}</card-header>
+          <card-header>{{ $t('settings.data.title') }}</card-header>
           <!-- To enable when data importing will become available
           <card
             top
             @click="exportData">
             <template #title>
-              <span class="primary--text">{{ $t('settings.exportData') }}</span>
+              <span class="primary--text">{{ $t('settings.data.export') }}</span>
             </template>
           </card>
           <card disabled>
-            <template #title>{{ $t('settings.importData') }}</template>
+            <template #title>{{ $t('settings.data.import') }}</template>
           </card> -->
           <card
             top
             bottom
             @click="eraseDialog = true">
             <template #title>
-              <span class="error--text">{{ $t('settings.eraseData') }}</span>
+              <span class="error--text">{{ $t('settings.data.erase') }}</span>
             </template>
           </card>
         </list-group>
 
         <list-group>
-          <card-header>{{ $t('settings.about') }}</card-header>
+          <card-header>{{ $t('settings.about.title') }}</card-header>
           <card
             v-if="release === {}"
             top>
             <template #title>
-              <span class="font-italic">{{ $t('settings.version.retrieving') }}</span>
+              <span class="font-italic">{{ $t('settings.about.version.retrieving') }}</span>
             </template>
           </card>
           <card
@@ -128,8 +128,8 @@
             :href="release.url"
             target="_blank">
             <template #title>
-              {{ $t('settings.version.latest', { number: release.number }) }}<br>
-              <span class="primary--text">{{ $t('settings.version.goto') }}</span>
+              {{ $t('settings.about.version.latest', { number: release.number }) }}<br>
+              <span class="primary--text">{{ $t('settings.about.version.goto') }}</span>
             </template>
             <template #action>
               <v-icon color="primary">mdi-open-in-new</v-icon>
@@ -146,7 +146,7 @@
                   <v-img src="https://exybore.becauseofprog.fr/img/avatar.png"/>
                 </v-list-item-avatar>
                 <v-col class="pa-0">
-                  {{ $t('settings.maintainedBy') }}
+                  {{ $t('settings.about.maintainedBy') }}
                   <v-row class="mx-0">
                     <v-btn
                       href="https://twitter.com/exybore"
@@ -173,11 +173,11 @@
           </card>
           <card bottom>
             <template #title>
-              <span v-html="$t('settings.openSource')"/><br>
+              <span v-html="$t('settings.about.openSource')"/><br>
               <a
                 href="https://github.com/highest-app/highest"
                 target="_blank">
-                {{ $t('settings.sourceCode') }}
+                {{ $t('settings.about.sourceCode') }}
               </a>
             </template>
           </card>

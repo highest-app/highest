@@ -21,7 +21,7 @@
                       <v-icon :color="icons[competition.participation].color">{{ icons[competition.participation].icon }}</v-icon>
                     </v-btn>
                   </template>
-                  <span>{{ $t('competitions.participation') }}</span>
+                  <span>{{ $t('competitions.terms.participation') }}</span>
                 </v-tooltip>
               </div>
             </template>
@@ -33,7 +33,7 @@
                 <v-list-item-icon>
                   <v-icon :color="icon.color">{{ icon.icon }}</v-icon>
                 </v-list-item-icon>
-                <v-list-item-title>{{ $t(`competitions.${icon.name}`) }}</v-list-item-title>
+                <v-list-item-title>{{ $t(`competitions.status.${icon.name}`) }}</v-list-item-title>
               </v-list-item>
             </v-list>
           </v-menu>

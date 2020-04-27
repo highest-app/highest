@@ -17,7 +17,7 @@
             <v-icon :color="label.color">
               mdi-circle
             </v-icon>
-            {{ label.default ? $t(`terms.${label.color}`) : label.name }}
+            {{ label.default ? $t(`terms.colors.${label.color}`) : label.name }}
           </template>
         </select-menu>
       </panel>
@@ -29,7 +29,7 @@
         <select-menu
           v-model="form.grade"
           :choices="grades"
-          :name="$t('terms.grade')"
+          :name="$t('routes.terms.grade')"
           auto-back
           @back="gradeSelect = false"/>
       </panel>
@@ -60,11 +60,11 @@
       <page-body>
         <list-group>
           <card top>
-            <template #title>{{ $t('terms.name') }}</template>
+            <template #title>{{ $t('terms.fields.name') }}</template>
             <template #input>
               <v-text-field
                 v-model="form.name"
-                :placeholder="$t('routes.namePlaceholder')"
+                :placeholder="$t('routes.form.namePlaceholder')"
                 hide-details
                 solo
                 flat/>
@@ -87,7 +87,7 @@
           </card>
           <card @click="gradeSelect = true">
             <template #title>
-              {{ $t('terms.grade') }}
+              {{ $t('routes.terms.grade') }}
             </template>
             <template #action-text>
               {{ form.grade }}
@@ -121,7 +121,7 @@
             dialog-width="300px">
             <template #activator="{ on }">
               <card v-on="on">
-                <template #title>{{ $t('routes.color') }}</template>
+                <template #title>{{ $t('routes.terms.color') }}</template>
                 <template #action-text>
                   <v-icon :color="form.color">
                     mdi-square
@@ -136,11 +136,11 @@
             </template>
             <template #dialog>
               <app-bar
-                :title="$t('routes.color')"
+                :title="$t('routes.terms.color')"
                 small-only
                 fixed>
                 <template #bar-right-actions>
-                  <a @click="colorDialog = false">{{ $t('terms.ok') }}</a>
+                  <a @click="colorDialog = false">{{ $t('terms.actions.ok') }}</a>
                 </template>
               </app-bar>
               <v-row
@@ -158,7 +158,7 @@
             </template>
           </responsive-dialog>
           <card bottom>
-            <template #title>{{ $t('terms.length') }}</template>
+            <template #title>{{ $t('routes.terms.length') }}</template>
             <template #input>
               <v-slider
                 v-model="form.length"
@@ -174,7 +174,7 @@
           <card
             top
             :bottom="!form.enableGoal">
-            <template #title>{{ $t('routes.defineGoal') }}</template>
+            <template #title>{{ $t('routes.form.defineGoal') }}</template>
             <template #action>
               <v-switch
                 v-model="form.enableGoal"
@@ -210,12 +210,12 @@
             top
             bottom
             extendable>
-            <template #title>{{ $t('terms.notes') }}</template>
+            <template #title>{{ $t('terms.fields.notes') }}</template>
             <template #input>
               <v-textarea
                 id="notes-textarea"
                 v-model="form.notes"
-                :placeholder="$t('routes.notesPlaceholder')"
+                :placeholder="$t('routes.form.notesPlaceholder')"
                 rows="1"
                 auto-grow
                 hide-details

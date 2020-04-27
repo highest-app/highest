@@ -1,7 +1,7 @@
 <template>
   <v-content>
     <app-bar
-      :title="tag.default ? $t(`terms.${tag.color}`) : tag.name"
+      :title="tag.default ? $t(`terms.colors.${tag.color}`) : tag.name"
       :small-only="$vuetify.breakpoint.smAndDown">
       <template #title-prepend>
         <v-icon :color="tag.color">mdi-circle</v-icon>
@@ -10,7 +10,7 @@
         <a
           class="hidden-md-and-up"
           @click="$router.back()">
-          {{ $t('terms.back') }}
+          {{ $t('terms.actions.back') }}
         </a>
       </template>
     </app-bar>

@@ -19,7 +19,7 @@
               <v-icon>mdi-routes</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title>{{ $t('routes.all') }}</v-list-item-title>
+              <v-list-item-title>{{ $t('routes.view.all') }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>

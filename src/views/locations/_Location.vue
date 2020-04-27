@@ -6,12 +6,12 @@
       persistent>
       <v-card>
         <v-card-title class="headline">{{ $t('terms.actionConfirmation') }}</v-card-title>
-        <v-card-text>{{ $t('locations.removeConfirmation') }}</v-card-text>
+        <v-card-text>{{ $t('locations.actions.removeConfirmation') }}</v-card-text>
         <v-card-actions>
           <v-btn
             text
             @click="removeDialog = false">
-            {{ $t('terms.cancel') }}
+            {{ $t('terms.actions.cancel') }}
           </v-btn>
           <v-spacer/>
           <v-btn
@@ -28,10 +28,10 @@
         :title="$t('locations.edit')"
         small-only>
         <template #bar-left-actions>
-          <a @click="quitEdit">{{ $t('terms.cancel') }}</a>
+          <a @click="quitEdit">{{ $t('terms.actions.cancel') }}</a>
         </template>
         <template #bar-right-actions>
-          <a @click="validateEdit">{{ $t('terms.ok') }}</a>
+          <a @click="validateEdit">{{ $t('terms.actions.ok') }}</a>
         </template>
       </app-bar>
       <v-container>
@@ -42,7 +42,7 @@
             <asset-uploader
               v-model="form.photos"
               :active="photoChoose"
-              title="locations.editAssets"
+              title="locations.actions.editAssets"
               multiple>
               <template #activator="{ on }">
                 <v-card v-on="on">
@@ -74,7 +74,7 @@
           <a
             class="hidden-md-and-up"
             @click="$router.back()">
-            {{ $t('terms.back') }}
+            {{ $t('terms.actions.back') }}
           </a>
         </template>
       </app-bar>
@@ -116,7 +116,7 @@
                   depressed
                   @click="editMode = true">
                   <v-icon left>mdi-pencil-outline</v-icon>
-                  {{ $t('terms.edit') }}
+                  {{ $t('terms.actions.edit') }}
                 </v-btn>
                 <v-btn
                   class="gradient--error white--text"

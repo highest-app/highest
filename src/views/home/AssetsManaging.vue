@@ -10,11 +10,11 @@
         small-only
         sticky>
         <template #bar-left-actions>
-          <a @click="$emit('change', false)">{{ $t('terms.ok') }}</a>
+          <a @click="$emit('change', false)">{{ $t('terms.actions.ok') }}</a>
         </template>
       </app-bar>
       <v-container>
-        <p>{{ $t('assets.help') }}</p>
+        <p>{{ $t('assets.help.description') }}</p>
         <v-row>
           <v-col
             v-for="(asset, id) in assets"

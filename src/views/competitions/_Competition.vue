@@ -6,12 +6,12 @@
       persistent>
       <v-card>
         <v-card-title class="headline">{{ $t('terms.actionConfirmation') }}</v-card-title>
-        <v-card-text>{{ $t('competitions.removeConfirmation') }}</v-card-text>
+        <v-card-text>{{ $t('competitions.actions.removeConfirmation') }}</v-card-text>
         <v-card-actions>
           <v-btn
             text
             @click="removeDialog = false">
-            {{ $t('terms.cancel') }}
+            {{ $t('terms.actions.cancel') }}
           </v-btn>
           <v-spacer/>
           <v-btn
@@ -25,13 +25,13 @@
     </v-dialog>
     <template v-if="editMode">
       <app-bar
-        :title="$t('competitions.edit')"
+        :title="$t('competitions.actions.edit')"
         small-only>
         <template #bar-left-actions>
-          <a @click="resetEdit()">{{ $t('terms.cancel') }}</a>
+          <a @click="resetEdit()">{{ $t('terms.actions.cancel') }}</a>
         </template>
         <template #bar-right-actions>
-          <a @click="validateEdit">{{ $t('terms.ok') }}</a>
+          <a @click="validateEdit">{{ $t('terms.actions.ok') }}</a>
         </template>
       </app-bar>
       <v-container>
@@ -53,17 +53,17 @@
                       top
                       v-on="on">
                       <template #title>
-                        <span class="primary--text">{{ $t('competitions.transfer') }}</span>
+                        <span class="primary--text">{{ $t('competitions.actions.transfer') }}</span>
                       </template>
                     </card>
                   </template>
                   <template #dialog>
                     <app-bar
-                      :title="$t('competitions.transfer')"
+                      :title="$t('competitions.actions.transfer')"
                       small-only
                       fixed>
                       <template #bar-left-actions>
-                        <a @click="transferDialog = false">{{ $t('terms.cancel') }}</a>
+                        <a @click="transferDialog = false">{{ $t('terms.actions.cancel') }}</a>
                       </template>
                     </app-bar>
                     <page-body>
@@ -86,7 +86,7 @@
                   bottom
                   @click="removeDialog = true">
                   <template #title>
-                    <span class="error--text">{{ $t('competitions.remove') }}</span>
+                    <span class="error--text">{{ $t('competitions.actions.remove') }}</span>
                   </template>
                 </card>
               </list-group>
@@ -100,10 +100,10 @@
         :title="competition.name"
         small-only>
         <template #bar-left-actions>
-          <a @click="$router.back()">{{ $t('terms.back') }}</a>
+          <a @click="$router.back()">{{ $t('terms.actions.back') }}</a>
         </template>
         <template #bar-right-actions>
-          <a @click="editMode = true">{{ $t('terms.edit') }}</a>
+          <a @click="editMode = true">{{ $t('terms.actions.edit') }}</a>
         </template>
       </app-bar>
       <v-container>

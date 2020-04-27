@@ -27,11 +27,11 @@
     <page-body>
       <list-group>
         <card top>
-          <template #title>{{ $t('terms.name') }}</template>
+          <template #title>{{ $t('terms.fields.name') }}</template>
           <template #input>
             <v-text-field
               v-model="form.name"
-              :placeholder="$t('competitions.namePlaceholder')"
+              :placeholder="$t('competitions.form.namePlaceholder')"
               hide-details
               solo
               flat/>
@@ -53,12 +53,12 @@
           </template>
         </card>
         <card>
-          <template #title>{{ $t('terms.description') }}</template>
+          <template #title>{{ $t('terms.fields.description') }}</template>
           <template #input>
             <v-textarea
               id="notes-textarea"
               v-model="form.description"
-              :placeholder="$t('competitions.descriptionPlaceholder')"
+              :placeholder="$t('competitions.form.descriptionPlaceholder')"
               rows="1"
               auto-grow
               hide-details
@@ -85,7 +85,7 @@
           </template>
         </card>
         <card bottom>
-          <template #title>{{ $t('competitions.participation') }}</template>
+          <template #title>{{ $t('competitions.terms.participation') }}</template>
           <template #action>
             <v-btn-toggle
               v-model="form.participation"
@@ -100,7 +100,7 @@
                     <v-icon :color="icon.color">{{ icon.icon }}</v-icon>
                   </v-btn>
                 </template>
-                <span>{{ $t(`competitions.${icon.name}`)}}</span>
+                <span>{{ $t(`competitions.status.${icon.name}`)}}</span>
               </v-tooltip>
             </v-btn-toggle>
           </template>

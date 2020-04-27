@@ -45,7 +45,7 @@
             <v-icon :color="tag.color">mdi-circle</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>{{ tag.default ? $t(`terms.${tag.color}`) : tag.name }}</v-list-item-title>
+            <v-list-item-title>{{ tag.default ? $t(`terms.colors.${tag.color}`) : tag.name }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-divider

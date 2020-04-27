@@ -96,7 +96,8 @@
       "editAssets": "Modifier les ressources de la voie",
       "edit": "Modifier la voie",
       "addProgress": "Ajouter une progression"
-    }
+    },
+    "title": "Voies"
   },
   "locations": {
     "form": {
@@ -111,7 +112,8 @@
       "removeConfirmation": "Si vous supprimez ce lieu, les voies enregistrées dessus le seront également. Vous perdrez ainsi vos progressions sur ce lieu. Réfléchissez bien !",
       "add": "Ajouter un lieu"
     },
-    "noLocations": "Aucun lieu pour le moment. Créez-en un afin d'ajouter vos voies."
+    "noLocations": "Aucun lieu pour le moment. Créez-en un afin d'ajouter vos voies.",
+    "title": "Lieux"
   },
   "competitions": {
     "form": {
@@ -133,7 +135,8 @@
       "remove": "Supprimer la compétition",
       "removeConfirmation": "Si vous supprimez cette compétition, vous allez perdre les statistiques enregistrées dessus. Réfléchissez bien !"
     },
-    "noCompetitions": "Aucune compétition pour le moment. Ajoutez-en une !"
+    "noCompetitions": "Aucune compétition pour le moment. Ajoutez-en une !",
+    "title": "Compétitions"
   },
   "assets": {
     "help": {
