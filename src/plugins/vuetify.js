@@ -22,7 +22,7 @@ const theme = {
   warning: colors.amber.base
 }
 
-export default new Vuetify({
+let vuetify = new Vuetify({
   theme: {
     themes: {
       light: {
@@ -49,3 +49,5 @@ export default new Vuetify({
     current: store.state.settings.locale
   }
 })
+
+export { theme, vuetify }

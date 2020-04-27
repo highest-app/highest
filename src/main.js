@@ -4,7 +4,7 @@ import App from '@/App.vue'
 // Plugins
 import i18n from '@/plugins/i18n'
 import router from '@/plugins/router'
-import vuetify from '@/plugins/vuetify'
+import { vuetify } from '@/plugins/vuetify'
 import store from '@/store'
 import '@/plugins/components'
 import '@/registerServiceWorker'

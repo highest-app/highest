@@ -91,6 +91,7 @@
 import moment from 'moment'
 import { mapState, mapActions } from 'vuex'
 import RouteCategories from '@/views/routes/RouteCategories'
+import log from '@/utils/logger'
 
 export default {
   name: 'App',
@@ -116,6 +117,7 @@ export default {
     }
   },
   mounted () {
+    log('App', 'log', 'App initialized successfully')
     this.setTheme()
     this.setLocale()
   },
