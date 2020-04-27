@@ -25,7 +25,7 @@
     </v-dialog>
     <template v-if="editMode">
       <app-bar
-        :title="$t('locations.edit')"
+        :title="$t('locations.actions.edit')"
         small-only>
         <template #bar-left-actions>
           <a @click="quitEdit">{{ $t('terms.actions.cancel') }}</a>
