@@ -3,6 +3,7 @@ import Vuetify from 'vuetify'
 
 import fr from 'vuetify/es5/locale/fr'
 import en from 'vuetify/es5/locale/en'
+import es from 'vuetify/es5/locale/es'
 import colors from 'vuetify/lib/util/colors'
 import 'vuetify/dist/vuetify.min.css'
 
@@ -45,7 +46,7 @@ let vuetify = new Vuetify({
     }
   },
   lang: {
-    locales: { en, fr },
+    locales: { en, fr, es },
     current: store.state.settings.locale
   }
 })
