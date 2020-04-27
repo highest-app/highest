@@ -117,8 +117,8 @@
   },
   "competitions": {
     "form": {
-      "descriptionPlaceholder": "Descripción de la competencia",
-      "namePlaceholder": "Nombre de la competencia"
+      "descriptionPlaceholder": "Descripción de la competición",
+      "namePlaceholder": "Nombre de la competición"
     },
     "terms": {
       "participation": "Participación"
@@ -129,13 +129,13 @@
       "notParticipating": "No participar"
     },
     "actions": {
-      "add": "Añade una nueva competencia",
-      "edit": "Editar la competencia",
+      "add": "Añade una nueva competición",
+      "edit": "Editar la competición",
       "transfer": "Trasladar a otra ubicación",
-      "remove": "Eliminar la competencia",
-      "removeConfirmation": "Si elimina esta competencia, perderás las estadísticas guardadas en él. ¡Piénsalo!"
+      "remove": "Eliminar la competición",
+      "removeConfirmation": "Si elimina esta competición, perderás las estadísticas guardadas en él. ¡Piénsalo!"
     },
-    "noCompetitions": "Cualquier competencia por el momento. ¡Añadamos una!",
+    "noCompetitions": "Cualquier competición por el momento. ¡Añadamos una!",
     "title": "Competición"
   },
   "assets": {
