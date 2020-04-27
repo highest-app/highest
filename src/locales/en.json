@@ -1,5 +1,8 @@
 {
   "terms": {
+    "actions": {
+      "remove": "Remove"
+    },
     "general": "General",
     "name": "Name",
     "description": "Description",
@@ -72,15 +75,15 @@
     "progressionNotesPlaceholder": "Notes to add about this progression",
     "edit": "Edit route",
     "transfer": "Transfer to another location",
-    "delete": "Delete route",
-    "deleteConfirmation": "If you delete this route, all your registered progressions on it will be lost. Think about it !",
     "all": "All routes",
     "noRoutes": "Any route for the moment. Let's add one !",
     "for": "For the",
     "noGoal": "No goal",
     "markAsFinished": "Mark as finished",
     "addProgress": "Add new progress",
-    "editAssets": "Edit route's assets"
+    "editAssets": "Edit route's assets",
+    "remove": "Remove route",
+    "removeConfirmation": "If you remove this route, all your registered progressions on it will be lost. Think about it !"
   },
   "locations": {
     "add": "Add new location",
@@ -91,7 +94,7 @@
     "edit": "Edit location",
     "editAssets": "Edit location's assets",
     "noLocations": "Any location for the moment. Create one to add your routes.",
-    "deleteConfirmation": "If you delete this location, routes saved on it will be deleted as well. Therefore, you'll lose your progressions on this location. Think about it !"
+    "removeConfirmation": "If you remove this location, routes saved on it will be deleted as well. Therefore, you'll lose your progressions on this location. Think about it !"
   },
   "competitions": {
     "noCompetitions": "Any competition for the moment. Let's add one !",
@@ -104,8 +107,8 @@
     "participating": "Participating",
     "edit": "Edit competition",
     "transfer": "Transfer to another location",
-    "delete": "Delete competition",
-    "deleteConfirmation": "If you delete this competition, you'll lose saved statistics. Think about it !"
+    "remove": "Remove competition",
+    "removeConfirmation": "If you remove this competition, you'll lose saved statistics. Think about it !"
   },
   "assets": {
     "add": "Add an asset",

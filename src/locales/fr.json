@@ -1,5 +1,8 @@
 {
   "terms": {
+    "actions": {
+      "remove": "Supprimer"
+    },
     "general": "Général",
     "name": "Nom",
     "description": "Description",
@@ -11,7 +14,7 @@
     "length": "Longueur",
     "add": "Ajouter",
     "edit": "Modifier",
-    "delete": "Supprimer",
+    "remove": "Supprimer",
     "erase": "Effacer",
     "cancel": "Annuler",
     "back": "Retour",
@@ -49,7 +52,7 @@
     "appDescription": "Travaillez vos voies en restant organisé : l'application d'escalade pratique !",
     "visitWebsite": "Visiter le site",
     "separatedFeeds": "Flux séparés",
-    "deleteFeed": "Supprimer le flux"
+    "removeFeed": "Supprimer le flux"
   },
   "profile": {
     "user": "Utilisateur",
@@ -72,15 +75,15 @@
     "progressionNotesPlaceholder": "Notes à rajouter à propos de cette progression",
     "edit": "Modifier la voie",
     "transfer": "Transférer vers un autre lieu",
-    "delete": "Supprimer la voie",
-    "deleteConfirmation": "Si vous supprimez cette voie, les progressions sauvegardées dessus vont également l'être. Réfléchissez bien !",
     "all": "Toutes les voies",
     "noRoutes": "Aucune voie pour le moment. Ajoutez-en une !",
     "for": "Pour le",
     "noGoal": "Aucun objectif",
     "markAsFinished": "Marquer comme terminée",
     "addProgress": "Ajouter une progression",
-    "editAssets": "Modifier les ressources de la voie"
+    "editAssets": "Modifier les ressources de la voie",
+    "remove": "Supprimer la voie",
+    "removeConfirmation": "Si vous supprimez cette voie, les progressions sauvegardées dessus vont également l'être. Réfléchissez bien !"
   },
   "locations": {
     "add": "Ajouter un lieu",
@@ -89,7 +92,7 @@
     "notesPlaceholder": "Notes à rajouter à propos du lieu",
     "edit": "Modifier le lieu",
     "noLocations": "Aucun lieu pour le moment. Créez-en un afin d'ajouter vos voies.",
-    "deleteConfirmation": "Si vous supprimez ce lieu, les voies enregistrées dessus le seront également. Vous perdrez ainsi vos progressions sur ce lieu. Réfléchissez bien !",
+    "removeConfirmation": "Si vous supprimez ce lieu, les voies enregistrées dessus le seront également. Vous perdrez ainsi vos progressions sur ce lieu. Réfléchissez bien !",
     "assetsTip": "Astuce de pro : vous pourrez ajouter des images à votre lieu après sa création.",
     "editAssets": "Modifier les ressources du lieu"
   },
@@ -104,8 +107,8 @@
     "participating": "Participant",
     "edit": "Modifier la compétition",
     "transfer": "Transférer vers un autre lieu",
-    "delete": "Supprimer la compétition",
-    "deleteConfirmation": "Si vous supprimez cette compétition, vous allez perdre les statistiques enregistrées dessus. Réfléchissez bien !"
+    "remove": "Supprimer la compétition",
+    "removeConfirmation": "Si vous supprimez cette compétition, vous allez perdre les statistiques enregistrées dessus. Réfléchissez bien !"
   },
   "assets": {
     "add": "Ajouter une ressource",

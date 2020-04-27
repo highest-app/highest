@@ -1,5 +1,8 @@
 {
   "terms": {
+    "actions": {
+      "remove": "Eliminar"
+    },
     "general": "General",
     "name": "Nombre",
     "description": "Descripción",
@@ -72,15 +75,15 @@
     "progressionNotesPlaceholder": "Notas para añadir sobre esta progresión",
     "edit": "Editar la ruta",
     "transfer": "Trasladar a otra ubicación",
-    "delete": "Borrar la ruta",
-    "deleteConfirmation": "Si borra esta ruta, todas sus progresiones registradas en ella se perderán. ¡Piensa en ello!",
     "all": "Todas las rutas",
     "noRoutes": "Cualquier ruta por el momento. ¡Añadamos una!",
     "for": "Para el",
     "noGoal": "No hay objetivo",
     "markAsFinished": "Marque como terminado",
     "addProgress": "Añade nuevos progresos",
-    "editAssets": "Editar los recursos de la ruta"
+    "editAssets": "Editar los recursos de la ruta",
+    "remove": "Eliminar la ruta",
+    "removeConfirmation": "Si elimina esta ruta, todas sus progresiones registradas en ella se perderán. ¡Piensa en ello!"
   },
   "locations": {
     "add": "Añadir una ubicación",
@@ -91,7 +94,7 @@
     "edit": "Editar la ubicación",
     "editAssets": "Editar recursos de la ubicación",
     "noLocations": "Cualquier lugar por el momento. Crea uno para añadir tus rutas.",
-    "deleteConfirmation": "Si borra esta ubicación, las rutas guardadas en ella también se borrarán. Por lo tanto, perderás tus progresiones en esta ubicación. ¡Piénsalo!"
+    "removeConfirmation": "Si elimina esta ubicación, las rutas guardadas en ella también se borrarán. Por lo tanto, perderás tus progresiones en esta ubicación. ¡Piénsalo!"
   },
   "competitions": {
     "noCompetitions": "Cualquier competencia por el momento. ¡Añadamos una!",
@@ -104,8 +107,8 @@
     "participating": "Participantes",
     "edit": "Editar la competencia",
     "transfer": "Trasladar a otra ubicación",
-    "delete": "Borrar la competencia",
-    "deleteConfirmation": "Si borra esta competencia, perderás las estadísticas guardadas en él. ¡Piénsalo!"
+    "remove": "Eliminar la competencia",
+    "removeConfirmation": "Si elimina esta competencia, perderás las estadísticas guardadas en él. ¡Piénsalo!"
   },
   "assets": {
     "add": "Añadir un recurso",

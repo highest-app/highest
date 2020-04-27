@@ -1,16 +1,16 @@
 <template>
   <v-content>
     <v-dialog
-      v-model="deleteDialog"
+      v-model="removeDialog"
       max-width="290"
       persistent>
       <v-card>
         <v-card-title class="headline">{{ $t('terms.actionConfirmation') }}</v-card-title>
-        <v-card-text>{{ $t('locations.deleteConfirmation') }}</v-card-text>
+        <v-card-text>{{ $t('locations.removeConfirmation') }}</v-card-text>
         <v-card-actions>
           <v-btn
             text
-            @click="deleteDialog = false">
+            @click="removeDialog = false">
             {{ $t('terms.cancel') }}
           </v-btn>
           <v-spacer/>
@@ -18,7 +18,7 @@
             color="error"
             text
             @click="remove">
-            {{ $t('terms.delete') }}
+            {{ $t('terms.actions.remove') }}
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -121,9 +121,9 @@
                 <v-btn
                   class="gradient--error white--text"
                   depressed
-                  @click="deleteDialog = true">
+                  @click="removeDialog = true">
                   <v-icon left>mdi-delete-outline</v-icon>
-                  {{ $t('terms.delete') }}
+                  {{ $t('terms.actions.remove') }}
                 </v-btn>
               </v-col>
               <v-col cols="12">
@@ -155,7 +155,7 @@ export default {
     form: {},
     editMode: false,
     photoChoose: false,
-    deleteDialog: false
+    removeDialog: false
   }),
   mounted () {
     this.refreshRoutes()

@@ -1,16 +1,16 @@
 <template>
   <v-content>
     <v-dialog
-      v-model="deleteDialog"
+      v-model="removeDialog"
       max-width="290"
       persistent>
       <v-card>
         <v-card-title class="headline">{{ $t('terms.actionConfirmation') }}</v-card-title>
-        <v-card-text>{{ $t('routes.deleteConfirmation') }}</v-card-text>
+        <v-card-text>{{ $t('routes.removeConfirmation') }}</v-card-text>
         <v-card-actions>
           <v-btn
             text
-            @click="deleteDialog = false">
+            @click="removeDialog = false">
             {{ $t('terms.cancel') }}
           </v-btn>
           <v-spacer/>
@@ -18,7 +18,7 @@
             color="error"
             text
             @click="remove">
-            {{ $t('terms.delete') }}
+            {{ $t('terms.actions.remove') }}
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -109,9 +109,9 @@
                 <card
                   :top="!transferableLocations.length"
                   bottom
-                  @click="deleteDialog = true">
+                  @click="removeDialog = true">
                   <template #title>
-                    <span class="error--text">{{ $t('routes.delete') }}</span>
+                    <span class="error--text">{{ $t('routes.remove') }}</span>
                   </template>
                 </card>
               </list-group>
@@ -247,7 +247,7 @@ export default {
       editMode: false,
       photoChoose: false,
       transferDialog: false,
-      deleteDialog: false,
+      removeDialog: false,
 
       progressionForm: Object.assign({}, defaultProgressionForm),
       routeForm: {}
