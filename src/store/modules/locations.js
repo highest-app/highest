@@ -44,7 +44,7 @@ const mutations = {
     })
     saveToStorage('locations', state)
   },
-  DELETE_LOCATION(state, id) {
+  REMOVE_LOCATION(state, id) {
     let indexToDelete = state.findIndex(location => location.id === id)
     state.splice(indexToDelete, 1)
   }
@@ -67,10 +67,10 @@ const actions = {
     commit('UPDATE_LOCATION', data)
     saveToStorage('locations', state)
   },
-  deleteLocation({ commit, state, getters }, id) {
+  removeLocation({ commit, state, getters }, id) {
     commit('PURGE_ROUTES', id)
     commit('EXTRACT_COMPETITIONS', getters.getLocationById(id))
-    commit('DELETE_LOCATION', id)
+    commit('REMOVE_LOCATION', id)
     saveToStorage('locations', state)
   }
 }

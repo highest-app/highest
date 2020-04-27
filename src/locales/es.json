@@ -49,7 +49,7 @@
     "appDescription": "Trabaja tus rutas mientras te organizas: ¡La conveniente aplicación de escalada!",
     "visitWebsite": "Visitar la pagina web",
     "separatedFeeds": "Noticias separadas",
-    "deleteFeed": "Borrar noticia"
+    "removeFeed": "Borrar noticia"
   },
   "profile": {
     "user": "Usuario",

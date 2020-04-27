@@ -8,7 +8,7 @@ const mutations = {
   ADD_FEED (state, url) {
     state.push(url)
   },
-  DELETE_FEED (state, url) {
+  REMOVE_FEED (state, url) {
     state = state.filter(feed => feed !== url)
   }
 }
@@ -18,8 +18,8 @@ const actions = {
     commit('ADD_FEED', url)
     saveToStorage('feeds', state)
   },
-  deleteFeed ({ commit, state }, url) {
-    commit('DELETE_FEED', url)
+  removeFeed ({ commit, state }, url) {
+    commit('REMOVE_FEED', url)
     saveToStorage('feeds', state)
   }
 }

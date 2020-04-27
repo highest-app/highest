@@ -80,7 +80,7 @@
                           <v-icon>mdi-delete-outline</v-icon>
                         </v-btn>
                       </template>
-                      <span>{{ $t('home.deleteFeed') }}</span>
+                      <span>{{ $t('home.removeFeed') }}</span>
                     </v-tooltip>
                   </v-row>
                   <p class="mb-0">{{ feed.description }}</p>
@@ -131,7 +131,7 @@ export default {
     })
   },
   methods: {
-    ...mapActions(['addFeed', 'deleteFeed']),
+    ...mapActions(['addFeed', 'removeFeed']),
     feedDelete (url) {
       this.deleteFeed(url)
       this.feeds = this.feeds.filter(feed => feed.feedUrl !== url)

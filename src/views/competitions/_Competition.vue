@@ -17,7 +17,7 @@
           <v-btn
             color="error"
             text
-            @click="deleteThis">
+            @click="remove">
             {{ $t('terms.delete') }}
           </v-btn>
         </v-card-actions>
@@ -205,7 +205,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['updateCompetition', 'transferCompetition', 'deleteCompetition']),
+    ...mapActions(['updateCompetition', 'transferCompetition', 'removeCompetition']),
     latLng, getLocationThumbnail,
     resetEdit() {
       this.form = Object.assign({}, this.competition)
@@ -224,8 +224,8 @@ export default {
       this.transferDialog = false
       this.validateEdit()
     },
-    deleteThis() {
-      this.deleteCompetition(this.competition.id)
+    remove() {
+      this.removeCompetition(this.competition.id)
       this.$router.push({ name: 'competitions' })
     },
     async updateMap(query) {

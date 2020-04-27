@@ -17,7 +17,7 @@
           <v-btn
             color="error"
             text
-            @click="deleteThis">
+            @click="remove">
             {{ $t('terms.delete') }}
           </v-btn>
         </v-card-actions>
@@ -264,7 +264,7 @@ export default {
   computed: {
     ...mapState(['assets', 'locations']),
     ...mapGetters(['getRoute', 'getLocationById']),
-    progressionDates () {
+    progressionDates() {
       let dates = []
       this.route.progressions.forEach((progress) => {
         dates.push(progress.date)
@@ -279,12 +279,8 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['updateRoute', 'transferRoute', 'deleteRoute', 'switchFinishedRoute', 'addProgression', 'removeProgression']),
+    ...mapActions(['updateRoute', 'transferRoute', 'removeRoute', 'switchFinishedRoute', 'addProgression', 'removeProgression']),
     getRouteThumbnail, getLocationThumbnail,
-    deleteThis () {
-      this.deleteRoute(this.route.id)
-      this.$router.back()
-    },
     validateEdit () {
       this.updateRoute(this.routeForm)
       this.quitEdit()
@@ -300,7 +296,11 @@ export default {
         notes: this.progressionForm.notes
       })
       this.progressionForm.notes = ''
-    }
+    },
+    remove() {
+      this.removeRoute(this.route.id)
+      this.$router.back()
+    },
   }
 }
 </script>

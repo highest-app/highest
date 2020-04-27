@@ -17,7 +17,7 @@
           <v-btn
             color="error"
             text
-            @click="deleteThis">
+            @click="remove">
             {{ $t('terms.delete') }}
           </v-btn>
         </v-card-actions>
@@ -166,7 +166,7 @@ export default {
     ...mapGetters(['getLocationById', 'getRoutesByLocation'])
   },
   methods: {
-    ...mapActions(['updateLocation', 'deleteLocation']),
+    ...mapActions(['updateLocation', 'removeLocation']),
     getLocationThumbnail,
     refreshRoutes () {
       const id = this.$route.params.location
@@ -182,8 +182,8 @@ export default {
       this.form = Object.assign({}, this.location)
       this.editMode = false
     },
-    deleteThis () {
-      this.deleteLocation(this.location.id)
+    remove() {
+      this.removeLocation(this.location.id)
       const nextRoute = this.$vuetify.breakpoint.mdAndUp ? '/routes/all' : '/routes'
       this.$router.push({ name: nextRoute })
     }

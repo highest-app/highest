@@ -128,7 +128,7 @@ const actions = {
       }
     })
   },
-  deleteRoute({ commit, state }, id) {
+  removeRoute({ commit, state }, id) {
     commit('REMOVE_ROUTE', id)
     saveToStorage('routes', state)
   }

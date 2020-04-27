@@ -47,7 +47,7 @@ const mutations = {
     else
       competition.location['address'] = data.location
   },
-  DELETE_COMPETITION(state, id) {
+  REMOVE_COMPETITION(state, id) {
     let indexToDelete = state.findIndex(competition => competition.id === id)
     state.splice(indexToDelete, 1)
   },
@@ -82,8 +82,8 @@ const actions = {
     commit('TRANSFER_COMPETITION', data)
     saveToStorage('routes', state)
   },
-  deleteCompetition({ commit, state }, id) {
-    commit('DELETE_COMPETITION', id)
+  removeCompetition({ commit, state }, id) {
+    commit('REMOVE_COMPETITION', id)
     saveToStorage('competitions', state)
   },
   setCompetitionParticipation({ commit, state }, data) {
