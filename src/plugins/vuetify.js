@@ -7,8 +7,6 @@ import es from 'vuetify/es5/locale/es'
 import colors from 'vuetify/lib/util/colors'
 import 'vuetify/dist/vuetify.min.css'
 
-import store from '@/store'
-
 Vue.use(Vuetify)
 
 const theme = {
@@ -46,8 +44,7 @@ let vuetify = new Vuetify({
     }
   },
   lang: {
-    locales: { en, fr, es },
-    current: store.state.settings.locale
+    locales: { en, fr, es }
   }
 })
 
