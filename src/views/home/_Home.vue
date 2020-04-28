@@ -39,15 +39,19 @@
           cols="12"
           md="6">
           <v-row>
-            <v-col cols="12">
-              <v-switch
-                v-model="separatedFeeds"
-                :label="$t('feeds.separated')"
-                inset/>
-              <v-progress-linear
-                v-if="!feedsLoaded"
-                class="mb-4"
-                indeterminate/>
+            <v-col
+              cols="12"
+              class="px-0">
+              <div class="px-4">
+                <v-switch
+                  v-model="separatedFeeds"
+                  :label="$t('feeds.separated')"
+                  inset/>
+                <v-progress-linear
+                  v-if="!feedsLoaded"
+                  class="mb-4"
+                  indeterminate/>
+              </div>
               <template v-if="separatedFeeds">
                 <div
                   v-for="feed in feeds"
