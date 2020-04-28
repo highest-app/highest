@@ -274,6 +274,18 @@ export default {
       return this.dialog ? this.$parent.$parent.$parent.$refs.dialog : this.$parent.$refs.content
     }
   },
-  methods: { getLocationThumbnail }
+  methods: { getLocationThumbnail },
+  watch: {
+    form: {
+      handler (value) {
+        if (value.location !== '' && value.grade !== '') {
+          this.$emit('valid')
+        } else {
+          this.$emit('unvalid')
+        }
+      },
+      deep: true
+    }
+  }
 }
 </script>
