@@ -91,8 +91,9 @@ export default Vue.component('card', {
                       ),
                       this.$slots.input,
                       this.$slots.action === undefined ? '' :
-                      createElement('v-spacer'),
-                      createElement(
+                        createElement('v-spacer'),
+                      this.$slots['action-text'] === undefined ? '' :
+                        createElement(
                         'span', {
                           class: {
                             'subtitle-1': true,
