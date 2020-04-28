@@ -1,5 +1,6 @@
 <template>
   <v-app v-cloak>
+    <snackbar/>
     <v-navigation-drawer
       :app="$vuetify.breakpoint.mdAndUp"
       class="hidden-sm-and-down"
@@ -92,10 +93,11 @@ import moment from 'moment'
 import { mapState, mapActions } from 'vuex'
 import RouteCategories from '@/views/routes/RouteCategories'
 import log from '@/utils/logger'
+import Snackbar from '@/views/app/Snackbar'
 
 export default {
   name: 'App',
-  components: { RouteCategories },
+  components: { Snackbar, RouteCategories },
   data () {
     return {
       bottomNav: '',
@@ -125,13 +127,15 @@ export default {
     ...mapActions(['invertColors']),
     setTheme () {
       const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-      if (prefersDark && this.settings.autoDarkTheme) this.$vuetify.theme.dark = true
-      else this.$vuetify.theme.dark = this.settings.darkTheme
+      let darkTheme = this.settings.autoDarkTheme ? prefersDark : this.settings.darkTheme
+      this.$vuetify.theme.dark = darkTheme
+      log('App', 'log', `Dark theme set to ${darkTheme}`)
     },
     setLocale () {
       this.$i18n.locale = this.settings.locale
       this.$vuetify.lang.current = this.settings.locale
       moment.locale(this.settings.locale)
+      log('App', 'log', `Locale set to ${this.settings.locale}`)
     },
     gotoSearch () {
       this.$router.push({

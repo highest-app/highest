@@ -9,6 +9,7 @@
       "delete": "Eliminar",
       "done": "Hecho",
       "edit": "Editar",
+      "details": "Detalles",
       "ok": "OK",
       "erase": "Borrar",
       "select": "Seleccionar",
@@ -31,6 +32,10 @@
       "date": "Fecha",
       "picture": "Foto",
       "assets": "Recursos"
+    },
+    "error": {
+      "details": "Detalles del error",
+      "report": "Reportar el error en GitHub"
     },
     "general": "General",
     "actionConfirmation": "¿Estás seguro?"

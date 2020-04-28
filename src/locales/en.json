@@ -10,6 +10,7 @@
       "back": "Back",
       "close": "Close",
       "done": "Done",
+      "details": "Details",
       "ok": "OK",
       "select": "Select",
       "selected": "Selected"
@@ -31,6 +32,10 @@
       "blue": "Blue",
       "purple": "Purple",
       "gray": "Gray"
+    },
+    "error": {
+      "details": "Error details",
+      "report": "Report error on GitHub"
     },
     "general": "General",
     "actionConfirmation": "Are you sure ?"

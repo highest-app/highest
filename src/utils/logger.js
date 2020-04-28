@@ -1,4 +1,5 @@
 import { theme } from '@/plugins/vuetify'
+import store from '@/store'
 
 function log(type, level, message, details = null) {
   let output = `%c[${type}] %c${message}`
@@ -11,4 +12,10 @@ function log(type, level, message, details = null) {
   )
 }
 
+function error(type, message, details) {
+  log(type, 'error', message, details)
+  store.commit('SHOW_SNACKBAR', { message, details, error: true })
+}
+
 export default log
+export { log, error }
