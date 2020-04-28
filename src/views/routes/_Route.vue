@@ -195,7 +195,7 @@
                     icon
                     @click="removeProgression({
                       route: route.id,
-                      progression: progression.id
+                      progression
                     })">
                     <v-icon color="red darken-4">mdi-delete-outline</v-icon>
                   </v-btn>

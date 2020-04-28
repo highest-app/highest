@@ -25,6 +25,9 @@ const getters = {
   getRoute: state => (location, route) => {
     return state.find(i => i.location === location && i.id === route)
   },
+  getRouteById: state => id => {
+    return state.find(route => route.id === id)
+  }
 }
 
 const mutations = {
@@ -48,17 +51,17 @@ const mutations = {
     let route = state.find(route => route.id === id)
     route.finished = !route.finished
   },
-  ADD_PROGRESSION(state, data) {
+  ADD_PROGRESSION(state, { data, id }) {
     let route = state.find(route => route.id === data.id)
     route.progressions.push({
-      id: flake.gen(),
+      id,
       date: data.date,
       notes: data.notes
     })
   },
   REMOVE_PROGRESSION(state, data) {
     let route = state.find(route => route.id === data.route)
-    let progressionIndex = route.progressions.findIndex(progression => progression.id === data.progression)
+    let progressionIndex = route.progressions.findIndex(progression => progression.id === data.progression.id)
     route.progressions.splice(progressionIndex, 1)
   },
   UPDATE_ROUTE(state, data) {
@@ -99,23 +102,77 @@ const actions = {
     commit('ADD_ROUTE', { data, id })
     saveToStorage('routes', state)
 
+    commit('PUSH_ACTION', {
+      event: 'ROUTE_ADD',
+      target: id,
+      params: {
+        grade: data.grade,
+        goal: data.goal,
+        location: data.location,
+        finished: false
+      }
+    })
+
     return id
   },
-  switchFinishedRoute({ commit, state }, route) {
-    commit('SWITCH_FINISHED', route)
+  switchFinishedRoute({ commit, state, getters }, id) {
+    commit('SWITCH_FINISHED', id)
     saveToStorage('routes', state)
+
+    const route = getters.getRouteById(id)
+
+    commit('PUSH_ACTION', {
+      event: 'ROUTE_CHANGE_STATUS',
+      target: route.id,
+      params: {
+        finished: route.finished
+      }
+    })
   },
-  addProgression({ commit, state }, entryData) {
-    commit('ADD_PROGRESSION', entryData)
+  addProgression({ commit, state }, data) {
+    let id = flake.gen()
+
+    commit('ADD_PROGRESSION', { data, id })
     saveToStorage('routes', state)
+
+    commit('PUSH_ACTION', {
+      event: 'PROGRESSION_ADD',
+      target: id,
+      params: {
+        route: data.id,
+        date: data.date,
+        notes: data.notes
+      }
+    })
   },
-  removeProgression({ commit, state }, entryData) {
-    commit('REMOVE_PROGRESSION', entryData)
+  removeProgression({ commit, state }, data) {
+    commit('REMOVE_PROGRESSION', data)
     saveToStorage('routes', state)
+
+    commit('PUSH_ACTION', {
+      event: 'PROGRESSION_REMOVE',
+      id: data.progression.id,
+      params: {
+        route: data.route,
+        date: data.progression.date,
+        notes: data.progression.notes
+      }
+    })
   },
   updateRoute({ commit, state }, data) {
     commit('UPDATE_ROUTE', data)
     saveToStorage('routes', state)
+
+    commit('PUSH_ACTION', {
+      event: 'ROUTE_UPDATE',
+      target: data.id,
+      params: {
+        grade: data.grade,
+        goal: data.goal,
+        location: data.location,
+        finished: data.finished
+      }
+    })
   },
   transferRoute({ commit, state }, data) {
     commit('TRANSFER_ROUTE', data)
@@ -127,8 +184,29 @@ const actions = {
         route: data.route
       }
     })
+
+    commit('PUSH_ACTION', {
+      event: 'ROUTE_TRANSFER',
+      target: data.route,
+      params: {
+        location: data.location
+      }
+    })
   },
-  removeRoute({ commit, state }, id) {
+  removeRoute({ commit, state, getters }, id) {
+    const route = getters.getRouteById(id)
+
+    commit('PUSH_ACTION', {
+      event: 'ROUTE_DELETE',
+      target: id,
+      params: {
+        grade: route.grade,
+        goal: route.goal,
+        location: route.location,
+        finished: route.finished
+      }
+    })
+
     commit('REMOVE_ROUTE', id)
     saveToStorage('routes', state)
   }
