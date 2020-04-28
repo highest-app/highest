@@ -106,6 +106,7 @@ const actions = {
       event: 'ROUTE_ADD',
       target: id,
       params: {
+        name: data.name,
         grade: data.grade,
         goal: data.goal,
         location: data.location,
@@ -167,6 +168,7 @@ const actions = {
       event: 'ROUTE_UPDATE',
       target: data.id,
       params: {
+        name: data.name,
         grade: data.grade,
         goal: data.goal,
         location: data.location,
@@ -200,6 +202,7 @@ const actions = {
       event: 'ROUTE_DELETE',
       target: id,
       params: {
+        name: route.name,
         grade: route.grade,
         goal: route.goal,
         location: route.location,
