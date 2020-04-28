@@ -6,7 +6,7 @@ function log(type, level, message, details = null) {
   console[level](
     output,
     `color: ${theme.primary}; font-weight: bold`,
-    'color: white',
+    'color: inherit',
     details === null ? '' : 'color: #b9b9b9'
   )
 }
