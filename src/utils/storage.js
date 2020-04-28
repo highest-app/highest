@@ -1,6 +1,7 @@
 import { defaultTags } from '@/utils/data'
 
 const defaults = {
+  actions: [],
   assets: {},
   competitions: [
     {

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import actionsModule from '@/store/modules/actions'
 import assets from '@/store/modules/assets'
 import competitions from '@/store/modules/competitions'
 import feeds from '@/store/modules/feeds'
@@ -40,8 +41,12 @@ const actions = {
 }
 
 let store = new Vuex.Store({
-  state, getters, mutations, actions,
-  modules: { assets, competitions, feeds, locations, routes, settings, tags }
+  state, getters, mutations,
+  actions,
+  modules: {
+    actions: actionsModule,
+    assets, competitions, feeds, locations, routes, settings, tags
+  }
 })
 
 export default store
