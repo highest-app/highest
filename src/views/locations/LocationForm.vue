@@ -67,6 +67,18 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  watch: {
+    form: {
+      handler (value) {
+        if ((value.name !== '' || value.name !== undefined) && (value.address !== '' || value.address !== undefined)) {
+          this.$emit('valid')
+        } else {
+          this.$emit('unvalid')
+        }
+      },
+      deep: true
+    }
   }
 }
 </script>
