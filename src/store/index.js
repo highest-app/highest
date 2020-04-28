@@ -12,11 +12,19 @@ import tags from '@/store/modules/tags'
 
 Vue.use(Vuex)
 
-const state = {}
+const state = {
+  snackbar: {
+    show: false,
+    error: false,
+    message: '',
+    details: ''
+  }
+}
 
 const getters = {
   getRawData: state => {
     return JSON.stringify({
+      actions: state.actions,
       assets: state.assets,
       competitions: state.competitions,
       feeds: state.feeds,
@@ -28,7 +36,14 @@ const getters = {
   }
 }
 
-const mutations = {}
+const mutations = {
+  SHOW_SNACKBAR(state, { message, details, error = false }) {
+    state.snackbar.show = true
+    state.snackbar.error = error
+    state.snackbar.message = message
+    state.snackbar.details = details
+  }
+}
 
 const actions = {
   importData({ store }, data) {
