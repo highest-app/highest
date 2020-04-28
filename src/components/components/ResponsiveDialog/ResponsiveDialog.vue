@@ -4,7 +4,8 @@
       <v-dialog
         v-model="active"
         :max-width="dialogWidth"
-        class="responsive-dialog__dialog">
+        class="responsive-dialog__dialog"
+        @click:outside="disable">
         <v-card class="background">
           <v-card-text
             class="pa-0"
@@ -24,7 +25,8 @@
         v-model="active"
         class="responsive-dialog__sheet"
         scrollable
-        inset>
+        inset
+        @click:outside="disable">
         <template #activator="{ on: sheet }">
           <div class="responsive-dialog__trigger">
             <slot
@@ -70,9 +72,12 @@ export default {
   },
   methods: {
     enable () {
-      this.active = true
       this.$emit('change', true)
       this.$emit('enable')
+    },
+    disable() {
+      this.$emit('change', false)
+      this.$emit('disable')
     }
   }
 }
