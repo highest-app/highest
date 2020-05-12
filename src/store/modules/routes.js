@@ -1,4 +1,5 @@
 import flake from '@/utils/flake'
+import { today } from '@/utils/dates'
 import { loadFromStorage, saveToStorage } from '@/utils/storage'
 
 const state = loadFromStorage('routes')
@@ -6,6 +7,13 @@ const state = loadFromStorage('routes')
 const getters = {
   getFinishedRoutes: state => {
     return state.filter(route => route.finished)
+  },
+  getUpcomingRoutes: state => {
+    return state.filter(route => {
+      let date = new Date(today)
+      date.setDate(date.getDate() + 15)
+      return route.goal !== false && new Date(route.goal) < date
+    })
   },
   getRoutesByLocation: state => id => {
     return state.filter(route => route.location === id)
@@ -24,7 +32,7 @@ const getters = {
   },
   getRoute: state => (location, route) => {
     return state.find(i => i.location === location && i.id === route)
-  },
+  }
 }
 
 const mutations = {
