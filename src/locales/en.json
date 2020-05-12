@@ -48,6 +48,10 @@
     "appDescription": "Work your routes while staying organized : the convenient climbing app !",
     "title": "Home"
   },
+  "widgets": {
+    "upcomingRoutes": "Upcoming route goals",
+    "upcomingCompetitions": "Upcoming competitions"
+  },
   "profile": {
     "user": "User",
     "login": "Log in",

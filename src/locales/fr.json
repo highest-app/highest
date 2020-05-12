@@ -48,6 +48,10 @@
     "appDescription": "Travaillez vos voies en restant organisé : l'application d'escalade pratique !",
     "title": "Accueil"
   },
+  "widgets": {
+    "upcomingRoutes": "Objectifs à venir",
+    "upcomingCompetitions": "Compétitions à venir"
+  },
   "profile": {
     "user": "Utilisateur",
     "login": "Se connecter",

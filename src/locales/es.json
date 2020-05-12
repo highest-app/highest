@@ -48,6 +48,10 @@
     "appDescription": "Trabaja tus rutas mientras te organizas: ¡La conveniente aplicación de escalada!",
     "title": "Inicio"
   },
+  "widgets": {
+    "upcomingRoutes": "Objetivos por salir",
+    "upcomingCompetitions": "Competición por salir"
+  },
   "profile": {
     "user": "Usuario",
     "login": "Ingresa",

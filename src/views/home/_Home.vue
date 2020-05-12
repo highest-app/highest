@@ -11,20 +11,10 @@
           cols="12"
           md="6">
           <v-row>
-            <v-col cols="12">
-              <v-card
-                elevation="0"
-                tile>
-                <v-card-text>
-                  <div>{{ $t('home.appSubtitle') }}</div>
-                  <img
-                    width="50%"
-                    src="/img/logo-large.png"
-                    alt="Highest logo">
-                  <div class="text--primary">{{ $t('home.appDescription') }}</div>
-                </v-card-text>
-              </v-card>
-            </v-col>
+            <component
+              :is="widget"
+              v-for="widget in widgets"
+              :key="widget"/>
             <v-col cols="12">
               <v-alert
                 type="warning"
@@ -110,12 +100,21 @@ import { mapState, mapActions } from 'vuex'
 import { getFeeds } from '@/utils/feeds'
 import FeedsList from '@/views/home/FeedsList'
 import Profile from '@/views/home/Profile.vue'
+import UpcomingCompetitions from '@/widgets/UpcomingCompetitions'
+import UpcomingRoutes from '@/widgets/UpcomingRoutes'
+import WelcomeScreen from '@/widgets/WelcomeScreen'
 
 export default {
   name: 'Home',
   components: { FeedsList, Profile },
   data () {
     return {
+      widgets: [
+        WelcomeScreen,
+        UpcomingRoutes,
+        UpcomingCompetitions
+      ],
+
       feeds: [],
       feedItems: [],
       feedPage: 1,
