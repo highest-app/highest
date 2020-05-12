@@ -1,9 +1,17 @@
 import flake from '@/utils/flake'
 import { loadFromStorage, saveToStorage } from '@/utils/storage'
+import { today } from '@/utils/dates'
 
 const state = loadFromStorage('competitions')
 
 const getters = {
+  getUpcomingCompetitions: state => {
+    return state.filter(competition => {
+      let date = new Date(today)
+      date.setDate(date.getDate() + 30)
+      return new Date(competition.date) < date
+    })
+  },
   getCompetitionById: state => id => {
     return state.find(competition => competition.id === id)
   },
