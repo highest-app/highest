@@ -16,13 +16,16 @@
             <h2>{{ $tc('generic.route', 2) }}</h2>
             <routes-list
               :routes="routes"
-              show-location/>
+              show-location
+              background/>
           </v-col>
           <v-col
             v-if="competitions.length > 0"
             cols="12">
             <h2>{{ $tc('generic.competition', 2) }}</h2>
-            <competitions-list :competitions="competitions"/>
+            <competitions-list
+              :competitions="competitions"
+              background/>
           </v-col>
           <v-col
             v-if="locations.length > 0"

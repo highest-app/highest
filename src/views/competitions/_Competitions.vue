@@ -6,7 +6,9 @@
       </template>
     </app-bar>
     <page-body>
-      <competitions-list :competitions="competitions"/>
+      <competitions-list
+        :competitions="competitions"
+        background/>
     </page-body>
   </v-content>
 </template>

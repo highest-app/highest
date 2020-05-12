@@ -1,5 +1,5 @@
 <template>
-  <v-list class="background">
+  <v-list :class="{ background }">
     <v-list-item v-if="!locations.length">
       {{ $t('locations.noLocations') }}
     </v-list-item>
@@ -87,6 +87,10 @@ import { routeIcons } from '@/utils/data'
 export default {
   name: 'RoutesList',
   props: {
+    background: {
+      type: Boolean,
+      default: false
+    },
     routes: {
       type: Array,
       required: true

@@ -1,6 +1,6 @@
 <template>
   <list-group>
-    <v-list class="background">
+    <v-list :class="{ background }">
       <v-list-item v-if="competitions.length === 0">
         {{ $t('competitions.noCompetitions') }}
       </v-list-item>
@@ -82,6 +82,10 @@ import { competitionIcons as icons } from '@/utils/data'
 export default {
   name: 'CompetitionsList',
   props: {
+    background: {
+      type: Boolean,
+      default: false
+    },
     competitions: {
       type: Array,
       required: true
