@@ -26,13 +26,24 @@
           <a @click="resetForm">{{ $t('terms.actions.cancel') }}</a>
         </template>
         <template #bar-right-actions>
-          <a @click="add">{{ $t('terms.actions.add') }}</a>
+          <a
+            v-if="valid"
+            @click="add">
+            {{ $t('terms.actions.add') }}
+          </a>
+          <span
+            v-else
+            class="gray--text">
+            {{ $t('terms.actions.add') }}
+          </span>
         </template>
       </app-bar>
       <competition-form
         v-model="form"
         with-location
-        dialog/>
+        dialog
+        @valid="valid = true"
+        @unvalid="valid = false"/>
     </template>
   </responsive-dialog>
 </template>
@@ -48,7 +59,8 @@ export default {
   data () {
     return {
       form: Object.assign({}, defaultCompetitionForm),
-      enabled: false
+      enabled: false,
+      valid: false
     }
   },
   methods: {
