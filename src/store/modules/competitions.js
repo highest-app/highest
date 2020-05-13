@@ -8,7 +8,7 @@ const getters = {
   getUpcomingCompetitions: state => {
     return state.filter(competition => {
       let date = new Date(today)
-      date.setDate(date.getDate() + 30)
+      date.setDate(date.getDate() + 31)
       return new Date(competition.date) < date
     })
   },

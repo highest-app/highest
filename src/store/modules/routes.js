@@ -11,7 +11,7 @@ const getters = {
   getUpcomingRoutes: state => {
     return state.filter(route => {
       let date = new Date(today)
-      date.setDate(date.getDate() + 15)
+      date.setDate(date.getDate() + 16)
       return route.goal !== false && new Date(route.goal) < date
     })
   },
