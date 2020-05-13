@@ -8,12 +8,26 @@
       tile>
       <v-card-text>
         <span
-          v-if="heading !== null"
+          v-if="title !== null"
           class="subtitle-1 white--text mb-1">
-          <v-icon left>{{ heading.icon }}</v-icon>
-          {{ $t(heading.title) }}
+          <v-icon
+            v-if="icon !== null"
+            left>
+            {{ icon }}
+          </v-icon>
+          {{ $t(title) }}
         </span>
         <slot/>
+        <v-row
+          v-if="route !== null"
+          class="mx-0">
+          <v-spacer/>
+          <v-btn
+            icon
+            :to="route">
+            <v-icon color="primary">mdi-chevron-right</v-icon>
+          </v-btn>
+        </v-row>
       </v-card-text>
     </v-card>
   </v-col>
@@ -31,10 +45,18 @@ export default {
       type: Boolean,
       default: false
     },
-    heading: {
-      type: Object,
+    title: {
+      type: String,
       default: null
     },
+    icon: {
+      type: String,
+      default: null
+    },
+    route: {
+      type: String,
+      default: null
+    }
   }
 }
 </script>

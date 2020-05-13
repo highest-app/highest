@@ -14,7 +14,7 @@
             <component
               :is="widget"
               v-for="widget in widgets"
-              :key="widget"/>
+              :key="widget.name"/>
             <v-col cols="12">
               <v-alert
                 type="warning"

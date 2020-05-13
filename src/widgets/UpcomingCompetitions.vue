@@ -1,6 +1,11 @@
 <template>
-  <widget :heading="{ title: 'widgets.upcomingCompetitions', icon: 'mdi-medal-outline' }">
-    <competitions-list :competitions="getUpcomingCompetitions"/>
+  <widget
+    title="widgets.upcomingCompetitions"
+    icon="mdi-medal-outline"
+    route="/competitions">
+    <competitions-list
+      paddingless
+      :competitions="getUpcomingCompetitions"/>
   </widget>
 </template>
 

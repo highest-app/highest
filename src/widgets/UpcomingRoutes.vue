@@ -1,6 +1,11 @@
 <template>
-  <widget :heading="{ title: 'widgets.upcomingRoutes', icon: 'mdi-routes-clock' }">
-    <routes-list :routes="getUpcomingRoutes"/>
+  <widget
+    title="widgets.upcomingRoutes"
+    icon="mdi-routes-clock"
+    route="/routes/all">
+    <routes-list
+      paddingless
+      :routes="getUpcomingRoutes"/>
   </widget>
 </template>
 
