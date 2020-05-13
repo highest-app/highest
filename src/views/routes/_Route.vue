@@ -286,7 +286,9 @@ export default {
       this.quitEdit()
     },
     quitEdit() {
-      this.routeForm = Object.assign({}, this.route)
+      this.routeForm = Object.assign({
+        enableGoal: this.route.goal !== false
+      }, this.route)
       this.editMode = false
     },
     progressionAdd() {

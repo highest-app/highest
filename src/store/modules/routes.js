@@ -77,8 +77,9 @@ const mutations = {
     route.color = data.color
     route.notes = data.notes
     route.tags = data.tags
-    route.goal = data.goal
     route.photos = data.photos
+
+    route.goal = data.enableGoal ? data.goal : false
   },
   TRANSFER_ROUTE(state, data) {
     let route = state.find(route => route.id === data.route)

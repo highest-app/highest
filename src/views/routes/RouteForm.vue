@@ -195,7 +195,6 @@
             <card bottom>
               <template #title>
                 <v-date-picker
-                  v-if="form.enableGoal"
                   v-model="form.goal"
                   style="box-shadow: 0;"
                   color="primary"
