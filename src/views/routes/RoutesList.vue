@@ -1,5 +1,5 @@
 <template>
-  <v-list :class="{ background }">
+  <v-list :class="{ background, 'py-0': paddingless }">
     <v-list-item v-if="!locations.length">
       {{ $t('locations.noLocations') }}
     </v-list-item>
@@ -88,6 +88,10 @@ export default {
   name: 'RoutesList',
   props: {
     background: {
+      type: Boolean,
+      default: false
+    },
+    paddingless: {
       type: Boolean,
       default: false
     },

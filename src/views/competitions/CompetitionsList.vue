@@ -1,6 +1,6 @@
 <template>
   <list-group>
-    <v-list :class="{ background }">
+    <v-list :class="{ background, 'py-0': paddingless }">
       <v-list-item v-if="competitions.length === 0">
         {{ $t('competitions.noCompetitions') }}
       </v-list-item>
@@ -89,6 +89,10 @@ export default {
     competitions: {
       type: Array,
       required: true
+    },
+    paddingless: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
