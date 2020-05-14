@@ -71,11 +71,8 @@ export default {
   watch: {
     form: {
       handler (value) {
-        if ((value.name !== '' || value.name !== undefined) && (value.address !== '' || value.address !== undefined)) {
-          this.$emit('valid')
-        } else {
-          this.$emit('unvalid')
-        }
+        if (value.name && value.address) this.$emit('valid')
+        else this.$emit('unvalid')
       },
       deep: true
     }

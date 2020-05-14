@@ -277,11 +277,8 @@ export default {
   watch: {
     form: {
       handler (value) {
-        if (value.location !== '' && value.grade !== '') {
-          this.$emit('valid')
-        } else {
-          this.$emit('unvalid')
-        }
+        if (value.location && value.grade) this.$emit('valid')
+        else this.$emit('unvalid')
       },
       deep: true
     }
