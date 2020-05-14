@@ -51,7 +51,7 @@
           </v-btn>
           <v-spacer/>
           <v-tooltip
-            v-if="!settings.autoDarkTheme"
+            v-if="settings.theme !== 'auto'"
             open-delay="500"
             top>
             <template #activator="{ on }">

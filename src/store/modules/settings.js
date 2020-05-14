@@ -11,8 +11,8 @@ const mutations = {
     state = data
   },
   INVERT_COLORS (state) {
-    state.autoDarkTheme = false
-    state.darkTheme = !state.darkTheme
+    if (state.theme !== 'auto')
+      state.theme = state.theme === 'light' ? 'dark' : 'light'
   }
 }
 
