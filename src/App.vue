@@ -123,8 +123,8 @@ export default {
     ...mapActions(['invertColors']),
     setTheme () {
       const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-      if (prefersDark && this.settings.autoDarkTheme) this.$vuetify.theme.dark = true
-      else this.$vuetify.theme.dark = this.settings.darkTheme
+      if (prefersDark && this.settings.theme === 'auto') this.$vuetify.theme.dark = true
+      else this.$vuetify.theme.dark = this.settings.theme === 'dark'
     },
     setLocale () {
       this.$i18n.locale = this.settings.locale
@@ -141,10 +141,7 @@ export default {
   },
   computed: mapState(['settings']),
   watch: {
-    'settings.darkTheme' () {
-      this.setTheme()
-    },
-    'settings.autoDarkTheme' () {
+    'settings.theme' () {
       this.setTheme()
     },
     'settings.locale' () {

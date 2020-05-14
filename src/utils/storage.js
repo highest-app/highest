@@ -72,8 +72,7 @@ const defaults = {
     }
   ],
   settings: {
-    darkTheme: false,
-    autoDarkTheme: true,
+    theme: 'auto',
     locale: 'en'
   },
   tags: defaultTags
