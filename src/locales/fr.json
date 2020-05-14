@@ -159,13 +159,15 @@
       "language": {
         "title": "Langue",
         "description": "Langue de l'application"
-      },
-      "theme": {
-        "darkTheme": "Thème sombre",
-        "invertColors": "Inverser les couleurs",
-        "autoDarkTheme": "Thème sombre automatique",
-        "autoDarkThemeDescription": "Le thème de Highest s'ajustera à celui de l'appareil. Assurez-vous d'avoir mis à jour votre système afin de profiter de cette fonctionnalité."
       }
+    },
+    "theme": {
+      "title": "Thème",
+      "auto": "Automatique",
+      "light": "Clair",
+      "dark": "Sombre",
+      "invertColors": "Inverser les couleurs",
+      "autoDescription": "Si vous sélectionnez l'option Automatique, le thème de Highest s'ajustera à celui de l'appareil. Assurez-vous d'avoir mis à jour votre système afin de profiter de cette fonctionnalité."
     },
     "data": {
       "title": "Données",

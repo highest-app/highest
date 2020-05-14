@@ -159,13 +159,15 @@
       "language": {
         "title": "Language",
         "description": "Application's language"
-      },
-      "theme": {
-        "darkTheme": "Dark theme",
-        "invertColors": "Invert colors",
-        "autoDarkTheme": "Automatic dark theme",
-        "autoDarkThemeDescription": "Highest's theme will adjust to your device's one. Make sure your system is up to date so as to take advantage of this feature."
       }
+    },
+    "theme": {
+      "title": "Theme",
+      "auto": "Automatic",
+      "light": "Light",
+      "dark": "Dark",
+      "invertColors": "Invert colors",
+      "autoDescription": "If you enable the Automatic option, Highest's theme will adjust to your device's one. Make sure your system is up to date so as to take advantage of this feature."
     },
     "data": {
       "title": "Data",

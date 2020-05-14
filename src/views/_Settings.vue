@@ -11,6 +11,7 @@
           :labels="locales"
           :name="$t('settings.display.language.description')"
           auto-back
+          mandatory
           @back="localeSelect = false">
           <template #label="{ label }">
             <v-row class="mx-1">
@@ -56,6 +57,7 @@
           <card-header>{{ $t('settings.display.title') }}</card-header>
           <card
             top
+            bottom
             @click="localeSelect = true">
             <template #title>{{ $tc('settings.display.language.title', 1) }}</template>
             <template #action>
@@ -64,30 +66,24 @@
               </v-list-item-icon>
             </template>
           </card>
-          <card>
-            <template #title>{{ $t('settings.display.theme.darkTheme') }}</template>
-            <template #action>
-              <v-switch
-                v-model="settings.darkTheme"
-                :disabled="settings.autoDarkTheme"
-                class="pt-0 mt-0"
-                color="primary"
-                hide-details
-                inset/>
+        </list-group>
+
+        <list-group>
+          <card-header>{{ $t('settings.theme.title')}}</card-header>
+          <select-menu
+            v-model="settings.theme"
+            :labels="themes"
+            :choices="themes.map(t => t.value)"
+            mandatory
+            solo>
+            <template #label="{ label }">
+              <v-icon left>
+                {{ label.icon }}
+              </v-icon>
+              {{ $t(label.name) }}
             </template>
-          </card>
-          <card>
-            <template #title>{{ $t('settings.display.theme.autoDarkTheme') }}</template>
-            <template #action>
-              <v-switch
-                v-model="settings.autoDarkTheme"
-                class="pt-0 mt-0"
-                color="primary"
-                hide-details
-                inset/>
-            </template>
-            <template #description>{{ $t('settings.display.theme.autoDarkThemeDescription') }}</template>
-          </card>
+          </select-menu>
+          <span class="card__description">{{ $t('settings.theme.autoDescription') }}</span>
         </list-group>
 
         <list-group>
@@ -196,6 +192,23 @@ export default {
   name: 'Settings',
   data: () => ({
     release: {},
+    themes: [
+      {
+        name: 'settings.theme.auto',
+        icon: 'mdi-theme-light-dark',
+        value: 'auto'
+      },
+      {
+        name: 'settings.theme.light',
+        icon: 'mdi-weather-sunny',
+        value: 'light'
+      },
+      {
+        name: 'settings.theme.dark',
+        icon: 'mdi-weather-night',
+        value: 'dark'
+      }
+    ],
 
     localeSelect: false,
     eraseDialog: false,
