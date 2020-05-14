@@ -190,19 +190,17 @@
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
 import { download } from '@/utils/storage'
+import locales from '@/data/locales'
 
 export default {
   name: 'Settings',
   data: () => ({
-    locales: [
-      { name: 'English (EN-GB)', locale: 'en' },
-      { name: 'Français (FR)', locale: 'fr' },
-      { name: 'Español (ES-ES)', locale: 'es' }
-    ],
     release: {},
 
     localeSelect: false,
-    eraseDialog: false
+    eraseDialog: false,
+
+    locales
   }),
   mounted() {
     this.$http.get('https://api.github.com/repos/highest-app/highest/releases/latest').then(raw => {
