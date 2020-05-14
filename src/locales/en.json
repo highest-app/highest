@@ -177,6 +177,10 @@
         "latest": "Latest release : {number}",
         "goto": "Go to the changelog"
       },
+      "donate": {
+        "tip": "Donate on PayPal",
+        "text": "If you like my project and want to support Highest's growth, you can <a href='https://paypal.me/theovidal2103'>offer me a coffee</a> ;)"
+      },
       "maintainedBy": "Maintained by Théo Vidal",
       "openSource": "This project is distributed in open-source under the <a href='https://github.com/highest-app/highest/blob/master/LICENSE'>GNU GPL v3</a> license.",
       "sourceCode": "Go to the source code",

@@ -178,6 +178,10 @@
         "goto": "Accéder à la liste des changements"
       },
       "maintainedBy": "Maintenu par Théo Vidal",
+      "donate": {
+        "tip": "Faire un don sur PayPal",
+        "text": "Si vous aimez mon projet et souhaitez supporter le dévoppement de Highest, vous pouvez <a href='https://paypal.me/theovidal2103'>m'offrir un café</a> ;)"
+      },
       "openSource": "Ce projet est distribué en open-source sous licence <a href='https://github.com/highest-app/highest/blob/master/LICENSE'>GNU GPL v3</a>.",
       "sourceCode": "Accéder au code source",
       "betaNotice": "Veuillez noter que l'application est en <strong>bêta</strong> : par conséquent, de nombreux bogues existent et certaines fonctionnalités ne sont pas implémentées. Si vous souhaitez contribuer au projet, rendez-vous sur <a href=\"https://github.com/highest-app/highest\">le dépôt GitHub</a>."

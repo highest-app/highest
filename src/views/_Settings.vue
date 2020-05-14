@@ -146,7 +146,8 @@
                   <v-img src="https://exybore.becauseofprog.fr/img/avatar.png"/>
                 </v-list-item-avatar>
                 <v-col class="pa-0">
-                  {{ $t('settings.about.maintainedBy') }}
+                  {{ $t('settings.about.maintainedBy') }}<br>
+                  <span v-html="$t('settings.about.donate.text')"/>
                   <v-row class="mx-0">
                     <v-btn
                       href="https://twitter.com/exybore"
@@ -166,6 +167,21 @@
                       icon>
                       <v-icon>mdi-youtube</v-icon>
                     </v-btn>
+                    <v-tooltip
+                      :value="$vuetify.breakpoint.mdAndDown ? false : undefined"
+                      bottom>
+                      <template #activator="{ on }">
+                        <v-btn
+                          href="https://paypal.me/theovidal2103"
+                          target="_blank"
+                          color="primary"
+                          icon
+                          v-on="on">
+                          <v-icon>mdi-currency-usd</v-icon>
+                        </v-btn>
+                      </template>
+                      <span>{{ $t('settings.about.donate.tip') }}</span>
+                    </v-tooltip>
                   </v-row>
                 </v-col>
               </v-row>
