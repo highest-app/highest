@@ -21,16 +21,11 @@
           <a @click="resetForm">{{ $t('terms.actions.cancel') }}</a>
         </template>
         <template #bar-right-actions>
-          <a
-            v-if="valid"
+          <app-link
+            :disable="!valid"
             @click="add">
             {{ $t('terms.actions.add') }}
-          </a>
-          <span
-            v-else
-            class="gray--text">
-            {{ $t('terms.actions.add') }}
-          </span>
+          </app-link>
         </template>
       </app-bar>
       <location-form
