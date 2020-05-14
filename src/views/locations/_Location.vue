@@ -129,7 +129,7 @@
               <v-col cols="12">
                 <routes-list
                   :routes="routes"
-                  flat/>
+                  background/>
               </v-col>
             </v-row>
           </v-col>

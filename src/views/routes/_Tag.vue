@@ -18,7 +18,8 @@
       <list-group>
         <routes-list
           :routes="routes"
-          show-location/>
+          show-location
+          background/>
       </list-group>
     </page-body>
   </v-content>

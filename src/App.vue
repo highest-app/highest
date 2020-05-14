@@ -45,9 +45,11 @@
         <v-divider/>
         <v-row class="px-4 py-2">
           <v-btn
-            text
-            to="/settings">
-            <v-icon left>mdi-cog-outline</v-icon> {{ $t('settings.title') }}
+            style="text-transform: capitalize"
+            to="/settings"
+            text>
+            <v-icon left>mdi-cog-outline</v-icon>
+            {{ $t('settings.title') }}
           </v-btn>
           <v-spacer/>
           <v-tooltip
