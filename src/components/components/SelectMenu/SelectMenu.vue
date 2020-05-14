@@ -1,6 +1,7 @@
 <template>
   <div class="select-menu">
     <app-bar
+      v-if="!solo"
       :title="name"
       small-only
       sticky>
@@ -15,7 +16,8 @@
         <v-list flat>
           <v-list-item-group
             v-model="selected"
-            :multiple="multiple">
+            :multiple="multiple"
+            :mandatory="mandatory">
             <template v-for="(choice, i) in choices">
               <v-list-item
                 :key="`${choice}--list-item)`"
@@ -63,17 +65,21 @@ export default {
     event: 'change'
   },
   props: {
-    labels: {
-      type: Array,
-      default: null
+    autoBack: {
+      type: Boolean,
+      default: false
     },
     choices: {
       type: Array,
       required: true
     },
-    selected: {
-      type: String,
-      default: ''
+    labels: {
+      type: Array,
+      default: null
+    },
+    mandatory: {
+      type: Boolean,
+      default: false
     },
     multiple: {
       type: Boolean,
@@ -83,7 +89,11 @@ export default {
       type: String,
       default: 'Choisir'
     },
-    autoBack: {
+    selected: {
+      type: String,
+      default: ''
+    },
+    solo: {
       type: Boolean,
       default: false
     }
