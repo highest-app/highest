@@ -9,7 +9,7 @@
       <v-card-text>
         <span
           v-if="title !== null"
-          class="subtitle-1 white--text mb-1">
+          class="subtitle-1 text--primary mb-1">
           <v-icon
             v-if="icon !== null"
             left>
