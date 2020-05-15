@@ -185,7 +185,7 @@ export default {
     remove() {
       this.removeLocation(this.location.id)
       const nextRoute = this.$vuetify.breakpoint.mdAndUp ? '/routes/all' : '/routes'
-      this.$router.push({ name: nextRoute })
+      this.$router.push(nextRoute)
     }
   }
 }
