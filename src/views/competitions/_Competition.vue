@@ -121,7 +121,15 @@
                 attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"/>
               <l-marker
                 :lat-lng="[parseFloat(mapInfo['y']), parseFloat(mapInfo['x'])]"
-                visible/>
+                visible>
+                <l-icon
+                  :icon-size="iconSize"
+                  :icon-anchor="iconAnchor"
+                  :shadow-size="iconSize"
+                  :shadow-anchor="[ iconAnchor[0] - 1.5, iconAnchor[1] - 1.5 ]"
+                  icon-url="/img/defaults/map-marker.png"
+                  shadow-url="/img/defaults/map-marker-shadow.png"/>
+              </l-marker>
             </l-map>
           </v-col>
           <v-col
@@ -144,7 +152,7 @@
 
 <script>
 import { latLng } from 'leaflet'
-import { LMap, LTileLayer, LMarker } from 'vue2-leaflet'
+import { LMap, LTileLayer, LMarker, LIcon } from 'vue2-leaflet'
 import { OpenStreetMapProvider } from 'leaflet-geosearch'
 import { mapState, mapGetters, mapActions } from 'vuex'
 import CompetitionForm from '@/views/competitions/CompetitionForm'
@@ -154,7 +162,10 @@ const provider = new OpenStreetMapProvider()
 
 export default {
   name: 'Competition',
-  components: { LMap, LTileLayer, LMarker, CompetitionForm },
+  components: {
+    LMap, LTileLayer, LMarker, LIcon,
+    CompetitionForm
+  },
   data () {
     return {
       form: {},
@@ -164,7 +175,8 @@ export default {
       removeDialog: false,
 
       showMap: false,
-      mapInfo: {}
+      mapInfo: {},
+      staticIconSize: 45
     }
   },
   mounted() {
@@ -202,6 +214,12 @@ export default {
     },
     transferableLocations() {
       return this.locations.filter(location => location.id !== this.location.id)
+    },
+    iconSize() {
+      return [this.staticIconSize, this.staticIconSize * 1.15];
+    },
+    iconAnchor() {
+      return [this.staticIconSize / 2, this.staticIconSize * 1.15];
     }
   },
   methods: {
