@@ -63,10 +63,7 @@ export default {
       type: Object,
       required: true
     },
-    adding: {
-      type: Boolean,
-      default: false
-    }
+    adding: Boolean
   },
   watch: {
     form: {

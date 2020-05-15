@@ -87,22 +87,13 @@ import { routeIcons } from '@/utils/data'
 export default {
   name: 'RoutesList',
   props: {
-    background: {
-      type: Boolean,
-      default: false
-    },
-    paddingless: {
-      type: Boolean,
-      default: false
-    },
+    background: Boolean,
+    paddingless: Boolean,
     routes: {
       type: Array,
       required: true
     },
-    showLocation: {
-      type: Boolean,
-      default: false
-    }
+    showLocation: Boolean
   },
   data () {
     return {

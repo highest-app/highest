@@ -44,10 +44,7 @@ export default {
       type: Number,
       default: 1
     },
-    pagination: {
-      type: Boolean,
-      default: false
-    }
+    pagination: Boolean
   },
   computed: {
     feedItems () {

@@ -2,37 +2,19 @@ import Vue from 'vue'
 
 export default Vue.component('panel', {
   props: {
-    dialog: {
-      type: Boolean,
-      default: false
-    },
-    height: {
-      type: String,
-      default: null
-    },
-    hook: {
-      type: HTMLElement,
-      default: undefined
-    },
-    page: {
-      type: Boolean,
-      default: false
-    },
-    width: {
-      type: String,
-      default: null
-    },
-    disableOffset: {
-      type: Boolean,
-      default: false
-    }
+    dialog: Boolean,
+    height: String,
+    hook: HTMLElement,
+    page: Boolean,
+    width: String,
+    disableOffset: Boolean
   },
   computed: {
     defaultHeight() {
-      return this.hook === undefined ? this.height : this.hook.offsetHeight
+      return this.hook ? this.hook.offsetHeight : this.height
     },
     defaultWidth() {
-      return this.hook === undefined ? this.width : this.hook.offsetWidth
+      return this.hook ? this.hook.offsetWidth : this.width
     },
     style() {
       let style = ''

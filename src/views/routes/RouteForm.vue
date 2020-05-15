@@ -31,6 +31,7 @@
           :choices="grades"
           :name="$t('routes.terms.grade')"
           auto-back
+          mandatory
           @back="gradeSelect = false"/>
       </panel>
       <panel
@@ -44,6 +45,7 @@
           :labels="locations"
           :name="$tc('generic.location', 1)"
           auto-back
+          mandatory
           @back="locationSelect = false">
           <template #label="{ label }">
             <v-list-item-avatar class="my-0">
@@ -244,14 +246,8 @@ export default {
       type: Object,
       required: true
     },
-    acceptLocation: {
-      type: Boolean,
-      default: false
-    },
-    dialog: {
-      type: Boolean,
-      default: false
-    }
+    acceptLocation: Boolean,
+    dialog: Boolean
   },
   data () {
     return {

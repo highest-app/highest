@@ -9,7 +9,8 @@
       <v-toolbar-title
         class="row"
         style="margin: inherit">
-        <slot name="title-prepend"/><h2>{{ title }}</h2>
+        <slot name="title-prepend"/>
+        <h2>{{ title }}</h2>
       </v-toolbar-title>
       <v-spacer/>
       <div class="top-bar__actions">
@@ -45,22 +46,10 @@
 export default {
   name: 'AppBar',
   props: {
-    fixed: {
-      type: Boolean,
-      default: false
-    },
-    smallOnly: {
-      type: Boolean,
-      default: false
-    },
-    sticky: {
-      type: Boolean,
-      default: false
-    },
-    title: {
-      type: String,
-      default: ''
-    }
+    fixed: Boolean,
+    smallOnly: Boolean,
+    sticky: Boolean,
+    title: String
   },
   computed: {
     fix() {

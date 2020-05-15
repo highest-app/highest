@@ -66,10 +66,7 @@ export default {
   name: 'RouteCategories',
   components: { LocationAdding },
   props: {
-    mobile: {
-      type: Boolean,
-      default: false
-    }
+    mobile: Boolean
   },
   computed: mapState(['assets', 'tags', 'locations']),
   methods: {

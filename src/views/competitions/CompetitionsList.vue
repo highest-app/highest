@@ -82,18 +82,12 @@ import { competitionIcons as icons } from '@/utils/data'
 export default {
   name: 'CompetitionsList',
   props: {
-    background: {
-      type: Boolean,
-      default: false
-    },
+    background: Boolean,
     competitions: {
       type: Array,
       required: true
     },
-    paddingless: {
-      type: Boolean,
-      default: false
-    }
+    paddingless: Boolean
   },
   data () {
     return {

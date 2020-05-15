@@ -8,10 +8,10 @@
       tile>
       <v-card-text>
         <span
-          v-if="title !== null"
+          v-if="title"
           class="subtitle-1 text--primary mb-1">
           <v-icon
-            v-if="icon !== null"
+            v-if="icon"
             left>
             {{ icon }}
           </v-icon>
@@ -19,7 +19,7 @@
         </span>
         <slot/>
         <v-row
-          v-if="route !== null"
+          v-if="route"
           class="mx-0">
           <v-spacer/>
           <v-btn
@@ -37,26 +37,12 @@
 export default {
   name: 'Widget',
   props: {
-    background: {
-      type: Boolean,
-      default: false
-    },
-    half: {
-      type: Boolean,
-      default: false
-    },
-    title: {
-      type: String,
-      default: null
-    },
-    icon: {
-      type: String,
-      default: null
-    },
-    route: {
-      type: String,
-      default: null
-    }
+    background: Boolean,
+    half: Boolean,
+
+    title: String,
+    icon: String,
+    route: String
   }
 }
 </script>

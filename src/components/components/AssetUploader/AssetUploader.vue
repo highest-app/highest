@@ -13,7 +13,7 @@
           small-only
           fixed>
           <template #bar-right-actions>
-            <a @click="choose">{{ $t('terms.actions.ok') }}</a>
+            <app-link @click="active = false">{{ $t('terms.actions.ok') }}</app-link>
           </template>
         </app-bar>
         <v-container>
@@ -58,7 +58,7 @@
                 @change="setSelection">
                 <v-row>
                   <v-item
-                    v-for="(asset, id) in assets"
+                    v-for="asset in assets"
                     :key="asset"
                     #default="{ active, toggle }">
                     <v-col
@@ -99,18 +99,8 @@ export default {
     prop: 'selectedImages'
   },
   props: {
-    selectedImages: {
-      type: Array,
-      default: () => []
-    },
-    multiple: {
-      type: Boolean,
-      default: false
-    },
-    active: {
-      type: Boolean,
-      default: false
-    },
+    selectedImages: Array,
+    multiple: Boolean,
     title: {
       type: String,
       default: 'assets.edit'
@@ -118,9 +108,11 @@ export default {
   },
   data () {
     return {
-      file: '',
+      file: undefined,
       uploadBlob: '',
       selectedIds: [],
+
+      active: false,
 
       events: {
         click: this.enable
@@ -134,14 +126,11 @@ export default {
       this.selectedIds.push(index)
     }
   },
-  computed: {
-    ...mapState(['assets'])
-  },
+  computed: mapState(['assets']),
   methods: {
     ...mapActions(['addAsset', 'removeAsset']),
     enable() {
       this.active = true
-      this.$emit('change', true)
     },
     updatePreview() {
       let reader = new FileReader()
@@ -156,15 +145,12 @@ export default {
       this.uploadBlob = ''
     },
     setSelection() {
-      this.selectedImages = []
+      let selected = []
       this.selectedIds.forEach(id => {
         const urls = Object.keys(this.assets)
-        this.selectedImages.push(urls[id])
+        selected.push(urls[id])
       })
-    },
-    choose() {
-      this.$emit('input', this.selectedImages)
-      this.active = false
+      this.$emit('input', selected)
     }
   }
 }

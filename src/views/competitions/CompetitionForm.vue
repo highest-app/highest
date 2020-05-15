@@ -126,14 +126,8 @@ export default {
       type: Object,
       required: true
     },
-    withLocation: {
-      type: Boolean,
-      default: false
-    },
-    dialog: {
-      type: Boolean,
-      default: false
-    }
+    withLocation: Boolean,
+    dialog: Boolean
   },
   data() {
     return {

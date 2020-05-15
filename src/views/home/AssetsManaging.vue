@@ -49,10 +49,7 @@ export default {
   name: 'AssetsManaging',
   model: { prop: 'enabled', event: 'change' },
   props: {
-    enabled: {
-      type: Boolean,
-      default: false
-    }
+    enabled: Boolean
   },
   computed: mapState(['assets']),
   methods: mapActions(['removeAsset'])

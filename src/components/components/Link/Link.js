@@ -2,27 +2,15 @@ import Vue from 'vue'
 
 export default Vue.component('app-link', {
   props: {
-    disable: {
-      type: Boolean,
-      default: false
-    },
-    href: {
-      type: String,
-      default: null
-    },
-    target: {
-      type: String,
-      default: ''
-    },
-    to: {
-      type: String,
-      default: null
-    }
+    disable: Boolean,
+    href: String,
+    target: String,
+    to: String
   },
   computed: {
     tag() {
       if (this.disable) return 'span'
-      else return this.to === null ? 'a' : 'router-link'
+      else return this.to ? 'router-link' : 'a'
     },
     props() {
       if (this.disable) {

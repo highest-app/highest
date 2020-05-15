@@ -2,34 +2,13 @@ import Vue from 'vue'
 
 export default Vue.component('card', {
     props: {
-      bottom: {
-        type: Boolean,
-        default: false
-      },
-      disabled: {
-        type: Boolean,
-        default: false
-      },
-      extendable: {
-        type: Boolean,
-        default: false
-      },
-      href: {
-        type: String,
-        default: null
-      },
-      target: {
-        type: String,
-        default: null
-      },
-      to: {
-        type: String,
-        default: null
-      },
-      top: {
-        type: Boolean,
-        default: false
-      }
+      bottom: Boolean,
+      disabled: Boolean,
+      extendable: Boolean,
+      href: String,
+      target: String,
+      to: String,
+      top: Boolean
     },
     render(createElement) {
       /*
@@ -40,7 +19,7 @@ export default Vue.component('card', {
        * |     1       |       0         ||    0    |
        * |     1       |       1         ||    0    |
        */
-      let divider = this.$slots.description === undefined && !this.bottom
+      let divider = !this.$slots.description && !this.bottom
       return createElement(
         'div', [
           createElement(
@@ -48,14 +27,14 @@ export default Vue.component('card', {
               class: {
                 'card': true,
                 'card--top': this.top,
-                'card--bottom': this.$slots.description === undefined ? this.bottom : true,
+                'card--bottom': !this.$slots.description ? this.bottom : true,
                 'card--extendable': this.extendable
               }
             },
             [
               createElement(
                 'v-list-item', {
-                  on: this.$listeners.click === undefined ? ''
+                  on: !this.$listeners.click ? ''
                     : {
                     click: (event) => this.$emit('click', event)
                   },
@@ -68,7 +47,7 @@ export default Vue.component('card', {
                   }
                 },
                 [
-                  this.$slots.avatar === undefined ? '' :
+                  !this.$slots.avatar ? '' :
                   createElement(
                     'v-list-item-avatar',
                     this.$slots.avatar
@@ -90,9 +69,9 @@ export default Vue.component('card', {
                         this.$slots.title
                       ),
                       this.$slots.input,
-                      this.$slots.action === undefined ? '' :
+                      !this.$slots.action ? '' :
                         createElement('v-spacer'),
-                      this.$slots['action-text'] === undefined ? '' :
+                      !this.$slots['action-text'] ? '' :
                         createElement(
                         'span', {
                           class: {
@@ -109,7 +88,7 @@ export default Vue.component('card', {
               divider ? createElement('v-divider') : ''
             ]
           ),
-          this.$slots.description !== undefined ? createElement(
+          this.$slots.description ? createElement(
             'p', {
               class: {
                 'card__description': true
