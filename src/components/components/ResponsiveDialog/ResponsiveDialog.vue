@@ -2,9 +2,10 @@
   <div class="responsive-dialog">
     <template v-if="$vuetify.breakpoint.mdAndUp">
       <v-dialog
-        v-model="active"
+        :value="active"
         :max-width="dialogWidth"
-        class="responsive-dialog__dialog">
+        class="responsive-dialog__dialog"
+        @update:return-value="disable">
         <v-card class="background">
           <v-card-text
             class="pa-0"
@@ -21,10 +22,11 @@
     </template>
     <template v-else>
       <v-bottom-sheet
-        v-model="active"
+        :value="active"
         class="responsive-dialog__sheet"
         scrollable
-        inset>
+        inset
+        @update:return-value="disable">
         <template #activator="{ on: sheet }">
           <div class="responsive-dialog__trigger">
             <slot
@@ -52,10 +54,7 @@ export default {
     event: 'change'
   },
   props: {
-    active: {
-      type: Boolean,
-      default: false
-    },
+    active: Boolean,
     dialogWidth: {
       type: String,
       default: '50%'
@@ -69,10 +68,11 @@ export default {
     }
   },
   methods: {
-    enable () {
-      this.active = true
+    enable() {
       this.$emit('change', true)
-      this.$emit('enable')
+    },
+    disable() {
+      this.$emit('change', false)
     }
   }
 }

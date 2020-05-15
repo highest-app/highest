@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-content v-if="location !== undefined">
     <v-dialog
       v-model="removeDialog"
       max-width="290"
@@ -149,31 +149,33 @@ export default {
   name: 'Location',
   components: { LocationForm, RoutesList },
   data: () => ({
-    location: {},
-    routes: [],
-
     form: {},
     editMode: false,
     photoChoose: false,
     removeDialog: false
   }),
   mounted () {
-    this.refreshRoutes()
     this.quitEdit()
   },
   computed: {
     ...mapState(['assets']),
-    ...mapGetters(['getLocationById', 'getRoutesByLocation'])
+    ...mapGetters(['getLocationById', 'getRoutesByLocation']),
+    location() {
+      const id = this.$route.params.location
+      let location = this.getLocationById(id)
+
+      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+      if (location === undefined) this.$router.push({ name: 'home' })
+
+      return location
+    },
+    routes() {
+      return this.getRoutesByLocation(this.location.id)
+    }
   },
   methods: {
     ...mapActions(['updateLocation', 'removeLocation']),
     getLocationThumbnail,
-    refreshRoutes () {
-      const id = this.$route.params.location
-      this.location = this.getLocationById(id)
-      if (this.location === undefined) this.$router.push({ name: 'home' })
-      else this.routes = this.getRoutesByLocation(this.location.id)
-    },
     validateEdit() {
       this.updateLocation(this.form)
       this.quitEdit()

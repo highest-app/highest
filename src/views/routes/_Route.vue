@@ -241,9 +241,6 @@ export default {
   components: { AppBar, ResponsiveDialog, RouteForm },
   data() {
     return {
-      route: {},
-      location: {},
-
       editMode: false,
       photoChoose: false,
       transferDialog: false,
@@ -254,16 +251,21 @@ export default {
     }
   },
   mounted () {
-    this.route = this.getRoute(this.$route.params.location, this.$route.params.route)
-    if (this.route === undefined) {
-      this.$router.back()
-    }
-    this.location = this.getLocationById(this.route.location)
     this.quitEdit()
   },
   computed: {
     ...mapState(['assets', 'locations']),
     ...mapGetters(['getRoute', 'getLocationById']),
+    route() {
+      let route = this.getRoute(this.$route.params.location, this.$route.params.route)
+      if (route === undefined) {
+        this.$router.back()
+      }
+      return route
+    },
+    location() {
+      return this.getLocationById(this.route.location)
+    },
     progressionDates() {
       let dates = []
       this.route.progressions.forEach((progress) => {

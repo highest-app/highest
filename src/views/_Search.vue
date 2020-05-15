@@ -11,7 +11,7 @@
       <v-container>
         <v-row v-if="search !== ''">
           <v-col
-            v-if="routes.length > 0"
+            v-if="routes.length"
             cols="12">
             <h2>{{ $tc('generic.route', 2) }}</h2>
             <routes-list
@@ -20,7 +20,7 @@
               background/>
           </v-col>
           <v-col
-            v-if="competitions.length > 0"
+            v-if="competitions.length"
             cols="12">
             <h2>{{ $tc('generic.competition', 2) }}</h2>
             <competitions-list
@@ -28,7 +28,7 @@
               background/>
           </v-col>
           <v-col
-            v-if="locations.length > 0"
+            v-if="locations.length"
             cols="12">
             <h2>{{ $tc('generic.location', 2) }}</h2>
             <locations-list :locations="locations"/>
@@ -49,10 +49,7 @@ export default {
   name: 'Search',
   components: { CompetitionsList, RoutesList, LocationsList },
   props: {
-    query: {
-      type: String,
-      default: ''
-    }
+    query: String
   },
   data () {
     return {
@@ -65,13 +62,13 @@ export default {
   computed: {
     ...mapGetters(['searchLocations', 'searchRoutes', 'searchCompetitions']),
     locations () {
-      return this.searchLocations(this.search)
+      return this.search ? this.searchLocations(this.search) : []
     },
     routes () {
-      return this.searchRoutes(this.search)
+      return this.search ? this.searchRoutes(this.search) : []
     },
     competitions () {
-      return this.searchCompetitions(this.search)
+      return this.search ? this.searchCompetitions(this.search) : []
     },
   }
 }

@@ -64,7 +64,7 @@
                 <v-icon>mdi-invert-colors</v-icon>
               </v-btn>
             </template>
-            <span>{{ $t('settings.display.theme.invertColors') }}</span>
+            <span>{{ $t('settings.theme.invertColors') }}</span>
           </v-tooltip>
         </v-row>
       </template>
