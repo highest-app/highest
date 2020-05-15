@@ -3,7 +3,8 @@
   "short_name": "Highest",
   "theme_color": "#1e3799",
   "background_color": "#ffffff",
-  "display": "browser",
+  "display": "fullscreen",
+  "prefer_related_applications": false,
   "Scope": "/",
   "start_url": "/",
   "icons": [
