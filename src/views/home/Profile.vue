@@ -6,6 +6,7 @@
         bottom>
         <template #activator="{ on: tooltip }">
           <v-btn
+            :aria-label="$t('profile.title')"
             class="gradient--secondary"
             elevation="0"
             fab

@@ -23,6 +23,7 @@
           class="mx-0">
           <v-spacer/>
           <v-btn
+            :aria-label="$t('widgets.helps.details', { widget: $t(title) })"
             icon
             :to="route">
             <v-icon color="primary">mdi-chevron-right</v-icon>

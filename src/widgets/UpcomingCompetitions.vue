@@ -1,6 +1,6 @@
 <template>
   <widget
-    title="widgets.upcomingCompetitions"
+    title="widgets.upcomingCompetitions.title"
     icon="mdi-medal-outline"
     route="/competitions">
     <competitions-list

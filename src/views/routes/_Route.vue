@@ -192,6 +192,7 @@
                   {{ progression.notes }}
                   <v-spacer/>
                   <v-btn
+                    :aria-label="$t('routes.actions.removeProgression', { notes: progression.notes })"
                     icon
                     @click="removeProgression({
                       route: route.id,
@@ -205,6 +206,7 @@
                   align="center">
                   <v-text-field
                     v-model="progressionForm.notes"
+                    :aria-label="$t('routes.form.progressionNotesPlaceholder')"
                     :placeholder="$t('routes.actions.addProgress')"
                     rows="1"
                     auto-grow
@@ -213,6 +215,7 @@
                     flat
                     @keydown.enter="progressionAdd"/>
                   <v-btn
+                    :aria-label="$t('routes.actions.addProgress')"
                     :disabled="progressionForm.notes === ''"
                     icon
                     @click="progressionAdd">

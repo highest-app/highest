@@ -13,17 +13,21 @@ export default Vue.component('app-link', {
       else return this.to ? 'router-link' : 'a'
     },
     props() {
+      let props = {
+        attrs: {
+          role: 'button',
+          'aria-pressed': false
+        }
+      }
       if (this.disable) {
-        return {
-          class: {
-            'list-description--text': true
-          }
+        props.attrs['aria-disabled'] = true
+        props.class = {
+          'list-description--text': true
         }
       } else {
-        let props = {
-          on: {
-            click: (event) => this.$emit('click', event)
-          }
+        props.attrs['aria-pressed'] = 'false'
+        props.on = {
+          click: (event) => this.$emit('click', event)
         }
 
         if (this.tag === 'a') props.to = this.to
@@ -31,8 +35,8 @@ export default Vue.component('app-link', {
           props.href = this.href
           props.target = this.target
         }
-        return props
       }
+      return props
     }
   },
   render(createElement) {

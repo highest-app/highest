@@ -6,6 +6,7 @@
         bottom>
         <template #activator="{ on: tooltip }">
           <v-btn
+            :aria-label="$t('routes.actions.add')"
             class="gradient--secondary"
             elevation="0"
             fab

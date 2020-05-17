@@ -29,6 +29,7 @@
               <v-row class="mx-1">
                 <v-spacer/>
                 <v-btn
+                  :aria-label="$t('assets.remove')"
                   icon
                   @click="() => { removeAsset(id); $forceUpdate() }">
                   <v-icon color="error">mdi-delete-outline</v-icon>

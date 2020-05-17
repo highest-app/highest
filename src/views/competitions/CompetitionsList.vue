@@ -16,6 +16,7 @@
                   bottom>
                   <template #activator="{ on: tooltip }">
                     <v-btn
+                      :aria-label="$t('competitions.helps.participation', { competition: competition.name })"
                       icon
                       v-on="{ ...menu, ...tooltip }">
                       <v-icon :color="icons[competition.participation].color">{{ icons[competition.participation].icon }}</v-icon>
@@ -59,6 +60,7 @@
           </v-list-item-content>
           <v-list-item-action>
             <v-btn
+              :aria-label="$t('competitions.helps.view', { competition: competition.name })"
               :ripple="false"
               icon
               :to="`/competitions/${competition.id}`">

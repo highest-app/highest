@@ -1,6 +1,6 @@
 <template>
   <widget
-    title="widgets.upcomingRoutes"
+    title="widgets.upcomingRoutes.title"
     icon="mdi-routes-clock"
     route="/routes/all">
     <routes-list

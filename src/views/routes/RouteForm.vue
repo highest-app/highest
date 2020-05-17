@@ -82,7 +82,7 @@
               {{ locations.find(l => l.id === form.location).name }}
             </template>
             <template #action>
-              <v-list-item-icon>
+              <v-list-item-icon aria-label="Select">
                 <v-icon>mdi-chevron-right</v-icon>
               </v-list-item-icon>
             </template>

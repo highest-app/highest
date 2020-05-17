@@ -49,8 +49,15 @@
     "title": "Home"
   },
   "widgets": {
-    "upcomingRoutes": "Upcoming route goals",
-    "upcomingCompetitions": "Upcoming competitions"
+    "helps": {
+      "details": "Get details about widget {widget}"
+    },
+    "upcomingRoutes": {
+      "title": "Upcoming route goals"
+    },
+    "upcomingCompetitions": {
+      "title": "Upcoming competitions"
+    }
   },
   "profile": {
     "user": "User",
@@ -72,6 +79,10 @@
     "title": "Search"
   },
   "routes": {
+    "helps": {
+      "markAsFinished": "Mark route {grade} {name} in {location} as finished",
+      "view": "View details of route {grade} {name} in {location}"
+    },
     "terms": {
       "color": "Color",
       "length": "Length",
@@ -99,7 +110,8 @@
       "add": "Add new route",
       "editAssets": "Edit route's assets",
       "edit": "Edit route",
-      "addProgress": "Add a progression"
+      "addProgress": "Add a progression",
+      "removeProgression": "Remove the progression: {notes}"
     },
     "title": "Routes"
   },
@@ -120,6 +132,10 @@
     "title": "Locations"
   },
   "competitions": {
+    "helps": {
+      "participation": "Set your participation at competition {competition}",
+      "view": "View details of competition {competition}"
+    },
     "form": {
       "descriptionPlaceholder": "Competition's description",
       "namePlaceholder": "Name of the competition"
@@ -150,6 +166,7 @@
     },
     "add": "Add an asset",
     "edit": "Edit assets",
+    "remove": "Remove this asset",
     "manage": "Manage assets"
   },
   "settings": {

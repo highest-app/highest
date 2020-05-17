@@ -28,6 +28,7 @@
                   bottom>
                   <template #activator="{ on }">
                     <v-btn
+                      :aria-label="$t('routes.helps.markAsFinished', { grade: route.grade, name: route.name === '' ? '' : `(${route.name})`, location: getLocationById(route.location).name })"
                       icon
                       @click.stop="switchFinishedRoute(route.id)"
                       v-on="on">
@@ -64,6 +65,7 @@
         </v-list-item-content>
         <v-list-item-action>
           <v-btn
+            :aria-label="$t('routes.helps.view', { grade: route.grade, name: route.name === '' ? '' : `(${route.name})`, location: getLocationById(route.location).name })"
             :ripple="false"
             icon
             :to="`/locations/${route.location}/${route.id}`">

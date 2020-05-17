@@ -49,8 +49,15 @@
     "title": "Accueil"
   },
   "widgets": {
-    "upcomingRoutes": "Objectifs à venir",
-    "upcomingCompetitions": "Compétitions à venir"
+    "helps": {
+      "details": "Obtenir des détails à propos du widget {widget}"
+    },
+    "upcomingRoutes": {
+      "title": "Objectifs à venir"
+    },
+    "upcomingCompetitions": {
+      "title": "Compétitions à venir"
+    }
   },
   "profile": {
     "user": "Utilisateur",
@@ -72,6 +79,10 @@
     "title": "Recherche"
   },
   "routes": {
+    "helps": {
+      "markAsFinished": "Marquer la voie {grade} {name} dans {location} comme terminée",
+      "view": "Voir les détails de la voie {grade} {name} dans {location}"
+    },
     "terms": {
       "color": "Couleur",
       "length": "Longueur",
@@ -99,7 +110,8 @@
       "add": "Ajouter une voie",
       "editAssets": "Modifier les ressources de la voie",
       "edit": "Modifier la voie",
-      "addProgress": "Ajouter une progression"
+      "addProgress": "Ajouter une progression",
+      "removeProgression": "Supprimer la progression : {notes}"
     },
     "title": "Voies"
   },
@@ -120,6 +132,10 @@
     "title": "Lieux"
   },
   "competitions": {
+    "helps": {
+      "participation": "Définir votre participation à la compétition {competition}",
+      "view": "Voir les détails de la compétition {competition}"
+    },
     "form": {
       "namePlaceholder": "Nom de la compétition",
       "descriptionPlaceholder": "Description de la compétition"
@@ -150,6 +166,7 @@
     },
     "add": "Ajouter une ressource",
     "edit": "Modifier les ressources",
+    "remove": "Supprimer cette ressource",
     "manage": "Gérer les ressources"
   },
   "settings": {
