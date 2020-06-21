@@ -1,11 +1,13 @@
 <template>
   <v-list :class="{ background, 'py-0': paddingless }">
-    <v-list-item v-if="!locations.length">
-      {{ $t('locations.noLocations') }}
-    </v-list-item>
-    <v-list-item v-else-if="!routes.length">
-      {{ $t('routes.view.noRoutes') }}
-    </v-list-item>
+    <illustration
+      v-if="!locations.length"
+      image="/img/illustrations/location.svg"
+      label="locations.noLocations"/>
+    <illustration
+      v-else-if="!routes.length"
+      image="/img/illustrations/road-sign.svg"
+      label="routes.view.noRoutes"/>
     <template
       v-for="(route, i) in routes"
       v-else>

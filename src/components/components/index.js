@@ -1,5 +1,6 @@
 export * from './AppBar'
 export * from './AssetUploader'
+export * from './Illustration'
 export * from './Link'
 export * from './Lists'
 export * from './Panel'
