@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-main>
     <app-bar :title="$t('search.title')"/>
     <page-body>
       <v-text-field
@@ -36,7 +36,7 @@
         </v-row>
       </v-container>
     </page-body>
-  </v-content>
+  </v-main>
 </template>
 
 <script>

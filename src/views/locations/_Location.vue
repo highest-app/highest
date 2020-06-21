@@ -1,5 +1,5 @@
 <template>
-  <v-content v-if="location !== undefined">
+  <v-main v-if="location !== undefined">
     <v-dialog
       v-model="removeDialog"
       max-width="290"
@@ -136,7 +136,7 @@
         </v-row>
       </v-container>
     </template>
-  </v-content>
+  </v-main>
 </template>
 
 <script>

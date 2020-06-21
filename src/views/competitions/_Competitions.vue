@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-main>
     <app-bar :title="$tc('generic.competition', 2)">
       <template #top-bar-actions>
         <competition-adding/>
@@ -10,7 +10,7 @@
         :competitions="competitions"
         background/>
     </page-body>
-  </v-content>
+  </v-main>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-main>
     <v-dialog
       v-model="removeDialog"
       max-width="290"
@@ -228,7 +228,7 @@
         </v-row>
       </v-container>
     </template>
-  </v-content>
+  </v-main>
 </template>
 
 <script>

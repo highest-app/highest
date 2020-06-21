@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-main>
     <app-bar :title="$t('home.title')">
       <template #top-bar-actions>
         <profile/>
@@ -92,7 +92,7 @@
         </v-col>
       </v-row>
     </v-container>
-  </v-content>
+  </v-main>
 </template>
 
 <script>

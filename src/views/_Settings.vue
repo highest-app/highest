@@ -1,5 +1,5 @@
 <template>
-  <v-content ref="contentComponent">
+  <v-main ref="contentComponent">
     <v-slide-x-reverse-transition>
       <panel
         v-if="localeSelect"
@@ -180,7 +180,7 @@
         </list-group>
       </page-body>
     </template>
-  </v-content>
+  </v-main>
 </template>
 
 <script>

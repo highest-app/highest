@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-main>
     <app-bar :title="$tc('generic.route', 2)">
       <template #top-bar-actions>
         <route-adding v-if="locations.length"/>
@@ -31,7 +31,7 @@
       </div>
       <route-categories mobile/>
     </page-body>
-  </v-content>
+  </v-main>
 </template>
 
 <script>

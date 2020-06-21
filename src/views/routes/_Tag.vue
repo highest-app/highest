@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-main>
     <app-bar
       :title="tag.default ? $t(`terms.colors.${tag.color}`) : tag.name"
       :small-only="$vuetify.breakpoint.smAndDown">
@@ -22,7 +22,7 @@
           background/>
       </list-group>
     </page-body>
-  </v-content>
+  </v-main>
 </template>
 
 <script>

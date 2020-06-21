@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-main>
     <app-bar
       v-if="$vuetify.breakpoint.mdAndUp"
       :title="$tc('generic.route', 2)">
@@ -27,7 +27,7 @@
           background/>
       </list-group>
     </page-body>
-  </v-content>
+  </v-main>
 </template>
 
 <script>
