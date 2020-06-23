@@ -82,27 +82,36 @@
         <v-row>
           <v-col
             cols="12"
-            md="3">
-            <v-carousel
-              v-if="location.photos.length"
-              :continuous="false"
-              height="auto"
-              hide-delimiters>
-              <v-carousel-item
-                v-for="photo in location.photos"
-                :key="photo">
+            md="6">
+            <v-row>
+              <v-col cols="12">
+                <v-carousel
+                  v-if="location.photos.length"
+                  :continuous="false"
+                  height="auto"
+                  hide-delimiters>
+                  <v-carousel-item
+                    v-for="photo in location.photos"
+                    :key="photo">
+                    <v-img
+                      :aspect-ratio="16/9"
+                      :src="assets[photo]"/>
+                  </v-carousel-item>
+                </v-carousel>
                 <v-img
-                  :aspect-ratio="16/9"
-                  :src="assets[photo]"/>
-              </v-carousel-item>
-            </v-carousel>
-            <v-img
-              v-else
-              :src="getLocationThumbnail(location)"/>
+                  v-else
+                  :src="getLocationThumbnail(location)"/>
+              </v-col>
+              <v-col
+                style="height: 500px"
+                cols="12">
+                <rich-map v-model="location.address"/>
+              </v-col>
+            </v-row>
           </v-col>
           <v-col
             cols="12"
-            md="9">
+            md="6">
             <v-row>
               <v-col cols="12">
                 <h1>{{ location.name }}</h1>
@@ -142,12 +151,13 @@
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
 import { getLocationThumbnail } from '@/utils/assets'
+import RichMap from '@/views/locations/RichMap'
 import LocationForm from '@/views/locations/LocationForm'
 import RoutesList from '@/views/routes/RoutesList'
 
 export default {
   name: 'Location',
-  components: { LocationForm, RoutesList },
+  components: { RichMap, LocationForm, RoutesList },
   data: () => ({
     form: {},
     editMode: false,

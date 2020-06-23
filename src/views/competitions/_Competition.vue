@@ -112,25 +112,7 @@
             style="height: 500px"
             cols="12"
             md="6">
-            <l-map
-              v-if="showMap"
-              :zoom="15"
-              :center="[mapInfo['y'], mapInfo['x']]">
-              <l-tile-layer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"/>
-              <l-marker
-                :lat-lng="[parseFloat(mapInfo['y']), parseFloat(mapInfo['x'])]"
-                visible>
-                <l-icon
-                  :icon-size="iconSize"
-                  :icon-anchor="iconAnchor"
-                  :shadow-size="iconSize"
-                  :shadow-anchor="[ iconAnchor[0] - 1.5, iconAnchor[1] - 1.5 ]"
-                  icon-url="/img/defaults/map-marker.png"
-                  shadow-url="/img/defaults/map-marker-shadow.png"/>
-              </l-marker>
-            </l-map>
+            <rich-map v-model="location.address"/>
           </v-col>
           <v-col
             cols="12"
@@ -151,21 +133,14 @@
 </template>
 
 <script>
-import { latLng } from 'leaflet'
-import { LMap, LTileLayer, LMarker, LIcon } from 'vue2-leaflet'
-import { OpenStreetMapProvider } from 'leaflet-geosearch'
 import { mapState, mapGetters, mapActions } from 'vuex'
 import CompetitionForm from '@/views/competitions/CompetitionForm'
+import RichMap from '@/views/locations/RichMap'
 import { getLocationThumbnail } from '@/utils/assets'
-
-const provider = new OpenStreetMapProvider()
 
 export default {
   name: 'Competition',
-  components: {
-    LMap, LTileLayer, LMarker, LIcon,
-    CompetitionForm
-  },
+  components: { RichMap, CompetitionForm },
   data () {
     return {
       form: {},
@@ -173,10 +148,6 @@ export default {
       editMode: false,
       transferDialog: false,
       removeDialog: false,
-
-      showMap: false,
-      mapInfo: {},
-      staticIconSize: 45
     }
   },
   mounted() {
@@ -192,39 +163,28 @@ export default {
       let location = {
         type: this.competition.location.type
       }
-      let query = ''
-
       if (location.type === 'string') {
         location = {
           type: 'string',
           address: this.competition.location.address
         }
-        query = location.address
       } else if (location.type === 'location') {
         location = {
           ...location,
           ...this.getLocationById(this.competition.location.locationID)
         }
-        query = location.address
       } else {
         // TODO : error handling
       }
-      this.updateMap(query)
       return location
     },
     transferableLocations() {
       return this.locations.filter(location => location.id !== this.location.id)
-    },
-    iconSize() {
-      return [this.staticIconSize, this.staticIconSize * 1.15];
-    },
-    iconAnchor() {
-      return [this.staticIconSize / 2, this.staticIconSize * 1.15];
     }
   },
   methods: {
     ...mapActions(['updateCompetition', 'transferCompetition', 'removeCompetition']),
-    latLng, getLocationThumbnail,
+    getLocationThumbnail,
     resetEdit() {
       this.form = Object.assign({}, this.competition)
       this.editMode = false
@@ -245,12 +205,6 @@ export default {
     remove() {
       this.removeCompetition(this.competition.id)
       this.$router.push({ name: 'competitions' })
-    },
-    async updateMap(query) {
-      provider.search({ query }).then(response => {
-        this.mapInfo = response[0]
-        this.showMap = true
-      })
     }
   }
 }
