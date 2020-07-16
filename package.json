@@ -1,7 +1,7 @@
 {
   "name": "highest",
-  "version": "0.1.0",
-  "description": "🧗‍ An application to keep track of climbing activity",
+  "version": "0.1.2",
+  "description": "🧗‍Your climbing best friend. Highest is an application to keep track of climbing activity",
   "homepage": "https://highest.netlify.app",
   "keywords": [
     "climbing",
@@ -35,7 +35,7 @@
     "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.10.1",
+    "@babel/polyfill": "^7.10.4",
     "@mdi/font": "^5.3.45",
     "core-js": "^3.6.5",
     "flakeid": "^1.0.0",
@@ -52,22 +52,22 @@
     "vue-router": "^3.3.4",
     "vue2-leaflet": "^2.5.2",
     "vue2-leaflet-geosearch": "^1.0.6",
-    "vuetify": "^2.3.1",
-    "vuex": "^3.4.0"
+    "vuetify": "^2.3.4",
+    "vuex": "^3.5.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.4.4",
-    "@vue/cli-plugin-eslint": "^4.4.4",
-    "@vue/cli-plugin-pwa": "^4.4.4",
-    "@vue/cli-plugin-router": "^4.4.4",
-    "@vue/cli-service": "^4.4.4",
+    "@vue/cli-plugin-babel": "^4.4.6",
+    "@vue/cli-plugin-eslint": "^4.4.6",
+    "@vue/cli-plugin-pwa": "^4.4.6",
+    "@vue/cli-plugin-router": "^4.4.6",
+    "@vue/cli-service": "^4.4.6",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.3.0",
+    "eslint": "^7.4.0",
     "eslint-plugin-vue": "^6.2.2",
-    "stylus": "^0.54.7",
+    "stylus": "^0.54.8",
     "stylus-loader": "^3.0.2",
     "vue-cli-plugin-i18n": "^1.0.1",
-    "vue-cli-plugin-vuetify": "^2.0.5",
+    "vue-cli-plugin-vuetify": "^2.0.6",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
