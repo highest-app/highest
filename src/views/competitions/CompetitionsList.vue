@@ -1,9 +1,10 @@
 <template>
   <list-group>
     <v-list :class="{ background, 'py-0': paddingless }">
-      <v-list-item v-if="competitions.length === 0">
-        {{ $t('competitions.noCompetitions') }}
-      </v-list-item>
+      <illustration
+        v-if="!competitions.length"
+        image="/img/illustrations/competitions.svg"
+        label="competitions.noCompetitions"/>
       <template v-for="(competition, i) in parsedCompetitions">
         <v-list-item
           :key="`${competition.id}--list-item`"

@@ -24,9 +24,13 @@
           <v-spacer/>
           <v-btn
             :aria-label="$t('widgets.helps.details', { widget: $t(title) })"
-            icon
+            text
+            color="primary"
             :to="route">
-            <v-icon color="primary">mdi-chevron-right</v-icon>
+            {{ $t('terms.actions.more') }}
+            <v-icon right>
+              mdi-chevron-right
+            </v-icon>
           </v-btn>
         </v-row>
       </v-card-text>

@@ -1,20 +1,20 @@
 <template>
   <v-row
-    style="height: 85vh"
+    :style="style"
     justify="center"
     align="center">
     <v-col
       cols="12"
       sm="8"
-      md="6"
-      lg="6"
-      xl="4"
+      md="5"
+      lg="4"
+      xl="3"
       class="text-center">
       <img
         style="width: 100%"
         :src="image"
         :alt="$t(label)">
-      <span class="headline">{{ $t(label) }}</span>
+      <span class="title">{{ $t(label) }}</span>
     </v-col>
   </v-row>
 </template>
@@ -30,6 +30,15 @@ export default {
     label: {
       type: String,
       default: ''
+    },
+    page: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    style() {
+      return this.page ? 'height: 85vh' : ''
     }
   }
 }
