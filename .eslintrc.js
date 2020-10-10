@@ -8,6 +8,7 @@ module.exports = {
     'no-console': 0,
     'no-debugger': 0,
     'vue/html-indent': 2,
+    'vue/no-mutating-props': 1,
     'vue/require-default-prop': 1,
     'vue/attributes-order': 2,
     'vue/this-in-template': 1,
