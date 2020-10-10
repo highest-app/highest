@@ -91,6 +91,12 @@ const mutations = {
     })
     saveToStorage('routes', state)
   },
+  PURGE_TAG(state, id) {
+    state.forEach(route => {
+      route.tags.splice(route.tags.indexOf(id))
+    })
+    saveToStorage('routes', state)
+  },
   REMOVE_ROUTE(state, id) {
     let indexToRemove = state.findIndex(route => route.id === id)
     state.splice(indexToRemove, 1)
