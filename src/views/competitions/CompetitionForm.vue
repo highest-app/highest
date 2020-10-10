@@ -25,13 +25,25 @@
       </panel>
     </v-slide-x-reverse-transition>
     <page-body>
-      <list-group>
+      <card-group>
         <card top>
-          <template #title>{{ $t('terms.fields.name') }}</template>
           <template #input>
             <v-text-field
               v-model="form.name"
-              :placeholder="$t('competitions.form.namePlaceholder')"
+              :placeholder="$t('terms.fields.name')"
+              hide-details
+              solo
+              flat/>
+          </template>
+        </card>
+        <card :bottom="!withLocation">
+          <template #input>
+            <v-textarea
+              id="notes-textarea"
+              v-model="form.description"
+              :placeholder="$t('terms.fields.description')"
+              rows="1"
+              auto-grow
               hide-details
               solo
               flat/>
@@ -39,6 +51,7 @@
         </card>
         <card
           v-if="withLocation"
+          bottom
           @click="locationSelect = true">
           <template #title>{{ $tc('generic.location') }}</template>
           <template
@@ -52,25 +65,15 @@
             </v-list-item-icon>
           </template>
         </card>
-        <card>
-          <template #title>{{ $t('terms.fields.description') }}</template>
-          <template #input>
-            <v-textarea
-              id="notes-textarea"
-              v-model="form.description"
-              :placeholder="$t('competitions.form.descriptionPlaceholder')"
-              rows="1"
-              auto-grow
-              hide-details
-              solo
-              flat/>
-          </template>
-        </card>
-        <card>
+      </card-group>
+      <card-group>
+        <card
+          icon="mdi-clock-outline"
+          icon-color="blue"
+          top>
           <template #title>
-            <span class="primary--text">
-              {{ dateToText(form.date) }}
-            </span>
+            <span>{{ $t('terms.fields.date') }}</span>
+            <br><span class="font-weight-light primary--text">{{ dateToText(form.goal) }}</span>
           </template>
         </card>
         <card>
@@ -84,7 +87,10 @@
               full-width/>
           </template>
         </card>
-        <card bottom>
+        <card
+          icon="mdi-account-plus-outline"
+          icon-color="green"
+          bottom>
           <template #title>{{ $t('competitions.terms.participation') }}</template>
           <template #action>
             <v-btn-toggle
@@ -105,7 +111,7 @@
             </v-btn-toggle>
           </template>
         </card>
-      </list-group>
+      </card-group>
     </page-body>
   </div>
 </template>

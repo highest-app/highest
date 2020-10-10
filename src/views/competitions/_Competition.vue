@@ -44,7 +44,7 @@
             md="6">
             <competition-form v-model="form"/>
             <div class="mt-4">
-              <list-group>
+              <card-group>
                 <responsive-dialog
                   v-if="transferableLocations.length"
                   v-model="transferDialog">
@@ -89,7 +89,7 @@
                     <span class="error--text">{{ $t('competitions.actions.remove') }}</span>
                   </template>
                 </card>
-              </list-group>
+              </card-group>
             </div>
           </v-col>
         </v-row>

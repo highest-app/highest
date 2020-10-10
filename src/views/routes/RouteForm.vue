@@ -60,20 +60,38 @@
     </v-slide-x-reverse-transition>
     <template>
       <page-body>
-        <list-group>
+        <card-group>
           <card top>
-            <template #title>{{ $t('terms.fields.name') }}</template>
             <template #input>
               <v-text-field
                 v-model="form.name"
-                :placeholder="$t('routes.form.namePlaceholder')"
+                :placeholder="$t('terms.fields.name')"
                 hide-details
                 solo
                 flat/>
             </template>
           </card>
           <card
+            bottom
+            extendable>
+            <template #input>
+              <v-textarea
+                id="notes-textarea"
+                v-model="form.notes"
+                :placeholder="$t('terms.fields.notes')"
+                rows="1"
+                auto-grow
+                hide-details
+                solo
+                flat/>
+            </template>
+          </card>
+        </card-group>
+        <card-group>
+          <card
             v-if="acceptLocation"
+            icon="mdi-map-marker"
+            icon-color="blue"
             @click="locationSelect = true">
             <template #title>{{ $tc('generic.location', 1) }}</template>
             <template
@@ -87,7 +105,10 @@
               </v-list-item-icon>
             </template>
           </card>
-          <card @click="gradeSelect = true">
+          <card
+            icon="mdi-ladder"
+            icon-color="orange"
+            @click="gradeSelect = true">
             <template #title>
               {{ $t('routes.terms.grade') }}
             </template>
@@ -100,11 +121,29 @@
               </v-list-item-icon>
             </template>
           </card>
-          <card @click="tagsSelect = true">
+          <card bottom>
+            <template #title>{{ $t('routes.terms.length') }}</template>
+            <template #input>
+              <v-slider
+                v-model="form.length"
+                class="align-center px-3"
+                :max="300"
+                :min="0"
+                hide-details/>
+              <span class="subtitle-1">{{ routeLength }}</span>
+            </template>
+          </card>
+        </card-group>
+        <card-group>
+          <card
+            icon="mdi-tag-outline"
+            icon-color="green"
+            @click="tagsSelect = true">
             <template #title>
               {{ $tc('generic.tag', 2) }}
             </template>
             <template #action-text>
+              <span v-if="!form.tags.length">{{ $t('terms.quantity.none') }}</span>
               <v-icon
                 v-for="tag in form.tags"
                 :key="tag"
@@ -122,7 +161,9 @@
             v-model="colorDialog"
             dialog-width="300px">
             <template #activator="{ on }">
-              <card v-on="on">
+              <card
+                bottom
+                v-on="on">
                 <template #title>{{ $t('routes.terms.color') }}</template>
                 <template #action-text>
                   <v-icon :color="form.color">
@@ -159,24 +200,19 @@
               </v-row>
             </template>
           </responsive-dialog>
-          <card bottom>
-            <template #title>{{ $t('routes.terms.length') }}</template>
-            <template #input>
-              <v-slider
-                v-model="form.length"
-                class="align-center px-3"
-                :max="300"
-                :min="0"
-                hide-details/>
-              <span class="subtitle-1">{{ routeLength }}</span>
-            </template>
-          </card>
-        </list-group>
-        <list-group>
+        </card-group>
+        <card-group>
           <card
             top
+            icon="mdi-clock-outline"
+            icon-color="red"
             :bottom="!form.enableGoal">
-            <template #title>{{ $t('routes.form.defineGoal') }}</template>
+            <template #title>
+              {{ $t('routes.form.defineGoal') }}
+              <template v-if="form.enableGoal">
+                <br><span class="font-weight-light primary--text">{{ dateToText(form.goal) }}</span>
+              </template>
+            </template>
             <template #action>
               <v-switch
                 v-model="form.enableGoal"
@@ -187,13 +223,6 @@
             </template>
           </card>
           <template v-if="form.enableGoal">
-            <card>
-              <template #title>
-                <span class="primary--text">
-                  {{ dateToText(form.goal) }}
-                </span>
-              </template>
-            </card>
             <card bottom>
               <template #title>
                 <v-date-picker
@@ -205,26 +234,7 @@
               </template>
             </card>
           </template>
-        </list-group>
-        <list-group>
-          <card
-            top
-            bottom
-            extendable>
-            <template #title>{{ $t('terms.fields.notes') }}</template>
-            <template #input>
-              <v-textarea
-                id="notes-textarea"
-                v-model="form.notes"
-                :placeholder="$t('routes.form.notesPlaceholder')"
-                rows="1"
-                auto-grow
-                hide-details
-                solo
-                flat/>
-            </template>
-          </card>
-        </list-group>
+        </card-group>
       </page-body>
     </template>
   </div>
@@ -255,7 +265,6 @@ export default {
       colorDialog: false,
       locationSelect: false,
       gradeSelect: false,
-
       grades
     }
   },

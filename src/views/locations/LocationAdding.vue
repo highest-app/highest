@@ -23,6 +23,7 @@
         <template #bar-right-actions>
           <app-link
             :disable="!valid"
+            bold
             @click="add">
             {{ $t('terms.actions.add') }}
           </app-link>

@@ -65,7 +65,7 @@
             md="6">
             <route-form v-model="routeForm"/>
             <div class="mt-4">
-              <list-group>
+              <card-group>
                 <responsive-dialog
                   v-if="transferableLocations.length"
                   v-model="transferDialog">
@@ -114,7 +114,7 @@
                     <span class="error--text">{{ $t('routes.actions.remove') }}</span>
                   </template>
                 </card>
-              </list-group>
+              </card-group>
             </div>
           </v-col>
         </v-row>

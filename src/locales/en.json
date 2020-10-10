@@ -15,6 +15,9 @@
       "select": "Select",
       "selected": "Selected"
     },
+    "quantity": {
+      "none": "None"
+    },
     "fields": {
       "name": "Name",
       "description": "Description",

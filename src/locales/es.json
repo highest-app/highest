@@ -15,6 +15,9 @@
       "select": "Seleccionar",
       "selected": "Seleccionado"
     },
+    "quantity": {
+      "none": "Ninguno"
+    },
     "colors": {
       "red": "Rojo",
       "orange": "Naranja",
