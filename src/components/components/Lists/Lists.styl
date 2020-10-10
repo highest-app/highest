@@ -1,4 +1,15 @@
-.list__group + .list__group
+.card__group
+  margin: 16px
+  padding: 7px
+  border-radius: 12px
+
+  background-color: var(--v-sheets-base)
+
+  hr
+    margin-left: 5px !important
+    margin-right: -7px
+
+.list_group + .list__group
   margin-top: 16px
 
 .v-list .v-divider
@@ -18,9 +29,9 @@
   color: var(--v-list-description-base)
 
 .card
-  padding-top: 0
-  padding-bottom: 0
+  padding: 0
   border-radius: 0
+  background: none !important
   &.card--top
     border-top: 1px solid hsla(0, 0%, 100%, .12)
   &.card--bottom
@@ -47,6 +58,12 @@
     padding-top: 10px
     padding-bottom: 10px
     min-height: 20px
+
+  .v-list-item
+    padding-left: 6px
+    padding-right: 6px
+    .row .v-input .v-input__control .v-input__slot
+      padding: 0
 
   textarea
     padding-top: 2.2px

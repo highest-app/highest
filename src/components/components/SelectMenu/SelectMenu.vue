@@ -10,10 +10,10 @@
       </template>
     </app-bar>
     <page-body>
-      <v-card
-        tile
-        elevation="0">
-        <v-list flat>
+      <card-group>
+        <v-list
+          class="pa-0"
+          flat>
           <v-list-item-group
             v-model="selected"
             :multiple="multiple"
@@ -23,7 +23,7 @@
               <v-list-item
                 :key="`${choice}--list-item)`"
                 :value="choice"
-                active-class="null">
+                class="pl-2">
                 <template
                   #default="{ active, toggle }"
                   @click="toggle">
@@ -37,8 +37,12 @@
                     </v-list-item-title>
                   </v-list-item-content>
 
-                  <v-list-item-icon v-if="active">
-                    <v-icon color="primary">mdi-check</v-icon>
+                  <v-list-item-icon
+                    v-if="active"
+                    class="my-3">
+                    <v-icon
+
+                      color="primary">mdi-check</v-icon>
                   </v-list-item-icon>
                 </template>
               </v-list-item>
@@ -48,7 +52,7 @@
             </template>
           </v-list-item-group>
         </v-list>
-      </v-card>
+      </card-group>
     </page-body>
   </div>
 </template>

@@ -6,6 +6,8 @@ export default Vue.component('card', {
       disabled: Boolean,
       extendable: Boolean,
       href: String,
+      icon: String,
+      iconColor: String,
       target: String,
       to: String,
       top: Boolean
@@ -21,81 +23,89 @@ export default Vue.component('card', {
        */
       let divider = !this.$slots.description && !this.bottom
       return createElement(
-        'div', [
+        'div',
+        [
           createElement(
-            'v-list', {
-              class: {
-                'card': true,
-                'card--top': this.top,
-                'card--bottom': !this.$slots.description ? this.bottom : true,
-                'card--extendable': this.extendable
-              }
-            },
-            [
-              createElement(
-                'v-list-item', {
-                  on: !this.$listeners.click ? ''
-                    : {
-                    click: (event) => this.$emit('click', event)
-                  },
-                  props: {
-                    disabled: this.disabled,
-                    href: this.href,
-                    link: this.clickable,
-                    target: this.target,
-                    to: this.to
-                  }
+          'v-list', {
+            class: {
+              'card': true,
+              /*'card--top': this.top,
+              'card--bottom': this.$slots.description ? true : this.bottom,*/
+              'card--extendable': this.extendable
+            }
+          },
+          [
+            createElement(
+              'v-list-item', {
+                on: this.$listeners.click && {
+                  click: (event) => this.$emit('click', event)
                 },
-                [
-                  !this.$slots.avatar ? '' :
-                  createElement(
-                    'v-list-item-avatar',
-                    this.$slots.avatar
-                  ),
-                  createElement(
-                    'v-row', {
-                      class: {
-                        'mx-0': true
-                      },
-                      props: {
-                        align: 'center'
-                      }
+                props: {
+                  disabled: this.disabled,
+                  href: this.href,
+                  target: this.target,
+                  to: this.to
+                }
+              },
+              [
+                this.$slots.avatar && createElement(
+                  'v-list-item-avatar',
+                  this.$slots.avatar
+                ),
+                this.icon !== undefined && createElement(
+                  'v-list-item-icon', {
+                    class: [ 'box-icon', this.iconColor ],
+                    style: 'margin-right: 16px'
+                  },
+                  [
+                    createElement(
+                      'v-icon',
+                      {},
+                      this.icon
+                    )
+                  ]
+                ),
+                createElement(
+                  'v-row', {
+                    class: {
+                      'mx-0': true
                     },
-                    [
-                      createElement(
-                        'span', {
-                          class: { 'subtitle-1': true}
+                    props: {
+                      align: 'center'
+                    }
+                  },
+                  [
+                    this.$slots.title && createElement(
+                      'span', {
+                        class: { 'subtitle-1': true}
+                      },
+                      this.$slots.title
+                    ),
+                    this.$slots.input,
+                    this.$slots.action && createElement('v-spacer'),
+                    this.$slots['action-text'] && createElement(
+                      'span', {
+                        class: {
+                          'subtitle-1': true,
+                          'action__text': true
                         },
-                        this.$slots.title
-                      ),
-                      this.$slots.input,
-                      !this.$slots.action ? '' :
-                        createElement('v-spacer'),
-                      !this.$slots['action-text'] ? '' :
-                        createElement(
-                        'span', {
-                          class: {
-                            'subtitle-1': true,
-                            'action__text': true
-                          },
-                        }, this.$slots['action-text']
-                      ),
-                      this.$slots.action
-                    ]
-                  ),
-                ]
-              ),
-              divider ? createElement('v-divider') : ''
-            ]
-          ),
-          this.$slots.description ? createElement(
-            'p', {
-              class: {
-                'card__description': true
-              }
-            },
-            this.$slots.description)
-            : ''
+                      }, this.$slots['action-text']
+                    ),
+                    this.$slots.action
+                  ]
+                ),
+              ]
+            ),
+            divider && createElement('v-divider')
+          ]
+        ),
+        this.$slots.description && createElement(
+          'p', {
+            class: {
+              'card__description': true
+            }
+          },
+          this.$slots.description)
         ]
       )
     }
