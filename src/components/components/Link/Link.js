@@ -2,6 +2,7 @@ import Vue from 'vue'
 
 export default Vue.component('app-link', {
   props: {
+    bold: Boolean,
     disable: Boolean,
     href: String,
     target: String,
@@ -28,6 +29,9 @@ export default Vue.component('app-link', {
         props.attrs['aria-pressed'] = 'false'
         props.on = {
           click: (event) => this.$emit('click', event)
+        }
+        props.class = {
+          'font-weight-bold': this.bold
         }
 
         if (this.tag === 'a') props.to = this.to
