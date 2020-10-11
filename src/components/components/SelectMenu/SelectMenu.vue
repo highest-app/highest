@@ -10,49 +10,37 @@
       </template>
     </app-bar>
     <page-body>
-      <card-group>
-        <v-list
-          class="pa-0"
-          flat>
-          <v-list-item-group
-            v-model="selected"
-            :multiple="multiple"
-            :mandatory="value !== '' && value !== [] && mandatory"
-            @change="select">
-            <template v-for="(choice, i) in choices">
-              <v-list-item
-                :key="`${choice}--list-item)`"
-                :value="choice"
-                class="pl-2">
-                <template
-                  #default="{ active, toggle }"
-                  @click="toggle">
-                  <v-list-item-content>
-                    <v-list-item-title>
-                      <slot
-                        name="label"
-                        v-bind:label="labels ? labels[i] : choice ">
-                        {{ labels ? labels[i] : choice }}
-                      </slot>
-                    </v-list-item-title>
-                  </v-list-item-content>
-
-                  <v-list-item-icon
-                    v-if="active"
-                    class="my-3">
-                    <v-icon
-
-                      color="primary">mdi-check</v-icon>
-                  </v-list-item-icon>
-                </template>
-              </v-list-item>
-              <v-divider
-                v-if="i !== choices.length - 1"
-                :key="`${choice}--divider)`"/>
-            </template>
-          </v-list-item-group>
-        </v-list>
-      </card-group>
+      <component :is="list ? 'list-group' : 'card-group'">
+        <v-item-group
+          v-model="selected"
+          :multiple="multiple"
+          :mandatory="value !== '' && value !== [] && mandatory"
+          @change="select">
+          <v-item
+            v-for="(choice, i) in choices"
+            #default="{ active, toggle }"
+            :key="choice"
+            :value="choice">
+            <card
+              :top="!i"
+              :bottom="i === choices.length - 1"
+              @click="toggle">
+              <template #title>
+                <slot
+                  name="label"
+                  v-bind:label="labels ? labels[i] : choice">
+                  {{ labels ? labels[i] : choice }}
+                </slot>
+              </template>
+              <template
+                v-if="active"
+                #action>
+                <v-icon color="primary">mdi-check</v-icon>
+              </template>
+            </card>
+          </v-item>
+        </v-item-group>
+      </component>
     </page-body>
   </div>
 </template>
@@ -73,6 +61,7 @@ export default {
       required: true
     },
     labels: Array,
+    list: Boolean,
     mandatory: Boolean,
     multiple: Boolean,
     name: String,
