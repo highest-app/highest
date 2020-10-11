@@ -150,7 +150,8 @@
     "help": {
       "description": "Un recurso es una imagen que añades a una ruta, una ubicación... Desde este menú, puedes ver todos recursos que son registrado en Highest, y puedes borrar algunos si quieres.",
       "selectExisting": "...o selecciona una ya en Highest",
-      "upload": "Sube un recurso desde usted aparato..."
+      "uploadNew": "Sube un recurso desde usted aparato...",
+      "upload": "Subir"
     },
     "add": "Añadir un recurso",
     "edit": "Editar los recursos",

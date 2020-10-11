@@ -166,7 +166,8 @@
     "help": {
       "description": "Une ressource est une image que vous ajoutez à une voie, un lieu... Depuis ce menu, vous pouvez voir toutes les ressources enregistrées sur Highest, et pouvez en supprimer certaines si vous le souhaitez.",
       "selectExisting": "...ou choisissez-en une déjà sur Highest",
-      "upload": "Choisissez une image depuis votre appareil"
+      "uploadNew": "Choisissez une image depuis votre appareil...",
+      "upload": "Télécharger"
     },
     "add": "Ajouter une ressource",
     "edit": "Modifier les ressources",

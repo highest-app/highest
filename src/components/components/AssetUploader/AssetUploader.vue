@@ -6,7 +6,7 @@
     <v-slide-x-reverse-transition>
       <panel
         v-if="active"
-        :hook="$parent.$refs.content"
+        :hook="$parent.$refs.main"
         page>
         <app-bar
           :title="$t(title)"
@@ -21,7 +21,7 @@
             <v-col
               cols="12"
               md="6">
-              <strong>{{ $t('assets.help.upload') }}</strong>
+              <strong>{{ $t('assets.help.uploadNew') }}</strong>
               <list-group>
                 <card
                   top
@@ -44,7 +44,7 @@
                   class="gradient--primary"
                   block
                   @click="upload">
-                  Upload
+                  {{ $t('assets.help.upload') }}
                 </v-btn>
               </template>
             </v-col>
