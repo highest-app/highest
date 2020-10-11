@@ -275,7 +275,7 @@ export default {
       return `${this.form.length}m`
     },
     hook() {
-      return this.dialog ? this.$parent.$parent.$parent.$refs.dialog : this.$parent.$refs.content
+      return this.dialog ? this.$parent.$parent.$parent.$refs.dialog : this.$parent.$refs.main
     }
   },
   methods: { getLocationThumbnail },

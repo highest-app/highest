@@ -3,7 +3,7 @@
     <v-slide-x-reverse-transition>
       <panel
         v-if="localeSelect"
-        :hook="$refs.contentComponent.$refs.content"
+        :hook="$refs.contentComponent.$refs.main"
         page>
         <select-menu
           v-model="settings.locale"
@@ -14,7 +14,9 @@
           mandatory
           @back="localeSelect = false">
           <template #label="{ label }">
-            <v-row class="mx-1">
+            <v-row
+              align="center"
+              class="mx-1">
               <img
                 :src="`/img/locales/${label.locale}.png`"
                 :alt="label.name"
@@ -75,6 +77,7 @@
             :labels="themes"
             :choices="themes.map(t => t.value)"
             mandatory
+            list
             solo>
             <template #label="{ label }">
               <v-icon left>

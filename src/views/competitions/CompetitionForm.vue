@@ -144,7 +144,7 @@ export default {
   computed: {
     ...mapState(['locations']),
     hook() {
-      return this.dialog ? this.$parent.$parent.$parent.$refs.dialog : this.$parent.$refs.content
+      return this.dialog ? this.$parent.$parent.$parent.$refs.dialog : this.$parent.$refs.main
     }
   },
   methods: { getLocationThumbnail },
