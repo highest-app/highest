@@ -29,8 +29,8 @@ export default Vue.component('card', {
           'v-list', {
             class: {
               'card': true,
-              /*'card--top': this.top,
-              'card--bottom': this.$slots.description ? true : this.bottom,*/
+              'card--top': this.top,
+              'card--bottom': this.$slots.description ? true : this.bottom,
               'card--extendable': this.extendable
             }
           },
@@ -54,7 +54,7 @@ export default Vue.component('card', {
                 ),
                 this.icon !== undefined && createElement(
                   'v-list-item-icon', {
-                    class: [ 'box-icon', this.iconColor ],
+                    class: ['box-icon', this.iconColor],
                     style: 'margin-right: 16px'
                   },
                   [
@@ -67,9 +67,7 @@ export default Vue.component('card', {
                 ),
                 createElement(
                   'v-row', {
-                    class: {
-                      'mx-0': true
-                    },
+                    class: ['mx-0'],
                     props: {
                       align: 'center'
                     }
@@ -85,10 +83,7 @@ export default Vue.component('card', {
                     this.$slots.action && createElement('v-spacer'),
                     this.$slots['action-text'] && createElement(
                       'span', {
-                        class: {
-                          'subtitle-1': true,
-                          'action__text': true
-                        },
+                        class: ['subtitle-1', 'action__text'],
                       }, this.$slots['action-text']
                     ),
                     this.$slots.action
@@ -101,9 +96,7 @@ export default Vue.component('card', {
         ),
         this.$slots.description && createElement(
           'p', {
-            class: {
-              'card__description': true
-            }
+            class: ['card__description']
           },
           this.$slots.description)
         ]

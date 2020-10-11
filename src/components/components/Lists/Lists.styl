@@ -5,12 +5,25 @@
 
   background-color: var(--v-sheets-base)
 
+  .card .v-list-item
+    padding-left: 6px
+    padding-right: 6px
+
   hr
     margin-left: 5px !important
     margin-right: -7px
 
-.list_group + .list__group
-  margin-top: 16px
+.list__group
+  & + .list__group
+    margin-top: 16px
+
+  .card
+    &.card--top
+      border-top: 1px solid hsla(0, 0%, 100%, .12)
+    &.card--bottom
+      border-bottom: 1px solid hsla(0, 0%, 100%, .12)
+  hr
+    margin-left: 16px !important
 
 .v-list .v-divider
   margin-left: 16px
@@ -32,10 +45,6 @@
   padding: 0
   border-radius: 0
   background: none !important
-  &.card--top
-    border-top: 1px solid hsla(0, 0%, 100%, .12)
-  &.card--bottom
-    border-bottom: 1px solid hsla(0, 0%, 100%, .12)
   &.card--extendable .v-list-item .row
     align-items: start !important
 
@@ -58,12 +67,11 @@
     padding-top: 10px
     padding-bottom: 10px
     min-height: 20px
+    & + .v-input .v-input__control .v-input__slot
+      padding-left: 12px !important
 
-  .v-list-item
-    padding-left: 6px
-    padding-right: 6px
-    .row .v-input .v-input__control .v-input__slot
-      padding: 0
+  .v-list-item .row .v-input .v-input__control .v-input__slot
+    padding: 0
 
   textarea
     padding-top: 2.2px
