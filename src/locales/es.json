@@ -18,15 +18,6 @@
     "quantity": {
       "none": "Ninguno"
     },
-    "colors": {
-      "red": "Rojo",
-      "orange": "Naranja",
-      "yellow": "Amarillo",
-      "green": "Verde",
-      "blue": "Azul",
-      "purple": "Púrpura",
-      "gray": "Gris"
-    },
     "fields": {
       "name": "Nombre",
       "description": "Descripción",
@@ -35,6 +26,15 @@
       "date": "Fecha",
       "picture": "Foto",
       "assets": "Recursos"
+    },
+    "colors": {
+      "red": "Rojo",
+      "orange": "Naranja",
+      "yellow": "Amarillo",
+      "green": "Verde",
+      "blue": "Azul",
+      "purple": "Púrpura",
+      "gray": "Gris"
     },
     "general": "General",
     "actionConfirmation": "¿Estás seguro?"
@@ -53,8 +53,15 @@
     "title": "Inicio"
   },
   "widgets": {
-    "upcomingRoutes": "Objetivos por salir",
-    "upcomingCompetitions": "Competición por salir"
+    "helps": {
+      "details": "Conseguir detalles sobre el widget {widget}"
+    },
+    "upcomingRoutes": {
+      "title": "Objetivos de ruta próximos"
+    },
+    "upcomingCompetitions": {
+      "title": "Competencias próximas"
+    }
   },
   "profile": {
     "user": "Usuario",
@@ -76,6 +83,10 @@
     "title": "Buscar"
   },
   "routes": {
+    "helps": {
+      "markAsFinished": "MMarcar ruta {grade} {name} en {location} como terminada",
+      "view": "Ver detalles de la ruta {grade} {name} en {location}"
+    },
     "terms": {
       "color": "Color",
       "length": "Longitud",
@@ -103,7 +114,8 @@
       "add": "Añadir una ruta",
       "editAssets": "Editar los recursos de la ruta",
       "edit": "Editar la ruta",
-      "addProgress": "Añadir un progresos"
+      "addProgress": "Añadir un progresos",
+      "removeProgression": "Eliminar el progreso: {notes}"
     },
     "title": "Rutas"
   },
@@ -124,9 +136,13 @@
     "title": "Ubicaciones"
   },
   "competitions": {
+    "helps": {
+      "participation": "Establecer mi participación en la competencia {competition}",
+      "view": "Ver detalles de la competencia {competition}"
+    },
     "form": {
-      "descriptionPlaceholder": "Descripción de la competición",
-      "namePlaceholder": "Nombre de la competición"
+      "descriptionPlaceholder": "Descripción de la competencia",
+      "namePlaceholder": "Nombre de la competencia"
     },
     "terms": {
       "participation": "Participación"
@@ -137,14 +153,14 @@
       "notParticipating": "No participar"
     },
     "actions": {
-      "add": "Añadi una competición",
-      "edit": "Editar la competición",
+      "add": "Añadi una competencia",
+      "edit": "Editar la competencia",
       "transfer": "Trasladar a otra ubicación",
-      "remove": "Eliminar la competición",
-      "removeConfirmation": "Si elimina esta competición, perderás las estadísticas guardadas en él. ¡Piénsalo!"
+      "remove": "Eliminar la competencia",
+      "removeConfirmation": "Si elimina esta competencia, perderás las estadísticas guardadas en él. ¡Piénsalo!"
     },
-    "noCompetitions": "Cualquier competición por el momento. ¡Añadamos una!",
-    "title": "Competición"
+    "noCompetitions": "Cualquier competencia por el momento. ¡Añadamos una!",
+    "title": "Competencia"
   },
   "assets": {
     "help": {
@@ -155,6 +171,7 @@
     },
     "add": "Añadir un recurso",
     "edit": "Editar los recursos",
+    "remove": "Eliminar este recurso",
     "manage": "Gestionar los recursos"
   },
   "settings": {
@@ -164,13 +181,15 @@
       "language": {
         "title": "Idioma",
         "description": "Idioma de la aplicación"
-      },
-      "theme": {
-        "darkTheme": "Tema oscuro",
-        "invertColors": "Invertir los colores",
-        "autoDarkTheme": "Tema oscuro automática",
-        "autoDarkThemeDescription": "El tema de Highest se ajustará al del dispositivo. Asegúrate de que tu sistema esté actualizado para aprovechar esta característica."
       }
+    },
+    "theme": {
+      "title": "Tema",
+      "auto": "Automática (Tema del aparato)",
+      "light": "Luz",
+      "dark": "Oscuro",
+      "invertColors": "Invertir los colores",
+      "autoDarkThemeDescription": "El tema de Highest se ajustará al del dispositivo. Asegúrate de que tu sistema esté actualizado para aprovechar esta característica."
     },
     "data": {
       "title": "Datos",

@@ -185,7 +185,7 @@
     },
     "theme": {
       "title": "Theme",
-      "auto": "Automatic",
+      "auto": "Automatic (Device's theme)",
       "light": "Light",
       "dark": "Dark",
       "invertColors": "Invert colors",
