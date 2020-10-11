@@ -134,20 +134,35 @@
           <v-col
             cols="12"
             md="6">
-            <v-carousel
-              v-if="route.photos !== undefined && route.photos.length"
-              :continuous="false"
-              height="auto"
-              hide-delimiters>
-              <v-carousel-item
-                v-for="photo in route.photos"
-                :key="photo">
-                <v-img :src="assets[photo]"/>
-              </v-carousel-item>
-            </v-carousel>
-            <v-img
-              v-else
-              :src="getLocationThumbnail(location)"/>
+            <v-row>
+              <v-col cols="12">
+                <v-carousel
+                  v-if="route.photos !== undefined && route.photos.length"
+                  :continuous="false"
+                  height="auto"
+                  hide-delimiters>
+                  <v-carousel-item
+                    v-for="photo in route.photos"
+                    :key="photo">
+                    <v-img :src="assets[photo]"/>
+                  </v-carousel-item>
+                </v-carousel>
+                <v-img
+                  v-else
+                  :src="getLocationThumbnail(location)"/>
+              </v-col>
+              <v-col
+                style="height: 500px"
+                cols="12">
+                <rich-map v-model="location.address"/>
+              </v-col>
+              <v-col cols="12">
+                <img
+                  :src="qrCode"
+                  alt="QR Code"
+                  style="max-width: 100%">
+              </v-col>
+            </v-row>
           </v-col>
           <v-col
             cols="12"
@@ -233,15 +248,18 @@
 
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
-import { defaultProgressionForm } from '@/utils/forms'
+import QRCode from 'qrcode'
+
 import { getRouteThumbnail, getLocationThumbnail } from '@/utils/assets'
+import { defaultProgressionForm } from '@/utils/forms'
+import { download } from '@/utils/storage'
+
+import RichMap from '@/views/locations/RichMap'
 import RouteForm from '@/views/routes/RouteForm'
-import ResponsiveDialog from '@/components/components/ResponsiveDialog/ResponsiveDialog'
-import AppBar from '@/components/components/AppBar/AppBar'
 
 export default {
   name: 'Route',
-  components: { AppBar, ResponsiveDialog, RouteForm },
+  components: { RichMap, RouteForm },
   data() {
     return {
       editMode: false,
@@ -249,11 +267,16 @@ export default {
       transferDialog: false,
       removeDialog: false,
 
+      qrCode: '',
+
       progressionForm: Object.assign({}, defaultProgressionForm),
       routeForm: {}
     }
   },
   mounted () {
+    QRCode.toDataURL(this.encodedRoute, { width: '1500', color: { dark: '#2F90F0' } })
+      .then(url => this.qrCode = url)
+      .catch(err => console.error(err))
     this.quitEdit()
   },
   computed: {
@@ -281,10 +304,14 @@ export default {
     },
     transferableLocations() {
       return this.locations.filter(location => location.id !== this.route.location)
-    }
+    },
+    encodedRoute() {
+      return `r;${this.route.name};${this.route.notes};${this.route.grade};${this.route.length};${this.location.name};${this.location.address};${this.location.notes}`
+    },
   },
   methods: {
     ...mapActions(['updateRoute', 'transferRoute', 'removeRoute', 'switchFinishedRoute', 'addProgression', 'removeProgression']),
+    download,
     getRouteThumbnail, getLocationThumbnail,
     validateEdit () {
       this.updateRoute(this.routeForm)
@@ -307,7 +334,7 @@ export default {
     remove() {
       this.removeRoute(this.route.id)
       this.$router.back()
-    },
+    }
   }
 }
 </script>
