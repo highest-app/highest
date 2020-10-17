@@ -70,3 +70,7 @@ export default {
   }
 }
 </script>
+
+<style>
+.leaflet-container { z-index: 1; }
+</style>
