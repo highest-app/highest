@@ -156,12 +156,6 @@
                 cols="12">
                 <rich-map v-model="location.address"/>
               </v-col>
-              <v-col cols="12">
-                <img
-                  :src="qrCode"
-                  alt="QR Code"
-                  style="max-width: 100%">
-              </v-col>
             </v-row>
           </v-col>
           <v-col
@@ -238,6 +232,42 @@
                   </v-btn>
                 </v-row>
               </v-col>
+              <v-col cols="12">
+                <card-header>Share</card-header>
+                <card-group>
+                  <responsive-dialog v-model="qrCodeDialog">
+                    <template #activator="{ on }">
+                      <card
+                        icon="mdi-qrcode-plus"
+                        icon-color="blue"
+                        top
+                        bottom
+                        @click="generateQrCode"
+                        v-on="on">
+                        <template #title>Generate QR Code</template>
+                        <template #action>
+                          <v-icon>mdi-chevron-right</v-icon>
+                        </template>
+                      </card>
+                    </template>
+                    <template #dialog>
+                      <app-bar
+                        small-only
+                        fixed>
+                        <template #bar-right-actions>
+                          <app-link @click="qrCodeDialog = false">OK</app-link>
+                        </template>
+                      </app-bar>
+                      <page-body>
+                        <img
+                          :src="qrCode"
+                          alt="QR Code"
+                          style="max-width: 90%">
+                      </page-body>
+                    </template>
+                  </responsive-dialog>
+                </card-group>
+              </v-col>
             </v-row>
           </v-col>
         </v-row>
@@ -248,18 +278,20 @@
 
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
-import QRCode from 'qrcode'
 
 import { getRouteThumbnail, getLocationThumbnail } from '@/utils/assets'
 import { defaultProgressionForm } from '@/utils/forms'
+import { generateQrCode, encodeData } from '@/utils/qrcode'
 import { download } from '@/utils/storage'
 
 import RichMap from '@/views/locations/RichMap'
 import RouteForm from '@/views/routes/RouteForm'
+import ResponsiveDialog from '@/components/components/ResponsiveDialog/ResponsiveDialog'
+import AppBar from '@/components/components/AppBar/AppBar'
 
 export default {
   name: 'Route',
-  components: { RichMap, RouteForm },
+  components: {AppBar, ResponsiveDialog, RichMap, RouteForm },
   data() {
     return {
       editMode: false,
@@ -268,15 +300,13 @@ export default {
       removeDialog: false,
 
       qrCode: '',
+      qrCodeDialog: false,
 
       progressionForm: Object.assign({}, defaultProgressionForm),
       routeForm: {}
     }
   },
   mounted () {
-    QRCode.toDataURL(this.encodedRoute, { width: '1500', color: { dark: '#2F90F0' } })
-      .then(url => this.qrCode = url)
-      .catch(err => console.error(err))
     this.quitEdit()
   },
   computed: {
@@ -305,15 +335,17 @@ export default {
     transferableLocations() {
       return this.locations.filter(location => location.id !== this.route.location)
     },
-    encodedRoute() {
-      return `r;${this.route.name};${this.route.notes};${this.route.grade};${this.route.length};${this.location.name};${this.location.address};${this.location.notes}`
-    },
   },
   methods: {
     ...mapActions(['updateRoute', 'transferRoute', 'removeRoute', 'switchFinishedRoute', 'addProgression', 'removeProgression']),
     download,
     getRouteThumbnail, getLocationThumbnail,
-    validateEdit () {
+    generateQrCode() {
+      if (this.qrCode !== '') return
+      let encodedRoute = encodeData('route', { route: this.route, location: this.location })
+      generateQrCode(encodedRoute).then(url => this.qrCode = url)
+    },
+    validateEdit() {
       this.updateRoute(this.routeForm)
       this.quitEdit()
     },
