@@ -154,7 +154,7 @@
                       <v-icon>mdi-twitter</v-icon>
                     </v-btn>
                     <v-btn
-                      href="https://github.com/exybore"
+                      href="https://github.com/theovidal"
                       target="_blank"
                       icon>
                       <v-icon>mdi-github</v-icon>
