@@ -12,7 +12,7 @@
             fab
             small
             v-on="{ ...dialog, ...tooltip }">
-            <v-icon color="white">mdi-plus</v-icon>
+            <v-icon color="white">mdi-sign-direction-plus</v-icon>
           </v-btn>
         </template>
         <span>{{ $t('routes.actions.add') }}</span>
@@ -38,8 +38,8 @@
         </app-bar>
         <route-form
           v-model="form"
+          :accept-location="location === null"
           dialog
-          accept-location
           @valid="valid = true"
           @unvalid="valid = false"/>
       </div>
@@ -55,7 +55,13 @@ import RouteForm from '@/views/routes/RouteForm'
 export default {
   name: 'RouteAdding',
   components: { RouteForm },
-  data () {
+  props: {
+    location: {
+      type: String,
+      default: null
+    }
+  },
+  data() {
     return {
       form: Object.assign({}, defaultRouteForm),
 
@@ -65,8 +71,9 @@ export default {
   },
   methods: {
     ...mapActions(['addRoute']),
-    async add () {
+    async add() {
       if (!this.form.enableGoal) this.form.goal = false
+      if (this.location !== null) this.form.location = this.location
       let id = await this.addRoute(this.form)
       this.enabled = false
       await this.$router.push({
@@ -77,7 +84,7 @@ export default {
         }
       })
     },
-    resetForm () {
+    resetForm() {
       this.form = Object.assign({}, defaultRouteForm)
       this.enabled = false
     }

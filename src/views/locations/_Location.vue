@@ -114,7 +114,11 @@
             md="6">
             <v-row>
               <v-col cols="12">
-                <h1>{{ location.name }}</h1>
+                <v-row class="mx-0">
+                  <h1>{{ location.name }}</h1>
+                  <v-spacer/>
+                  <route-adding :location="location.id"/>
+                </v-row>
                 <span class="overline list-description--text">
                   <v-icon color="list-description">mdi-map-marker-outline</v-icon>
                   {{ location.address }}
@@ -154,10 +158,11 @@ import { getLocationThumbnail } from '@/utils/assets'
 import RichMap from '@/views/locations/RichMap'
 import LocationForm from '@/views/locations/LocationForm'
 import RoutesList from '@/views/routes/RoutesList'
+import RouteAdding from '@/views/routes/RouteAdding'
 
 export default {
   name: 'Location',
-  components: { RichMap, LocationForm, RoutesList },
+  components: { RouteAdding, RichMap, LocationForm, RoutesList },
   data: () => ({
     form: {},
     editMode: false,

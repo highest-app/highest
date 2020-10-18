@@ -259,7 +259,7 @@ export default {
     acceptLocation: Boolean,
     dialog: Boolean
   },
-  data () {
+  data() {
     return {
       tagsSelect: false,
       colorDialog: false,
@@ -271,7 +271,7 @@ export default {
   computed: {
     ...mapState(['tags', 'locations']),
     ...mapGetters(['getTagById']),
-    routeLength () {
+    routeLength() {
       return `${this.form.length}m`
     },
     hook() {
@@ -281,8 +281,8 @@ export default {
   methods: { getLocationThumbnail },
   watch: {
     form: {
-      handler (value) {
-        if (value.location && value.grade) this.$emit('valid')
+      handler(value) {
+        if ((value.location || !this.acceptLocation) && value.grade) this.$emit('valid')
         else this.$emit('unvalid')
       },
       deep: true
