@@ -51,6 +51,8 @@
         </card>
         <card
           v-if="withLocation"
+          icon="mdi-map-marker"
+          icon-color="blue"
           bottom
           @click="locationSelect = true">
           <template #title>{{ $tc('generic.location') }}</template>
@@ -69,7 +71,7 @@
       <card-group>
         <card
           icon="mdi-clock-outline"
-          icon-color="blue"
+          icon-color="red"
           top>
           <template #title>
             <span>{{ $t('terms.fields.date') }}</span>
@@ -150,7 +152,7 @@ export default {
   methods: { getLocationThumbnail },
   watch: {
     form: {
-      handler (value) {
+      handler(value) {
         if (value.location && value.name) this.$emit('valid')
         else this.$emit('unvalid')
       },
