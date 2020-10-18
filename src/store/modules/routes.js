@@ -2,6 +2,14 @@ import flake from '@/utils/flake'
 import { today } from '@/utils/dates'
 import { loadFromStorage, saveToStorage } from '@/utils/storage'
 
+function compareProgressions(a, b) {
+  let dateA = new Date(a.date)
+  let dateB = new Date(b.date)
+  if (dateA < dateB) return -1
+  else if (dateA > dateB) return 1
+  else return 0
+}
+
 const state = loadFromStorage('routes')
 
 const getters = {
@@ -63,6 +71,7 @@ const mutations = {
       date: data.date,
       notes: data.notes
     })
+    route.progressions.sort(compareProgressions)
   },
   REMOVE_PROGRESSION(state, data) {
     let route = state.find(route => route.id === data.route)

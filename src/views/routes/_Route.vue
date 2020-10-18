@@ -166,6 +166,19 @@
               <v-icon color="list-description">mdi-map-marker-outline</v-icon>
               {{ location.name }} &mdash; {{ location.address }}
             </span>
+            <v-row class="mx-0 mt-1">
+              <v-chip
+                v-for="tag in tags"
+                :key="tag.id"
+                :to="{ name: 'tag', params: { tag: tag.id } }"
+                class="mr-2"
+                outlined>
+                <v-icon
+                  :color="tag.color"
+                  left>mdi-circle</v-icon>
+                {{ tag.name }}
+              </v-chip>
+            </v-row>
             <v-row>
               <v-col cols="12">
                 <card-header>{{ $t('routes.view.information') }}</card-header>
@@ -182,55 +195,91 @@
               </v-col>
               <v-col cols="12">
                 <card-header>{{ $t('routes.view.progressions') }}</card-header>
-                <v-date-picker
-                  v-model="progressionForm.date"
-                  :events="progressionDates"
-                  :max="today"
-                  event-color="secondary"
-                  style="box-shadow: 0;"
-                  color="primary"
-                  no-title
-                  full-width/>
-              </v-col>
-              <v-col cols="12">
-                <card-header>{{ dateToText(progressionForm.date) }}</card-header>
-                <v-row
-                  v-for="progression in selectedProgressions"
-                  :key="progression.id"
-                  class="mx-0">
-                  {{ progression.notes }}
-                  <v-spacer/>
-                  <v-btn
-                    :aria-label="$t('routes.actions.removeProgression', { notes: progression.notes })"
-                    icon
-                    @click="removeProgression({
-                      route: route.id,
-                      progression: progression.id
-                    })">
-                    <v-icon color="red darken-4">mdi-delete-outline</v-icon>
-                  </v-btn>
-                </v-row>
-                <v-row
-                  class="mx-0"
-                  align="center">
-                  <v-text-field
-                    v-model="progressionForm.notes"
-                    :aria-label="$t('routes.form.progressionNotesPlaceholder')"
-                    :placeholder="$t('routes.actions.addProgress')"
-                    rows="1"
-                    auto-grow
-                    hide-details
-                    solo
-                    flat
-                    @keydown.enter="progressionAdd"/>
-                  <v-btn
-                    :aria-label="$t('routes.actions.addProgress')"
-                    :disabled="progressionForm.notes === ''"
-                    icon
-                    @click="progressionAdd">
-                    <v-icon>mdi-plus</v-icon>
-                  </v-btn>
-                </v-row>
+                <v-timeline
+                  align-top
+                  dense>
+                  <v-timeline-item
+                    v-for="progression in route.progressions.slice().reverse()"
+                    :key="progression.notes"
+                    color="secondary"
+                    small>
+                    <v-row>
+                      <v-col class="flex-grow-1 pa-0">
+                        <strong>{{ progression.notes }}</strong>
+                        <div class="caption">{{ dateToText(progression.date) }}</div>
+                      </v-col>
+                      <v-col class="flex-grow-0 py-0">
+                        <v-btn
+                          :aria-label="$t('routes.actions.removeProgression', { notes: progression.notes })"
+                          icon
+                          @click="removeProgression({
+                            route: route.id,
+                            progression: progression.id
+                          })">
+                          <v-icon color="red darken-4">mdi-delete-outline</v-icon>
+                        </v-btn>
+                      </v-col>
+                    </v-row>
+                  </v-timeline-item>
+                </v-timeline>
+                <card-group>
+                  <card
+                    icon="mdi-clock-outline"
+                    icon-color="red"
+                    top
+                    :bottom="!progressionCard">
+                    <template #title>
+                      <span>{{ $t('routes.actions.addProgress') }}</span>
+                      <template v-if="progressionCard">
+                        <br><span class="font-weight-light primary--text">{{ dateToText(progressionForm.date) }}</span>
+                      </template>
+                    </template>
+                    <template #action>
+                      <v-btn
+                        icon
+                        @click="progressionCard = !progressionCard">
+                        <v-icon>
+                          {{ progressionCard ? 'mdi-chevron-up' : 'mdi-chevron-down' }}
+                        </v-icon>
+                      </v-btn>
+                    </template>
+                  </card>
+                  <template v-if="progressionCard">
+                    <card>
+                      <template #title>
+                        <v-date-picker
+                          v-model="progressionForm.date"
+                          :events="progressionDates"
+                          :max="today"
+                          event-color="secondary"
+                          style="box-shadow: 0"
+                          color="primary"
+                          no-title
+                          full-width/>
+                      </template>
+                    </card>
+                    <card bottom>
+                      <template #input>
+                        <v-text-field
+                          v-model="progressionForm.notes"
+                          :placeholder="$t('terms.fields.notes')"
+                          hide-details
+                          solo
+                          flat
+                          @keydown.enter="progressionAdd"/>
+                      </template>
+                      <template #action>
+                        <v-btn
+                          :aria-label="$t('routes.actions.addProgress')"
+                          :disabled="progressionForm.notes === ''"
+                          icon
+                          @click="progressionAdd">
+                          <v-icon>mdi-plus</v-icon>
+                        </v-btn>
+                      </template>
+                    </card>
+                  </template>
+                </card-group>
               </v-col>
               <v-col cols="12">
                 <card-header>Share</card-header>
@@ -291,13 +340,14 @@ import AppBar from '@/components/components/AppBar/AppBar'
 
 export default {
   name: 'Route',
-  components: {AppBar, ResponsiveDialog, RichMap, RouteForm },
+  components: { AppBar, ResponsiveDialog, RichMap, RouteForm },
   data() {
     return {
       editMode: false,
       photoChoose: false,
       transferDialog: false,
       removeDialog: false,
+      progressionCard: false,
 
       qrCode: '',
       qrCodeDialog: false,
@@ -311,7 +361,7 @@ export default {
   },
   computed: {
     ...mapState(['assets', 'locations']),
-    ...mapGetters(['getRoute', 'getLocationById']),
+    ...mapGetters(['getRoute', 'getLocationById', 'getTagById']),
     route() {
       let route = this.getRoute(this.$route.params.location, this.$route.params.route)
       if (route === undefined) {
@@ -322,12 +372,15 @@ export default {
     location() {
       return this.getLocationById(this.route.location)
     },
-    progressionDates() {
-      let dates = []
-      this.route.progressions.forEach((progress) => {
-        dates.push(progress.date)
+    tags() {
+      return this.route.tags.map(tag => {
+        tag = this.getTagById(tag)
+        if (tag.default) tag.name = this.$t(`terms.colors.${tag.color}`)
+        return tag
       })
-      return dates
+    },
+    progressionDates() {
+      return this.route.progressions.map(progress => progress.date)
     },
     selectedProgressions() {
       return this.route.progressions.filter(progress => progress.date === this.progressionForm.date)
@@ -356,12 +409,14 @@ export default {
       this.editMode = false
     },
     progressionAdd() {
-      this.addProgression({
-        id: this.route.id,
-        date: this.progressionForm.date,
-        notes: this.progressionForm.notes
-      })
-      this.progressionForm.notes = ''
+      if (this.progressionForm.notes !== '') {
+        this.addProgression({
+          id: this.route.id,
+          date: this.progressionForm.date,
+          notes: this.progressionForm.notes
+        })
+        this.progressionForm.notes = ''
+      }
     },
     remove() {
       this.removeRoute(this.route.id)
