@@ -2,6 +2,7 @@
   <v-main>
     <app-bar :title="$tc('generic.route', 2)">
       <template #top-bar-actions>
+        <scanner/>
         <route-adding v-if="locations.length"/>
       </template>
     </app-bar>
@@ -36,12 +37,13 @@
 
 <script>
 import { mapState } from 'vuex'
+import Scanner from '@/views/routes/Scanner'
 import RouteCategories from '@/views/routes/RouteCategories'
 import RouteAdding from '@/views/routes/RouteAdding'
 
 export default {
   name: 'Routes',
-  components: { RouteAdding, RouteCategories },
+  components: { Scanner, RouteAdding, RouteCategories },
   data () {
     return {
       locationDialog: false

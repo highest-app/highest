@@ -4,6 +4,7 @@
       v-if="$vuetify.breakpoint.mdAndUp"
       :title="$tc('generic.route', 2)">
       <template #top-bar-actions>
+        <scanner/>
         <route-adding v-if="locations.length > 0"/>
       </template>
     </app-bar>
@@ -32,12 +33,13 @@
 
 <script>
 import { mapState } from 'vuex'
+import Scanner from '@/views/routes/Scanner'
 import RouteAdding from '@/views/routes/RouteAdding'
 import RoutesList from '@/views/routes/RoutesList'
 
 export default {
   name: 'AllRoutes',
-  components: { RouteAdding, RoutesList },
+  components: { Scanner, RouteAdding, RoutesList },
   computed: mapState(['routes', 'locations'])
 }
 </script>
