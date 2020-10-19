@@ -7,9 +7,12 @@
       <v-list
         dense
         nav>
-        <router-link to="/">
+        <router-link
+          class="text-center"
+          style="display: flex; justify-content: center"
+          to="/">
           <v-img
-            width="90%"
+            max-width="90%"
             src="/img/logo-large.png"
             alt="Highest logo"/>
         </router-link>

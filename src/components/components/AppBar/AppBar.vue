@@ -10,7 +10,7 @@
         class="row"
         style="margin: inherit">
         <slot name="title-prepend"/>
-        <h2>{{ title }}</h2>
+        <h2 :class="$slots['title-prepend'] && 'ml-2'">{{ title }}</h2>
       </v-toolbar-title>
       <v-spacer/>
       <div class="top-bar__actions">
