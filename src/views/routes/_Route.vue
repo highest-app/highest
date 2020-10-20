@@ -196,6 +196,7 @@
               <v-col cols="12">
                 <card-header>{{ $t('routes.view.progressions') }}</card-header>
                 <v-timeline
+                  v-if="route.progressions.length"
                   align-top
                   dense>
                   <v-timeline-item
@@ -301,17 +302,25 @@
                     </template>
                     <template #dialog>
                       <app-bar
+                        title="Generated QR Code"
                         small-only
                         fixed>
                         <template #bar-right-actions>
                           <app-link @click="qrCodeDialog = false">OK</app-link>
                         </template>
                       </app-bar>
-                      <page-body>
+                      <page-body style="display: flex; flex-direction: column">
+                        <p>This is the generated QR Code for your route. Every device that has a camera and QR Code scanning capabilities can go on Highest and download the route on the app.</p>
                         <img
                           :src="qrCode"
                           alt="QR Code"
-                          style="max-width: 90%">
+                          style="max-width: 90%; align-self: center">
+                        <div class="px-3 pt-2">
+                          <v-icon left>
+                            mdi-lightbulb-outline
+                          </v-icon>
+                          Tip: you can save the QR Code as an image to print it everywhere you want!
+                        </div>
                       </page-body>
                     </template>
                   </responsive-dialog>
