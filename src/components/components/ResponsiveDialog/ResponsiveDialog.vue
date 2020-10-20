@@ -4,6 +4,8 @@
       <v-dialog
         :value="active"
         :max-width="dialogWidth"
+        :fullscreen="fullscreen"
+        :persistent="persistent"
         class="responsive-dialog__dialog"
         @update:return-value="disable">
         <v-card class="background">
@@ -23,6 +25,8 @@
     <template v-else>
       <v-bottom-sheet
         :value="active"
+        :fullscreen="fullscreen"
+        :persistent="persistent"
         class="responsive-dialog__sheet"
         scrollable
         inset
@@ -58,7 +62,9 @@ export default {
     dialogWidth: {
       type: String,
       default: '50%'
-    }
+    },
+    fullscreen: Boolean,
+    persistent: Boolean
   },
   data () {
     return {
