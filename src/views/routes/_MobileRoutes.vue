@@ -37,13 +37,12 @@
 
 <script>
 import { mapState } from 'vuex'
-import Scanner from '@/views/routes/Scanner'
 import RouteCategories from '@/views/routes/RouteCategories'
 import RouteAdding from '@/views/routes/RouteAdding'
 
 export default {
   name: 'Routes',
-  components: { Scanner, RouteAdding, RouteCategories },
+  components: { RouteAdding, RouteCategories },
   data () {
     return {
       locationDialog: false

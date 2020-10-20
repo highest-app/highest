@@ -36,6 +36,7 @@
             </app-link>
           </template>
         </app-bar>
+        <scanner @scan="scan"/>
         <route-form
           v-model="form"
           :accept-location="location === null"
@@ -51,10 +52,11 @@
 import { mapActions } from 'vuex'
 import { defaultRouteForm } from '@/utils/forms'
 import RouteForm from '@/views/routes/RouteForm'
+import Scanner from '@/views/routes/Scanner'
 
 export default {
   name: 'RouteAdding',
-  components: { RouteForm },
+  components: { Scanner, RouteForm },
   props: {
     location: {
       type: String,
@@ -83,6 +85,13 @@ export default {
           route: id
         }
       })
+    },
+    scan(data) {
+      this.form.name = data.name
+      this.form.notes = data.notes
+      this.form.grade = data.grade
+      this.form.length = data.length
+      this.form.color = data.color
     },
     resetForm() {
       this.form = Object.assign({}, defaultRouteForm)

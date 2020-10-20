@@ -1,7 +1,21 @@
 <template>
-  <responsive-dialog v-model="active">
-    <template #activator="{ on: dialog }">
-      <v-tooltip
+  <responsive-dialog
+    v-model="active"
+    fullscreen
+    persistent>
+    <template #activator="{ on }">
+      <card
+        icon="mdi-qrcode-scan"
+        icon-color="secondary"
+        top
+        bottom
+        v-on="on">
+        <template #title>Scan QR Code</template>
+        <template #action>
+          <v-icon>mdi-chevron-right</v-icon>
+        </template>
+      </card>
+      <!--<v-tooltip
         open-delay="500"
         bottom>
         <template #activator="{ on: tooltip }">
@@ -16,7 +30,7 @@
           </v-btn>
         </template>
         <span>Scan QR Code</span>
-      </v-tooltip>
+      </v-tooltip>-->
     </template>
     <template #dialog>
       <div ref="scannerDialog">
@@ -59,12 +73,15 @@
           </template>
         </app-bar>
         <page-body>
+          <p v-if="error === ''">
+            Make sure you give Highest access to your camera, and clearly focus the QR Code.
+          </p>
           <p
-            v-if="error !== ''"
+            v-else
             class="font-weight-bold error--text">
             {{ error }}
           </p>
-          <card-group v-if="decoded">
+          <!--<card-group v-if="decoded">
             <card
               top
               :bottom="data.type === 'l'">
@@ -112,9 +129,8 @@
                 </template>
               </card>
             </template>
-          </card-group>
+          </card-group>-->
           <qrcode-stream
-            v-else
             @decode="onDecode"
             @init="onInit"/>
         </page-body>
@@ -144,10 +160,6 @@ export default {
       location: '',
     }
   },
-  mounted() {
-    console.log(this)
-    global.a = this
-  },
   computed: {
     ...mapState(['locations']),
     hook() { return this.$el.children[0] },
@@ -158,10 +170,9 @@ export default {
     getLocationThumbnail,
     onDecode (result) {
       try {
-        this.data = decodeData(result)
-        this.decoded = true
-        this.valid = true
-        console.log(this.data)
+        let data = decodeData(result)
+        this.$emit('scan', data)
+        this.reset()
       } catch (e) {
         this.error = e
       }
