@@ -14,6 +14,11 @@ let router = new VueRouter({
       component: () => import(/* webpackChunkName: "general" */ '@/views/home/_Home.vue')
     },
     {
+      path: '/preview/*',
+      name: 'preview',
+      component: () => import(/* webpackChunkName: "preview" */ '@/views/_Preview.vue')
+    },
+    {
       path: '/search',
       name: 'search',
       component: () => import(/* webpackChunkName: "general" */ '@/views/_Search.vue'),
