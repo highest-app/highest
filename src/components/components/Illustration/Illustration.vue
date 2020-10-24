@@ -15,6 +15,7 @@
         :src="image"
         :alt="$t(label)">
       <span class="title">{{ $t(label) }}</span>
+      <slot/>
     </v-col>
   </v-row>
 </template>
