@@ -5,7 +5,8 @@
     route="/routes/all">
     <routes-list
       paddingless
-      :routes="getUpcomingRoutes"/>
+      :routes="getUpcomingRoutes"
+      show-location/>
   </widget>
 </template>
 

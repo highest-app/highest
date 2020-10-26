@@ -53,6 +53,8 @@
     "title": "Home"
   },
   "widgets": {
+    "develop": "Develop widget",
+    "reduce": "Reduce widget",
     "helps": {
       "details": "Get details about widget {widget}"
     },

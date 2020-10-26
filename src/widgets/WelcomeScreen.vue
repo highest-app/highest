@@ -1,11 +1,11 @@
 <template>
   <widget>
-    <div>{{ $t('home.appSubtitle') }}</div>
+    <div class="subtitle-1 list-description--text">{{ $t('home.appSubtitle') }}</div>
     <img
       width="50%"
       src="/img/logo-large.png"
       alt="Highest logo">
-    <div class="text--primary">{{ $t('home.appDescription') }}</div>
+    <div class="text--primary text-body-1">{{ $t('home.appDescription') }}</div>
   </widget>
 </template>
 
