@@ -17,9 +17,9 @@ export default Vue.component('panel', {
       return this.hook ? this.hook.offsetWidth : this.width
     },
     style() {
-      let style = 'top:0;'
+      let style = ''
       if (this.page) {
-        style += `height: ${this.defaultHeight}px;`
+        style += `top: 0; height: ${this.defaultHeight}px;`
         if (this.$vuetify.breakpoint.mdAndUp) {
           // Ignoring the drawer on PC
           style += `left: 256px; width: ${this.defaultWidth - 256}px;`
@@ -29,7 +29,7 @@ export default Vue.component('panel', {
       } else if (this.dialog) {
         style += `width: ${this.defaultWidth}px; height: ${this.defaultHeight}px;`
         if (!this.disableOffset)
-          style += `margin-top: calc((100vh - ${this.defaultHeight}px) / 2);`
+          style += `top: calc((100vh - ${this.defaultHeight}px) / 2);`
       }
       return style
     }
