@@ -75,7 +75,7 @@
           top>
           <template #title>
             <span>{{ $t('terms.fields.date') }}</span>
-            <br><span class="font-weight-light primary--text">{{ dateToText(form.goal) }}</span>
+            <br><span class="font-weight-light primary--text">{{ dateToText(form.date) }}</span>
           </template>
         </card>
         <card>
