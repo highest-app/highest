@@ -93,12 +93,10 @@
                   <v-carousel-item
                     v-for="photo in location.photos"
                     :key="photo">
-                    <v-img
-                      :aspect-ratio="16/9"
-                      :src="assets[photo]"/>
+                    <zoomable-image :src="assets[photo]"/>
                   </v-carousel-item>
                 </v-carousel>
-                <v-img
+                <zoomable-image
                   v-else
                   :src="getLocationThumbnail(location)"/>
               </v-col>

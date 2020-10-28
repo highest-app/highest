@@ -144,10 +144,10 @@
                   <v-carousel-item
                     v-for="photo in route.photos"
                     :key="photo">
-                    <v-img :src="assets[photo]"/>
+                    <zoomable-image :src="assets[photo]"/>
                   </v-carousel-item>
                 </v-carousel>
-                <v-img
+                <zoomable-image
                   v-else
                   :src="getLocationThumbnail(location)"/>
               </v-col>
@@ -344,12 +344,10 @@ import { download } from '@/utils/storage'
 
 import RichMap from '@/views/locations/RichMap'
 import RouteForm from '@/views/routes/RouteForm'
-import ResponsiveDialog from '@/components/components/ResponsiveDialog/ResponsiveDialog'
-import AppBar from '@/components/components/AppBar/AppBar'
 
 export default {
   name: 'Route',
-  components: { AppBar, ResponsiveDialog, RichMap, RouteForm },
+  components: { RichMap, RouteForm },
   data() {
     return {
       editMode: false,
