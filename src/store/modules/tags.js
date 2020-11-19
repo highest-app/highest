@@ -19,10 +19,11 @@ const mutations = {
   },
   UPDATE_TAG(state, data) {
     let tag = state.find(tag => tag.id === data.id)
+    tag.default = false
     tag.name = data.name
     tag.color = data.color
   },
-  DELETE_TAG(state, id) {
+  REMOVE_TAG(state, id) {
     let indexToRemove = state.findIndex(tag => tag.id === id)
     state.splice(indexToRemove, 1)
   },
@@ -38,7 +39,7 @@ const actions = {
     saveToStorage('tags', state)
   },
   updateTag({ commit, state }, entryData) {
-    commit('ADD_TAG', entryData)
+    commit('UPDATE_TAG', entryData)
     saveToStorage('tags', state)
   },
   removeTag({ commit, state }, id) {
@@ -48,6 +49,7 @@ const actions = {
   },
   resetTags({ commit, state }, entryData) {
     commit('RESET_TAGS', entryData)
+    commit('RESET_ROUTE_TAGS')
     saveToStorage('tags', state)
   },
 }

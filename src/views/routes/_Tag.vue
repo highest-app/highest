@@ -32,13 +32,13 @@ import RoutesList from '@/views/routes/RoutesList'
 export default {
   name: 'Tag',
   components: { RoutesList },
-  data () {
+  data() {
     return {
       tag: [],
       routes: []
     }
   },
-  mounted () {
+  mounted() {
     let id = this.$route.params.tag
     this.tag = this.getTagById(id)
     if (this.tag === undefined) this.$router.push('/routes')

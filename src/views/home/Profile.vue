@@ -20,6 +20,7 @@
     </template>
     <template #dialog>
       <assets-managing v-model="assetsManaging"/>
+      <tags-managing v-model="tagsManaging"/>
       <app-bar
         :title="$t('profile.title')"
         small-only
@@ -53,7 +54,15 @@
           <card-header>{{ $t('settings.adjustments') }}</card-header>
           <card
             top
-            @click="assetsManaging = true">
+            @click="tagsManaging = true">
+            <template #title>{{ $tc('generic.tag', 2) }}</template>
+            <template #action>
+              <v-list-item-icon>
+                <v-icon>mdi-chevron-right</v-icon>
+              </v-list-item-icon>
+            </template>
+          </card>
+          <card @click="assetsManaging = true">
             <template #title>{{ $tc('generic.asset', 2) }}</template>
             <template #action>
               <v-list-item-icon>
@@ -79,14 +88,16 @@
 
 <script>
 import AssetsManaging from '@/views/home/AssetsManaging'
+import TagsManaging from '@/views/home/TagsManaging'
 
 export default {
   name: 'Profile',
-  components: { AssetsManaging },
+  components: {TagsManaging, AssetsManaging },
   data() {
     return {
       enabled: false,
-      assetsManaging: false
+      assetsManaging: false,
+      tagsManaging: false
     }
   }
 }

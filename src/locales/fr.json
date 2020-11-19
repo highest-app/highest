@@ -12,6 +12,7 @@
       "edit": "Modifier",
       "ok": "OK",
       "erase": "Effacer",
+      "reset": "Réinitialiser",
       "select": "Sélectionner",
       "selected": "Sélectionné"
     },
@@ -31,6 +32,7 @@
       "name": "Nom",
       "description": "Description",
       "notes": "Notes",
+      "color": "Couleur",
       "address": "Adresse",
       "date": "Date",
       "picture": "Image",
@@ -43,7 +45,7 @@
     "location": "Lieu | Lieux",
     "route": "Voie | Voies",
     "competition": "Compétition | Compétitions",
-    "tag": "Tag | Tags",
+    "tag": "Étiquette | Étiquettes",
     "asset": "Ressource | Ressources",
     "action": "Action | Actions"
   },
@@ -163,6 +165,14 @@
     },
     "noCompetitions": "Aucune compétition pour le moment. Ajoutez-en une !",
     "title": "Compétitions"
+  },
+  "tags": {
+    "manage": "Gérer les étiquettes",
+    "add": "Ajouter une étiquette",
+    "update": "Modifier l'étiquette",
+    "remove": "Supprimer l'étiquette",
+    "reset": "Réinitialiser les étiquettes",
+    "resetConfirmation": "Si vous réinitialisez les étiquettes, toutes vos voies n'en auront plus et vous devrez les réassigner manuellement."
   },
   "assets": {
     "help": {

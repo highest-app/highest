@@ -6,6 +6,7 @@
       "remove": "Remove",
       "delete": "Delete",
       "erase": "Erase",
+      "reset": "Reset",
       "cancel": "Cancel",
       "more": "More",
       "back": "Back",
@@ -22,6 +23,7 @@
       "name": "Name",
       "description": "Description",
       "notes": "Notes",
+      "color": "Color",
       "address": "Address",
       "date": "Date",
       "picture": "Picture",
@@ -163,6 +165,14 @@
     },
     "noCompetitions": "Any competition for the moment. Let's add one !",
     "title": "Competitions"
+  },
+  "tags": {
+    "manage": "Manage tags",
+    "add": "Add a tag",
+    "update": "Update tag",
+    "remove": "Remove tag",
+    "reset": "Reset all tags",
+    "resetConfirmation": "If you reset tags, your routes would not have any of them anymore and you'll have to re-assign them manually."
   },
   "assets": {
     "help": {
