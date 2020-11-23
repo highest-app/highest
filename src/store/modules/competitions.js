@@ -9,7 +9,7 @@ const getters = {
     return state.filter(competition => {
       let date = new Date(today)
       date.setDate(date.getDate() + 31)
-      return new Date(competition.date) < date
+      return new Date(competition.date) < date && date < today
     })
   },
   getCompetitionById: state => id => {
