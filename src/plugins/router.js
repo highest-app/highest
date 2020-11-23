@@ -58,11 +58,6 @@ let router = new VueRouter({
       path: '/competitions/:competition',
       name: 'competition',
       component: () => import(/* webpackChunkName: "competitions" */ '@/views/competitions/_Competition.vue')
-    },
-    {
-      path: '/settings',
-      name: 'settings',
-      component: () => import(/* webpackChunkName: "general" */ '@/views/_Settings.vue')
     }
   ]
 })
