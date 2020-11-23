@@ -3,10 +3,14 @@ import Vue from 'vue'
 export default Vue.component('card', {
     props: {
       bottom: Boolean,
+      chevron: Boolean,
       disabled: Boolean,
       extendable: Boolean,
       href: String,
-      icon: String,
+      icon: {
+        type: String,
+        default: null
+      },
       iconColor: String,
       target: String,
       to: String,
@@ -29,6 +33,7 @@ export default Vue.component('card', {
           'v-list', {
             class: {
               'card': true,
+              'card--icon': this.icon !== null,
               'card--top': this.top,
               'card--bottom': this.$slots.description ? true : this.bottom,
               'card--extendable': this.extendable
@@ -52,9 +57,9 @@ export default Vue.component('card', {
                   'v-list-item-avatar',
                   this.$slots.avatar
                 ),
-                this.icon !== undefined && createElement(
+                this.icon !== null && createElement(
                   'v-list-item-icon', {
-                    class: ['box-icon', this.iconColor],
+                    class: ['box-icon no-color', this.iconColor],
                     style: 'margin-right: 16px'
                   },
                   [
@@ -80,15 +85,22 @@ export default Vue.component('card', {
                       this.$slots.title
                     ),
                     this.$slots.input,
-                    this.$slots.action && createElement('v-spacer'),
+                    (this.$slots.action || this.$slots['action-text'] || this.chevron) && createElement('v-spacer'),
                     this.$slots['action-text'] && createElement(
                       'span', {
                         class: ['subtitle-1', 'action__text'],
                       }, this.$slots['action-text']
                     ),
-                    this.$slots.action
+                    (this.$slots.action || this.chevron) && createElement('v-list-item-action', {
+                        class: 'card__action'
+                      },
+                      [
+                        this.$slots.action,
+                        this.chevron && createElement('v-icon', 'mdi-chevron-right')
+                      ]
+                    )
                   ]
-                ),
+                )
               ]
             ),
             divider && createElement('v-divider')

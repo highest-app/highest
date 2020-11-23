@@ -80,17 +80,13 @@
                     icon="mdi-map-marker"
                     icon-color="blue"
                     bottom
+                    chevron
                     @click="locationSelect = true">
                     <template #title>{{ $tc('generic.location', 1) }}</template>
                     <template
                       v-if="location !== '' && location !== undefined"
                       #action-text>
                       {{ locations.find(l => l.id === location).name }}
-                    </template>
-                    <template #action>
-                      <v-list-item-icon aria-label="Select">
-                        <v-icon>mdi-chevron-right</v-icon>
-                      </v-list-item-icon>
                     </template>
                   </card>
                 </card-group>

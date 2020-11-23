@@ -36,7 +36,10 @@
             </app-link>
           </template>
         </app-bar>
-        <scanner @scan="scan"/>
+        <div/>
+        <card-group>
+          <scanner @scan="scan"/>
+        </card-group>
         <route-form
           v-model="form"
           :accept-location="location === null"

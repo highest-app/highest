@@ -8,28 +8,11 @@
         icon="mdi-qrcode-scan"
         icon-color="gradient--secondary"
         top
+        bottom
+        chevron
         v-on="on">
         <template #title>Scan QR Code</template>
-        <template #action>
-          <v-icon>mdi-chevron-right</v-icon>
-        </template>
       </card>
-      <!--<v-tooltip
-        open-delay="500"
-        bottom>
-        <template #activator="{ on: tooltip }">
-          <v-btn
-            :aria-label="$t('profile.title')"
-            class="gradient--secondary"
-            elevation="0"
-            fab
-            small
-            v-on="{ ...dialog, ...tooltip }">
-            <v-icon color="white">mdi-qrcode-scan</v-icon>
-          </v-btn>
-        </template>
-        <span>Scan QR Code</span>
-      </v-tooltip>-->
     </template>
     <template #dialog>
       <div ref="scannerDialog">

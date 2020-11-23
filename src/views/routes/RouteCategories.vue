@@ -5,7 +5,7 @@
       dense
       :nav="!mobile"
       subheader>
-      <v-subheader>{{ $tc('generic.location', 2).toUpperCase() }}</v-subheader>
+      <v-subheader class="text-uppercase">{{ $tc('generic.location', 2) }}</v-subheader>
       <location-adding/>
       <v-list-item
         v-for="location in locations"
@@ -27,11 +27,12 @@
       </v-list-item>
     </v-list>
     <v-list
+      v-if="tags.length"
       :class="{ background: mobile }"
       dense
       :nav="!mobile"
       subheader>
-      <v-subheader>{{ $tc('generic.tag', 2).toUpperCase() }}</v-subheader>
+      <v-subheader class="text-uppercase">{{ $tc('generic.tag', 2) }}</v-subheader>
 
       <v-divider
         v-if="mobile"
@@ -68,9 +69,10 @@ export default {
   props: {
     mobile: Boolean
   },
-  computed: mapState(['assets', 'tags', 'locations']),
-  methods: {
-    getLocationThumbnail
-  }
+  computed: {
+    ...mapState(['assets', 'locations']),
+    ...mapState({ tags: store => store.tags.data })
+  },
+  methods: { getLocationThumbnail }
 }
 </script>
