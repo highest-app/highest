@@ -30,13 +30,13 @@ const getters = {
 const mutations = {}
 
 const actions = {
-  importData({ store }, data) {
+  /* importData({ store }, data) {
     data = JSON.parse(data)
     store.dispatch('addLocations', data.locations)
     store.dispatch('addRoutes', data.routes)
     store.dispatch('addCompetitions', data.competitions)
     store.dispatch('setSettings', data.settings)
-  }
+  } */
 }
 
 let store = new Vuex.Store({

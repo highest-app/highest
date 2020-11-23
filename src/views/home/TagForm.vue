@@ -15,7 +15,7 @@
           :disabled="form.name === ''"
           icon
           @click="executeAction">
-          <v-icon>{{ add ? 'mdi-plus' : 'mdi-pencil-outline' }}</v-icon>
+          <v-icon>{{ add ? 'mdi-plus' : 'mdi-check' }}</v-icon>
         </v-btn>
       </template>
     </card>
@@ -47,7 +47,10 @@ import { defaultTags } from '@/utils/data'
 export default {
   name: 'TagForm',
   props: {
-    name: String,
+    name: {
+      type: String,
+      default: ''
+    },
     color: String,
     tagId: String,
     add: Boolean,
