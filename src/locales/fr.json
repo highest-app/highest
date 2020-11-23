@@ -70,7 +70,13 @@
   "profile": {
     "user": "Utilisateur",
     "login": "Se connecter",
-    "title": "Profil"
+    "title": "Profil",
+    "customisation": "Personnalisation",
+    "tags": "Étiquettes",
+    "feeds": "Flux",
+    "adjustments": "Réglages",
+    "assets": "Ressources",
+    "settings": "Paramètres"
   },
   "feeds": {
     "actions": {
@@ -168,6 +174,7 @@
   },
   "tags": {
     "manage": "Gérer les étiquettes",
+    "any": "Organisez vos voies avec les étiquettes : simple, discret et efficace.",
     "add": "Ajouter une étiquette",
     "update": "Modifier l'étiquette",
     "remove": "Supprimer l'étiquette",
@@ -184,10 +191,10 @@
     "add": "Ajouter une ressource",
     "edit": "Modifier les ressources",
     "remove": "Supprimer cette ressource",
-    "manage": "Gérer les ressources"
+    "manage": "Gérer les ressources",
+    "any": "Aucune ressource ajoutée. N'hésitez-pas à le faire pour magnifier vos contenus!"
   },
   "settings": {
-    "adjustments": "Réglages",
     "display": {
       "title": "Affichage",
       "language": {

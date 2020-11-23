@@ -11,10 +11,6 @@
           cols="12"
           md="6">
           <v-row>
-            <component
-              :is="widget"
-              v-for="widget in widgets"
-              :key="widget.name"/>
             <v-col cols="12">
               <v-alert
                 type="warning"
@@ -23,6 +19,10 @@
                 text
                 v-html="$t('settings.about.betaNotice')"/>
             </v-col>
+            <component
+              :is="widget"
+              v-for="widget in widgets"
+              :key="widget.name"/>
           </v-row>
         </v-col>
         <v-col

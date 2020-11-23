@@ -70,7 +70,13 @@
   "profile": {
     "user": "User",
     "login": "Log in",
-    "title": "Profile"
+    "title": "Profile",
+    "customisation": "Customisation",
+    "tags": "Tags",
+    "feeds": "Feeds",
+    "adjustments": "Adjustments",
+    "assets": "Assets",
+    "settings": "Settings"
   },
   "feeds": {
     "actions": {
@@ -168,6 +174,7 @@
   },
   "tags": {
     "manage": "Manage tags",
+    "any": "Organize your routes with tags: simple, discrete et efficient.",
     "add": "Add a tag",
     "update": "Update tag",
     "remove": "Remove tag",
@@ -187,7 +194,6 @@
     "manage": "Manage assets"
   },
   "settings": {
-    "adjustments": "Adjustments",
     "display": {
       "title": "Display",
       "language": {

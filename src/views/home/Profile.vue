@@ -1,35 +1,47 @@
 <template>
-  <responsive-dialog v-model="enabled">
-    <template #activator="{ on: dialog }">
-      <v-tooltip
-        open-delay="500"
-        bottom>
-        <template #activator="{ on: tooltip }">
-          <v-btn
-            :aria-label="$t('profile.title')"
-            class="gradient--secondary"
-            elevation="0"
-            fab
-            small
-            v-on="{ ...dialog, ...tooltip }">
-            <v-icon color="white">mdi-account-outline</v-icon>
-          </v-btn>
-        </template>
-        <span>{{ $t('profile.title') }}</span>
-      </v-tooltip>
-    </template>
-    <template #dialog>
-      <assets-managing v-model="assetsManaging"/>
-      <tags-managing v-model="tagsManaging"/>
-      <app-bar
-        :title="$t('profile.title')"
-        small-only
-        fixed>
-        <template #bar-right-actions>
-          <a @click="enabled = false">{{ $t('terms.actions.close') }}</a>
-        </template>
-      </app-bar>
-      <page-body>
+  <div>
+    <responsive-dialog
+      v-model="enabled"
+      dialog-height="80vh">
+      <template #dialog>
+        <app-bar
+          :title="$t(`profile.${active.name}`)"
+          small-only
+          sticky>
+          <template #bar-right-actions>
+            <app-link
+              bold
+              @click="enabled = false">
+              {{ $t('terms.actions.ok') }}
+            </app-link>
+          </template>
+        </app-bar>
+        <component :is="active.component"/>
+      </template>
+    </responsive-dialog>
+    <v-menu>
+      <template #activator="{ on: menu, attrs }">
+        <v-tooltip
+          open-delay="500"
+          bottom>
+          <template #activator="{ on: tooltip }">
+            <v-btn
+              :aria-label="$t('profile.title')"
+              class="gradient--secondary"
+              elevation="0"
+              fab
+              small
+              v-bind="attrs"
+              v-on="{ ...menu, ...tooltip }">
+              <v-icon color="white">mdi-account-outline</v-icon>
+            </v-btn>
+          </template>
+          <span>{{ $t('profile.title') }}</span>
+        </v-tooltip>
+      </template>
+      <v-card
+        class="sheet-background"
+        style="border-radius: 12px">
         <list-group>
           <card
             top
@@ -40,64 +52,88 @@
               </v-avatar>
             </template>
             <template #title>{{ $t('profile.user') }}</template>
-            <!-- To un-comment when accounts will be available
+            <!--To un-comment when accounts will be available
             <template #action-text>{{ $t('profile.login') }}</template>
             <template #action>
               <v-list-item-icon>
                 <v-icon>mdi-chevron-right</v-icon>
               </v-list-item-icon>
-            </template>
-            -->
+            </template>-->
           </card>
         </list-group>
-        <list-group>
-          <card-header>{{ $t('settings.adjustments') }}</card-header>
+        <list-group
+          v-for="(category, categoryIndex) in categories"
+          :key="category.name">
           <card
-            top
-            @click="tagsManaging = true">
-            <template #title>{{ $tc('generic.tag', 2) }}</template>
-            <template #action>
-              <v-list-item-icon>
-                <v-icon>mdi-chevron-right</v-icon>
-              </v-list-item-icon>
-            </template>
-          </card>
-          <card @click="assetsManaging = true">
-            <template #title>{{ $tc('generic.asset', 2) }}</template>
-            <template #action>
-              <v-list-item-icon>
-                <v-icon>mdi-chevron-right</v-icon>
-              </v-list-item-icon>
-            </template>
-          </card>
-          <card
-            to="/settings"
-            bottom>
-            <template #title>{{ $t('settings.title') }}</template>
-            <template #action>
-              <v-list-item-icon>
-                <v-icon>mdi-chevron-right</v-icon>
-              </v-list-item-icon>
-            </template>
+            v-for="(tab, tabIndex) in category.tabs"
+            :key="tab.name"
+            :icon="tab.icon"
+            :top="tabIndex === 0"
+            :bottom="tabIndex === category.tabs.length - 1"
+            chevron
+            @click="activateTab(categoryIndex, tabIndex)">
+            <template #title>{{ $t(`profile.${tab.name}`) }}</template>
           </card>
         </list-group>
-      </page-body>
-    </template>
-  </responsive-dialog>
+      </v-card>
+    </v-menu>
+  </div>
 </template>
 
 <script>
 import AssetsManaging from '@/views/home/AssetsManaging'
 import TagsManaging from '@/views/home/TagsManaging'
+import Settings from '@/views/home/Settings'
 
 export default {
   name: 'Profile',
-  components: {TagsManaging, AssetsManaging },
   data() {
     return {
       enabled: false,
-      assetsManaging: false,
-      tagsManaging: false
+      categories: [
+        {
+          name: 'customisation',
+          tabs: [
+            {
+              name: 'tags',
+              icon: 'mdi-tag-outline',
+              active: false,
+              component: TagsManaging
+            }
+          ]
+        },
+        {
+          name: 'adjustments',
+          tabs: [
+            {
+              name: 'assets',
+              icon: 'mdi-image-outline',
+              active: false,
+              component: AssetsManaging
+            },
+            {
+              name: 'settings',
+              icon: 'mdi-cog-outline',
+              active: false,
+              component: Settings
+            }
+          ]
+        }
+      ],
+      activeCategory: 0,
+      activeTab: 0
+    }
+  },
+  methods: {
+    activateTab(category, tab) {
+      this.activeCategory = category
+      this.activeTab = tab
+      this.enabled = true
+    }
+  },
+  computed: {
+    active() {
+      return this.categories[this.activeCategory].tabs[this.activeTab]
     }
   }
 }
