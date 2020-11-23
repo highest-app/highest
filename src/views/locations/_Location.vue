@@ -37,8 +37,10 @@
       <v-container>
         <v-row>
           <v-col
+            order="2"
+            order-md="1"
             cols="12"
-            md="3">
+            md="4">
             <asset-uploader
               v-model="form.photos"
               :active="photoChoose"
@@ -61,8 +63,10 @@
             </asset-uploader>
           </v-col>
           <v-col
+            order="1"
+            order-md="2"
             cols="12"
-            md="9">
+            md="8">
             <location-form v-model="form"/>
           </v-col>
         </v-row>
@@ -81,6 +85,8 @@
       <v-container>
         <v-row>
           <v-col
+            order="2"
+            order-md="1"
             cols="12"
             md="6">
             <v-row>
@@ -108,6 +114,8 @@
             </v-row>
           </v-col>
           <v-col
+            order="1"
+            order-md="2"
             cols="12"
             md="6">
             <v-row>

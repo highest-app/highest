@@ -37,9 +37,13 @@
       <v-container>
         <v-row>
           <v-col
+            order="2"
+            order-md="1"
             cols="12"
             md="6"/>
           <v-col
+            order="1"
+            order-md="2"
             cols="12"
             md="6">
             <competition-form v-model="form"/>
@@ -110,11 +114,15 @@
         <v-row>
           <v-col
             style="height: 500px"
+            order="2"
+            order-md="1"
             cols="12"
             md="6">
             <rich-map v-model="location.address"/>
           </v-col>
           <v-col
+            order="1"
+            order-md="2"
             cols="12"
             md="6">
             <h1>{{ competition.name }}</h1>

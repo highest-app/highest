@@ -8,24 +8,8 @@
     <v-container>
       <v-row wrap>
         <v-col
-          cols="12"
-          md="6">
-          <v-row>
-            <v-col cols="12">
-              <v-alert
-                type="warning"
-                icon="mdi-alert-outline"
-                outlined
-                text
-                v-html="$t('settings.about.betaNotice')"/>
-            </v-col>
-            <component
-              :is="widget"
-              v-for="widget in widgets"
-              :key="widget.name"/>
-          </v-row>
-        </v-col>
-        <v-col
+          order="2"
+          order-md="1"
           cols="12"
           md="6">
           <v-row>
@@ -88,6 +72,26 @@
                 <feeds-list :items="feedItems"/>
               </template>
             </v-col>
+          </v-row>
+        </v-col>
+        <v-col
+          order="1"
+          order-md="2"
+          cols="12"
+          md="6">
+          <v-row>
+            <v-col cols="12">
+              <v-alert
+                type="warning"
+                icon="mdi-alert-outline"
+                outlined
+                text
+                v-html="$t('settings.about.betaNotice')"/>
+            </v-col>
+            <component
+              :is="widget"
+              v-for="widget in widgets"
+              :key="widget.name"/>
           </v-row>
         </v-col>
       </v-row>

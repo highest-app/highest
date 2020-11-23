@@ -37,8 +37,10 @@
       <v-container>
         <v-row>
           <v-col
+            order="2"
+            order-md="1"
             cols="12"
-            md="6">
+            md="5">
             <asset-uploader
               v-model="routeForm.photos"
               :active="photoChoose"
@@ -61,8 +63,10 @@
             </asset-uploader>
           </v-col>
           <v-col
+            order="1"
+            order-md="2"
             cols="12"
-            md="6">
+            md="7">
             <route-form v-model="routeForm"/>
             <div class="mt-4">
               <card-group>
@@ -132,6 +136,8 @@
       <v-container>
         <v-row>
           <v-col
+            order="2"
+            order-md="1"
             cols="12"
             md="6">
             <v-row>
@@ -159,6 +165,8 @@
             </v-row>
           </v-col>
           <v-col
+            order="1"
+            order-md="2"
             cols="12"
             md="6">
             <h1>{{ route.name }}</h1>
@@ -228,7 +236,8 @@
                     icon="mdi-clock-outline"
                     icon-color="red"
                     top
-                    :bottom="!progressionCard">
+                    :bottom="!progressionCard"
+                    @click="progressionCard = !progressionCard">
                     <template #title>
                       <span>{{ $t('routes.actions.addProgress') }}</span>
                       <template v-if="progressionCard">
@@ -236,13 +245,9 @@
                       </template>
                     </template>
                     <template #action>
-                      <v-btn
-                        icon
-                        @click="progressionCard = !progressionCard">
-                        <v-icon>
-                          {{ progressionCard ? 'mdi-chevron-up' : 'mdi-chevron-down' }}
-                        </v-icon>
-                      </v-btn>
+                      <v-icon color="primary">
+                        mdi-chevron-right <template v-if="progressionCard">mdi-rotate-90</template>
+                      </v-icon>
                     </template>
                   </card>
                   <template v-if="progressionCard">
@@ -292,12 +297,10 @@
                         icon-color="blue"
                         top
                         bottom
+                        chevron
                         @click="generateQrCode"
                         v-on="on">
                         <template #title>Generate QR Code</template>
-                        <template #action>
-                          <v-icon>mdi-chevron-right</v-icon>
-                        </template>
                       </card>
                     </template>
                     <template #dialog>
