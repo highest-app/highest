@@ -47,13 +47,6 @@
       <template #append>
         <v-divider/>
         <v-row class="px-4 py-2">
-          <v-btn
-            style="text-transform: capitalize"
-            to="/settings"
-            text>
-            <v-icon left>mdi-cog-outline</v-icon>
-            {{ $t('settings.title') }}
-          </v-btn>
           <v-spacer/>
           <v-tooltip
             v-if="settings.theme !== 'auto'"
