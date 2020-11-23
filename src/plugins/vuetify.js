@@ -29,15 +29,21 @@ export default new Vuetify({
         ...theme,
         background: '#f2f2f7',
         sheets: '#fff',
+        'sheet-background': '#E1E1E1',
         paragraph: colors.grey.darken2,
-        'list-description': colors.grey.darken2
+        'list-description': colors.grey.darken2,
+        'action-icon': '#c4c4c6',
+        'action-text': '#8a8a8d'
       },
       dark: {
         ...theme,
         background: '#000',
-        sheets: '#1c1c1d',
+        sheets: '#1E1E1E',
+        'sheet-background': '#191A19',
         paragraph: colors.grey.lighten2,
-        'list-description': colors.grey.base
+        'list-description': colors.grey.base,
+        'action-icon': '#5a5a5e',
+        'action-text': '#98989e'
       }
     },
     options: {
