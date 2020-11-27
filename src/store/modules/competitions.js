@@ -30,20 +30,20 @@ const mutations = {
   ADD_COMPETITION(state, { data, id }) {
     state.push({
       id,
-      name: data.name,
-      description: data.description,
+      name: data.name.trim(),
+      description: data.description.trim(),
       location: data.location,
       date: data.date,
       participation: data.participation,
-      website: data.website
+      website: data.website.trim()
     })
   },
   UPDATE_COMPETITION(state, data) {
     let competition = state.find(competition => competition.id === data.id)
-    competition.name = data.name
-    competition.description = data.description
+    competition.name = data.name.trim()
+    competition.description = data.description.trim()
     competition.date = data.date
-    competition.website = data.website
+    competition.website = data.website.trim()
   },
   TRANSFER_COMPETITION(state, data) {
     let competition = state.find(competition => competition.id === data.competition)

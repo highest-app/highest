@@ -46,13 +46,13 @@ const getters = {
 const mutations = {
   ADD_ROUTE(state, { data, id }) {
     state.push({
-      name: data.name,
+      name: data.name.trim(),
       id,
       location: data.location,
       grade: data.grade,
       length: data.length,
       color: data.color,
-      notes: data.notes,
+      notes: data.notes.trim(),
       photos: [],
       tags: data.tags,
       goal: data.goal,
@@ -80,11 +80,11 @@ const mutations = {
   },
   UPDATE_ROUTE(state, data) {
     let route = state.find(route => route.id === data.id)
-    route.name = data.name
+    route.name = data.name.trim()
     route.grade = data.grade
     route.length = data.length
     route.color = data.color
-    route.notes = data.notes
+    route.notes = data.notes.trim()
     route.tags = data.tags
     route.photos = data.photos
 

@@ -24,18 +24,18 @@ const mutations = {
   },
   ADD_LOCATION(state, { data, id }) {
     state.push({
-      name: data.name,
-      address: data.address,
+      name: data.name.trim(),
+      address: data.address.trim(),
       id,
-      notes: data.notes,
+      notes: data.notes.trim(),
       photos: []
     })
   },
   UPDATE_LOCATION(state, data) {
     let location = state.find(location => location.id === data.id)
-    location.name = data.name
-    location.address = data.address
-    location.notes = data.notes
+    location.name = data.name.trim()
+    location.address = data.address.trim()
+    location.notes = data.notes.trim()
     location.photos = data.photos
   },
   PURGE_LOCATIONS_ASSET(state, id) {
