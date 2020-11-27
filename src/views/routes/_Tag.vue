@@ -1,7 +1,7 @@
 <template>
   <v-main>
     <app-bar
-      :title="tag.default ? $t(`terms.colors.${tag.color}`) : tag.name"
+      :title="tagName(tag)"
       :small-only="$vuetify.breakpoint.smAndDown">
       <template #title-prepend>
         <v-icon :color="tag.color">mdi-circle</v-icon>
@@ -28,6 +28,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import RoutesList from '@/views/routes/RoutesList'
+import tagName from '@/utils/tags'
 
 export default {
   name: 'Tag',
@@ -44,6 +45,7 @@ export default {
     if (this.tag === undefined) this.$router.push('/routes')
     this.routes = this.getRoutesByTag(id)
   },
-  computed: mapGetters(['getTagById', 'getRoutesByTag'])
+  computed: mapGetters(['getTagById', 'getRoutesByTag']),
+  methods: { tagName }
 }
 </script>

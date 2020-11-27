@@ -5,9 +5,7 @@
       max-width="290">
       <tag-form
         v-if="editDialog"
-        :name="form.name"
-        :color="form.color"
-        :tagId="form.id"
+        :tag="form"
         edit
         @close="editDialog = false"/>
     </v-dialog>
@@ -84,7 +82,7 @@
           <v-list-item-content>
             <v-list-item-title>
               <v-icon :color="tag.color">mdi-circle</v-icon>&nbsp;
-              {{ tag.default ? $t(`terms.colors.${tag.color}`) : tag.name }}
+              {{ tagName(tag) }}
             </v-list-item-title>
           </v-list-item-content>
           <v-list-item-action>
@@ -142,8 +140,11 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import Draggable from 'vuedraggable'
-import { defaultTags } from '@/utils/data'
+
 import TagForm from '@/views/home/TagForm'
+
+import { defaultTags } from '@/utils/data'
+import tagName from '@/utils/tags'
 
 export default {
   name: 'TagsManaging',
@@ -155,6 +156,7 @@ export default {
       form: {
         name: '',
         color: 0,
+        default: false,
         id: ''
       },
       defaultTags,
@@ -179,10 +181,9 @@ export default {
   },
   methods: {
     ...mapActions(['updateTags', 'removeTag', 'resetTags']),
+    tagName,
     edit(tag) {
-      this.form.name = tag.name
-      this.form.color = tag.color
-      this.form.id = tag.id
+      this.form = tag
       this.editDialog = true
     },
     executeReset() {

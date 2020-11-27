@@ -46,7 +46,7 @@
             <v-icon :color="tag.color">mdi-circle</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>{{ tag.default ? $t(`terms.colors.${tag.color}`) : tag.name }}</v-list-item-title>
+            <v-list-item-title>{{ tagName(tag) }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-divider
@@ -62,6 +62,7 @@
 import { mapState } from 'vuex'
 import LocationAdding from '@/views/locations/LocationAdding'
 import { getLocationThumbnail } from '@/utils/assets'
+import tagName from '@/utils/tags'
 
 export default {
   name: 'RouteCategories',
@@ -73,6 +74,6 @@ export default {
     ...mapState(['assets', 'locations']),
     ...mapState({ tags: store => store.tags.data })
   },
-  methods: { getLocationThumbnail }
+  methods: { getLocationThumbnail, tagName }
 }
 </script>

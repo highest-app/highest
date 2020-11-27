@@ -7,7 +7,8 @@
           :placeholder="$t('terms.fields.name')"
           hide-details
           solo
-          flat/>
+          flat
+          @keydown.enter="executeAction"/>
       </template>
       <template #action>
         <v-btn
@@ -43,16 +44,15 @@
 <script>
 import { mapActions } from 'vuex'
 import { defaultTags } from '@/utils/data'
+import tagName from '@/utils/tags'
 
 export default {
   name: 'TagForm',
   props: {
-    name: {
-      type: String,
-      default: ''
+    tag: {
+      type: Object,
+      default: () => {}
     },
-    color: String,
-    tagId: String,
     add: Boolean,
     edit: Boolean
   },
@@ -66,8 +66,17 @@ export default {
     }
   },
   mounted() {
-    this.form.name = this.name
-    this.form.color = defaultTags.map(tag => tag.color).indexOf(this.color)
+    this.form.name = tagName(this.tag)
+    this.form.color = defaultTags.map(tag => tag.color).indexOf(this.tag.color)
+  },
+  computed: {
+    computedForm() {
+      return {
+        name: this.form.name,
+        color: defaultTags.map(tag => tag.color)[this.form.color],
+        id: this.tag.id
+      }
+    }
   },
   methods: {
     ...mapActions(['addTag', 'updateTag']),
@@ -78,14 +87,5 @@ export default {
       this.$emit('close')
     }
   },
-  computed: {
-    computedForm() {
-      return {
-        name: this.form.name,
-        color: defaultTags.map(tag => tag.color)[this.form.color],
-        id: this.tagId
-      }
-    }
-  }
 }
 </script>

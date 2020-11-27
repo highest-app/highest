@@ -184,7 +184,7 @@
                 <v-icon
                   :color="tag.color"
                   left>mdi-circle</v-icon>
-                {{ tag.name }}
+                {{ tagName(tag) }}
               </v-chip>
             </v-row>
             <v-row>
@@ -344,6 +344,7 @@ import { getRouteThumbnail, getLocationThumbnail } from '@/utils/assets'
 import { defaultProgressionForm } from '@/utils/forms'
 import { generateQrCode, encodeData } from '@/utils/qrcode'
 import { download } from '@/utils/storage'
+import tagName from '@/utils/tags'
 
 import RichMap from '@/views/locations/RichMap'
 import RouteForm from '@/views/routes/RouteForm'
@@ -366,7 +367,7 @@ export default {
       routeForm: {}
     }
   },
-  mounted () {
+  mounted() {
     this.quitEdit()
   },
   computed: {
@@ -403,6 +404,7 @@ export default {
     ...mapActions(['updateRoute', 'transferRoute', 'removeRoute', 'switchFinishedRoute', 'addProgression', 'removeProgression']),
     download,
     getRouteThumbnail, getLocationThumbnail,
+    tagName,
     generateQrCode() {
       if (this.qrCode !== '') return
       let encodedRoute = encodeData('route', { route: this.route, location: this.location })
