@@ -107,6 +107,7 @@ const mutations = {
   },
   RESET_ROUTE_TAGS(state) {
     state.forEach(route => route.tags = [])
+    saveToStorage('routes', state)
   },
   REMOVE_ROUTE(state, id) {
     let indexToRemove = state.findIndex(route => route.id === id)
