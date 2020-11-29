@@ -60,13 +60,13 @@ const competitionIcons = {
 }
 
 const defaultTags = [
-  { id: 'red', name: 'Rouge', color: 'red', default: true },
-  { id: 'orange', name: 'Orange', color: 'orange', default: true },
-  { id: 'yellow', name: 'Jaune', color: 'yellow', default: true },
-  { id: 'green', name: 'Vert', color: 'green', default: true },
-  { id: 'blue', name: 'Bleu', color: 'blue', default: true },
-  { id: 'purple', name: 'Violet', color: 'purple', default: true },
-  { id: 'gray', name: 'Gris', color: 'gray', default: true },
+  { id: 'red', color: 'red' },
+  { id: 'orange', color: 'orange' },
+  { id: 'yellow', color: 'yellow' },
+  { id: 'green', color: 'green' },
+  { id: 'blue', color: 'blue' },
+  { id: 'purple', color: 'purple' },
+  { id: 'gray', color: 'gray' },
 ]
 
 export {

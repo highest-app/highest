@@ -39,7 +39,7 @@
         inset/>
       <template v-for="tag in tags">
         <v-list-item
-          :key="tag.name + '-item'"
+          :key="tag.id + '-item'"
           :to="`/tags/${tag.id}`"
           link>
           <v-list-item-icon>

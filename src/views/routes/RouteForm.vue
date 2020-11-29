@@ -15,7 +15,7 @@
           @back="tagsSelect = false">
           <template #label="{ label }">
             <v-icon :color="label.color">mdi-circle</v-icon>
-            {{ label.default ? $t(`terms.colors.${label.color}`) : label.name }}
+            {{ tagName(label) }}
           </template>
         </select-menu>
       </panel>
@@ -227,8 +227,9 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-import { grades } from '@/utils/data'
 import { getLocationThumbnail } from '@/utils/assets'
+import { grades } from '@/utils/data'
+import tagName from '@/utils/tags'
 
 export default {
   name: 'RouteForm',
@@ -264,7 +265,7 @@ export default {
       return this.dialog ? this.$parent.$parent.$parent.$refs.dialog : this.$parent.$refs.main
     }
   },
-  methods: { getLocationThumbnail },
+  methods: { getLocationThumbnail, tagName },
   watch: {
     form: {
       handler(value) {

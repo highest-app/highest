@@ -4,7 +4,7 @@
       <template #input>
         <v-text-field
           v-model="form.name"
-          :placeholder="$t('terms.fields.name')"
+          :placeholder="tagName(computedForm)"
           hide-details
           solo
           flat
@@ -13,7 +13,6 @@
       <template #action>
         <v-btn
           :aria-label="$t('tags.add')"
-          :disabled="form.name === ''"
           icon
           @click="executeAction">
           <v-icon>{{ add ? 'mdi-plus' : 'mdi-check' }}</v-icon>
@@ -66,20 +65,23 @@ export default {
     }
   },
   mounted() {
-    this.form.name = tagName(this.tag)
-    this.form.color = defaultTags.map(tag => tag.color).indexOf(this.tag.color)
+    if (this.edit) {
+      this.form.name = this.tag.name
+      this.form.color = defaultTags.map(tag => tag.color).indexOf(this.tag.color)
+    }
   },
   computed: {
     computedForm() {
       return {
         name: this.form.name,
         color: defaultTags.map(tag => tag.color)[this.form.color],
-        id: this.tag.id
+        id: this.edit && this.tag.id
       }
     }
   },
   methods: {
     ...mapActions(['addTag', 'updateTag']),
+    tagName,
     executeAction() {
       this.add ? this.addTag(this.computedForm) : this.updateTag(this.computedForm)
       this.form.name = ''

@@ -12,20 +12,19 @@ const getters = {
 
 const mutations = {
   ADD_TAG(state, data) {
-    state.data.push({
+    let tag = {
       id: flake.gen(),
-      name: data.name.trim(),
-      color: data.color,
-      default: false
-    })
+      color: data.color
+    }
+    if (data.name !== '') tag['name'] = data.name.trim()
+    state.data.push(tag)
   },
   UPDATE_TAGS(state, data) {
     state.data = [...data]
   },
   UPDATE_TAG(state, data) {
     let tag = state.data.find(tag => tag.id === data.id)
-    tag.default = false
-    tag.name = data.name.trim()
+    data.name === undefined || data.name === '' ? delete(tag.name) : tag.name = data.name.trim()
     tag.color = data.color
   },
   REMOVE_TAG(state, id) {
