@@ -1,17 +1,31 @@
+$card-group-rounding = 12px
+$card-group-x-padding = 16px
+
 .card__group
   margin: 16px
-  padding: 7px
-  border-radius: 12px
 
-  background-color: var(--v-sheets-base)
+  div:not(.v-item-group)
+    .v-list .v-list-item
+      padding-left: $card-group-x-padding
+      padding-right: $card-group-x-padding
 
-  .card .v-list-item
-    padding-left: 6px
-    padding-right: 6px
+    &:first-child
+      .v-list
+      .v-list ::before
+      .v-list .v-list-item .v-ripple__container
+        border-top-left-radius: $card-group-rounding !important
+        border-top-right-radius: $card-group-rounding !important
+    &:last-child
+      .v-list
+      .v-list ::before
+      .v-list .v-list-item .v-ripple__container
+        border-bottom-left-radius: $card-group-rounding !important
+        border-bottom-right-radius: $card-group-rounding !important
 
-  hr
-    margin-left: 5px !important
-    margin-right: -7px
+  .v-list:not(.card--icon) hr
+    margin-left: $card-group-x-padding !important
+  .v-list.card--icon hr
+    margin-left: 47px !important
 
 .list__group
   & + .list__group
@@ -43,25 +57,16 @@
 
 .card
   padding: 0
-  border-radius: 0
   background: none !important
   &.card--extendable .v-list-item .row
     align-items: start !important
 
-  &.theme--light
-    .v-list-item__icon i
-      color: #c4c4c6
-    .action__text
-    input::placeholder
-    textarea::placeholder
-      color: #8a8a8d
-  &.theme--dark
-    .v-list-item__icon i
-      color: #5a5a5e
-    .action__text
-    input::placeholder
-    textarea::placeholder
-      color: #98989e
+  .v-list-item__action i
+    color: var(--v-action-icon-base)
+  .action__text
+  input::placeholder
+  textarea::placeholder
+    color: var(--v-action-text-base)
 
   .subtitle-1
     padding-top: 10px
