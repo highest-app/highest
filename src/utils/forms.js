@@ -30,6 +30,7 @@ const defaultCompetitionForm = Object.freeze({
   location: '',
   description: '',
   participation: 'notParticipating',
+  website: '',
   date: today,
 })
 

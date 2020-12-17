@@ -36,6 +36,16 @@
               flat/>
           </template>
         </card>
+        <card>
+          <template #input>
+            <v-text-field
+              v-model="form.website"
+              :placeholder="$t('terms.fields.website')"
+              hide-details
+              solo
+              flat/>
+          </template>
+        </card>
         <card :bottom="!withLocation">
           <template #input>
             <v-textarea
