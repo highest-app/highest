@@ -2,7 +2,9 @@ import Vue from 'vue'
 
 export default Vue.component('app-link', {
   props: {
+    block: Boolean,
     bold: Boolean,
+    critical: Boolean,
     disable: Boolean,
     href: String,
     target: String,
@@ -18,21 +20,28 @@ export default Vue.component('app-link', {
         attrs: {
           role: 'button',
           'aria-pressed': false
-        }
+        },
+        class: {
+          'app-link': true,
+          'app-link--block': this.block
+        },
+        directives: [
+          {
+            name: 'ripple',
+            value: this.block
+          }
+        ]
       }
       if (this.disable) {
         props.attrs['aria-disabled'] = true
-        props.class = {
-          'list-description--text': true
-        }
+        props.class['list-description--text'] = true
       } else {
         props.attrs['aria-pressed'] = 'false'
         props.on = {
           click: (event) => this.$emit('click', event)
         }
-        props.class = {
-          'font-weight-bold': this.bold
-        }
+        props.class['error--text'] = this.critical
+        props.class['font-weight-bold'] = this.bold
 
         if (this.tag === 'a') props.to = this.to
         if (this.tag === 'router-link') {
