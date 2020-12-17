@@ -16,6 +16,9 @@ export default Vue.component('panel', {
     defaultWidth() {
       return this.hook ? this.hook.offsetWidth : this.width
     },
+    bottomSheet() {
+      return this.hook.classList.contains('v-bottom-sheet')
+    },
     style() {
       let style = ''
       if (this.page) {
@@ -29,7 +32,7 @@ export default Vue.component('panel', {
       } else if (this.dialog) {
         style += `width: ${this.defaultWidth}px; height: ${this.defaultHeight}px;`
         if (!this.disableOffset)
-          style += `top: calc((100vh - ${this.defaultHeight}px) / 2);`
+          style += `top: calc((100vh - ${this.defaultHeight}px) ${!this.bottomSheet ? '/ 2' : ''});`
       }
       return style
     }
@@ -45,7 +48,9 @@ export default Vue.component('panel', {
         createElement(
           'div', {
             class: {
-              panel: true
+              panel: true,
+              'panel--dialog': this.dialog,
+              'panel--page': this.page
             },
             style: this.style
           },
