@@ -29,29 +29,13 @@
         </select-menu>
       </panel>
     </v-slide-x-reverse-transition>
-    <v-dialog
-      v-model="eraseDialog"
-      max-width="290"
-      persistent>
-      <v-card>
-        <v-card-title class="headline">{{ $t('terms.actionConfirmation') }}</v-card-title>
-        <v-card-text>{{ $t('settings.data.eraseConfirmation') }}</v-card-text>
-        <v-card-actions>
-          <v-btn
-            text
-            @click="eraseDialog = false">
-            {{ $t('terms.actions.cancel') }}
-          </v-btn>
-          <v-spacer/>
-          <v-btn
-            color="error"
-            text
-            @click="eraseData">
-            {{ $t('terms.actions.erase') }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <popup
+      v-model="erasePopup"
+      right-text="terms.actions.erase"
+      critical
+      @right-action="eraseData">
+      <template #description>{{ $t('settings.data.eraseConfirmation') }}</template>
+    </popup>
     <list-group>
       <card-header>{{ $t('settings.display.title') }}</card-header>
       <card
@@ -98,7 +82,7 @@
       <card
         top
         bottom
-        @click="eraseDialog = true">
+        @click="erasePopup = true">
         <template #title>
           <span class="error--text">{{ $t('settings.data.erase') }}</span>
         </template>
@@ -206,7 +190,7 @@ export default {
       ],
 
       localeSelect: false,
-      eraseDialog: false,
+      erasePopup: false,
 
       locales
     }

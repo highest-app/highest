@@ -1,28 +1,12 @@
 <template>
   <v-main>
-    <v-dialog
-      v-model="removeDialog"
-      max-width="290"
-      persistent>
-      <v-card>
-        <v-card-title class="headline">{{ $t('terms.actionConfirmation') }}</v-card-title>
-        <v-card-text>{{ $t('routes.actions.removeConfirmation') }}</v-card-text>
-        <v-card-actions>
-          <v-btn
-            text
-            @click="removeDialog = false">
-            {{ $t('terms.actions.cancel') }}
-          </v-btn>
-          <v-spacer/>
-          <v-btn
-            color="error"
-            text
-            @click="remove">
-            {{ $t('terms.actions.remove') }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <popup
+      v-model="removePopup"
+      right-text="terms.actions.remove"
+      critical
+      @right-action="remove">
+      <template #description>{{ $t('routes.actions.removeConfirmation') }}</template>
+    </popup>
     <template v-if="editMode">
       <app-bar
         :title="$t('routes.actions.edit')"
@@ -113,7 +97,7 @@
                 <card
                   :top="!transferableLocations.length"
                   bottom
-                  @click="removeDialog = true">
+                  @click="removePopup = true">
                   <template #title>
                     <span class="error--text">{{ $t('routes.actions.remove') }}</span>
                   </template>
@@ -250,45 +234,47 @@
                       </v-icon>
                     </template>
                   </card>
-                  <template v-if="progressionCard">
-                    <card>
-                      <template #title>
-                        <v-date-picker
-                          v-model="progressionForm.date"
-                          :events="progressionDates"
-                          :max="today"
-                          event-color="secondary"
-                          style="box-shadow: 0"
-                          color="primary"
-                          no-title
-                          full-width/>
-                      </template>
-                    </card>
-                    <card bottom>
-                      <template #input>
-                        <v-text-field
-                          v-model="progressionForm.notes"
-                          :placeholder="$t('terms.fields.notes')"
-                          hide-details
-                          solo
-                          flat
-                          @keydown.enter="progressionAdd"/>
-                      </template>
-                      <template #action>
-                        <v-btn
-                          :aria-label="$t('routes.actions.addProgress')"
-                          :disabled="progressionForm.notes === ''"
-                          icon
-                          @click="progressionAdd">
-                          <v-icon>mdi-plus</v-icon>
-                        </v-btn>
-                      </template>
-                    </card>
-                  </template>
+                  <v-slide-y-transition>
+                    <template v-if="progressionCard">
+                      <card>
+                        <template #title>
+                          <v-date-picker
+                            v-model="progressionForm.date"
+                            :events="progressionDates"
+                            :max="today"
+                            event-color="secondary"
+                            style="box-shadow: 0"
+                            color="primary"
+                            no-title
+                            full-width/>
+                        </template>
+                      </card>
+                      <card bottom>
+                        <template #input>
+                          <v-text-field
+                            v-model="progressionForm.notes"
+                            :placeholder="$t('terms.fields.notes')"
+                            hide-details
+                            solo
+                            flat
+                            @keydown.enter="progressionAdd"/>
+                        </template>
+                        <template #action>
+                          <v-btn
+                            :aria-label="$t('routes.actions.addProgress')"
+                            :disabled="progressionForm.notes === ''"
+                            icon
+                            @click="progressionAdd">
+                            <v-icon>mdi-plus</v-icon>
+                          </v-btn>
+                        </template>
+                      </card>
+                    </template>
+                  </v-slide-y-transition>
                 </card-group>
               </v-col>
               <v-col cols="12">
-                <card-header>Share</card-header>
+                <card-header>{{ $t('terms.actions.share') }}</card-header>
                 <card-group>
                   <responsive-dialog v-model="qrCodeDialog">
                     <template #activator="{ on }">
@@ -300,12 +286,12 @@
                         chevron
                         @click="generateQrCode"
                         v-on="on">
-                        <template #title>Generate QR Code</template>
+                        <template #title>{{ $t('qr.generate.title') }}</template>
                       </card>
                     </template>
                     <template #dialog>
                       <app-bar
-                        title="Generated QR Code"
+                        :title="$t('qr.generate.generated')"
                         small-only
                         fixed>
                         <template #bar-right-actions>
@@ -313,7 +299,7 @@
                         </template>
                       </app-bar>
                       <page-body style="display: flex; flex-direction: column">
-                        <p>This is the generated QR Code for your route. Every device that has a camera and QR Code scanning capabilities can go on Highest and download the route on the app.</p>
+                        <p>{{ $t('qr.generate.advice') }}</p>
                         <img
                           :src="qrCode"
                           alt="QR Code"
@@ -322,7 +308,7 @@
                           <v-icon left>
                             mdi-lightbulb-outline
                           </v-icon>
-                          Tip: you can save the QR Code as an image to print it everywhere you want!
+                          {{ $t('qr.generate.tip') }}
                         </div>
                       </page-body>
                     </template>
@@ -357,7 +343,7 @@ export default {
       editMode: false,
       photoChoose: false,
       transferDialog: false,
-      removeDialog: false,
+      removePopup: false,
       progressionCard: false,
 
       qrCode: '',

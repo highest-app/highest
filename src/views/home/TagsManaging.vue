@@ -9,29 +9,13 @@
         edit
         @close="editDialog = false"/>
     </v-dialog>
-    <v-dialog
-      v-model="resetDialog"
-      max-width="290"
-      persistent>
-      <v-card>
-        <v-card-title class="headline">{{ $t('terms.actionConfirmation') }}</v-card-title>
-        <v-card-text>{{ $t('tags.resetConfirmation') }}</v-card-text>
-        <v-card-actions>
-          <v-btn
-            text
-            @click="resetDialog = false">
-            {{ $t('terms.actions.cancel') }}
-          </v-btn>
-          <v-spacer/>
-          <v-btn
-            color="error"
-            text
-            @click="executeReset">
-            {{ $t('terms.actions.reset') }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <popup
+      v-model="resetPopup"
+      right-text="terms.actions.reset"
+      critical
+      @right-action="executeReset">
+      <template #description>{{ $t('tags.resetConfirmation') }}</template>
+    </popup>
     <card-group>
       <card
         :bottom="!addingCard"
@@ -48,11 +32,13 @@
           </v-icon>
         </template>
       </card>
-      <template v-if="addingCard">
-        <tag-form
-          add
-          @close="addingCard = false"/>
-      </template>
+      <v-slide-y-transition>
+        <template v-if="addingCard">
+          <tag-form
+            add
+            @close="addingCard = false"/>
+        </template>
+      </v-slide-y-transition>
     </card-group>
     <draggable
       v-if="tags.length"
@@ -128,7 +114,7 @@
       <card
         top
         bottom
-        @click="resetDialog = true">
+        @click="resetPopup = true">
         <template #title>
           <span class="error--text">{{ $t('tags.reset') }}</span>
         </template>
@@ -163,7 +149,7 @@ export default {
 
       dragging: false,
       editDialog: false,
-      resetDialog: false
+      resetPopup: false
     }
   },
   computed: {
@@ -188,7 +174,7 @@ export default {
     },
     executeReset() {
       this.resetTags()
-      this.resetDialog = false
+      this.resetPopup = false
     }
   }
 }

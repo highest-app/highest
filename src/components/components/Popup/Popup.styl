@@ -1,0 +1,25 @@
+$popup-rounding = 12px
+
+.popup
+  &.theme--light .v-card__actions
+    border-top: 1px solid rgba(0, 0, 0, .12)
+  &.theme--dark .v-card__actions
+    border-top: 1px solid hsla(0, 0%, 100%, .12)
+
+  border-radius: $card-group-rounding
+
+  .v-card__actions
+    flex-direction: row !important
+    justify-content: space-around !important
+
+    padding: 0 !important
+    height: 42px
+
+    .app-link
+      width: calc(50% - 0.5px) !important
+      height: 100%
+
+      &:first-child
+        border-bottom-left-radius: $popup-rounding
+      &:last-child
+        border-bottom-right-radius: $popup-rounding

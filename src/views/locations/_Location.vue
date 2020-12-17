@@ -1,28 +1,12 @@
 <template>
   <v-main v-if="location !== undefined">
-    <v-dialog
-      v-model="removeDialog"
-      max-width="290"
-      persistent>
-      <v-card>
-        <v-card-title class="headline">{{ $t('terms.actionConfirmation') }}</v-card-title>
-        <v-card-text>{{ $t('locations.actions.removeConfirmation') }}</v-card-text>
-        <v-card-actions>
-          <v-btn
-            text
-            @click="removeDialog = false">
-            {{ $t('terms.actions.cancel') }}
-          </v-btn>
-          <v-spacer/>
-          <v-btn
-            color="error"
-            text
-            @click="remove">
-            {{ $t('terms.actions.remove') }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <popup
+      v-model="removePopup"
+      right-text="terms.actions.remove"
+      critical
+      @right-action="remove">
+      <template #description>{{ $t('locations.actions.removeConfirmation') }}</template>
+    </popup>
     <template v-if="editMode">
       <app-bar
         :title="$t('locations.actions.edit')"
@@ -140,7 +124,7 @@
                 <v-btn
                   class="gradient--error white--text"
                   depressed
-                  @click="removeDialog = true">
+                  @click="removePopup = true">
                   <v-icon left>mdi-delete-outline</v-icon>
                   {{ $t('terms.actions.remove') }}
                 </v-btn>
@@ -173,7 +157,7 @@ export default {
     form: {},
     editMode: false,
     photoChoose: false,
-    removeDialog: false
+    removePopup: false
   }),
   mounted () {
     this.quitEdit()

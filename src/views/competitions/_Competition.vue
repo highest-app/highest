@@ -1,28 +1,12 @@
 <template>
   <v-main>
-    <v-dialog
-      v-model="removeDialog"
-      max-width="290"
-      persistent>
-      <v-card>
-        <v-card-title class="headline">{{ $t('terms.actionConfirmation') }}</v-card-title>
-        <v-card-text>{{ $t('competitions.actions.removeConfirmation') }}</v-card-text>
-        <v-card-actions>
-          <v-btn
-            text
-            @click="removeDialog = false">
-            {{ $t('terms.actions.cancel') }}
-          </v-btn>
-          <v-spacer/>
-          <v-btn
-            color="error"
-            text
-            @click="remove">
-            {{ $t('terms.actions.remove') }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <popup
+      v-model="removePopup"
+      right-text="terms.actions.remove"
+      critical
+      @right-action="remove">
+      <template #description>{{ $t('competitions.actions.removeConfirmation') }}</template>
+    </popup>
     <template v-if="editMode">
       <app-bar
         :title="$t('competitions.actions.edit')"
@@ -88,7 +72,7 @@
                 <card
                   :top="!transferableLocations.length"
                   bottom
-                  @click="removeDialog = true">
+                  @click="removePopup = true">
                   <template #title>
                     <span class="error--text">{{ $t('competitions.actions.remove') }}</span>
                   </template>
@@ -155,7 +139,7 @@ export default {
 
       editMode: false,
       transferDialog: false,
-      removeDialog: false,
+      removePopup: false,
     }
   },
   mounted() {
