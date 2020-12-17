@@ -75,7 +75,7 @@ const defaults = {
     theme: 'auto',
     locale: 'en'
   },
-  tags: defaultTags
+  tags: defaultTags.slice()
 }
 
 function loadFromStorage(category) {

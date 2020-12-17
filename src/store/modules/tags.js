@@ -33,7 +33,7 @@ const mutations = {
   },
   RESET_TAGS(state) {
     // eslint-disable-next-line no-unused-vars
-    state.data = defaultTags
+    state.data = defaultTags.slice()
   }
 }
 
