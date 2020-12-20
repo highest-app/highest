@@ -5,26 +5,26 @@ $card-group-x-padding = 16px
   margin: 16px
 
   div:not(.v-item-group)
-    .v-list .v-list-item
+    .card .v-list-item
       padding-left: $card-group-x-padding
       padding-right: $card-group-x-padding
 
     &:first-child
-      .v-list
-      .v-list ::before
-      .v-list .v-list-item .v-ripple__container
+      .card:not(.card--sharp)
+      .card:not(.card--sharp) ::before
+      .card:not(.card--sharp) .v-list-item .v-ripple__container
         border-top-left-radius: $card-group-rounding !important
         border-top-right-radius: $card-group-rounding !important
     &:last-child
-      .v-list
-      .v-list ::before
-      .v-list .v-list-item .v-ripple__container
+      .card:not(.card--sharp)
+      .card:not(.card--sharp) ::before
+      .card:not(.card--sharp) .v-list-item .v-ripple__container
         border-bottom-left-radius: $card-group-rounding !important
         border-bottom-right-radius: $card-group-rounding !important
 
-  .v-list:not(.card--icon) hr
+  .card:not(.card--icon) hr
     margin-left: $card-group-x-padding !important
-  .v-list.card--icon hr
+  .card.card--icon hr
     margin-left: 47px !important
 
 .list__group

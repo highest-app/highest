@@ -1,6 +1,10 @@
 <template>
-  <div>
-    <card :top="edit">
+  <component
+    :is="edit ? 'card-group' : 'div'"
+    style="margin: 0 !important">
+    <card
+      :sharp="!edit"
+      :top="edit">
       <template #input>
         <v-text-field
           v-model="form.name"
@@ -14,6 +18,7 @@
         <v-btn
           :aria-label="$t('tags.add')"
           icon
+          color="primary"
           @click="executeAction">
           <v-icon>{{ add ? 'mdi-plus' : 'mdi-check' }}</v-icon>
         </v-btn>
@@ -37,7 +42,7 @@
         </v-item-group>
       </template>
     </card>
-  </div>
+  </component>
 </template>
 
 <script>

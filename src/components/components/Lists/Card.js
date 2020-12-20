@@ -12,6 +12,7 @@ export default Vue.component('card', {
       default: null
     },
     iconColor: String,
+    sharp: Boolean,
     target: String,
     to: String,
     top: Boolean
@@ -33,10 +34,11 @@ export default Vue.component('card', {
         'v-list', {
           class: {
             'card': true,
+            'card--bottom': this.$slots.description ? true : this.bottom,
+            'card--extendable': this.extendable,
             'card--icon': this.icon !== null,
             'card--top': this.top,
-            'card--bottom': this.$slots.description ? true : this.bottom,
-            'card--extendable': this.extendable
+            'card--sharp': this.sharp
           }
         },
         [
