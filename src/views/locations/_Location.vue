@@ -75,17 +75,34 @@
             md="6">
             <v-row>
               <v-col cols="12">
-                <v-carousel
-                  v-if="location.photos.length"
-                  :continuous="false"
-                  height="auto"
-                  hide-delimiters>
-                  <v-carousel-item
-                    v-for="photo in location.photos"
-                    :key="photo">
-                    <zoomable-image :src="assets[photo]"/>
-                  </v-carousel-item>
-                </v-carousel>
+                <template v-if="location.photos !== undefined && location.photos.length">
+                  <v-window
+                    v-model="imageIndex"
+                    height="auto">
+                    <v-window-item
+                      v-for="photo in location.photos"
+                      :key="photo">
+                      <zoomable-image :src="assets[photo]">
+                        <v-row
+                          align="center"
+                          class="ma-0"
+                          style="min-height: 100%">
+                          <v-btn
+                            icon
+                            @click="previousImage">
+                            <v-icon large>mdi-chevron-left</v-icon>
+                          </v-btn>
+                          <v-spacer/>
+                          <v-btn
+                            icon
+                            @click="nextImage">
+                            <v-icon large>mdi-chevron-right</v-icon>
+                          </v-btn>
+                        </v-row>
+                      </zoomable-image>
+                    </v-window-item>
+                  </v-window>
+                </template>
                 <zoomable-image
                   v-else
                   :src="getLocationThumbnail(location)"/>
@@ -155,9 +172,12 @@ export default {
   components: { RouteAdding, RichMap, LocationForm, RoutesList },
   data: () => ({
     form: {},
+
     editMode: false,
     photoChoose: false,
-    removePopup: false
+    removePopup: false,
+
+    imageIndex: 0
   }),
   mounted () {
     this.quitEdit()
@@ -181,6 +201,14 @@ export default {
   methods: {
     ...mapActions(['updateLocation', 'removeLocation']),
     getLocationThumbnail,
+    nextImage() {
+      this.imageIndex += 1
+      if (this.imageIndex === this.route.photos.length) this.imageIndex = 0
+    },
+    previousImage() {
+      this.imageIndex -= 1
+      if (this.imageIndex === -1) this.imageIndex = this.route.photos.length - 1
+    },
     validateEdit() {
       this.updateLocation(this.form)
       this.quitEdit()

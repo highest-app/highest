@@ -126,17 +126,34 @@
             md="6">
             <v-row>
               <v-col cols="12">
-                <v-carousel
-                  v-if="route.photos !== undefined && route.photos.length"
-                  :continuous="false"
-                  height="auto"
-                  hide-delimiters>
-                  <v-carousel-item
-                    v-for="photo in route.photos"
-                    :key="photo">
-                    <zoomable-image :src="assets[photo]"/>
-                  </v-carousel-item>
-                </v-carousel>
+                <template v-if="route.photos !== undefined && route.photos.length">
+                  <v-window
+                    v-model="imageIndex"
+                    height="auto">
+                    <v-window-item
+                      v-for="photo in route.photos"
+                      :key="photo">
+                      <zoomable-image :src="assets[photo]">
+                        <v-row
+                          align="center"
+                          class="ma-0"
+                          style="min-height: 100%">
+                          <v-btn
+                            icon
+                            @click="previousImage">
+                            <v-icon large>mdi-chevron-left</v-icon>
+                          </v-btn>
+                          <v-spacer/>
+                          <v-btn
+                            icon
+                            @click="nextImage">
+                            <v-icon large>mdi-chevron-right</v-icon>
+                          </v-btn>
+                        </v-row>
+                      </zoomable-image>
+                    </v-window-item>
+                  </v-window>
+                </template>
                 <zoomable-image
                   v-else
                   :src="getLocationThumbnail(location)"/>
@@ -202,15 +219,23 @@
                         <div class="caption">{{ dateToText(progression.date) }}</div>
                       </v-col>
                       <v-col class="flex-grow-0 py-0">
-                        <v-btn
-                          :aria-label="$t('routes.actions.removeProgression', { notes: progression.notes })"
-                          icon
-                          @click="removeProgression({
-                            route: route.id,
-                            progression: progression.id
-                          })">
-                          <v-icon color="red darken-4">mdi-delete-outline</v-icon>
-                        </v-btn>
+                        <v-tooltip
+                          bottom
+                          open-delay="500">
+                          <template #activator="{ on }">
+                            <v-btn
+                              :aria-label="$t('routes.actions.removeProgression')"
+                              icon
+                              v-on="on"
+                              @click="removeProgression({
+                                route: route.id,
+                                progression: progression.id
+                              })">
+                              <v-icon color="red darken-4">mdi-delete-outline</v-icon>
+                            </v-btn>
+                          </template>
+                          <span>{{ $t('routes.actions.removeProgression') }}</span>
+                        </v-tooltip>
                       </v-col>
                     </v-row>
                   </v-timeline-item>
@@ -346,6 +371,8 @@ export default {
       removePopup: false,
       progressionCard: false,
 
+      imageIndex: 0,
+
       qrCode: '',
       qrCodeDialog: false,
 
@@ -391,6 +418,14 @@ export default {
     download,
     getRouteThumbnail, getLocationThumbnail,
     tagName,
+    nextImage() {
+      this.imageIndex += 1
+      if (this.imageIndex === this.route.photos.length) this.imageIndex = 0
+    },
+    previousImage() {
+      this.imageIndex -= 1
+      if (this.imageIndex === -1) this.imageIndex = this.route.photos.length - 1
+    },
     generateQrCode() {
       if (this.qrCode !== '') return
       let encodedRoute = encodeData('route', { route: this.route, location: this.location })
