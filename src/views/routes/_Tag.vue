@@ -7,11 +7,11 @@
         <v-icon :color="tag.color">mdi-circle</v-icon>
       </template>
       <template #bar-left-actions>
-        <a
+        <app-link
           class="hidden-md-and-up"
           @click="$router.back()">
           {{ $t('terms.actions.back') }}
-        </a>
+        </app-link>
       </template>
     </app-bar>
     <page-body>

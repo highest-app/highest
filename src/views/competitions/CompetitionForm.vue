@@ -61,6 +61,7 @@
         </card>
         <card
           v-if="withLocation"
+          :aria-label="$t('terms.aria.selectMenuUnique', { name: $tc('generic.location', 1) })"
           icon="mdi-map-marker"
           icon-color="blue"
           bottom

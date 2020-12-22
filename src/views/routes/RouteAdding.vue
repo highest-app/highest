@@ -25,7 +25,7 @@
           small-only
           fixed>
           <template #bar-left-actions>
-            <a @click="resetForm">{{ $t('terms.actions.cancel') }}</a>
+            <app-link @click="resetForm">{{ $t('terms.actions.cancel') }}</app-link>
           </template>
           <template #bar-right-actions>
             <app-link

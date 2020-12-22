@@ -18,6 +18,7 @@
     </popup>
     <card-group>
       <card
+        aria-haspopup="true"
         :bottom="!addingCard"
         icon="mdi-tag-plus-outline"
         icon-color="primary"
@@ -78,6 +79,7 @@
                 bottom>
                 <template #activator="{ on }">
                   <v-btn
+                    :aria-label="$t('tags.ariaUpdate', { tag: tagName(tag) })"
                     color="primary"
                     icon
                     v-on="on"
@@ -92,6 +94,7 @@
                 bottom>
                 <template #activator="{ on }">
                   <v-btn
+                    :aria-label="$t('tags.ariaRemove', { tag: tagName(tag) })"
                     color="error"
                     icon
                     v-on="on"

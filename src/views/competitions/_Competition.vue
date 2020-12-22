@@ -12,10 +12,10 @@
         :title="$t('competitions.actions.edit')"
         small-only>
         <template #bar-left-actions>
-          <a @click="resetEdit()">{{ $t('terms.actions.cancel') }}</a>
+          <app-link @click="resetEdit()">{{ $t('terms.actions.cancel') }}</app-link>
         </template>
         <template #bar-right-actions>
-          <a @click="validateEdit">{{ $t('terms.actions.ok') }}</a>
+          <app-link @click="validateEdit">{{ $t('terms.actions.ok') }}</app-link>
         </template>
       </app-bar>
       <v-container>
@@ -51,7 +51,7 @@
                       small-only
                       fixed>
                       <template #bar-left-actions>
-                        <a @click="transferDialog = false">{{ $t('terms.actions.cancel') }}</a>
+                        <app-link @click="transferDialog = false">{{ $t('terms.actions.cancel') }}</app-link>
                       </template>
                     </app-bar>
                     <page-body>
@@ -88,10 +88,10 @@
         :title="competition.name"
         small-only>
         <template #bar-left-actions>
-          <a @click="$router.back()">{{ $t('terms.actions.back') }}</a>
+          <app-link @click="$router.back()">{{ $t('terms.actions.back') }}</app-link>
         </template>
         <template #bar-right-actions>
-          <a @click="editMode = true">{{ $t('terms.actions.edit') }}</a>
+          <app-link @click="editMode = true">{{ $t('terms.actions.edit') }}</app-link>
         </template>
       </app-bar>
       <v-container>

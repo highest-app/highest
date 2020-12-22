@@ -12,10 +12,10 @@
         :title="$t('locations.actions.edit')"
         small-only>
         <template #bar-left-actions>
-          <a @click="quitEdit">{{ $t('terms.actions.cancel') }}</a>
+          <app-link @click="quitEdit">{{ $t('terms.actions.cancel') }}</app-link>
         </template>
         <template #bar-right-actions>
-          <a @click="validateEdit">{{ $t('terms.actions.ok') }}</a>
+          <app-link @click="validateEdit">{{ $t('terms.actions.ok') }}</app-link>
         </template>
       </app-bar>
       <v-container>
@@ -59,11 +59,11 @@
     <template v-else>
       <app-bar small-only>
         <template #bar-left-actions>
-          <a
+          <app-link
             class="hidden-md-and-up"
             @click="$router.back()">
             {{ $t('terms.actions.back') }}
-          </a>
+          </app-link>
         </template>
       </app-bar>
       <v-container>
@@ -83,21 +83,25 @@
                     v-model="imageIndex"
                     height="auto">
                     <v-window-item
-                      v-for="photo in location.photos"
-                      :key="photo">
-                      <zoomable-image :src="assets[photo]">
+                      v-for="(image, index) in location.photos"
+                      :key="image">
+                      <zoomable-image
+                        :src="assets[image]"
+                        :alt="$t('assets.help.viewIndex', { index })">
                         <v-row
                           v-if="location.photos.length > 1"
                           align="center"
                           class="ma-0"
                           style="min-height: 100%">
                           <v-btn
+                            :aria-label="$t('assets.carousel.previous')"
                             icon
                             @click="previousImage">
                             <v-icon large>mdi-chevron-left</v-icon>
                           </v-btn>
                           <v-spacer/>
                           <v-btn
+                            :aria-label="$t('assets.carousel.next')"
                             icon
                             @click="nextImage">
                             <v-icon large>mdi-chevron-right</v-icon>

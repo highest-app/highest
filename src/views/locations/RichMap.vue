@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import { latLng } from 'leaflet'
 import { LMap, LTileLayer, LMarker, LIcon } from 'vue2-leaflet'
 import { OpenStreetMapProvider } from 'leaflet-geosearch'
 
@@ -55,7 +54,6 @@ export default {
     }
   },
   methods: {
-    latLng,
     async updateMap(location) {
       provider.search({ query: location }).then(response => {
         this.mapInfo = response[0]

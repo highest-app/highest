@@ -12,10 +12,10 @@
         :title="$t('routes.actions.edit')"
         small-only>
         <template #bar-left-actions>
-          <a @click="quitEdit">{{ $t('terms.actions.cancel') }}</a>
+          <app-link @click="quitEdit">{{ $t('terms.actions.cancel') }}</app-link>
         </template>
         <template #bar-right-actions>
-          <a @click="validateEdit">{{ $t('terms.actions.ok') }}</a>
+          <app-link @click="validateEdit">{{ $t('terms.actions.ok') }}</app-link>
         </template>
       </app-bar>
       <v-container>
@@ -72,7 +72,7 @@
                       small-only
                       fixed>
                       <template #bar-left-actions>
-                        <a @click="transferDialog = false">{{ $t('terms.actions.cancel') }}</a>
+                        <app-link @click="transferDialog = false">{{ $t('terms.actions.cancel') }}</app-link>
                       </template>
                     </app-bar>
                     <page-body>
@@ -111,10 +111,10 @@
     <template v-else>
       <app-bar small-only>
         <template #bar-left-actions>
-          <a @click="$router.back()">{{ $t('terms.actions.back') }}</a>
+          <app-link @click="$router.back()">{{ $t('terms.actions.back') }}</app-link>
         </template>
         <template #bar-right-actions>
-          <a @click="editMode = true">{{ $t('terms.actions.edit') }}</a>
+          <app-link @click="editMode = true">{{ $t('terms.actions.edit') }}</app-link>
         </template>
       </app-bar>
       <v-container>
@@ -134,21 +134,25 @@
                     v-model="imageIndex"
                     height="auto">
                     <v-window-item
-                      v-for="photo in route.photos"
-                      :key="photo">
-                      <zoomable-image :src="assets[photo]">
+                      v-for="(image, index) in route.photos"
+                      :key="image">
+                      <zoomable-image
+                        :src="assets[image]"
+                        :alt="$t('assets.help.viewIndex', { index })">
                         <v-row
                           v-if="route.photos.length > 1"
                           align="center"
                           class="ma-0"
                           style="min-height: 100%">
                           <v-btn
+                            :aria-label="$t('assets.carousel.previous')"
                             icon
                             @click="previousImage">
                             <v-icon large>mdi-chevron-left</v-icon>
                           </v-btn>
                           <v-spacer/>
                           <v-btn
+                            :aria-label="$t('assets.carousel.next')"
                             icon
                             @click="nextImage">
                             <v-icon large>mdi-chevron-right</v-icon>
@@ -181,6 +185,7 @@
                 v-for="tag in tags"
                 :key="tag.id"
                 :to="{ name: 'tag', params: { tag: tag.id } }"
+                :aria-label="$t('tags.ariaView', { tag: tagName(tag) })"
                 class="mr-2"
                 outlined>
                 <v-icon
@@ -225,7 +230,7 @@
                           open-delay="500">
                           <template #activator="{ on }">
                             <v-btn
-                              :aria-label="$t('routes.actions.removeProgression')"
+                              :aria-label="$t('routes.actions.ariaRemoveProgression', { date: dateToText(progression.date), notes: progression.notes })"
                               icon
                               v-on="on"
                               @click="removeProgression({
@@ -243,6 +248,7 @@
                 </v-timeline>
                 <card-group>
                   <card
+                    aria-haspopup="true"
                     icon="mdi-clock-outline"
                     icon-color="red"
                     top

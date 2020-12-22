@@ -53,50 +53,60 @@
           <v-col
             cols="12"
             md="6"
-            xl="2">
+            xl="2"
+            :class="{ 'mt-15': $vuetify.breakpoint.smAndDown }"
+            :style="$vuetify.breakpoint.mdAndUp && 'min-height: 100%'">
             <v-row
               justify="center"
               align="center"
+              style="height: 100%"
               class="mx-0">
-              <img
-                src="/img/logo-large.png"
-                width="80%">
-              <p class="text-h5 text-center">Add this {{ $tc(`generic.${data.type}`).toLowerCase() }} on Highest to follow your progression, get statistics and more!</p>
-              <template v-if="data.type === 'route' && locations.length">
-                <card-group style="width: 100%">
-                  <card
-                    top
-                    :bottom="keepScannedLocation">
-                    <template #title>Keep scanned location</template>
-                    <template #action>
-                      <v-switch
-                        v-model="keepScannedLocation"
-                        color="primary"
-                        inset/>
-                    </template>
-                  </card>
-                  <card
-                    v-if="!keepScannedLocation"
-                    icon="mdi-map-marker"
-                    icon-color="blue"
-                    bottom
-                    chevron
-                    @click="locationSelect = true">
-                    <template #title>{{ $tc('generic.location', 1) }}</template>
-                    <template
-                      v-if="location !== '' && location !== undefined"
-                      #action-text>
-                      {{ locations.find(l => l.id === location).name }}
-                    </template>
-                  </card>
-                </card-group>
-              </template>
-              <v-btn
-                class="gradient--primary"
-                :disabled="!valid"
-                @click="add">
-                {{ $t('terms.actions.add') }}
-              </v-btn>
+              <div>
+                <img
+                  src="/img/logo-large.png"
+                  width="80%">
+                <p class="text-h5">{{ $t(`qr.preview.add.${data.type}`) }}</p>
+                <template v-if="data.type === 'route' && locations.length">
+                  <card-group style="width: 100%; margin: 0">
+                    <card
+                      role="switch"
+                      :aria-checked="keepScannedLocation"
+                      top>
+                      <template #title>{{ $t('qr.preview.keepLocation') }}</template>
+                      <template #action>
+                        <v-switch
+                          v-model="keepScannedLocation"
+                          color="primary"
+                          hide-details
+                          readonly
+                          inset/>
+                      </template>
+                    </card>
+                    <card
+                      v-if="!keepScannedLocation"
+                      :aria-label="$t('terms.aria.selectMenuUnique', { name: $tc('generic.location', 1) })"
+                      icon="mdi-map-marker"
+                      icon-color="blue"
+                      chevron
+                      @click="locationSelect = true">
+                      <template #title>{{ $tc('generic.location', 1) }}</template>
+                      <template
+                        v-if="location !== '' && location !== undefined"
+                        #action-text>
+                        {{ locations.find(l => l.id === location).name }}
+                      </template>
+                    </card>
+                    <card
+                      bottom
+                      :disabled="!valid"
+                      @click="add">
+                      <template #title>
+                        <app-link :disable="!valid">{{ $t('terms.actions.add') }}</app-link>
+                      </template>
+                    </card>
+                  </card-group>
+                </template>
+              </div>
             </v-row>
           </v-col>
         </v-row>

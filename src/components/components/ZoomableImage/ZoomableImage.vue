@@ -26,6 +26,7 @@
       :src="src"
       :alt="alt">
       <v-btn
+        :aria-label="$t('assets.zoom.help', { description: alt })"
         class="pa-3"
         icon
         style="position: absolute"

@@ -19,7 +19,8 @@ export default Vue.component('app-link', {
       let props = {
         attrs: {
           role: 'button',
-          'aria-pressed': false
+          'aria-pressed': false,
+          'tabindex': 0
         },
         class: {
           'app-link': true,

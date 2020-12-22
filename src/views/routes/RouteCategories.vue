@@ -2,11 +2,16 @@
   <div>
     <v-list
       :class="{ background: mobile }"
-      dense
+      :dense="!mobile"
       :nav="!mobile"
       subheader>
-      <v-subheader class="text-uppercase">{{ $tc('generic.location', 2) }}</v-subheader>
-      <location-adding/>
+      <v-subheader class="text-uppercase">
+        <v-row class="mx-0">
+          {{ $tc('generic.location', 2) }}
+          <v-spacer/>
+          <location-adding/>
+        </v-row>
+      </v-subheader>
       <v-list-item
         v-for="location in locations"
         :key="location.name"
@@ -29,10 +34,30 @@
     <v-list
       v-if="tags.length"
       :class="{ background: mobile }"
-      dense
+      :dense="!mobile"
       :nav="!mobile"
       subheader>
-      <v-subheader class="text-uppercase">{{ $tc('generic.tag', 2) }}</v-subheader>
+      <v-subheader class="text-uppercase">
+        <v-row class="mx-0">
+          {{ $tc('generic.tag', 2) }}
+          <v-spacer/>
+          <v-dialog
+            v-model="tagForm"
+            max-width="290">
+            <template #activator="{ on }">
+              <v-icon
+                :aria-label="$t('tags.add')"
+                small
+                v-on="on">
+                mdi-plus
+              </v-icon>
+            </template>
+            <tag-form
+              add
+              @close="tagForm = false"/>
+          </v-dialog>
+        </v-row>
+      </v-subheader>
 
       <v-divider
         v-if="mobile"
@@ -51,7 +76,7 @@
         </v-list-item>
         <v-divider
           v-if="mobile"
-          :key="tag.name + '-divider'"
+          :key="tag.id + '-divider'"
           inset/>
       </template>
     </v-list>
@@ -61,14 +86,20 @@
 <script>
 import { mapState } from 'vuex'
 import LocationAdding from '@/views/locations/LocationAdding'
+import TagForm from '@/views/home/TagForm'
 import { getLocationThumbnail } from '@/utils/assets'
 import tagName from '@/utils/tags'
 
 export default {
   name: 'RouteCategories',
-  components: { LocationAdding },
+  components: { LocationAdding, TagForm },
   props: {
-    mobile: Boolean
+    mobile: Boolean,
+  },
+  data() {
+    return {
+      tagForm: false
+    }
   },
   computed: {
     ...mapState(['assets', 'locations']),

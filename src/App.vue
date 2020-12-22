@@ -19,10 +19,10 @@
         <v-list-item>
           <v-text-field
             v-model="search"
-            :label="`${$t('search.title')}...`"
+            :placeholder="`${$t('search.title')}...`"
+            prepend-inner-icon="mdi-magnify"
             clearable
-            rounded
-            filled
+            outlined
             dense
             solo
             @keydown.enter="gotoSearch"/>
@@ -54,6 +54,7 @@
             top>
             <template #activator="{ on }">
               <v-btn
+                :aria-label="$t('settings.theme.invertColors')"
                 icon
                 v-on="on"
                 @click="invertColors">

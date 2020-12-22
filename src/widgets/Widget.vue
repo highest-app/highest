@@ -21,9 +21,12 @@
             {{ $t(title) }}
           </router-link>
           <v-spacer/>
-          <v-tooltip bottom>
+          <v-tooltip
+            open-delay="500"
+            bottom>
             <template #activator="{ on }">
               <v-btn
+                :aria-label="$t(reduce ? 'widgets.develop' : 'widgets.reduce')"
                 icon
                 @click="reduce = !reduce"
                 v-on="on">

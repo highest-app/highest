@@ -20,6 +20,7 @@
       v-else>
       <v-list-item
         :key="`${route.id}--list-item`"
+        :aria-label="$t('routes.helps.view', { grade: route.grade, name: route.name === '' ? '' : `(${route.name})`, location: getLocationById(route.location).name })"
         no-action>
         <div class="v-list-item__icon v-list-group__header__prepend-icon">
           <v-avatar>
@@ -66,7 +67,9 @@
                 :open-delay="500"
                 bottom>
                 <template #activator="{ on }">
-                  <router-link :to="{ name: 'tag', params: { tag: id }}">
+                  <router-link
+                    :aria-label="$t('tags.ariaView', { tag: tagName(tag) })"
+                    :to="{ name: 'tag', params: { tag: id }}">
                     <v-icon
                       :color="tag(id).color"
                       v-on="on">
@@ -93,7 +96,7 @@
                 bottom>
                 <template #activator="{ on: tooltip }">
                   <v-btn
-                    :aria-label="$t('routes.helps.view', { grade: route.grade, name: route.name === '' ? '' : `(${route.name})`, location: getLocationById(route.location).name })"
+                    :aria-label="$t('routes.helps.moreActions', { grade: route.grade, name: route.name === '' ? '' : `(${route.name})`, location: getLocationById(route.location).name })"
                     :ripple="false"
                     icon
                     v-on="{ ...menu, ...tooltip }">

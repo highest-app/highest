@@ -15,6 +15,7 @@
       <template v-for="(competition, i) in parsedCompetitions">
         <v-list-item
           :key="`${competition.id}--list-item`"
+          :aria-label="$t('competitions.helps.view', { competition: competition.name })"
           no-action>
           <v-menu offset-y>
             <template #activator="{ on: menu }">

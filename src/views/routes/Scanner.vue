@@ -11,7 +11,7 @@
         bottom
         chevron
         v-on="on">
-        <template #title>Scan QR Code</template>
+        <template #title>{{ $t('qr.scan.title') }}</template>
       </card>
     </template>
     <template #dialog>
@@ -25,13 +25,13 @@
           </template>
         </app-bar>
         <page-body>
-          <p v-if="error === ''">
-            Make sure you give Highest access to your camera, and clearly focus the QR Code.
+          <p v-if="error === undefined">
+            {{ $t('qr.scan.tip') }}
           </p>
           <p
             v-else
             class="font-weight-bold error--text">
-            {{ error }}
+            {{ $t(`qr.scan.errors.${error}`) }}
           </p>
           <qrcode-stream
             @decode="onDecode"
@@ -54,7 +54,7 @@ export default {
       active: false,
       data: {},
       decoded: false,
-      error: '',
+      error: undefined,
 
       keepScannedLocation: false,
       locationSelect: false,
@@ -75,19 +75,7 @@ export default {
       try {
         await promise
       } catch (error) {
-        if (error.name === 'NotAllowedError') {
-          this.error = "ERROR: you need to grant camera access permisson"
-        } else if (error.name === 'NotFoundError') {
-          this.error = "ERROR: no camera on this device"
-        } else if (error.name === 'NotSupportedError') {
-          this.error = "ERROR: secure context required (HTTPS, localhost)"
-        } else if (error.name === 'NotReadableError') {
-          this.error = "ERROR: is the camera already in use?"
-        } else if (error.name === 'OverconstrainedError') {
-          this.error = "ERROR: installed cameras are not suitable"
-        } else if (error.name === 'StreamApiNotSupportedError') {
-          this.error = "ERROR: Stream API is not supported in this browser"
-        }
+        this.error = error
       }
     },
     reset() {

@@ -12,11 +12,11 @@
       :title="$t('routes.view.all')"
       small-only>
       <template #bar-left-actions>
-        <a
+        <app-link
           class="hidden-md-and-up"
           @click="$router.back()">
           {{ $t('terms.actions.back') }}
-        </a>
+        </app-link>
       </template>
     </app-bar>
     <page-body>

@@ -132,15 +132,13 @@ export default {
   mounted () {
     getFeeds(this, this.feedLinks)
   },
-  computed: {
-    ...mapState({
-      feedLinks: 'feeds'
-    })
-  },
+  computed: mapState({
+    feedLinks: 'feeds'
+  }),
   methods: {
     ...mapActions(['addFeed', 'removeFeed']),
-    feedDelete (url) {
-      this.deleteFeed(url)
+    feedDelete(url) {
+      this.removeFeed(url)
       this.feeds = this.feeds.filter(feed => feed.feedUrl !== url)
       this.feedItems = this.feedItems.filter(item => item.feedUrl !== url)
     }

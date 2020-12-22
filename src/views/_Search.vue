@@ -51,23 +51,23 @@ export default {
   props: {
     query: String
   },
-  data () {
+  data() {
     return {
       search: ''
     }
   },
-  mounted () {
+  mounted() {
     this.search = this.query
   },
   computed: {
     ...mapGetters(['searchLocations', 'searchRoutes', 'searchCompetitions']),
-    locations () {
+    locations() {
       return this.search ? this.searchLocations(this.search) : []
     },
-    routes () {
+    routes() {
       return this.search ? this.searchRoutes(this.search) : []
     },
-    competitions () {
+    competitions() {
       return this.search ? this.searchCompetitions(this.search) : []
     },
   }
