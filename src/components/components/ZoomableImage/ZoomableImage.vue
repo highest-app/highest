@@ -17,7 +17,8 @@
           </p>
           <img
             :src="src"
-            :alt="alt">
+            :alt="alt"
+            style="max-height: 100vh; width: auto">
         </v-row>
       </v-overlay>
     </v-scale-transition>

@@ -126,7 +126,10 @@
             md="6">
             <v-row>
               <v-col cols="12">
-                <template v-if="route.photos !== undefined && route.photos.length">
+                <zoomable-image
+                  v-if="route.photos.length === 0"
+                  :src="getLocationThumbnail(location)"/>
+                <template v-else>
                   <v-window
                     v-model="imageIndex"
                     height="auto">
@@ -135,6 +138,7 @@
                       :key="photo">
                       <zoomable-image :src="assets[photo]">
                         <v-row
+                          v-if="route.photos.length > 1"
                           align="center"
                           class="ma-0"
                           style="min-height: 100%">
@@ -154,9 +158,6 @@
                     </v-window-item>
                   </v-window>
                 </template>
-                <zoomable-image
-                  v-else
-                  :src="getLocationThumbnail(location)"/>
               </v-col>
               <v-col
                 style="height: 500px"
