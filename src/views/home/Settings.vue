@@ -36,25 +36,26 @@
       @right-action="eraseData">
       <template #description>{{ $t('settings.data.eraseConfirmation') }}</template>
     </popup>
-    <list-group>
+    <card-group>
       <card-header>{{ $t('settings.display.title') }}</card-header>
       <card
+        icon="mdi-translate"
+        icon-color="red"
         top
         bottom
         chevron
         @click="localeSelect = true">
         <template #title>{{ $tc('settings.display.language.title', 1) }}</template>
       </card>
-    </list-group>
+    </card-group>
 
-    <list-group>
+    <card-group>
       <card-header>{{ $t('settings.theme.title')}}</card-header>
       <select-menu
         v-model="settings.theme"
         :labels="themes"
         :choices="themes.map(t => t.value)"
         mandatory
-        list
         solo>
         <template #label="{ label }">
           <v-icon left>
@@ -64,9 +65,9 @@
         </template>
       </select-menu>
       <span class="card__description">{{ $t('settings.theme.autoDescription') }}</span>
-    </list-group>
+    </card-group>
 
-    <list-group>
+    <card-group>
       <card-header>{{ $t('settings.data.title') }}</card-header>
       <!-- To enable when data importing will become available
       <card
@@ -87,9 +88,9 @@
           <span class="error--text">{{ $t('settings.data.erase') }}</span>
         </template>
       </card>
-    </list-group>
+    </card-group>
 
-    <list-group>
+    <card-group>
       <card-header>{{ $t('settings.about.title') }}</card-header>
       <card
         v-if="release === {}"
@@ -157,7 +158,7 @@
           </a>
         </template>
       </card>
-    </list-group>
+    </card-group>
   </page-body>
 </template>
 

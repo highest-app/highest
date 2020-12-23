@@ -9,16 +9,17 @@ $card-group-x-padding = 16px
       padding-left: $card-group-x-padding
       padding-right: $card-group-x-padding
 
-    &:first-child
-      .card:not(.card--sharp)
-      .card:not(.card--sharp) ::before
-      .card:not(.card--sharp) .v-list-item .v-ripple__container
+    .card--top:not(.card--sharp)
+      &
+      .v-list-item::before
+      .v-list-item .v-ripple__container
         border-top-left-radius: $card-group-rounding !important
         border-top-right-radius: $card-group-rounding !important
-    &:last-child
-      .card:not(.card--sharp)
-      .card:not(.card--sharp) ::before
-      .card:not(.card--sharp) .v-list-item .v-ripple__container
+
+    .card--bottom:not(.card--sharp)
+      &
+      .v-list-item::before
+      .v-list-item .v-ripple__container
         border-bottom-left-radius: $card-group-rounding !important
         border-bottom-right-radius: $card-group-rounding !important
 

@@ -34,6 +34,7 @@
             :key="tag.id"
             #default="{ active, toggle }">
             <v-btn
+              :aria-label="$t('tags.ariaColor', { color: $t(`terms.colors.${tag.color}`)})"
               icon
               @click="toggle">
               <v-icon :color="tag.color">{{ active ? 'mdi-check-circle' : 'mdi-circle' }}</v-icon>

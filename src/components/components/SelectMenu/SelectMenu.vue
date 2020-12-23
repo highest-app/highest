@@ -10,7 +10,9 @@
       </template>
     </app-bar>
     <page-body>
-      <component :is="list ? 'list-group' : 'card-group'">
+      <component
+        :is="list ? 'list-group' : 'card-group'"
+        :class="{ 'mx-0': solo }">
         <v-item-group
           v-model="selected"
           :multiple="multiple"

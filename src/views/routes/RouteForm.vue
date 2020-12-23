@@ -93,6 +93,7 @@
         :aria-label="$t('terms.aria.selectMenuUnique', { name: $tc('generic.location', 1) })"
         icon="mdi-map-marker-outline"
         icon-color="blue"
+        top
         chevron
         @click="locationSelect = true">
         <template #title>{{ $tc('generic.location', 1) }}</template>
@@ -106,6 +107,7 @@
         :aria-label="$t('terms.aria.selectMenuUnique', { name: $t('routes.terms.grade') })"
         icon="mdi-chart-bar"
         icon-color="orange"
+        :top="!acceptLocation"
         chevron
         @click="gradeSelect = true">
         <template #title>
@@ -136,6 +138,7 @@
         :aria-label="$t('terms.aria.selectMenu', { name: $tc('generic.tag', 2) })"
         icon="mdi-tag-outline"
         icon-color="green"
+        top
         chevron
         @click="tagsSelect = true">
         <template #title>

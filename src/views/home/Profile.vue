@@ -19,7 +19,7 @@
         <component :is="active.component"/>
       </template>
     </responsive-dialog>
-    <v-menu>
+    <v-menu style="width: 250px">
       <template #activator="{ on: menu, attrs }">
         <v-tooltip
           open-delay="500"

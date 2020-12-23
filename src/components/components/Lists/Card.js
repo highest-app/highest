@@ -29,6 +29,11 @@ export default Vue.component('card', {
     let divider = !this.$slots.description && !this.bottom
     return createElement(
       'div',
+      {
+        class: {
+          'card__holder': true
+        }
+      },
       [
         createElement(
         'v-list', {

@@ -15,12 +15,20 @@
             width="300">
             <v-row class="mx-1">
               <v-spacer/>
-              <v-btn
-                :aria-label="$t('assets.remove')"
-                icon
-                @click="() => { removeAsset(id); $forceUpdate() }">
-                <v-icon color="error">mdi-delete-outline</v-icon>
-              </v-btn>
+              <v-tooltip
+                open-delay="500"
+                bottom>
+                <template #activator="{ on }">
+                  <v-btn
+                    :aria-label="$t('assets.remove')"
+                    icon
+                    v-on="on"
+                    @click="() => { removeAsset(id); $forceUpdate() }">
+                    <v-icon color="error">mdi-delete-outline</v-icon>
+                  </v-btn>
+                </template>
+                <span>{{ $t('assets.remove') }}</span>
+              </v-tooltip>
             </v-row>
           </v-img>
         </v-col>

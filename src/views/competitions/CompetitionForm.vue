@@ -41,6 +41,7 @@
             <v-text-field
               v-model="form.website"
               :placeholder="$t('terms.fields.website')"
+              type="url"
               hide-details
               solo
               flat/>
