@@ -1,5 +1,5 @@
 <template>
-  <v-main>
+  <v-main ref="main">
     <v-slide-x-reverse-transition>
       <panel
         v-if="locationSelect"
@@ -34,7 +34,7 @@
           <v-col
             cols="12"
             md="6"
-            xl="10">
+            xl="8">
             <template v-if="data.type === 'route'">
               <p class="text-h3">{{ data.name }}</p>
               <v-chip
@@ -53,7 +53,7 @@
           <v-col
             cols="12"
             md="6"
-            xl="2"
+            xl="4"
             :class="{ 'mt-15': $vuetify.breakpoint.smAndDown }"
             :style="$vuetify.breakpoint.mdAndUp && 'min-height: 100%'">
             <v-row
@@ -71,7 +71,8 @@
                     <card
                       role="switch"
                       :aria-checked="keepScannedLocation"
-                      top>
+                      top
+                      @click="keepScannedLocation = !keepScannedLocation">
                       <template #title>{{ $t('qr.preview.keepLocation') }}</template>
                       <template #action>
                         <v-switch
@@ -139,10 +140,12 @@ export default {
     let raw = decodeURIComponent(this.$route.fullPath.replace('/preview/', ''))
     this.data = decodeData(raw)
     if (!this.locations.length) this.keepScannedLocation = true
+
+    console.log(this.$refs.main.$refs.main)
   },
   computed: {
     ...mapState(['locations']),
-    hook() { return this.$refs.main },
+    hook() { return this.$refs.main.$refs.main },
     valid() { return this.keepScannedLocation || this.location !== '' }
   },
   methods: {
