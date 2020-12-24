@@ -6,6 +6,7 @@
         bottom>
         <template #activator="{ on: tooltip }">
           <v-btn
+            :aria-label="$t('competitions.actions.add')"
             class="gradient--secondary"
             elevation="0"
             fab
@@ -23,16 +24,22 @@
         small-only
         fixed>
         <template #bar-left-actions>
-          <a @click="resetForm">{{ $t('terms.actions.cancel') }}</a>
+          <app-link @click="resetForm">{{ $t('terms.actions.cancel') }}</app-link>
         </template>
         <template #bar-right-actions>
-          <a @click="add">{{ $t('terms.actions.add') }}</a>
+          <app-link
+            :disable="!valid"
+            @click="add">
+            {{ $t('terms.actions.add') }}
+          </app-link>
         </template>
       </app-bar>
       <competition-form
         v-model="form"
         with-location
-        dialog/>
+        dialog
+        @valid="valid = true"
+        @unvalid="valid = false"/>
     </template>
   </responsive-dialog>
 </template>
@@ -48,7 +55,8 @@ export default {
   data () {
     return {
       form: Object.assign({}, defaultCompetitionForm),
-      enabled: false
+      enabled: false,
+      valid: false
     }
   },
   methods: {

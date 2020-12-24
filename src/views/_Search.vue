@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-main>
     <app-bar :title="$t('search.title')"/>
     <page-body>
       <v-text-field
@@ -11,21 +11,24 @@
       <v-container>
         <v-row v-if="search !== ''">
           <v-col
-            v-if="routes.length > 0"
+            v-if="routes.length"
             cols="12">
             <h2>{{ $tc('generic.route', 2) }}</h2>
             <routes-list
               :routes="routes"
-              show-location/>
+              show-location
+              background/>
           </v-col>
           <v-col
-            v-if="competitions.length > 0"
+            v-if="competitions.length"
             cols="12">
             <h2>{{ $tc('generic.competition', 2) }}</h2>
-            <competitions-list :competitions="competitions"/>
+            <competitions-list
+              :competitions="competitions"
+              background/>
           </v-col>
           <v-col
-            v-if="locations.length > 0"
+            v-if="locations.length"
             cols="12">
             <h2>{{ $tc('generic.location', 2) }}</h2>
             <locations-list :locations="locations"/>
@@ -33,7 +36,7 @@
         </v-row>
       </v-container>
     </page-body>
-  </v-content>
+  </v-main>
 </template>
 
 <script>
@@ -46,29 +49,26 @@ export default {
   name: 'Search',
   components: { CompetitionsList, RoutesList, LocationsList },
   props: {
-    query: {
-      type: String,
-      default: ''
-    }
+    query: String
   },
-  data () {
+  data() {
     return {
       search: ''
     }
   },
-  mounted () {
+  mounted() {
     this.search = this.query
   },
   computed: {
     ...mapGetters(['searchLocations', 'searchRoutes', 'searchCompetitions']),
-    locations () {
-      return this.searchLocations(this.search)
+    locations() {
+      return this.search ? this.searchLocations(this.search) : []
     },
-    routes () {
-      return this.searchRoutes(this.search)
+    routes() {
+      return this.search ? this.searchRoutes(this.search) : []
     },
-    competitions () {
-      return this.searchCompetitions(this.search)
+    competitions() {
+      return this.search ? this.searchCompetitions(this.search) : []
     },
   }
 }

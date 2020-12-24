@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-main>
     <app-bar
       v-if="$vuetify.breakpoint.mdAndUp"
       :title="$tc('generic.route', 2)">
@@ -12,21 +12,22 @@
       :title="$t('routes.view.all')"
       small-only>
       <template #bar-left-actions>
-        <a
+        <app-link
           class="hidden-md-and-up"
           @click="$router.back()">
           {{ $t('terms.actions.back') }}
-        </a>
+        </app-link>
       </template>
     </app-bar>
     <page-body>
       <list-group>
         <routes-list
           :routes="routes"
-          show-location/>
+          show-location
+          background/>
       </list-group>
     </page-body>
-  </v-content>
+  </v-main>
 </template>
 
 <script>

@@ -1,51 +1,48 @@
 <template>
   <div class="select-menu">
     <app-bar
+      v-if="!solo"
       :title="name"
       small-only
       sticky>
       <template #bar-left-actions>
-        <a @click="$emit('back')">{{ $t('terms.actions.back') }}</a>
+        <app-link @click="$emit('back')">{{ $t('terms.actions.back') }}</app-link>
       </template>
     </app-bar>
     <page-body>
-      <v-card
-        tile
-        elevation="0">
-        <v-list flat>
-          <v-list-item-group
-            v-model="selected"
-            :multiple="multiple">
-            <template v-for="(choice, i) in choices">
-              <v-list-item
-                :key="`${choice}--list-item)`"
-                :value="choice"
-                active-class="null">
-                <template
-                  #default="{ active, toggle }"
-                  @click="toggle">
-                  <v-list-item-content>
-                    <v-list-item-title>
-                      <slot
-                        name="label"
-                        v-bind:label="labels === null ? choice : labels[i]">
-                        {{ labels === null ? choice : labels[i] }}
-                      </slot>
-                    </v-list-item-title>
-                  </v-list-item-content>
-
-                  <v-list-item-icon v-if="active">
-                    <v-icon color="primary">mdi-check</v-icon>
-                  </v-list-item-icon>
-                </template>
-              </v-list-item>
-              <v-divider
-                v-if="i !== choices.length - 1"
-                :key="`${choice}--divider)`"/>
-            </template>
-          </v-list-item-group>
-        </v-list>
-      </v-card>
+      <component
+        :is="list ? 'list-group' : 'card-group'"
+        :class="{ 'mx-0': solo }">
+        <v-item-group
+          v-model="selected"
+          :multiple="multiple"
+          :mandatory="value !== '' && value !== [] && mandatory"
+          @change="select">
+          <v-item
+            v-for="(choice, i) in choices"
+            #default="{ active, toggle }"
+            :key="choice"
+            :value="choice">
+            <card
+              :top="!i"
+              :bottom="i === choices.length - 1"
+              @click="toggle">
+              <template #title>
+                <slot
+                  name="label"
+                  v-bind:label="labels ? labels[i] : choice">
+                  {{ labels ? labels[i] : choice }}
+                </slot>
+              </template>
+              <template
+                v-if="active"
+                #action>
+                <v-icon color="primary">mdi-check</v-icon>
+              </template>
+            </card>
+          </v-item>
+        </v-item-group>
+      </component>
     </page-body>
   </div>
 </template>
@@ -58,39 +55,29 @@ export default {
   components: {
     AppBar
   },
-  model: {
-    prop: 'selected',
-    event: 'change'
-  },
+  model: { prop: 'value' },
   props: {
-    labels: {
-      type: Array,
-      default: null
-    },
+    autoBack: Boolean,
     choices: {
       type: Array,
       required: true
     },
-    selected: {
-      type: String,
-      default: ''
-    },
-    multiple: {
-      type: Boolean,
-      default: false
-    },
-    name: {
-      type: String,
-      default: 'Choisir'
-    },
-    autoBack: {
-      type: Boolean,
-      default: false
+    labels: Array,
+    list: Boolean,
+    mandatory: Boolean,
+    multiple: Boolean,
+    name: String,
+    solo: Boolean,
+    value: [String, Array]
+  },
+  data() {
+    return {
+      selected: this.value
     }
   },
-  watch: {
-    selected () {
-      this.$emit('change', this.selected)
+  methods: {
+    select() {
+      this.$emit('input', this.selected)
       if (this.autoBack) this.$emit('back')
     }
   }

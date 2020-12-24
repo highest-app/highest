@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-main>
     <app-bar :title="$tc('generic.route', 2)">
       <template #top-bar-actions>
         <route-adding v-if="locations.length"/>
@@ -10,9 +10,10 @@
         <v-list
           v-if="locations.length"
           class="background"
-          subheader
-          dense>
-          <v-subheader>{{ $t('terms.general').toUpperCase() }}</v-subheader>
+          subheader>
+          <v-subheader class="text-uppercase">
+            {{ $t('terms.general') }}
+          </v-subheader>
           <v-list-item
             to="/routes/all">
             <v-list-item-icon class="box-icon gradient--gray">
@@ -31,7 +32,7 @@
       </div>
       <route-categories mobile/>
     </page-body>
-  </v-content>
+  </v-main>
 </template>
 
 <script>

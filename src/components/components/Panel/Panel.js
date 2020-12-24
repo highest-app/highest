@@ -2,37 +2,22 @@ import Vue from 'vue'
 
 export default Vue.component('panel', {
   props: {
-    dialog: {
-      type: Boolean,
-      default: false
-    },
-    height: {
-      type: String,
-      default: null
-    },
-    hook: {
-      type: HTMLElement,
-      default: undefined
-    },
-    page: {
-      type: Boolean,
-      default: false
-    },
-    width: {
-      type: String,
-      default: null
-    },
-    disableOffset: {
-      type: Boolean,
-      default: false
-    }
+    dialog: Boolean,
+    height: String,
+    hook: HTMLElement,
+    page: Boolean,
+    width: String,
+    disableOffset: Boolean
   },
   computed: {
     defaultHeight() {
-      return this.hook === undefined ? this.height : this.hook.offsetHeight
+      return this.hook ? this.hook.offsetHeight : this.height
     },
     defaultWidth() {
-      return this.hook === undefined ? this.width : this.hook.offsetWidth
+      return this.hook ? this.hook.offsetWidth : this.width
+    },
+    bottomSheet() {
+      return this.hook.classList.contains('v-bottom-sheet')
     },
     style() {
       let style = ''
@@ -47,7 +32,7 @@ export default Vue.component('panel', {
       } else if (this.dialog) {
         style += `width: ${this.defaultWidth}px; height: ${this.defaultHeight}px;`
         if (!this.disableOffset)
-          style += 'margin-top: -75px;'
+          style += `top: calc((100vh - ${this.defaultHeight}px) ${!this.bottomSheet ? '/ 2' : ''});`
       }
       return style
     }
@@ -63,7 +48,9 @@ export default Vue.component('panel', {
         createElement(
           'div', {
             class: {
-              panel: true
+              panel: true,
+              'panel--dialog': this.dialog,
+              'panel--page': this.page
             },
             style: this.style
           },

@@ -10,6 +10,7 @@
         <a
           :key="item.link + 'img'"
           :href="item.link"
+          rel="noopener"
           target="_blank">
           <v-img
             v-if="item.enclosure !== undefined"
@@ -22,6 +23,7 @@
           :key="item.link + 'card'"
           :top="item.enclosure === undefined"
           :href="item.link"
+          rel="noopener"
           target="_blank">
           <template #title>{{ item.title }} - {{ dateToText(item.pubDate) }}</template>
           <template #description>
@@ -44,10 +46,7 @@ export default {
       type: Number,
       default: 1
     },
-    pagination: {
-      type: Boolean,
-      default: false
-    }
+    pagination: Boolean
   },
   computed: {
     feedItems () {

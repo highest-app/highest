@@ -1,11 +1,27 @@
 import flake from '@/utils/flake'
+import { today } from '@/utils/dates'
 import { loadFromStorage, saveToStorage } from '@/utils/storage'
+
+function compareProgressions(a, b) {
+  let dateA = new Date(a.date)
+  let dateB = new Date(b.date)
+  if (dateA < dateB) return -1
+  else if (dateA > dateB) return 1
+  else return 0
+}
 
 const state = loadFromStorage('routes')
 
 const getters = {
   getFinishedRoutes: state => {
     return state.filter(route => route.finished)
+  },
+  getUpcomingRoutes: state => {
+    return state.filter(route => {
+      let date = new Date(today)
+      date.setDate(date.getDate() + 16)
+      return route.goal !== false && new Date(route.goal) < date
+    })
   },
   getRoutesByLocation: state => id => {
     return state.filter(route => route.location === id)
@@ -24,19 +40,19 @@ const getters = {
   },
   getRoute: state => (location, route) => {
     return state.find(i => i.location === location && i.id === route)
-  },
+  }
 }
 
 const mutations = {
   ADD_ROUTE(state, { data, id }) {
     state.push({
-      name: data.name,
+      name: data.name.trim(),
       id,
       location: data.location,
       grade: data.grade,
       length: data.length,
       color: data.color,
-      notes: data.notes,
+      notes: data.notes.trim(),
       photos: [],
       tags: data.tags,
       goal: data.goal,
@@ -55,6 +71,7 @@ const mutations = {
       date: data.date,
       notes: data.notes
     })
+    route.progressions.sort(compareProgressions)
   },
   REMOVE_PROGRESSION(state, data) {
     let route = state.find(route => route.id === data.route)
@@ -63,14 +80,15 @@ const mutations = {
   },
   UPDATE_ROUTE(state, data) {
     let route = state.find(route => route.id === data.id)
-    route.name = data.name
+    route.name = data.name.trim()
     route.grade = data.grade
     route.length = data.length
     route.color = data.color
-    route.notes = data.notes
+    route.notes = data.notes.trim()
     route.tags = data.tags
-    route.goal = data.goal
     route.photos = data.photos
+
+    route.goal = data.enableGoal ? data.goal : false
   },
   TRANSFER_ROUTE(state, data) {
     let route = state.find(route => route.id === data.route)
@@ -80,6 +98,15 @@ const mutations = {
     state.forEach((route) => {
       route.photos = route.photos.filter(photo => photo !== id)
     })
+    saveToStorage('routes', state)
+  },
+  PURGE_TAG(state, id) {
+    let routes = state.filter(route => route.tags.includes(id))
+    routes.forEach(route => route.tags.splice(route.tags.indexOf(id)))
+    saveToStorage('routes', state)
+  },
+  RESET_ROUTE_TAGS(state) {
+    state.forEach(route => route.tags = [])
     saveToStorage('routes', state)
   },
   REMOVE_ROUTE(state, id) {

@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-main>
     <app-bar :title="$t('home.title')">
       <template #top-bar-actions>
         <profile/>
@@ -8,46 +8,24 @@
     <v-container>
       <v-row wrap>
         <v-col
+          order="2"
+          order-md="1"
           cols="12"
           md="6">
           <v-row>
-            <v-col cols="12">
-              <v-card
-                elevation="0"
-                tile>
-                <v-card-text>
-                  <div>{{ $t('home.appSubtitle') }}</div>
-                  <img
-                    width="50%"
-                    src="/img/logo-large.png"
-                    alt="Highest logo">
-                  <div class="text--primary">{{ $t('home.appDescription') }}</div>
-                </v-card-text>
-              </v-card>
-            </v-col>
-            <v-col cols="12">
-              <v-alert
-                type="warning"
-                icon="mdi-alert-outline"
-                outlined
-                text
-                v-html="$t('settings.about.betaNotice')"/>
-            </v-col>
-          </v-row>
-        </v-col>
-        <v-col
-          cols="12"
-          md="6">
-          <v-row>
-            <v-col cols="12">
-              <v-switch
-                v-model="separatedFeeds"
-                :label="$t('feeds.separated')"
-                inset/>
-              <v-progress-linear
-                v-if="!feedsLoaded"
-                class="mb-4"
-                indeterminate/>
+            <v-col
+              cols="12"
+              class="px-0">
+              <div class="px-4">
+                <v-switch
+                  v-model="separatedFeeds"
+                  :label="$t('feeds.separated')"
+                  inset/>
+                <v-progress-linear
+                  v-if="!feedsLoaded"
+                  class="mb-4"
+                  indeterminate/>
+              </div>
               <template v-if="separatedFeeds">
                 <div
                   v-for="feed in feeds"
@@ -96,9 +74,29 @@
             </v-col>
           </v-row>
         </v-col>
+        <v-col
+          order="1"
+          order-md="2"
+          cols="12"
+          md="6">
+          <v-row>
+            <v-col cols="12">
+              <v-alert
+                type="warning"
+                icon="mdi-alert-outline"
+                outlined
+                text
+                v-html="$t('settings.about.betaNotice')"/>
+            </v-col>
+            <component
+              :is="widget"
+              v-for="widget in widgets"
+              :key="widget.name"/>
+          </v-row>
+        </v-col>
       </v-row>
     </v-container>
-  </v-content>
+  </v-main>
 </template>
 
 <script>
@@ -106,12 +104,21 @@ import { mapState, mapActions } from 'vuex'
 import { getFeeds } from '@/utils/feeds'
 import FeedsList from '@/views/home/FeedsList'
 import Profile from '@/views/home/Profile.vue'
+import UpcomingCompetitions from '@/widgets/UpcomingCompetitions'
+import UpcomingRoutes from '@/widgets/UpcomingRoutes'
+import WelcomeScreen from '@/widgets/WelcomeScreen'
 
 export default {
   name: 'Home',
   components: { FeedsList, Profile },
   data () {
     return {
+      widgets: [
+        WelcomeScreen,
+        UpcomingRoutes,
+        UpcomingCompetitions
+      ],
+
       feeds: [],
       feedItems: [],
       feedPage: 1,
@@ -125,15 +132,13 @@ export default {
   mounted () {
     getFeeds(this, this.feedLinks)
   },
-  computed: {
-    ...mapState({
-      feedLinks: 'feeds'
-    })
-  },
+  computed: mapState({
+    feedLinks: 'feeds'
+  }),
   methods: {
     ...mapActions(['addFeed', 'removeFeed']),
-    feedDelete (url) {
-      this.deleteFeed(url)
+    feedDelete(url) {
+      this.removeFeed(url)
       this.feeds = this.feeds.filter(feed => feed.feedUrl !== url)
       this.feedItems = this.feedItems.filter(item => item.feedUrl !== url)
     }

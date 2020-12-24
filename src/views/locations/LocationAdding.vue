@@ -1,16 +1,12 @@
 <template>
   <responsive-dialog v-model="enabled">
     <template #activator="{ on }">
-      <v-list-item
-        class="gradient--secondary"
+      <v-icon
+        :aria-label="$t('locations.actions.add')"
+        small
         v-on="on">
-        <v-list-item-icon>
-          <v-icon color="white">mdi-plus</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title class="white--text">{{ $t('terms.actions.add') }}</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+        mdi-plus
+      </v-icon>
     </template>
     <template #dialog>
       <app-bar
@@ -18,15 +14,22 @@
         small-only
         fixed>
         <template #bar-left-actions>
-          <a @click="resetForm">{{ $t('terms.actions.cancel') }}</a>
+          <app-link @click="resetForm">{{ $t('terms.actions.cancel') }}</app-link>
         </template>
         <template #bar-right-actions>
-          <a @click="add">{{ $t('terms.actions.add') }}</a>
+          <app-link
+            :disable="!valid"
+            bold
+            @click="add">
+            {{ $t('terms.actions.add') }}
+          </app-link>
         </template>
       </app-bar>
       <location-form
         v-model="form"
-        adding/>
+        adding
+        @valid="valid = true"
+        @unvalid="valid = false"/>
     </template>
   </responsive-dialog>
 </template>
@@ -39,19 +42,20 @@ import LocationForm from '@/views/locations/LocationForm'
 export default {
   name: 'LocationAdding',
   components: { LocationForm },
-  data () {
+  data() {
     return {
       form: Object.assign({}, defaultLocationForm),
 
+      valid: false,
       enabled: false
     }
   },
-  mounted () {
+  mounted() {
     this.resetForm()
   },
   methods: {
     ...mapActions(['addLocation']),
-    async add () {
+    async add() {
       let id = await this.addLocation(this.form)
       await this.$router.push({
         name: 'location',
@@ -59,7 +63,7 @@ export default {
       })
       this.resetForm()
     },
-    resetForm () {
+    resetForm() {
       this.form = Object.assign({}, this.defaultLocationForm)
       this.enabled = false
     },

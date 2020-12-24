@@ -7,19 +7,22 @@
       <v-list
         dense
         nav>
-        <router-link to="/">
+        <router-link
+          class="text-center"
+          style="display: flex; justify-content: center"
+          to="/">
           <v-img
-            width="90%"
+            max-width="90%"
             src="/img/logo-large.png"
             alt="Highest logo"/>
         </router-link>
         <v-list-item>
           <v-text-field
             v-model="search"
-            :label="`${$t('search.title')}...`"
+            :placeholder="`${$t('search.title')}...`"
+            prepend-inner-icon="mdi-magnify"
             clearable
-            rounded
-            filled
+            outlined
             dense
             solo
             @keydown.enter="gotoSearch"/>
@@ -44,25 +47,21 @@
       <template #append>
         <v-divider/>
         <v-row class="px-4 py-2">
-          <v-btn
-            text
-            to="/settings">
-            <v-icon left>mdi-cog-outline</v-icon> {{ $t('settings.title') }}
-          </v-btn>
           <v-spacer/>
           <v-tooltip
-            v-if="!settings.autoDarkTheme"
+            v-if="settings.theme !== 'auto'"
             open-delay="500"
             top>
             <template #activator="{ on }">
               <v-btn
+                :aria-label="$t('settings.theme.invertColors')"
                 icon
                 v-on="on"
                 @click="invertColors">
                 <v-icon>mdi-invert-colors</v-icon>
               </v-btn>
             </template>
-            <span>{{ $t('settings.display.theme.invertColors') }}</span>
+            <span>{{ $t('settings.theme.invertColors') }}</span>
           </v-tooltip>
         </v-row>
       </template>
@@ -123,8 +122,8 @@ export default {
     ...mapActions(['invertColors']),
     setTheme () {
       const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-      if (prefersDark && this.settings.autoDarkTheme) this.$vuetify.theme.dark = true
-      else this.$vuetify.theme.dark = this.settings.darkTheme
+      if (prefersDark && this.settings.theme === 'auto') this.$vuetify.theme.dark = true
+      else this.$vuetify.theme.dark = this.settings.theme === 'dark'
     },
     setLocale () {
       this.$i18n.locale = this.settings.locale
@@ -141,10 +140,7 @@ export default {
   },
   computed: mapState(['settings']),
   watch: {
-    'settings.darkTheme' () {
-      this.setTheme()
-    },
-    'settings.autoDarkTheme' () {
+    'settings.theme' () {
       this.setTheme()
     },
     'settings.locale' () {

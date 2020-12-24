@@ -25,40 +25,34 @@
       </panel>
     </v-slide-x-reverse-transition>
     <page-body>
-      <list-group>
+      <card-group>
         <card top>
-          <template #title>{{ $t('terms.fields.name') }}</template>
           <template #input>
             <v-text-field
               v-model="form.name"
-              :placeholder="$t('competitions.form.namePlaceholder')"
+              :placeholder="$t('terms.fields.name')"
               hide-details
               solo
               flat/>
           </template>
         </card>
-        <card
-          v-if="withLocation"
-          @click="locationSelect = true">
-          <template #title>{{ $tc('generic.location') }}</template>
-          <template
-            v-if="form.location !== '' && form.location !== undefined"
-            #action-text>
-            {{ locations.find(l => l.id === form.location).name }}
-          </template>
-          <template #action>
-            <v-list-item-icon>
-              <v-icon>mdi-chevron-right</v-icon>
-            </v-list-item-icon>
+        <card>
+          <template #input>
+            <v-text-field
+              v-model="form.website"
+              :placeholder="$t('terms.fields.website')"
+              type="url"
+              hide-details
+              solo
+              flat/>
           </template>
         </card>
-        <card>
-          <template #title>{{ $t('terms.fields.description') }}</template>
+        <card :bottom="!withLocation">
           <template #input>
             <v-textarea
               id="notes-textarea"
               v-model="form.description"
-              :placeholder="$t('competitions.form.descriptionPlaceholder')"
+              :placeholder="$t('terms.fields.description')"
               rows="1"
               auto-grow
               hide-details
@@ -66,11 +60,30 @@
               flat/>
           </template>
         </card>
-        <card>
+        <card
+          v-if="withLocation"
+          :aria-label="$t('terms.aria.selectMenuUnique', { name: $tc('generic.location', 1) })"
+          icon="mdi-map-marker"
+          icon-color="blue"
+          bottom
+          chevron
+          @click="locationSelect = true">
+          <template #title>{{ $tc('generic.location') }}</template>
+          <template
+            v-if="form.location !== '' && form.location !== undefined"
+            #action-text>
+            {{ locations.find(l => l.id === form.location).name }}
+          </template>
+        </card>
+      </card-group>
+      <card-group>
+        <card
+          icon="mdi-clock-outline"
+          icon-color="red"
+          top>
           <template #title>
-            <span class="primary--text">
-              {{ dateToText(form.date) }}
-            </span>
+            <span>{{ $t('terms.fields.date') }}</span>
+            <br><span class="font-weight-light primary--text">{{ dateToText(form.date) }}</span>
           </template>
         </card>
         <card>
@@ -84,7 +97,10 @@
               full-width/>
           </template>
         </card>
-        <card bottom>
+        <card
+          icon="mdi-account-plus-outline"
+          icon-color="green"
+          bottom>
           <template #title>{{ $t('competitions.terms.participation') }}</template>
           <template #action>
             <v-btn-toggle
@@ -105,7 +121,7 @@
             </v-btn-toggle>
           </template>
         </card>
-      </list-group>
+      </card-group>
     </page-body>
   </div>
 </template>
@@ -126,14 +142,8 @@ export default {
       type: Object,
       required: true
     },
-    withLocation: {
-      type: Boolean,
-      default: false
-    },
-    dialog: {
-      type: Boolean,
-      default: false
-    }
+    withLocation: Boolean,
+    dialog: Boolean
   },
   data() {
     return {
@@ -144,9 +154,18 @@ export default {
   computed: {
     ...mapState(['locations']),
     hook() {
-      return this.dialog ? this.$parent.$parent.$parent.$refs.dialog : this.$parent.$refs.content
+      return this.dialog ? this.$parent.$parent.$parent.$refs.dialog : this.$parent.$refs.main
     }
   },
-  methods: { getLocationThumbnail }
+  methods: { getLocationThumbnail },
+  watch: {
+    form: {
+      handler(value) {
+        if (value.location && value.name) this.$emit('valid')
+        else this.$emit('unvalid')
+      },
+      deep: true
+    }
+  }
 }
 </script>

@@ -6,14 +6,14 @@
     <v-slide-x-reverse-transition>
       <panel
         v-if="active"
-        :hook="$parent.$refs.content"
+        :hook="$parent.$refs.main"
         page>
         <app-bar
           :title="$t(title)"
           small-only
           fixed>
           <template #bar-right-actions>
-            <a @click="choose">{{ $t('terms.actions.ok') }}</a>
+            <app-link @click="active = false">{{ $t('terms.actions.ok') }}</app-link>
           </template>
         </app-bar>
         <v-container>
@@ -21,32 +21,69 @@
             <v-col
               cols="12"
               md="6">
-              <strong>{{ $t('assets.help.upload') }}</strong>
-              <list-group>
-                <card
-                  top
-                  bottom>
-                  <template #title>{{ $t('terms.fields.picture') }}</template>
-                  <template #input>
-                    <v-file-input
-                      v-model="file"
-                      prepend-icon=""
-                      hide-details
-                      solo
-                      flat
-                      @change="updatePreview"/>
-                  </template>
-                </card>
-              </list-group>
-              <template v-if="uploadBlob !== ''">
-                <v-img :src="uploadBlob"/>
-                <v-btn
-                  class="gradient--primary"
-                  block
-                  @click="upload">
-                  Upload
-                </v-btn>
-              </template>
+              <v-form
+                ref="form"
+                v-model="valid">
+                <strong>{{ $t('assets.help.uploadNew') }}</strong>
+                <card-group>
+                  <card
+                    v-if="url === ''"
+                    icon="mdi-file-image-outline"
+                    icon-color="teal"
+                    top>
+                    <template #title>{{ $t('terms.fields.file') }}</template>
+                    <template #input>
+                      <v-file-input
+                        v-model="file"
+                        :rules="rules"
+                        :placeholder="$t('assets.help.types')"
+                        :accept="types.join(', ')"
+                        prepend-icon=""
+                        hide-details
+                        solo
+                        flat
+                        @change="updatePreview"/>
+                    </template>
+                    <template
+                      v-if="!valid && file !== undefined"
+                      #description>
+                      <span class="error--text">{{ $t('assets.errors.wrongType') }}</span>
+                    </template>
+                  </card>
+                  <card
+                    v-if="file === undefined"
+                    :bottom="valid || file === undefined"
+                    icon="mdi-link-variant"
+                    icon-color="light-green">
+                    <template #title>{{ $t('terms.fields.url' )}}</template>
+                    <template #input>
+                      <v-text-field
+                        v-model="url"
+                        placeholder="https://..."
+                        type="url"
+                        hide-details
+                        clearable
+                        solo
+                        flat
+                        @click:clear="url = ''"/>
+                    </template>
+                  </card>
+                  <card
+                    v-if="(valid && file !== undefined) || url !== ''"
+                    chevron
+                    bottom
+                    @click="upload">
+                    <template #title>
+                      <span class="primary--text">{{ $t('assets.help.upload') }}</span>
+                    </template>
+                  </card>
+                </card-group>
+                <v-img
+                  v-if="(valid && file !== undefined) || url !== ''"
+                  :src="file === undefined ? url : blob"
+                  :alt="$t('assets.help.preview')"/>
+                <span v-if="url !== ''">{{ $t('assets.help.url') }}</span>
+              </v-form>
             </v-col>
             <v-col
               cols="12"
@@ -58,7 +95,7 @@
                 @change="setSelection">
                 <v-row>
                   <v-item
-                    v-for="(asset, id) in assets"
+                    v-for="asset in assets"
                     :key="asset"
                     #default="{ active, toggle }">
                     <v-col
@@ -92,6 +129,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import Compressor from 'compressorjs'
 
 export default {
   name: 'AssetUploader',
@@ -99,18 +137,8 @@ export default {
     prop: 'selectedImages'
   },
   props: {
-    selectedImages: {
-      type: Array,
-      default: () => []
-    },
-    multiple: {
-      type: Boolean,
-      default: false
-    },
-    active: {
-      type: Boolean,
-      default: false
-    },
+    selectedImages: Array,
+    multiple: Boolean,
     title: {
       type: String,
       default: 'assets.edit'
@@ -118,9 +146,17 @@ export default {
   },
   data () {
     return {
-      file: '',
-      uploadBlob: '',
+      file: undefined,
+      blob: '',
       selectedIds: [],
+      types: ['image/png', 'image/jpeg', 'image/bpm', 'image/gif', 'image/svg+xml'],
+      rules: [
+        value => (value !== undefined && this.types.includes(value.type))  || this.$t('assets.errors.wrongType')
+      ],
+      url: '',
+      valid: true,
+
+      active: false,
 
       events: {
         click: this.enable
@@ -134,37 +170,49 @@ export default {
       this.selectedIds.push(index)
     }
   },
-  computed: {
-    ...mapState(['assets'])
-  },
+  computed: mapState(['assets']),
   methods: {
     ...mapActions(['addAsset', 'removeAsset']),
     enable() {
       this.active = true
-      this.$emit('change', true)
     },
     updatePreview() {
       let reader = new FileReader()
       reader.onload = (e) => {
-        this.uploadBlob = e.target.result
+        this.blob = e.target.result
       }
       reader.readAsDataURL(this.file)
     },
     async upload() {
-      await this.addAsset(this.uploadBlob)
-      this.file = ''
-      this.uploadBlob = ''
+      let view = this
+
+      if (this.file === undefined) {
+        await this.addAsset(this.url)
+        this.url = ''
+        view.$refs.form.reset()
+      } else {
+        new Compressor(this.file, {
+          quality: 0.4,
+          async success(file) {
+            let reader = new FileReader()
+            reader.onload = async (e) => {
+              await view.addAsset(e.target.result)
+              view.file = ''
+              view.blob = ''
+              view.$refs.form.reset()
+            }
+            reader.readAsDataURL(file)
+          }
+        })
+      }
     },
     setSelection() {
-      this.selectedImages = []
+      let selected = []
       this.selectedIds.forEach(id => {
         const urls = Object.keys(this.assets)
-        this.selectedImages.push(urls[id])
+        selected.push(urls[id])
       })
-    },
-    choose() {
-      this.$emit('input', this.selectedImages)
-      this.active = false
+      this.$emit('input', selected)
     }
   }
 }

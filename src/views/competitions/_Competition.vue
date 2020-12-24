@@ -1,50 +1,38 @@
 <template>
-  <v-content>
-    <v-dialog
-      v-model="removeDialog"
-      max-width="290"
-      persistent>
-      <v-card>
-        <v-card-title class="headline">{{ $t('terms.actionConfirmation') }}</v-card-title>
-        <v-card-text>{{ $t('competitions.actions.removeConfirmation') }}</v-card-text>
-        <v-card-actions>
-          <v-btn
-            text
-            @click="removeDialog = false">
-            {{ $t('terms.actions.cancel') }}
-          </v-btn>
-          <v-spacer/>
-          <v-btn
-            color="error"
-            text
-            @click="remove">
-            {{ $t('terms.actions.remove') }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+  <v-main>
+    <popup
+      v-model="removePopup"
+      right-text="terms.actions.remove"
+      critical
+      @right-action="remove">
+      <template #description>{{ $t('competitions.actions.removeConfirmation') }}</template>
+    </popup>
     <template v-if="editMode">
       <app-bar
         :title="$t('competitions.actions.edit')"
         small-only>
         <template #bar-left-actions>
-          <a @click="resetEdit()">{{ $t('terms.actions.cancel') }}</a>
+          <app-link @click="resetEdit()">{{ $t('terms.actions.cancel') }}</app-link>
         </template>
         <template #bar-right-actions>
-          <a @click="validateEdit">{{ $t('terms.actions.ok') }}</a>
+          <app-link @click="validateEdit">{{ $t('terms.actions.ok') }}</app-link>
         </template>
       </app-bar>
       <v-container>
         <v-row>
           <v-col
+            order="2"
+            order-md="1"
             cols="12"
             md="6"/>
           <v-col
+            order="1"
+            order-md="2"
             cols="12"
             md="6">
             <competition-form v-model="form"/>
             <div class="mt-4">
-              <list-group>
+              <card-group>
                 <responsive-dialog
                   v-if="transferableLocations.length"
                   v-model="transferDialog">
@@ -63,7 +51,7 @@
                       small-only
                       fixed>
                       <template #bar-left-actions>
-                        <a @click="transferDialog = false">{{ $t('terms.actions.cancel') }}</a>
+                        <app-link @click="transferDialog = false">{{ $t('terms.actions.cancel') }}</app-link>
                       </template>
                     </app-bar>
                     <page-body>
@@ -84,12 +72,12 @@
                 <card
                   :top="!transferableLocations.length"
                   bottom
-                  @click="removeDialog = true">
+                  @click="removePopup = true">
                   <template #title>
                     <span class="error--text">{{ $t('competitions.actions.remove') }}</span>
                   </template>
                 </card>
-              </list-group>
+              </card-group>
             </div>
           </v-col>
         </v-row>
@@ -100,31 +88,25 @@
         :title="competition.name"
         small-only>
         <template #bar-left-actions>
-          <a @click="$router.back()">{{ $t('terms.actions.back') }}</a>
+          <app-link @click="$router.back()">{{ $t('terms.actions.back') }}</app-link>
         </template>
         <template #bar-right-actions>
-          <a @click="editMode = true">{{ $t('terms.actions.edit') }}</a>
+          <app-link @click="editMode = true">{{ $t('terms.actions.edit') }}</app-link>
         </template>
       </app-bar>
       <v-container>
         <v-row>
           <v-col
             style="height: 500px"
+            order="2"
+            order-md="1"
             cols="12"
             md="6">
-            <l-map
-              v-if="showMap"
-              :zoom="15"
-              :center="[mapInfo['y'], mapInfo['x']]">
-              <l-tile-layer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"/>
-              <l-marker
-                :lat-lng="[parseFloat(mapInfo['y']), parseFloat(mapInfo['x'])]"
-                visible/>
-            </l-map>
+            <rich-map v-model="location.address"/>
           </v-col>
           <v-col
+            order="1"
+            order-md="2"
             cols="12"
             md="6">
             <h1>{{ competition.name }}</h1>
@@ -139,32 +121,25 @@
         </v-row>
       </v-container>
     </template>
-  </v-content>
+  </v-main>
 </template>
 
 <script>
-import { latLng } from 'leaflet'
-import { LMap, LTileLayer, LMarker } from 'vue2-leaflet'
-import { OpenStreetMapProvider } from 'leaflet-geosearch'
 import { mapState, mapGetters, mapActions } from 'vuex'
 import CompetitionForm from '@/views/competitions/CompetitionForm'
+import RichMap from '@/views/locations/RichMap'
 import { getLocationThumbnail } from '@/utils/assets'
-
-const provider = new OpenStreetMapProvider()
 
 export default {
   name: 'Competition',
-  components: { LMap, LTileLayer, LMarker, CompetitionForm },
+  components: { RichMap, CompetitionForm },
   data () {
     return {
       form: {},
 
       editMode: false,
       transferDialog: false,
-      removeDialog: false,
-
-      showMap: false,
-      mapInfo: {}
+      removePopup: false,
     }
   },
   mounted() {
@@ -180,24 +155,19 @@ export default {
       let location = {
         type: this.competition.location.type
       }
-      let query = ''
-
       if (location.type === 'string') {
         location = {
           type: 'string',
           address: this.competition.location.address
         }
-        query = location.address
       } else if (location.type === 'location') {
         location = {
           ...location,
           ...this.getLocationById(this.competition.location.locationID)
         }
-        query = location.address
       } else {
         // TODO : error handling
       }
-      this.updateMap(query)
       return location
     },
     transferableLocations() {
@@ -206,7 +176,7 @@ export default {
   },
   methods: {
     ...mapActions(['updateCompetition', 'transferCompetition', 'removeCompetition']),
-    latLng, getLocationThumbnail,
+    getLocationThumbnail,
     resetEdit() {
       this.form = Object.assign({}, this.competition)
       this.editMode = false
@@ -227,12 +197,6 @@ export default {
     remove() {
       this.removeCompetition(this.competition.id)
       this.$router.push({ name: 'competitions' })
-    },
-    async updateMap(query) {
-      provider.search({ query }).then(response => {
-        this.mapInfo = response[0]
-        this.showMap = true
-      })
     }
   }
 }

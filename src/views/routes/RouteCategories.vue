@@ -2,11 +2,16 @@
   <div>
     <v-list
       :class="{ background: mobile }"
-      dense
+      :dense="!mobile"
       :nav="!mobile"
       subheader>
-      <v-subheader>{{ $tc('generic.location', 2).toUpperCase() }}</v-subheader>
-      <location-adding/>
+      <v-subheader class="text-uppercase">
+        <v-row class="mx-0">
+          {{ $tc('generic.location', 2) }}
+          <v-spacer/>
+          <location-adding/>
+        </v-row>
+      </v-subheader>
       <v-list-item
         v-for="location in locations"
         :key="location.name"
@@ -27,30 +32,51 @@
       </v-list-item>
     </v-list>
     <v-list
+      v-if="tags.length"
       :class="{ background: mobile }"
-      dense
+      :dense="!mobile"
       :nav="!mobile"
       subheader>
-      <v-subheader>{{ $tc('generic.tag', 2).toUpperCase() }}</v-subheader>
+      <v-subheader class="text-uppercase">
+        <v-row class="mx-0">
+          {{ $tc('generic.tag', 2) }}
+          <v-spacer/>
+          <v-dialog
+            v-model="tagForm"
+            max-width="290">
+            <template #activator="{ on }">
+              <v-icon
+                :aria-label="$t('tags.add')"
+                small
+                v-on="on">
+                mdi-plus
+              </v-icon>
+            </template>
+            <tag-form
+              add
+              @close="tagForm = false"/>
+          </v-dialog>
+        </v-row>
+      </v-subheader>
 
       <v-divider
         v-if="mobile"
         inset/>
       <template v-for="tag in tags">
         <v-list-item
-          :key="tag.name + '-item'"
+          :key="tag.id + '-item'"
           :to="`/tags/${tag.id}`"
           link>
           <v-list-item-icon>
             <v-icon :color="tag.color">mdi-circle</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>{{ tag.default ? $t(`terms.colors.${tag.color}`) : tag.name }}</v-list-item-title>
+            <v-list-item-title>{{ tagName(tag) }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-divider
           v-if="mobile"
-          :key="tag.name + '-divider'"
+          :key="tag.id + '-divider'"
           inset/>
       </template>
     </v-list>
@@ -60,20 +86,25 @@
 <script>
 import { mapState } from 'vuex'
 import LocationAdding from '@/views/locations/LocationAdding'
+import TagForm from '@/views/home/TagForm'
 import { getLocationThumbnail } from '@/utils/assets'
+import tagName from '@/utils/tags'
 
 export default {
   name: 'RouteCategories',
-  components: { LocationAdding },
+  components: { LocationAdding, TagForm },
   props: {
-    mobile: {
-      type: Boolean,
-      default: false
+    mobile: Boolean,
+  },
+  data() {
+    return {
+      tagForm: false
     }
   },
-  computed: mapState(['assets', 'tags', 'locations']),
-  methods: {
-    getLocationThumbnail
-  }
+  computed: {
+    ...mapState(['assets', 'locations']),
+    ...mapState({ tags: store => store.tags.data })
+  },
+  methods: { getLocationThumbnail, tagName }
 }
 </script>

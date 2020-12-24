@@ -1,5 +1,44 @@
-.list__group + .list__group
-  margin-top: 16px
+$card-group-rounding = 12px
+$card-group-x-padding = 16px
+
+.card__group
+  margin: 16px
+
+  div:not(.v-item-group)
+    .card .v-list-item
+      padding-left: $card-group-x-padding
+      padding-right: $card-group-x-padding
+
+    .card--top:not(.card--sharp)
+      &
+      .v-list-item::before
+      .v-list-item .v-ripple__container
+        border-top-left-radius: $card-group-rounding !important
+        border-top-right-radius: $card-group-rounding !important
+
+    .card--bottom:not(.card--sharp)
+      &
+      .v-list-item::before
+      .v-list-item .v-ripple__container
+        border-bottom-left-radius: $card-group-rounding !important
+        border-bottom-right-radius: $card-group-rounding !important
+
+  .card:not(.card--icon) hr
+    margin-left: $card-group-x-padding !important
+  .card.card--icon hr
+    margin-left: 47px !important
+
+.list__group
+  & + .list__group
+    margin-top: 16px
+
+  .card
+    &.card--top
+      border-top: 1px solid hsla(0, 0%, 100%, .12)
+    &.card--bottom
+      border-bottom: 1px solid hsla(0, 0%, 100%, .12)
+  hr
+    margin-left: 16px !important
 
 .v-list .v-divider
   margin-left: 16px
@@ -18,35 +57,27 @@
   color: var(--v-list-description-base)
 
 .card
-  padding-top: 0
-  padding-bottom: 0
-  border-radius: 0
-  &.card--top
-    border-top: 1px solid hsla(0, 0%, 100%, .12)
-  &.card--bottom
-    border-bottom: 1px solid hsla(0, 0%, 100%, .12)
+  padding: 0
+  background: none !important
   &.card--extendable .v-list-item .row
     align-items: start !important
 
-  &.theme--light
-    .v-list-item__icon i
-      color: #c4c4c6
-    .action__text
-    input::placeholder
-    textarea::placeholder
-      color: #8a8a8d
-  &.theme--dark
-    .v-list-item__icon i
-      color: #5a5a5e
-    .action__text
-    input::placeholder
-    textarea::placeholder
-      color: #98989e
+  .v-list-item__action i
+    color: var(--v-action-icon-base)
+  .action__text
+  input::placeholder
+  textarea::placeholder
+    color: var(--v-action-text-base)
 
   .subtitle-1
     padding-top: 10px
     padding-bottom: 10px
     min-height: 20px
+    & + .v-input .v-input__control .v-input__slot
+      padding-left: 12px !important
+
+  .v-list-item .row .v-input .v-input__control .v-input__slot
+    padding: 0
 
   textarea
     padding-top: 2.2px

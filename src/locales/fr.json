@@ -7,12 +7,19 @@
       "back": "Retour",
       "cancel": "Annuler",
       "delete": "Supprimer",
+      "more": "Plus",
       "done": "Terminé",
       "edit": "Modifier",
       "ok": "OK",
       "erase": "Effacer",
+      "reset": "Réinitialiser",
       "select": "Sélectionner",
-      "selected": "Sélectionné"
+      "selected": "Sélectionné",
+      "share": "Partager",
+      "load": "Charger"
+    },
+    "quantity": {
+      "none": "Aucun"
     },
     "colors": {
       "red": "Rouge",
@@ -26,20 +33,29 @@
     "fields": {
       "name": "Nom",
       "description": "Description",
+      "website": "Site Internet",
       "notes": "Notes",
+      "color": "Couleur",
       "address": "Adresse",
       "date": "Date",
       "picture": "Image",
+      "file": "Fichier",
+      "url": "Adresse web",
       "assets": "Ressources"
     },
+    "aria": {
+      "selectMenu": "Sélectionner une ou plusieurs options parmi : {name}",
+      "selectMenuUnique": "Sélectionner une unique option parmi : {name}"
+    },
     "general": "Général",
+    "error": "Erreur",
     "actionConfirmation": "Êtes-vous sûr ?"
   },
   "generic": {
     "location": "Lieu | Lieux",
     "route": "Voie | Voies",
     "competition": "Compétition | Compétitions",
-    "tag": "Tag | Tags",
+    "tag": "Étiquette | Étiquettes",
     "asset": "Ressource | Ressources",
     "action": "Action | Actions"
   },
@@ -48,10 +64,29 @@
     "appDescription": "Travaillez vos voies en restant organisé : l'application d'escalade pratique !",
     "title": "Accueil"
   },
+  "widgets": {
+    "develop": "Développer le widget",
+    "reduce": "Réduire le widget",
+    "helps": {
+      "details": "Obtenir des détails à propos du widget {widget}"
+    },
+    "upcomingRoutes": {
+      "title": "Objectifs à venir"
+    },
+    "upcomingCompetitions": {
+      "title": "Compétitions à venir"
+    }
+  },
   "profile": {
     "user": "Utilisateur",
     "login": "Se connecter",
-    "title": "Profil"
+    "title": "Profil",
+    "customisation": "Personnalisation",
+    "tags": "Étiquettes",
+    "feeds": "Flux",
+    "adjustments": "Réglages",
+    "assets": "Ressources",
+    "settings": "Paramètres"
   },
   "feeds": {
     "actions": {
@@ -68,6 +103,11 @@
     "title": "Recherche"
   },
   "routes": {
+    "helps": {
+      "markAsFinished": "Marquer la voie {grade} {name} dans {location} comme terminée",
+      "view": "Aller à la voie {grade} {name} dans {location}",
+      "moreActions": "Plus d'actions sur la voie {grade} {name} in {location}"
+    },
     "terms": {
       "color": "Couleur",
       "length": "Longueur",
@@ -95,7 +135,9 @@
       "add": "Ajouter une voie",
       "editAssets": "Modifier les ressources de la voie",
       "edit": "Modifier la voie",
-      "addProgress": "Ajouter une progression"
+      "addProgress": "Ajouter une progression",
+      "removeProgression": "Supprimer la progression",
+      "ariaRemoveProgression": "Supprimer la progression à la date {date} : {notes}"
     },
     "title": "Voies"
   },
@@ -116,6 +158,11 @@
     "title": "Lieux"
   },
   "competitions": {
+    "helps": {
+      "participation": "Définir votre participation à la compétition {competition}",
+      "view": "Aller à la compétition {competition}",
+      "moreActions": "Plus d'actions sur la compétition {competition}"
+    },
     "form": {
       "namePlaceholder": "Nom de la compétition",
       "descriptionPlaceholder": "Description de la compétition"
@@ -138,30 +185,89 @@
     "noCompetitions": "Aucune compétition pour le moment. Ajoutez-en une !",
     "title": "Compétitions"
   },
+  "qr": {
+    "scan": {
+      "title": "Scanner un code QR",
+      "tip": "Assurez-vous de donner à Highest l'accès à votre caméra, et de bien viser le code QR.",
+      "errors": {
+        "NotAllowedError": "vous devez autoriser l'accès à la caméra",
+        "NotFoundError": "aucune caméra sur ce dispositif",
+        "NotSupportedError": "contexte sécurité requis (HTTPS, localhost)",
+        "NotReadableError": "la caméra est probablement déjà utilisée",
+        "OverconstrainedError": "les caméras embarquées ne sont pas utilisables",
+        "StreamApiNotSupportedError": "le scan de code QR n'est pas supporté par votre navigateur"
+      }
+    },
+    "preview": {
+      "add": {
+        "route": "Ajoutez cette voie sur Highest pour suivre votre progression, obtenir des statistiques et plus encore !",
+        "location": "Ajoutez ce lieu sur Highest et commencez à suivre les voies que vous grimpez !"
+      },
+      "keepLocation": "Garder le lieu scanné"
+    },
+    "generate": {
+      "title": "Générer le QR code",
+      "generated": "QR code généré",
+      "advice": "Ceci est le code QR généré pour votre voie. Chaque appareil qui possède une caméra et une capacité de scan de codes peut l'afficher et l'ajouter sur Highest.",
+      "tip": "Astuce : vous pouvez sauvegarder le QR code en tant qu'image pour l'imprimer où vous le souhaitez!"
+    }
+  },
+  "tags": {
+    "manage": "Gérer les étiquettes",
+    "any": "Organisez vos voies avec les étiquettes : simple, discret et efficace.",
+    "ariaView": "Voir l'étiquette {tag}",
+    "add": "Ajouter une étiquette",
+    "ariaColor": "Définir la couleur de l'étiquette sur {color}",
+    "ariaUpdate": "Modifier le nom et la couleur de l'étiquette {tag}",
+    "update": "Modifier l'étiquette",
+    "remove": "Supprimer l'étiquette",
+    "ariaRemove": "Supprimer l'étiquette {tag}",
+    "reset": "Réinitialiser les étiquettes",
+    "resetConfirmation": "Si vous réinitialisez les étiquettes, toutes vos voies n'en auront plus et vous devrez les réassigner manuellement."
+  },
   "assets": {
+    "zoom": {
+      "help": "Zoomer sur l'image : {description}",
+      "quit": "Cliquez n'importe où pour quitter"
+    },
+    "carousel": {
+      "previous": "Image précédente",
+      "next": "Image suivante"
+    },
     "help": {
       "description": "Une ressource est une image que vous ajoutez à une voie, un lieu... Depuis ce menu, vous pouvez voir toutes les ressources enregistrées sur Highest, et pouvez en supprimer certaines si vous le souhaitez.",
-      "selectExisting": "...ou choisissez-en une déjà sur Highest",
-      "upload": "Choisissez une image depuis votre appareil"
+      "selectExisting": "Sélectionnez ensuite la ou les image(s) à ajouter...",
+      "uploadNew": "Choisissez une image depuis votre appareil ou un lien web...",
+      "upload": "Télécharger",
+      "preview": "Aperçu de l'image à télécharger",
+      "types": "Les types de fichier acceptés sont : .png, .jpg, .jpeg, .bpm, .svg, .gif",
+      "url": "Si vous ne voyez aucun aperçu d'image, cela signifie que votre adresse web est invalide.",
+      "viewIndex": "Image n°{index}"
+    },
+    "errors": {
+      "wrongType": "Erreur : Mauvais type de fichier"
     },
     "add": "Ajouter une ressource",
     "edit": "Modifier les ressources",
-    "manage": "Gérer les ressources"
+    "remove": "Supprimer cette ressource",
+    "manage": "Gérer les ressources",
+    "any": "Aucune ressource ajoutée. N'hésitez-pas à le faire pour magnifier vos contenus !"
   },
   "settings": {
-    "adjustments": "Réglages",
     "display": {
       "title": "Affichage",
       "language": {
         "title": "Langue",
         "description": "Langue de l'application"
-      },
-      "theme": {
-        "darkTheme": "Thème sombre",
-        "invertColors": "Inverser les couleurs",
-        "autoDarkTheme": "Thème sombre automatique",
-        "autoDarkThemeDescription": "Le thème de Highest s'ajustera à celui de l'appareil. Assurez-vous d'avoir mis à jour votre système afin de profiter de cette fonctionnalité."
       }
+    },
+    "theme": {
+      "title": "Thème",
+      "auto": "Automatique (Thème de l'appareil)",
+      "light": "Clair",
+      "dark": "Sombre",
+      "invertColors": "Inverser les couleurs",
+      "autoDescription": "Si vous sélectionnez l'option Automatique, le thème de Highest s'ajustera à celui de l'appareil. Assurez-vous d'avoir mis à jour votre système afin de profiter de cette fonctionnalité."
     },
     "data": {
       "title": "Données",

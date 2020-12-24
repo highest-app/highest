@@ -1,5 +1,15 @@
-.v-dialog .v-card .v-card__text
-  padding-bottom: 15px !important
+$dialog-rounding = 12px
 
-.v-bottom-sheet
+.v-dialog .v-card
+.panel--dialog
+  border-radius: $dialog-rounding
+
+  .v-card__text
+    padding-bottom: 15px !important
+
+    .app-bar__container .app-bar
+      border-top-left-radius: $dialog-rounding
+      border-top-right-radius: $dialog-rounding
+
+.v-bottom-sheet:not(.v-dialog--fullscreen)
   height: 85% !important

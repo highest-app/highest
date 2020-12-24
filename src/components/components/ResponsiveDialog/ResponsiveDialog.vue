@@ -2,10 +2,16 @@
   <div class="responsive-dialog">
     <template v-if="$vuetify.breakpoint.mdAndUp">
       <v-dialog
-        v-model="active"
+        :value="active"
         :max-width="dialogWidth"
-        class="responsive-dialog__dialog">
-        <v-card class="background">
+        :fullscreen="fullscreen"
+        :persistent="persistent"
+        :scrollable="dialogHeight !== 'auto'"
+        content-class="responsive-dialog__dialog"
+        @update:return-value="disable">
+        <v-card
+          class="background"
+          :style="{ height: dialogHeight }">
           <v-card-text
             class="pa-0"
             style="overflow-x: hidden;">
@@ -13,25 +19,16 @@
           </v-card-text>
         </v-card>
       </v-dialog>
-      <div class="responsive-dialog__trigger">
-        <slot
-          name="activator"
-          v-bind:on="events"/>
-      </div>
     </template>
     <template v-else>
       <v-bottom-sheet
-        v-model="active"
+        :value="active"
+        :fullscreen="fullscreen"
+        :persistent="persistent"
         class="responsive-dialog__sheet"
         scrollable
-        inset>
-        <template #activator="{ on: sheet }">
-          <div class="responsive-dialog__trigger">
-            <slot
-              name="activator"
-              v-bind:on="{ ...sheet, ...events }"/>
-          </div>
-        </template>
+        inset
+        @update:return-value="disable">
         <v-card class="background">
           <v-card-text
             class="location-adding-menu pa-0"
@@ -41,6 +38,9 @@
         </v-card>
       </v-bottom-sheet>
     </template>
+    <slot
+      name="activator"
+      v-bind:on="events"/>
   </div>
 </template>
 
@@ -52,16 +52,19 @@ export default {
     event: 'change'
   },
   props: {
-    active: {
-      type: Boolean,
-      default: false
-    },
+    active: Boolean,
     dialogWidth: {
       type: String,
       default: '50%'
-    }
+    },
+    dialogHeight: {
+      type: String,
+      default: 'auto'
+    },
+    fullscreen: Boolean,
+    persistent: Boolean
   },
-  data () {
+  data() {
     return {
       events: {
         click: this.enable
@@ -69,10 +72,11 @@ export default {
     }
   },
   methods: {
-    enable () {
-      this.active = true
+    enable() {
       this.$emit('change', true)
-      this.$emit('enable')
+    },
+    disable() {
+      this.$emit('change', false)
     }
   }
 }

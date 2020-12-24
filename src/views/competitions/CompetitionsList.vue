@@ -1,12 +1,21 @@
 <template>
   <list-group>
-    <v-list class="background">
-      <v-list-item v-if="competitions.length === 0">
-        {{ $t('competitions.noCompetitions') }}
-      </v-list-item>
+    <popup
+      v-model="removePopup"
+      right-text="terms.actions.remove"
+      critical
+      @right-action="confirmRemove">
+      <template #description>{{ $t('competitions.actions.removeConfirmation') }}</template>
+    </popup>
+    <v-list :class="{ background, 'py-0': paddingless }">
+      <illustration
+        v-if="!competitions.length"
+        image="/img/illustrations/competitions.svg"
+        label="competitions.noCompetitions"/>
       <template v-for="(competition, i) in parsedCompetitions">
         <v-list-item
           :key="`${competition.id}--list-item`"
+          :aria-label="$t('competitions.helps.view', { competition: competition.name })"
           no-action>
           <v-menu offset-y>
             <template #activator="{ on: menu }">
@@ -16,6 +25,7 @@
                   bottom>
                   <template #activator="{ on: tooltip }">
                     <v-btn
+                      :aria-label="$t('competitions.helps.participation', { competition: competition.name })"
                       icon
                       v-on="{ ...menu, ...tooltip }">
                       <v-icon :color="icons[competition.participation].color">{{ icons[competition.participation].icon }}</v-icon>
@@ -37,33 +47,60 @@
               </v-list-item>
             </v-list>
           </v-menu>
-          <v-list-item-content>
-            <v-list-item-title>{{ competition.name }}</v-list-item-title>
-            <v-list-item-subtitle>
-              <span class="text--primary">
-                <template v-if="competition.location.type === 'string'">
-                  <a
-                    :href="`https://www.openstreetmap.org/search?query=${competition.location.address}`"
-                    target="_blank">
-                    {{ competition.location.address }}
-                  </a>
-                </template>
-                <template v-if="competition.location.type === 'location'">
-                  <router-link :to="`/locations/${competition.location.id}`">
-                    {{ competition.location.name }}
-                  </router-link>
-                </template>
-              </span>
-              &mdash; {{ dateToText(competition.date) }}
-            </v-list-item-subtitle>
+          <v-list-item-content v-ripple>
+            <router-link :to="{ name: 'competition', params: { competition: competition.id }}">
+              <v-list-item-title class="text--primary">{{ competition.name }}</v-list-item-title>
+              <v-list-item-subtitle>
+                <span class="text--primary">
+                  <template v-if="competition.location.type === 'string'">
+                    <a
+                      :href="`https://www.openstreetmap.org/search?query=${competition.location.address}`"
+                      target="_blank">
+                      {{ competition.location.address }}
+                    </a>
+                  </template>
+                  <template v-if="competition.location.type === 'location'">
+                    <router-link :to="`/locations/${competition.location.id}`">
+                      {{ competition.location.name }}
+                    </router-link>
+                  </template>
+                </span>
+                &mdash; {{ dateToText(competition.date) }}
+              </v-list-item-subtitle>
+            </router-link>
           </v-list-item-content>
           <v-list-item-action>
-            <v-btn
-              :ripple="false"
-              icon
-              :to="`/competitions/${competition.id}`">
-              <v-icon color="primary">mdi-information-outline</v-icon>
-            </v-btn>
+            <v-menu>
+              <template #activator="{ on: menu }">
+                <v-tooltip
+                  open-delay="500"
+                  bottom>
+                  <template #activator="{ on: tooltip }">
+                    <v-btn
+                      :aria-label="$t('competitions.helps.view', { competition: competition.name })"
+                      :ripple="false"
+                      icon
+                      v-on="{ ...menu, ...tooltip }">
+                      <v-icon color="action-text">mdi-dots-horizontal</v-icon>
+                    </v-btn>
+                  </template>
+                  <span>{{ $t('terms.actions.more') }}</span>
+                </v-tooltip>
+              </template>
+              <v-card
+                class="sheet-background"
+                style="border-radius: 12px">
+                <list-group>
+                  <card
+                    icon="mdi-delete-outline"
+                    top
+                    bottom
+                    @click="remove(competition.id)">
+                    <template #title>{{ $t('competitions.actions.remove') }}</template>
+                  </card>
+                </list-group>
+              </v-card>
+            </v-menu>
           </v-list-item-action>
         </v-list-item>
         <v-divider
@@ -82,14 +119,18 @@ import { competitionIcons as icons } from '@/utils/data'
 export default {
   name: 'CompetitionsList',
   props: {
+    background: Boolean,
     competitions: {
       type: Array,
       required: true
-    }
+    },
+    paddingless: Boolean
   },
-  data () {
+  data() {
     return {
-      icons
+      icons,
+      competitionToRemove: '',
+      removePopup: false
     }
   },
   computed: {
@@ -110,13 +151,21 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setCompetitionParticipation']),
-    setParticipation (id, participation) {
+    ...mapActions(['setCompetitionParticipation', 'removeCompetition']),
+    setParticipation(id, participation) {
       this.setCompetitionParticipation({
         id,
         participation
       })
-    }
+    },
+    remove(id) {
+      this.competitionToRemove = id
+      this.removePopup = true
+    },
+    confirmRemove() {
+      this.removeCompetition(this.competitionToRemove)
+      this.removePopup = false
+    },
   }
 }
 </script>
