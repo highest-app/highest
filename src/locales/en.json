@@ -14,7 +14,9 @@
       "done": "Done",
       "ok": "OK",
       "select": "Select",
-      "selected": "Selected"
+      "selected": "Selected",
+      "share": "Share",
+      "load": "Load"
     },
     "quantity": {
       "none": "None"
@@ -22,11 +24,14 @@
     "fields": {
       "name": "Name",
       "description": "Description",
+      "website": "Website",
       "notes": "Notes",
       "color": "Color",
       "address": "Address",
       "date": "Date",
       "picture": "Picture",
+      "file": "File",
+      "url": "Web URL",
       "assets": "Assets"
     },
     "colors": {
@@ -38,7 +43,12 @@
       "purple": "Purple",
       "gray": "Gray"
     },
+    "aria": {
+      "selectMenu": "Select one or many options among: {name}",
+      "selectMenuUnique": "Select a unique option among: {name}"
+    },
     "general": "General",
+    "error": "Error",
     "actionConfirmation": "Are you sure ?"
   },
   "generic": {
@@ -95,7 +105,8 @@
   "routes": {
     "helps": {
       "markAsFinished": "Mark route {grade} {name} in {location} as finished",
-      "view": "View details of route {grade} {name} in {location}"
+      "view": "Go to route {grade} {name} in {location}",
+      "moreActions": "More actions on route {grade} {name} in {location}"
     },
     "terms": {
       "color": "Color",
@@ -125,7 +136,8 @@
       "editAssets": "Edit route's assets",
       "edit": "Edit route",
       "addProgress": "Add a progression",
-      "removeProgression": "Remove the progression: {notes}"
+      "removeProgression": "Remove this progression",
+      "ariaRemoveProgression": "Remove the progression on date {date}: {notes}"
     },
     "title": "Routes"
   },
@@ -148,7 +160,8 @@
   "competitions": {
     "helps": {
       "participation": "Set your participation at competition {competition}",
-      "view": "View details of competition {competition}"
+      "view": "Go to competition {competition}",
+      "moreActions": "More actions on competition {competition}"
     },
     "form": {
       "descriptionPlaceholder": "Competition's description",
@@ -172,26 +185,73 @@
     "noCompetitions": "Any competition for the moment. Let's add one !",
     "title": "Competitions"
   },
+  "qr": {
+    "scan": {
+      "title": "Scan a QR code",
+      "tip": "Make sure you give Highest access to your camera, and clearly focus the QR code.",
+      "errors": {
+        "NotAllowedError": "you need to grant camera access permission",
+        "NotFoundError": "no camera on this device",
+        "NotSupportedError": "secure context required (HTTPS, localhost)",
+        "NotReadableError": "the camera is probably already in use",
+        "OverconstrainedError": "installed cameras are not suitable",
+        "StreamApiNotSupportedError": "QR code scanning is not supported in your browser"
+      }
+    },
+    "preview": {
+      "add": {
+        "route": "Add this route on Highest to follow your progression, get statistics and more!",
+        "location": "Add this location on Highest and start tracking routes you climb!"
+      },
+      "keepLocation": "Keep scanned location"
+    },
+    "generate": {
+      "title": "Generate QR code",
+      "generated": "Generated QR Code",
+      "advice": "This is the generated QR Code for your route. Every device that has a camera and QR Code scanning capabilities can preview and add it on Highest.",
+      "tip": "Tip: you can save the QR Code as an image to print it everywhere you want!"
+    }
+  },
   "tags": {
     "manage": "Manage tags",
     "any": "Organize your routes with tags: simple, discrete et efficient.",
+    "ariaView": "View tag {tag}",
     "add": "Add a tag",
+    "ariaColor": "Set tag color to {color}",
     "update": "Update tag",
+    "ariaUpdate": "Update name and color of tag {tag}",
     "remove": "Remove tag",
+    "ariaRemove": "Remove tag {tag}",
     "reset": "Reset all tags",
     "resetConfirmation": "If you reset tags, your routes would not have any of them anymore and you'll have to re-assign them manually."
   },
   "assets": {
+    "zoom": {
+      "help": "Zoom on the image: {description}",
+      "quit": "Click anywhere to leave"
+    },
+    "carousel": {
+      "previous": "Previous image",
+      "next": "Next image"
+    },
     "help": {
       "description": "An asset is any image that you add to a route, a location... From this menu, you can see all of the assets stored on Highest, and you can delete some of them if you want.",
-      "selectExisting": "...or choose one already on Highest",
-      "uploadNew": "Upload an asset from your device...",
-      "upload": "Upload"
+      "selectExisting": "Then choose the image(s) to add...",
+      "uploadNew": "Upload an asset from your device or a web link...",
+      "upload": "Upload",
+      "preview": "Preview of the image to upload",
+      "types": "Valid file types are : .png, .jpg, .jpeg, .bpm, .svg, .gif",
+      "url": "If you don't see any image preview, it means that your web URL is wrong.",
+      "viewIndex": "Image n°{index}"
+    },
+    "errors": {
+      "wrongType": "Error: Wrong image type"
     },
     "add": "Add an asset",
     "edit": "Edit assets",
     "remove": "Remove this asset",
-    "manage": "Manage assets"
+    "manage": "Manage assets",
+    "any": "Any asset added. Don't hesitate to glorify your contents!"
   },
   "settings": {
     "display": {

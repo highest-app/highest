@@ -12,20 +12,14 @@
       "edit": "Editar",
       "ok": "OK",
       "erase": "Borrar",
+      "reset": "Reiniciar",
       "select": "Seleccionar",
-      "selected": "Seleccionado"
+      "selected": "Seleccionado",
+      "share": "Compartir",
+      "load": "Cargar"
     },
     "quantity": {
       "none": "Ninguno"
-    },
-    "fields": {
-      "name": "Nombre",
-      "description": "Descripción",
-      "notes": "Notas",
-      "address": "Dirección",
-      "date": "Fecha",
-      "picture": "Foto",
-      "assets": "Recursos"
     },
     "colors": {
       "red": "Rojo",
@@ -36,13 +30,31 @@
       "purple": "Púrpura",
       "gray": "Gris"
     },
+    "fields": {
+      "name": "Nombre",
+      "description": "Descripción",
+      "website": "Sitio web",
+      "notes": "Notas",
+      "color": "Couleur",
+      "address": "Dirección",
+      "date": "Fecha",
+      "picture": "Foto",
+      "file": "Archivo",
+      "url": "Dirección web",
+      "assets": "Recursos"
+    },
+    "aria": {
+      "selectMenu": "Seleccionar una o varias opciones entre : {name}",
+      "selectMenuUnique": "Seleccionar una única opción entre : {name}"
+    },
     "general": "General",
+    "error": "Error",
     "actionConfirmation": "¿Estás seguro?"
   },
   "generic": {
     "location": "Ubicación | Ubicaciones",
     "route": "Ruta | Rutas",
-    "competition": "Competición | Competiciones",
+    "competition": "Competencia | Competencias",
     "tag": "Etiqueta | Etiquetas",
     "asset": "Recurso | Recursos",
     "action": "Acción | Acciones"
@@ -68,7 +80,13 @@
   "profile": {
     "user": "Usuario",
     "login": "Ingresa",
-    "title": "Perfil"
+    "title": "Perfil",
+    "customisation": "Personalización",
+    "tags": "Etiquetas",
+    "feeds": "Fuentes",
+    "adjustments": "Regulación",
+    "assets": "Recursas",
+    "settings": "Ajustes"
   },
   "feeds": {
     "actions": {
@@ -86,8 +104,9 @@
   },
   "routes": {
     "helps": {
-      "markAsFinished": "MMarcar ruta {grade} {name} en {location} como terminada",
-      "view": "Ver detalles de la ruta {grade} {name} en {location}"
+      "markAsFinished": "Marcar ruta {grade} {name} en {location} como terminada",
+      "view": "Ver detalles de la ruta {grade} {name} en {location}",
+      "moreActions": "Más acciones sobre la ruta {grade} {name} en {location}"
     },
     "terms": {
       "color": "Color",
@@ -117,7 +136,8 @@
       "editAssets": "Editar los recursos de la ruta",
       "edit": "Editar la ruta",
       "addProgress": "Añadir un progresos",
-      "removeProgression": "Eliminar el progreso: {notes}"
+      "removeProgression": "Eliminar este progreso",
+      "ariaRemoveProgression": "Eliminar el progreso en el momento {date} : {notes}"
     },
     "title": "Rutas"
   },
@@ -140,11 +160,12 @@
   "competitions": {
     "helps": {
       "participation": "Establecer mi participación en la competencia {competition}",
-      "view": "Ver detalles de la competencia {competition}"
+      "view": "Ver detalles de la competencia {competition}",
+      "moreActions": "Más acciones sobre la competencia {competition}"
     },
     "form": {
-      "descriptionPlaceholder": "Descripción de la competencia",
-      "namePlaceholder": "Nombre de la competencia"
+      "namePlaceholder": "Nombre de la competencia",
+      "descriptionPlaceholder": "Descripción de la competencia"
     },
     "terms": {
       "participation": "Participación"
@@ -155,29 +176,84 @@
       "notParticipating": "No participar"
     },
     "actions": {
-      "add": "Añadi una competencia",
+      "add": "Añadir una competencia",
       "edit": "Editar la competencia",
       "transfer": "Trasladar a otra ubicación",
       "remove": "Eliminar la competencia",
       "removeConfirmation": "Si elimina esta competencia, perderás las estadísticas guardadas en él. ¡Piénsalo!"
     },
     "noCompetitions": "Cualquier competencia por el momento. ¡Añadamos una!",
-    "title": "Competencia"
+    "title": "Competencias"
+  },
+  "qr": {
+    "scan": {
+      "title": "Escanear un código QR",
+      "tip": "Asegúrate de darle a Highest acceso a tu cámara, y apunta al código QR.",
+      "errors": {
+        "NotAllowedError": "debe permitir el acceso a la cámara",
+        "NotFoundError": "no hay cámaras en este dispositivo",
+        "NotSupportedError": "contexto de seguridad requerido (HTTPS, localhost)",
+        "NotReadableError": "la cámara probablemente ya está en uso",
+        "OverconstrainedError": "Las cámaras de a bordo no son utilizables",
+        "StreamApiNotSupportedError": "El escaneo de código QR no es compatible con tu navegador"
+      }
+    },
+    "preview": {
+      "add": {
+        "route": "Añade esta ruta en Highest para seguir tu progreso, obtener estadísticas y más!",
+        "location": "Añade este ubicación en Highest y empieza a seguir las rutas que escala !"
+      },
+      "keepLocation": "Guardar la ubicación escaneada"
+    },
+    "generate": {
+      "title": "Generar el código QR",
+      "generated": "Código QR generado",
+      "advice": "Este es el QR code generado por tu ruta. Chaque appareil qui possède une caméra et une capacité de scan de codes peut l'afficher et l'ajouter sur Highest.",
+      "tip": "Consejo: ¡puedes guardar el código QR como una imagen e imprimirlo donde quieras!"
+    }
+  },
+  "tags": {
+    "manage": "Manejar las etiquetas",
+    "any": "Organiza tus carriles con etiquetas: simples, discretas y efectivas.",
+    "ariaView": "Ver la etiqueta {tag}",
+    "add": "Añadir una etiqueta",
+    "ariaColor": "Definir el color de la etiqueta en {color}",
+    "ariaUpdate": "Cambiar el nombre y el color de la etiqueta {tag}",
+    "update": "Cambiar la etiqueta",
+    "remove": "Borrar la etiqueta",
+    "ariaRemove": "Borrar la etiqueta {tag}",
+    "reset": "Reiniciar las etiquetas",
+    "resetConfirmation": "Si reinicia las etiquetas, toutes vos voies n'en auront plus et vous devrez les réassigner manuellement."
   },
   "assets": {
+    "zoom": {
+      "help": "Zoom sobre la imagen : {description}",
+      "quit": "CHaga clic en cualquier lugar para salir"
+    },
+    "carousel": {
+      "previous": "Imagen precedente",
+      "next": "Imagen siguiente"
+    },
     "help": {
       "description": "Un recurso es una imagen que añades a una ruta, una ubicación... Desde este menú, puedes ver todos recursos que son registrado en Highest, y puedes borrar algunos si quieres.",
-      "selectExisting": "...o selecciona una ya en Highest",
-      "uploadNew": "Sube un recurso desde usted aparato...",
-      "upload": "Subir"
+      "selectExisting": "Selecciona después una o varias imagen(es) para añadir...",
+      "uploadNew": "Sube un recurso desde usted aparato o el Internet...",
+      "upload": "Subir",
+      "preview": "Vista previa de la imagen para descargar",
+      "types": "Los tipos de archivo aceptados son : .png, .jpg, .jpeg, .bpm, .svg, .gif",
+      "url": "Si no ves ninguna imagen previa, significa que tu dirección web no es válida.",
+      "viewIndex": "Imagen n°{index}"
+    },
+    "errors": {
+      "wrongType": "Error: Tipo de archivo incorrecto"
     },
     "add": "Añadir un recurso",
     "edit": "Editar los recursos",
     "remove": "Eliminar este recurso",
-    "manage": "Gestionar los recursos"
+    "manage": "Gestionar los recursos",
+    "any": "No se han añadido recursos. No dude en hacerlo para ampliar su contenido!"
   },
   "settings": {
-    "adjustments": "Ajustes",
     "display": {
       "title": "Pantalla",
       "language": {
@@ -191,7 +267,7 @@
       "light": "Luz",
       "dark": "Oscuro",
       "invertColors": "Invertir los colores",
-      "autoDarkThemeDescription": "El tema de Highest se ajustará al del dispositivo. Asegúrate de que tu sistema esté actualizado para aprovechar esta característica."
+      "autoDescription": "El tema de Highest se ajustará al del dispositivo. Asegúrate de que tu sistema esté actualizado para aprovechar esta característica."
     },
     "data": {
       "title": "Datos",
