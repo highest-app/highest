@@ -89,3 +89,12 @@ export default {
   },
 }
 </script>
+
+<style lang="stylus">
+.qrcode-stream-wrapper
+  display: flex !important
+  justify-content: center !important
+
+  video
+    width: auto !important
+</style>
