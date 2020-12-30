@@ -9,7 +9,16 @@
         <v-row class="mx-0">
           {{ $tc('generic.location', 2) }}
           <v-spacer/>
-          <location-adding/>
+          <location-adding redirect>
+            <template #activator="{ on }">
+              <v-icon
+                :aria-label="$t('locations.actions.add')"
+                small
+                v-on="on">
+                mdi-plus
+              </v-icon>
+            </template>
+          </location-adding>
         </v-row>
       </v-subheader>
       <v-list-item
@@ -92,10 +101,10 @@ import tagName from '@/utils/tags'
 
 export default {
   name: 'RouteCategories',
-  components: { LocationAdding, TagForm },
   props: {
     mobile: Boolean,
   },
+  components: { LocationAdding, TagForm },
   data() {
     return {
       tagForm: false

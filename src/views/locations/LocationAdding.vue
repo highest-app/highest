@@ -1,12 +1,9 @@
 <template>
   <responsive-dialog v-model="enabled">
     <template #activator="{ on }">
-      <v-icon
-        :aria-label="$t('locations.actions.add')"
-        small
-        v-on="on">
-        mdi-plus
-      </v-icon>
+      <slot
+        name="activator"
+        v-bind:on="on"/>
     </template>
     <template #dialog>
       <app-bar
@@ -42,6 +39,9 @@ import LocationForm from '@/views/locations/LocationForm'
 export default {
   name: 'LocationAdding',
   components: { LocationForm },
+  props: {
+    redirect: Boolean
+  },
   data() {
     return {
       form: Object.assign({}, defaultLocationForm),
@@ -57,10 +57,12 @@ export default {
     ...mapActions(['addLocation']),
     async add() {
       let id = await this.addLocation(this.form)
-      await this.$router.push({
-        name: 'location',
-        params: { location: id }
-      })
+      if (this.redirect) {
+        await this.$router.push({
+          name: 'location',
+          params: { location: id }
+        })
+      }
       this.resetForm()
     },
     resetForm() {

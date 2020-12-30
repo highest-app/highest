@@ -22,6 +22,20 @@
             {{ label.name }}
           </template>
         </select-menu>
+        <location-adding>
+          <template #activator="{ on }">
+            <card-group>
+              <card
+                icon="mdi-map-marker-plus-outline"
+                icon-color="blue"
+                top
+                bottom
+                v-on="on">
+                <template #title>{{ $t('locations.actions.add') }}</template>
+              </card>
+            </card-group>
+          </template>
+        </location-adding>
       </panel>
     </v-slide-x-reverse-transition>
     <page-body>
@@ -128,6 +142,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import LocationAdding from '@/views/locations/LocationAdding'
 import { getLocationThumbnail } from '@/utils/assets'
 import { competitionIcons as icons } from '@/utils/data'
 
@@ -145,6 +160,7 @@ export default {
     withLocation: Boolean,
     dialog: Boolean
   },
+  components: { LocationAdding },
   data() {
     return {
       locationSelect: false,

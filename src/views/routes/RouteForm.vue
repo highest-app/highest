@@ -2,41 +2,6 @@
   <page-body>
     <v-slide-x-reverse-transition>
       <panel
-        v-if="tagsSelect"
-        :hook="hook"
-        :page="!dialog"
-        :dialog="dialog">
-        <select-menu
-          v-model="form.tags"
-          :labels="tags"
-          :choices="tags.map(tag => tag.id)"
-          :name="$tc('generic.tag', 2)"
-          multiple
-          @back="tagsSelect = false">
-          <template #label="{ label }">
-            <v-icon :color="label.color">mdi-circle</v-icon>
-            {{ tagName(label) }}
-          </template>
-        </select-menu>
-      </panel>
-    </v-slide-x-reverse-transition>
-    <v-slide-x-reverse-transition>
-      <panel
-        v-if="gradeSelect"
-        :hook="hook"
-        :page="!dialog"
-        :dialog="dialog">
-        <select-menu
-          v-model="form.grade"
-          :choices="grades"
-          :name="$t('routes.terms.grade')"
-          auto-back
-          mandatory
-          @back="gradeSelect = false"/>
-      </panel>
-    </v-slide-x-reverse-transition>
-    <v-slide-x-reverse-transition>
-      <panel
         v-if="locationSelect"
         :hook="hook"
         :page="!dialog"
@@ -58,6 +23,74 @@
             {{ label.name }}
           </template>
         </select-menu>
+        <location-adding>
+          <template #activator="{ on }">
+            <card-group>
+              <card
+                icon="mdi-map-marker-plus-outline"
+                icon-color="blue"
+                top
+                bottom
+                v-on="on">
+                <template #title>{{ $t('locations.actions.add') }}</template>
+              </card>
+            </card-group>
+          </template>
+        </location-adding>
+      </panel>
+    </v-slide-x-reverse-transition>
+    <v-slide-x-reverse-transition>
+      <panel
+        v-if="gradeSelect"
+        :hook="hook"
+        :page="!dialog"
+        :dialog="dialog">
+        <select-menu
+          v-model="form.grade"
+          :choices="grades"
+          :name="$t('routes.terms.grade')"
+          auto-back
+          mandatory
+          @back="gradeSelect = false"/>
+      </panel>
+    </v-slide-x-reverse-transition>
+    <v-slide-x-reverse-transition>
+      <panel
+        v-if="tagsSelect"
+        :hook="hook"
+        :page="!dialog"
+        :dialog="dialog">
+        <select-menu
+          v-model="form.tags"
+          :labels="tags"
+          :choices="tags.map(tag => tag.id)"
+          :name="$tc('generic.tag', 2)"
+          multiple
+          @back="tagsSelect = false">
+          <template #label="{ label }">
+            <v-icon :color="label.color">mdi-circle</v-icon>
+            {{ tagName(label) }}
+          </template>
+        </select-menu>
+        <v-dialog
+          v-model="tagDialog"
+          max-width="290">
+          <template #activator="{ on }">
+            <card-group>
+              <card
+                icon="mdi-tag-plus-outline"
+                icon-color="blue"
+                top
+                bottom
+                v-on="on">
+                <template #title>{{ $t('tags.add') }}</template>
+              </card>
+            </card-group>
+          </template>
+          <tag-form
+            add
+            @close="tagDialog = false"/>
+        </v-dialog>
       </panel>
     </v-slide-x-reverse-transition>
     <card-group>
@@ -242,12 +275,15 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
+import LocationAdding from '@/views/locations/LocationAdding'
+import TagForm from '@/views/home/TagForm'
 import { getLocationThumbnail } from '@/utils/assets'
 import { grades } from '@/utils/data'
 import tagName from '@/utils/tags'
 
 export default {
   name: 'RouteForm',
+  components: {TagForm, LocationAdding},
   model: {
     prop: 'form',
     event: 'input'
@@ -262,10 +298,12 @@ export default {
   },
   data() {
     return {
-      tagsSelect: false,
-      colorDialog: false,
       locationSelect: false,
       gradeSelect: false,
+      tagsSelect: false,
+      tagDialog: false,
+      colorDialog: false,
+
       grades
     }
   },
