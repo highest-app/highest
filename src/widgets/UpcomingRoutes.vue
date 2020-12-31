@@ -4,8 +4,9 @@
     icon="mdi-routes-clock"
     route="/routes/all">
     <routes-list
-      paddingless
       :routes="getUpcomingRoutes"
+      paddingless
+      hide-picture
       show-location/>
   </widget>
 </template>

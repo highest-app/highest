@@ -14,7 +14,7 @@ export default Vue.component('card', {
     iconColor: String,
     sharp: Boolean,
     target: String,
-    to: String,
+    to: [String, Object],
     top: Boolean
   },
   render(createElement) {

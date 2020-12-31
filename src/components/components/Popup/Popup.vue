@@ -1,6 +1,6 @@
 <template>
   <v-dialog
-    v-model="active"
+    :value="active"
     :persistent="!nonPersistent"
     max-width="300"
     @update:return-value="disable">

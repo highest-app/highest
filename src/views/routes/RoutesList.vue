@@ -1,5 +1,8 @@
 <template>
   <v-list :class="{ background, 'py-0': paddingless }">
+    <route-edit
+      v-model="editDialog"
+      :route="routeToEdit"/>
     <popup
       v-model="removePopup"
       right-text="terms.actions.remove"
@@ -22,7 +25,9 @@
         :key="`${route.id}--list-item`"
         :aria-label="$t('routes.helps.view', { grade: route.grade, name: route.name === '' ? '' : `(${route.name})`, location: getLocationById(route.location).name })"
         no-action>
-        <div class="v-list-item__icon v-list-group__header__prepend-icon">
+        <div
+          v-if="!hidePicture"
+          class="v-list-item__icon v-list-group__header__prepend-icon">
           <v-avatar>
             <v-img
               :src="getRouteThumbnail(route)"
@@ -54,12 +59,13 @@
                 {{ route.grade }}
               </v-chip>
               &nbsp;
-              <span
+              <router-link
                 v-if="showLocation"
-                :to="{ name: 'location', params: { location: route.location }}"
-                class="overline text--primary">
-                {{ getLocationById(route.location).name }}
-              </span>
+                :to="{ name: 'location', params: { location: route.location }}">
+                <span class="overline text--primary">
+                  {{ getLocationById(route.location).name }}
+                </span>
+              </router-link>
 
               <v-tooltip
                 v-for="id in route.tags"
@@ -111,8 +117,13 @@
               style="border-radius: 12px">
               <list-group>
                 <card
-                  icon="mdi-delete-outline"
+                  icon="mdi-pencil-outline"
                   top
+                  @click="edit(route)">
+                  <template #title>{{ $t('routes.actions.edit') }}</template>
+                </card>
+                <card
+                  icon="mdi-delete-outline"
                   bottom
                   @click="remove(route.id)">
                   <template #title>{{ $t('routes.actions.remove') }}</template>
@@ -132,6 +143,7 @@
 
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
+import RouteEdit from '@/views/routes/RouteEdit'
 import { getRouteThumbnail } from '@/utils/assets'
 import { routeIcons } from '@/utils/data'
 import tagName from '@/utils/tags'
@@ -140,6 +152,7 @@ export default {
   name: 'RoutesList',
   props: {
     background: Boolean,
+    hidePicture: Boolean,
     paddingless: Boolean,
     routes: {
       type: Array,
@@ -147,9 +160,14 @@ export default {
     },
     showLocation: Boolean
   },
+  components: { RouteEdit },
   data() {
     return {
       icons: routeIcons,
+
+      routeToEdit: {},
+      editDialog: false,
+
       routeToRemove: '',
       removePopup: false
     }
@@ -161,6 +179,10 @@ export default {
   methods: {
     ...mapActions(['switchFinishedRoute', 'removeRoute']),
     getRouteThumbnail, tagName,
+    edit(route) {
+      this.routeToEdit = Object.assign({}, route)
+      this.editDialog = true
+    },
     remove(id) {
       this.routeToRemove = id
       this.removePopup = true

@@ -283,7 +283,7 @@ import tagName from '@/utils/tags'
 
 export default {
   name: 'RouteForm',
-  components: {TagForm, LocationAdding},
+  components: { TagForm, LocationAdding },
   model: {
     prop: 'form',
     event: 'input'
