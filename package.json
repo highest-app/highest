@@ -43,6 +43,7 @@
     "flakeid": "^1.0.0",
     "leaflet": "^1.7.1",
     "leaflet-geosearch": "^3.1.0",
+    "luxon": "^1.25.0",
     "moment": "^2.29.1",
     "nprogress": "^0.2.0",
     "qrcode": "^1.4.4",
