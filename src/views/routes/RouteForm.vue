@@ -261,7 +261,7 @@
             <template #title>
               <v-date-picker
                 v-model="form.goal"
-                style="box-shadow: 0;"
+                style="box-shadow: none"
                 color="primary"
                 no-title
                 full-width/>
@@ -270,6 +270,7 @@
         </template>
       </v-slide-y-transition>
     </card-group>
+    <slot name="append"/>
   </page-body>
 </template>
 

@@ -37,6 +37,7 @@
         </template>
       </card>
     </card-group>
+    <slot name="append"/>
     <template
       v-if="adding">
       <div class="px-3">

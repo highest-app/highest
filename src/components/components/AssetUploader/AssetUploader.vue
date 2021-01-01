@@ -1,8 +1,17 @@
 <template>
   <div class="asset-uploader__container">
-    <slot
-      name="activator"
-      v-bind:on="events"/>
+    <v-card @click="enable">
+      <v-img :src="previewImage">
+        <v-row
+          style="flex-direction: column"
+          class="fill-height blurred"
+          align="center"
+          justify="center">
+          <v-icon size="70">mdi-image-edit-outline</v-icon>
+          <span class="headline">{{ $t('assets.edit') }}</span>
+        </v-row>
+      </v-img>
+    </v-card>
     <v-slide-x-reverse-transition>
       <panel
         v-if="active"
@@ -139,10 +148,11 @@ export default {
   props: {
     selectedImages: Array,
     multiple: Boolean,
+    previewImage: String,
     title: {
       type: String,
       default: 'assets.edit'
-    },
+    }
   },
   data () {
     return {
@@ -156,11 +166,7 @@ export default {
       url: '',
       valid: true,
 
-      active: false,
-
-      events: {
-        click: this.enable
-      }
+      active: false
     }
   },
   mounted() {
