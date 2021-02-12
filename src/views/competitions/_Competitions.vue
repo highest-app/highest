@@ -1,6 +1,8 @@
 <template>
   <v-main>
-    <app-bar :title="$tc('generic.competition', 2)">
+    <app-bar
+      :title="$tc('generic.competition', 2)"
+      title-align="end">
       <template #top-bar-actions>
         <competition-adding/>
       </template>

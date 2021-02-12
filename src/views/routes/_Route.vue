@@ -1,17 +1,24 @@
 <template>
   <v-main>
-    <app-bar small-only>
+    <route-edit
+      v-model="editDialog"
+      :route="route"/>
+    <app-bar
+      :title="route.name"
+      :title-color="route.color">
+      <template #title-prepend>
+        <v-chip
+          outlined
+          color="text"
+          pill>
+          {{ route.grade }}
+        </v-chip>
+      </template>
       <template #bar-left-actions>
         <app-link @click="$router.back()">{{ $t('terms.actions.back') }}</app-link>
       </template>
       <template #bar-right-actions>
-        <route-edit
-          v-model="editMode"
-          :route="route">
-          <template #activator="{ on }">
-            <app-link v-on="on">{{ $t('terms.actions.edit') }}</app-link>
-          </template>
-        </route-edit>
+        <app-link @click="editDialog = true">{{ $t('terms.actions.edit') }}</app-link>
       </template>
     </app-bar>
     <v-container>
@@ -72,10 +79,13 @@
           order-md="2"
           cols="12"
           md="6">
-          <h1>{{ route.name }}</h1>
           <span class="overline list-description--text">
             <v-icon color="list-description">mdi-map-marker-outline</v-icon>
-            {{ location.name }} &mdash; {{ location.address }}
+            <router-link
+              :to="{ name: 'location', params: { location: location.id }}"
+              class="text-decoration-underline"
+              style="color: inherit !important">{{ location.name }}</router-link>
+            &mdash; {{ location.address }}
           </span>
           <v-row class="mx-0 mt-1">
             <v-chip
@@ -270,7 +280,7 @@ export default {
   components: { RichMap, RouteEdit },
   data() {
     return {
-      editMode: false,
+      editDialog: false,
       progressionCard: false,
 
       imageIndex: 0,

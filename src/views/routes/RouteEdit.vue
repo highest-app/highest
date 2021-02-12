@@ -26,87 +26,74 @@
       </app-bar>
       <route-form
         v-model="routeForm"
-        dialog/>
-      <page-body>
-        <div class="px-4">
-          <asset-uploader
-            v-model="routeForm.photos"
-            :active="photoChoose"
-            title="routes.actions.editAssets"
-            multiple>
-            <template #activator="{ on }">
-              <v-card v-on="on">
-                <v-img :src="getRouteThumbnail(route)">
-                  <v-row
-                    style="flex-direction: column"
-                    class="fill-height blurred"
-                    align="center"
-                    justify="center">
-                    <v-icon size="70">mdi-image-edit-outline</v-icon>
-                    <span class="headline">{{ $t('assets.edit') }}</span>
-                  </v-row>
-                </v-img>
-              </v-card>
-            </template>
-          </asset-uploader>
-        </div>
-        <div class="mt-4">
-          <card-group>
-            <responsive-dialog
-              v-if="transferableLocations.length"
-              v-model="transferDialog">
-              <template #activator="{ on }">
-                <card
-                  top
-                  v-on="on">
-                  <template #title>
-                    <span class="primary--text">{{ $t('routes.actions.transfer') }}</span>
-                  </template>
-                </card>
-              </template>
-              <template #dialog>
-                <app-bar
-                  :title="$t('routes.actions.transfer')"
-                  small-only
-                  fixed>
-                  <template #bar-left-actions>
-                    <app-link @click="transferDialog = false">{{ $t('terms.actions.cancel') }}</app-link>
-                  </template>
-                </app-bar>
-                <page-body>
-                  <card-group>
-                    <card
-                      v-for="(location, i) in transferableLocations"
-                      :key="location.id"
-                      :top="i === 0"
-                      :bottom="i === transferableLocations.length - 1"
-                      @click="transferRoute({
-                        location: location.id,
-                        route: route.id,
-                        $router
-                      })">
-                      <template #title>
-                        <v-list-item-avatar>
-                          <v-img :src="getLocationThumbnail(location)"/>
-                        </v-list-item-avatar>
-                        {{ location.name }}
-                      </template>
-                    </card>
-                  </card-group>
-                </page-body>
-              </template>
-            </responsive-dialog>
-            <card
-              :top="!transferableLocations.length"
-              bottom
-              @click="removePopup = true">
-              <template #title>
-                <span class="error--text">{{ $t('routes.actions.remove') }}</span>
-              </template>
-            </card>
-          </card-group>
-        </div>
-      </page-body>
+        dialog>
+        <template #append>
+          <div class="px-4">
+            <asset-uploader
+              v-model="routeForm.photos"
+              :active="assetsUploader"
+              :preview-image="getRouteThumbnail(route)"
+              title="routes.actions.editAssets"
+              multiple/>
+          </div>
+          <div class="mt-4">
+            <card-group>
+              <responsive-dialog
+                v-if="transferableLocations.length"
+                v-model="transferDialog">
+                <template #activator="{ on }">
+                  <card
+                    top
+                    v-on="on">
+                    <template #title>
+                      <span class="primary--text">{{ $t('routes.actions.transfer') }}</span>
+                    </template>
+                  </card>
+                </template>
+                <template #dialog>
+                  <app-bar
+                    :title="$t('routes.actions.transfer')"
+                    small-only
+                    fixed>
+                    <template #bar-left-actions>
+                      <app-link @click="transferDialog = false">{{ $t('terms.actions.cancel') }}</app-link>
+                    </template>
+                  </app-bar>
+                  <page-body>
+                    <card-group>
+                      <card
+                        v-for="(location, i) in transferableLocations"
+                        :key="location.id"
+                        :top="i === 0"
+                        :bottom="i === transferableLocations.length - 1"
+                        @click="transferRoute({
+                          location: location.id,
+                          route: route.id,
+                          $router
+                        })">
+                        <template #title>
+                          <v-list-item-avatar>
+                            <v-img :src="getLocationThumbnail(location)"/>
+                          </v-list-item-avatar>
+                          {{ location.name }}
+                        </template>
+                      </card>
+                    </card-group>
+                  </page-body>
+                </template>
+              </responsive-dialog>
+              <card
+                :top="!transferableLocations.length"
+                bottom
+                @click="removePopup = true">
+                <template #title>
+                  <span class="error--text">{{ $t('routes.actions.remove') }}</span>
+                </template>
+              </card>
+            </card-group>
+          </div>
+        </template>
+      </route-form>
     </template>
   </responsive-dialog>
 </template>
@@ -134,7 +121,7 @@ export default {
   data() {
     return {
       dialog: false,
-      photoChoose: false,
+      assetsUploader: false,
       transferDialog: false,
       removePopup: false,
 

@@ -6,16 +6,30 @@
       elevation="0"
       clipped-left
       prominent>
-      <v-toolbar-title
-        class="row"
-        style="margin: inherit">
-        <slot name="title-prepend"/>
-        <h2 :class="$slots['title-prepend'] && 'ml-2'">{{ title }}</h2>
-      </v-toolbar-title>
-      <v-spacer/>
-      <div class="top-bar__actions">
-        <slot name="top-bar-actions"/>
-      </div>
+      <v-col>
+        <v-row v-if="$slots['bar-left-actions'] || $slots['bar-right-actions']">
+          <div class="top-bar__left-actions">
+            <slot name="bar-left-actions"/>
+          </div>
+          <v-spacer/>
+          <div class="top-bar__right-actions">
+            <slot name="bar-right-actions"/>
+          </div>
+        </v-row>
+        <v-row :class="`align-${titleAlign} ${!$slots['bar-left-actions'] && !$slots['bar-right-actions'] && 'top-bar__no-actions' }`">
+          <slot name="title-prepend"/>
+          <slot name="title">
+            <h2
+              :class="{ 'ml-2': $slots['title-prepend'], 'mr-2': $slots['title-append'] }"
+              :style="{ color: titleColor }">{{ title }}</h2>
+          </slot>
+          <slot name="title-append"/>
+          <v-spacer/>
+          <div class="top-bar__actions">
+            <slot name="top-bar-actions"/>
+          </div>
+        </v-row>
+      </v-col>
     </v-app-bar>
     <v-app-bar
       class="app-bar translucent"
@@ -32,7 +46,8 @@
       <v-spacer/>
       <v-toolbar-title>
         <slot name="title-prepend"/>
-        {{ title }}
+        <slot name="title">{{ title }}</slot>
+        <slot name="title-append"/>
       </v-toolbar-title>
       <v-spacer/>
       <div class="app-bar__right-actions">
@@ -47,9 +62,15 @@ export default {
   name: 'AppBar',
   props: {
     fixed: Boolean,
+    barHideAppend: Boolean,
     smallOnly: Boolean,
     sticky: Boolean,
-    title: String
+    title: String,
+    titleColor: String,
+    titleAlign: {
+      type: String,
+      default: 'center'
+    }
   },
   computed: {
     fix() {

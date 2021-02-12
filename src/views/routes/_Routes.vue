@@ -2,7 +2,8 @@
   <v-main>
     <app-bar
       v-if="$vuetify.breakpoint.mdAndUp"
-      :title="$tc('generic.route', 2)">
+      :title="$tc('generic.route', 2)"
+      title-align="end">
       <template #top-bar-actions>
         <route-adding v-if="locations.length > 0"/>
       </template>

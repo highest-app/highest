@@ -23,6 +23,7 @@ const mutations = {
     state = [...state, ...data]
   },
   ADD_LOCATION(state, { data, id }) {
+    console.log(data)
     state.push({
       name: data.name.trim(),
       address: data.address.trim(),

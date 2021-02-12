@@ -4,8 +4,9 @@
     icon="mdi-medal-outline"
     route="/competitions">
     <competitions-list
+      :competitions="getUpcomingCompetitions"
       paddingless
-      :competitions="getUpcomingCompetitions"/>
+      hide-action/>
   </widget>
 </template>
 

@@ -7,7 +7,7 @@
       subheader>
       <v-subheader class="text-uppercase">
         <v-row class="mx-0">
-          {{ $tc('generic.location', 2) }}
+          {{ $tc('generic.location', 2) }} &mdash; {{ locations.length }}
           <v-spacer/>
           <location-adding redirect>
             <template #activator="{ on }">
@@ -41,14 +41,13 @@
       </v-list-item>
     </v-list>
     <v-list
-      v-if="tags.length"
       :class="{ background: mobile }"
       :dense="!mobile"
       :nav="!mobile"
       subheader>
       <v-subheader class="text-uppercase">
         <v-row class="mx-0">
-          {{ $tc('generic.tag', 2) }}
+          {{ $tc('generic.tag', 2) }} &mdash; {{ tags.length }}
           <v-spacer/>
           <v-dialog
             v-model="tagForm"

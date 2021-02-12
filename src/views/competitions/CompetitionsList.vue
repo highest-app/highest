@@ -17,7 +17,9 @@
           :key="`${competition.id}--list-item`"
           :aria-label="$t('competitions.helps.view', { competition: competition.name })"
           no-action>
-          <v-menu offset-y>
+          <v-menu
+            v-if="!hideAction"
+            offset-y>
             <template #activator="{ on: menu }">
               <div class="v-list-item__icon v-list-group__header__prepend-icon">
                 <v-tooltip
@@ -124,6 +126,7 @@ export default {
       type: Array,
       required: true
     },
+    hideAction: Boolean,
     paddingless: Boolean
   },
   data() {
