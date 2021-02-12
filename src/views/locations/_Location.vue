@@ -1,19 +1,32 @@
 <template>
   <v-main v-if="location !== undefined">
-    <popup
-      v-model="removePopup"
-      right-text="terms.actions.remove"
-      critical
-      @right-action="remove">
-      <template #description>{{ $t('locations.actions.removeConfirmation') }}</template>
-    </popup>
-    <app-bar small-only>
+    <app-bar
+      :title="location.name"
+      title-align="end">
+      <template #title-append>
+        <span class="list-description--text overline mr-6">
+          {{ location.address }}
+        </span>
+      </template>
+      <template #top-bar-actions>
+        <route-adding :location="location.id"/>
+      </template>
       <template #bar-left-actions>
         <app-link
           class="hidden-md-and-up"
           @click="$router.back()">
           {{ $t('terms.actions.back') }}
         </app-link>
+      </template>
+      <template
+        #bar-right-actions>
+        <location-edit
+          v-model="editDialog"
+          :location="location">
+          <template #activator="{ on }">
+            <app-link v-on="on">{{ $t('terms.actions.edit') }}</app-link>
+          </template>
+        </location-edit>
       </template>
     </app-bar>
     <v-container>
@@ -24,7 +37,9 @@
           cols="12"
           md="6">
           <v-row>
-            <v-col cols="12">
+            <v-col
+              cols="12"
+              class="pt-0">
               <zoomable-image
                 v-if="location.photos.length === 0"
                 :src="getLocationThumbnail(location)"/>
@@ -74,45 +89,10 @@
           order-md="2"
           cols="12"
           md="6">
-          <v-row>
-            <v-col cols="12">
-              <v-row class="mx-0">
-                <h1>{{ location.name }}</h1>
-                <v-spacer/>
-                <route-adding :location="location.id"/>
-              </v-row>
-              <span class="overline list-description--text">
-                <v-icon color="list-description">mdi-map-marker-outline</v-icon>
-                {{ location.address }}
-              </span>
-              <p>{{ location.notes }}</p>
-              <location-edit
-                v-model="editDialog"
-                :location="location">
-                <template #activator="{ on }">
-                  <v-btn
-                    class="mr-3 gradient--primary white--text"
-                    depressed
-                    v-on="on">
-                    <v-icon left>mdi-pencil-outline</v-icon>
-                    {{ $t('terms.actions.edit') }}
-                  </v-btn>
-                </template>
-              </location-edit>
-              <v-btn
-                class="gradient--error white--text"
-                depressed
-                @click="removePopup = true">
-                <v-icon left>mdi-delete-outline</v-icon>
-                {{ $t('terms.actions.remove') }}
-              </v-btn>
-            </v-col>
-            <v-col cols="12">
-              <routes-list
-                :routes="routes"
-                background/>
-            </v-col>
-          </v-row>
+          <p>{{ location.notes }}</p>
+          <routes-list
+            :routes="routes"
+            background/>
         </v-col>
       </v-row>
     </v-container>
@@ -120,7 +100,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import { getLocationThumbnail } from '@/utils/assets'
 import LocationEdit from '@/views/locations/LocationEdit'
 import RichMap from '@/views/locations/RichMap'
@@ -132,7 +112,6 @@ export default {
   components: { LocationEdit, RichMap, RouteAdding, RoutesList },
   data: () => ({
     editDialog: false,
-    removePopup: false,
 
     imageIndex: 0
   }),
@@ -153,7 +132,6 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['removeLocation']),
     getLocationThumbnail,
     nextImage() {
       this.imageIndex += 1
@@ -162,11 +140,6 @@ export default {
     previousImage() {
       this.imageIndex -= 1
       if (this.imageIndex === -1) this.imageIndex = this.route.photos.length - 1
-    },
-    remove() {
-      this.removeLocation(this.location.id)
-      const nextRoute = this.$vuetify.breakpoint.mdAndUp ? '/routes/all' : '/routes'
-      this.$router.push(nextRoute)
     }
   }
 }

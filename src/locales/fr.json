@@ -151,6 +151,7 @@
     "actions": {
       "edit": "Modifier le lieu",
       "editAssets": "Modifier les ressources du lieu",
+      "remove": "Supprimer le lieu",
       "removeConfirmation": "Si vous supprimez ce lieu, les voies enregistrées dessus le seront également. Vous perdrez ainsi vos progressions sur ce lieu. Réfléchissez bien !",
       "add": "Ajouter un lieu"
     },

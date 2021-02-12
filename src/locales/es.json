@@ -151,6 +151,7 @@
     "actions": {
       "edit": "Editar la ubicación",
       "editAssets": "Editar recursos de la ubicación",
+      "remove": "Eliminar esta ubicación",
       "removeConfirmation": "Si elimina esta ubicación, las rutas guardadas en ella también se borrarán. Por lo tanto, perderás tus progresiones en esta ubicación. ¡Piénsalo!",
       "add": "Añadir una ubicación"
     },

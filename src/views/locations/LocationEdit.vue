@@ -6,6 +6,13 @@
         v-bind:on="on"/>
     </template>
     <template #dialog>
+      <popup
+        v-model="removePopup"
+        right-text="terms.actions.remove"
+        critical
+        @right-action="remove">
+        <template #description>{{ $t('locations.actions.removeConfirmation') }}</template>
+      </popup>
       <app-bar
         :title="$t('locations.actions.edit')"
         small-only
@@ -27,6 +34,16 @@
               title="locations.actions.editAssets"
               multiple/>
           </div>
+          <card-group>
+            <card
+              top
+              bottom
+              @click="removePopup = true">
+              <template #title>
+                <span class="error--text">{{ $t('locations.actions.remove') }}</span>
+              </template>
+            </card>
+          </card-group>
         </template>
       </location-form>
     </template>
@@ -57,15 +74,21 @@ export default {
     return {
       form: {},
       assetsDialog: false,
-      dialog: false
+      dialog: false,
+      removePopup: false
     }
   },
   mounted() {
     this.quit()
   },
   methods: {
-    ...mapActions(['updateLocation']),
+    ...mapActions(['updateLocation', 'removeLocation']),
     getLocationThumbnail,
+    remove() {
+      this.removeLocation(this.location.id)
+      const nextRoute = this.$vuetify.breakpoint.mdAndUp ? '/routes/all' : '/routes'
+      this.$router.push(nextRoute)
+    },
     validate() {
       this.updateLocation(this.form)
       this.quit()
@@ -73,7 +96,7 @@ export default {
     quit() {
       this.form = Object.assign({}, this.location)
       this.dialog = false
-    },
+    }
   },
   watch: {
     dialog(value) {

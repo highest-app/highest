@@ -151,6 +151,7 @@
     "actions": {
       "edit": "Edit location",
       "editAssets": "Edit location's assets",
+      "remove": "Remove location",
       "removeConfirmation": "If you remove this location, routes saved on it will be deleted as well. Therefore, you'll lose your progressions on this location. Think about it !",
       "add": "Add a location"
     },
