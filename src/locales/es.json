@@ -284,6 +284,10 @@
         "latest": "Última versión : {number}",
         "goto": "Ir a la lista de los cambios"
       },
+      "donate": {
+        "tip": "Dona en Buy Me A Coffee",
+        "text": "Si te gusta mi proyecto y quieres apoyar el crecimiento de Highest, puedes <a href='https://buymeacoffee.com/theovidal'>darme un café</a> ;)"
+      },
       "maintainedBy": "Mantenido por Théo Vidal",
       "openSource": "Este proyecto es distribuido en código abierto con licencia <a href='https://github.com/highest-app/highest/blob/master/LICENSE'>GNU GPL v3</a>.",
       "sourceCode": "Ve al código fuente",

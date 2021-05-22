@@ -149,13 +149,13 @@ export default {
       if (!this.solo) this.$router.back()
       this.quit()
     },
-    resetForm(route) {
+    reset(route) {
       this.routeForm = Object.assign({
         enableGoal: route.goal !== false
       }, route)
     },
     quit() {
-      this.resetForm(this.route)
+      this.reset(this.route)
       this.dialog = false
     }
   },
@@ -167,7 +167,7 @@ export default {
       this.dialog = value
     },
     route(value) {
-      this.resetForm(value)
+      this.reset(value)
     }
   }
 }

@@ -284,11 +284,11 @@
         "latest": "Latest release : {number}",
         "goto": "Go to the changelog"
       },
-      "donate": {
-        "tip": "Donate on PayPal",
-        "text": "If you like my project and want to support Highest's growth, you can <a href='https://paypal.me/theovidal2103'>offer me a coffee</a> ;)"
-      },
       "maintainedBy": "Maintained by Théo Vidal",
+      "donate": {
+        "tip": "Donate on Buy Me A Coffee",
+        "text": "If you like my project and want to support Highest's growth, you can <a href='https://buymeacoffee.com/theovidal'>buy me a coffee</a> ;)"
+      },
       "openSource": "This project is distributed in open-source under the <a href='https://github.com/highest-app/highest/blob/master/LICENSE'>GNU GPL v3</a> license.",
       "sourceCode": "Go to the source code",
       "betaNotice": "Please note that the application is in <strong>beta</strong> : therefore, many bugs exist and some features aren't implemented. If you want to contribute to this projet, head over to <a href='https://github.com/highest-app/highest'>the GitHub repository</a>."

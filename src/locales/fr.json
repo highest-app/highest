@@ -286,7 +286,7 @@
       },
       "maintainedBy": "Maintenu par Théo Vidal",
       "donate": {
-        "tip": "Faire un don sur PayPal",
+        "tip": "Faire un don sur Buy Me A Coffee",
         "text": "Si vous aimez mon projet et souhaitez supporter le dévoppement de Highest, vous pouvez <a href='https://paypal.me/theovidal2103'>m'offrir un café</a> ;)"
       },
       "openSource": "Ce projet est distribué en open-source sous licence <a href='https://github.com/highest-app/highest/blob/master/LICENSE'>GNU GPL v3</a>.",

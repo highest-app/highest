@@ -1,5 +1,8 @@
 <template>
   <list-group>
+    <competition-edit
+      v-model="editDialog"
+      :competition="competitionToEdit"/>
     <popup
       v-model="removePopup"
       right-text="terms.actions.remove"
@@ -94,6 +97,12 @@
                 style="border-radius: 12px">
                 <list-group>
                   <card
+                    icon="mdi-pencil-outline"
+                    top
+                    @click="edit(competition)">
+                    <template #title>{{ $t('competitions.actions.edit') }}</template>
+                  </card>
+                  <card
                     icon="mdi-delete-outline"
                     top
                     bottom
@@ -116,6 +125,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import CompetitionEdit from '@/views/competitions/CompetitionEdit'
 import { competitionIcons as icons } from '@/utils/data'
 
 export default {
@@ -129,9 +139,14 @@ export default {
     hideAction: Boolean,
     paddingless: Boolean
   },
+  components: { CompetitionEdit },
   data() {
     return {
       icons,
+
+      competitionToEdit: {},
+      editDialog: false,
+
       competitionToRemove: '',
       removePopup: false
     }
@@ -160,6 +175,10 @@ export default {
         id,
         participation
       })
+    },
+    edit(competition) {
+      this.competitionToEdit = Object.assign({}, competition)
+      this.editDialog = true
     },
     remove(id) {
       this.competitionToRemove = id

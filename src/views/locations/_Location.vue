@@ -18,8 +18,7 @@
           {{ $t('terms.actions.back') }}
         </app-link>
       </template>
-      <template
-        #bar-right-actions>
+      <template #bar-right-actions>
         <location-edit
           v-model="editDialog"
           :location="location">

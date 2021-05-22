@@ -117,16 +117,16 @@
           <v-row
             align="center"
             class="mx-0">
-            <v-list-item-avatar
-              class="my-0 ml-0"
-              tile>
-              <v-img src="https://exybore.becauseofprog.fr/img/avatar.png"/>
+            <v-list-item-avatar class="my-0 ml-0">
+              <v-img
+                src="https://avatars.githubusercontent.com/u/12774204?s=460&u=e650d1d2fc140426da5beb3c1fb5cd03a285ac07&v=4"
+                alt="Théo Vidal's profile picture"/>
             </v-list-item-avatar>
             <v-col class="pa-0">
               {{ $t('settings.about.maintainedBy') }}
               <v-row class="mx-0">
                 <v-btn
-                  href="https://twitter.com/exybore"
+                  href="https://twitter.com/theovlld"
                   target="_blank"
                   icon>
                   <v-icon>mdi-twitter</v-icon>
@@ -138,17 +138,17 @@
                   <v-icon>mdi-github</v-icon>
                 </v-btn>
                 <v-btn
-                  href="https://www.youtube.com/channel/UC9Q3XhnYp-bZUgE995Csxww"
+                  href="https://linkedin.com/in/theovidal"
                   target="_blank"
                   icon>
-                  <v-icon>mdi-youtube</v-icon>
+                  <v-icon>mdi-linkedin</v-icon>
                 </v-btn>
                 <v-tooltip
                   :value="$vuetify.breakpoint.mdAndDown ? false : undefined"
                   bottom>
                   <template #activator="{ on }">
                     <v-btn
-                      href="https://paypal.me/theovidal2103"
+                      href="https://buymeacoffee.com/theovidal"
                       target="_blank"
                       color="primary"
                       icon

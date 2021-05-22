@@ -93,8 +93,11 @@ export default {
       this.updateLocation(this.form)
       this.quit()
     },
+    reset(location) {
+      this.form = Object.assign({}, location)
+    },
     quit() {
-      this.form = Object.assign({}, this.location)
+      this.reset(this.location)
       this.dialog = false
     }
   },
@@ -106,7 +109,7 @@ export default {
       this.dialog = value
     },
     location(value) {
-      this.resetForm(value)
+      this.reset(value)
     }
   }
 }

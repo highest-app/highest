@@ -7,6 +7,7 @@ const defaults = {
       id: 'my-championship',
       name: 'My championship',
       description: 'Organised with some friend 🏆🥂',
+      website: '',
       location: {
         type: 'location',
         locationID: 'my-climbing-gym'

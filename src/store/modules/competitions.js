@@ -43,7 +43,7 @@ const mutations = {
     competition.name = data.name.trim()
     competition.description = data.description.trim()
     competition.date = data.date
-    competition.website = data.website.trim()
+    competition.website = data.website === undefined ? '' : data.website.trim()
   },
   TRANSFER_COMPETITION(state, data) {
     let competition = state.find(competition => competition.id === data.competition)
